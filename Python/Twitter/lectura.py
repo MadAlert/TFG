@@ -15,13 +15,13 @@ def leerDatos():
         file=fichero+fechaActual+".json"
         for line in open(file, "r", encoding="utf8"):
             carga = json.loads(line)
-            fechaCreacion = carga["created_at"]
-            nombreUsuario = "@"+carga["user"]["screen_name"]
             tweet = carga["text"]
             lista = []
             lista.append(tweet)
             categoria = c.clasificarTweets(lista)
             if(categoria != "Nada"):
+                fechaCreacion = carga["created_at"]
+                nombreUsuario = "@"+carga["user"]["screen_name"]
                 print ("La categoria es : " + categoria)
                 print ("El usuario es " + nombreUsuario)
                 print ("El tweet es " + tweet)
