@@ -6,6 +6,7 @@ import json
 import sys
 sys.path.append('../')
 from Clasificador import Clasificador
+from BaseDatos import BaseDatos
 
 page = requests.get("https://www.madridiario.es/indice-distritos/")
 #print(page.status_code)
@@ -17,6 +18,9 @@ entradas = soup.find_all('li')
 
 #Instancia a la clase Clasificador
 c = Clasificador.ClasificadorClass()
+
+bd = BaseDatos.baseDatosClass()
+c = bd.conexion()
 
 for i, entrada in enumerate(entradas): 
     link = entrada.find('a').get('href') # con esto obtenemos el link a todos los distritos
@@ -47,7 +51,8 @@ for i, entrada in enumerate(entradas):
         for k, insi in enumerate(inside): # entra en la noticia k para obtener la fecha
             fecha = insi.find(class_='ulthora fecha_publicacion').get_text()
             print(fecha)
-    
+        #Instancia a la base de datos 
+        bd.insertarAlerta(c,titulo,fecha,url,distrito,categoria,"madridDiario")
     
 def var():
     distritos = [ "arganzuela", "barajas", "carabanchel", "centro", "chamartin", "chamberi", "ciudad lineal", "fuencarral-el pardo", "hortaleza", "latina", "moncloa-aravaca", "moratalaz", "puente de vallecas", "retiro", "salamanca", "san blas", "tetuan", "usera", "vicalvaro", "villa de vallecas", "villaverde"]
