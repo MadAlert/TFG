@@ -17,14 +17,14 @@ soup = BeautifulSoup(page.content, 'html.parser')
 entradas = soup.find_all('li')
 
 #Instancia a la clase Clasificador
-c = Clasificador.ClasificadorClass()
+clasificador = Clasificador.ClasificadorClass()
 
 bd = BaseDatos.baseDatosClass()
 c = bd.conexion()
 
 for i, entrada in enumerate(entradas): 
     link = entrada.find('a').get('href') # con esto obtenemos el link a todos los distritos
-    print(link)
+    distrito = entrada.find('a').get_text()
     
     page2 = requests.get(link)
     soup2 = BeautifulSoup(page2.content, 'html.parser')
@@ -43,7 +43,7 @@ for i, entrada in enumerate(entradas):
         #Obtener categoria
         lista = []
         lista.append(titulo)
-        categoria = c.clasificadorNoticias(lista)
+        categoria = clasificador.clasificadorNoticias(lista)
         page3 = requests.get(dist.find('a').get('href'))
         soup3 = BeautifulSoup(page3.content, 'html.parser')
         inside = soup3.find_all(class_='sin_borde')
