@@ -48,11 +48,12 @@ for i, entrada in enumerate(entradas):
         soup3 = BeautifulSoup(page3.content, 'html.parser')
         inside = soup3.find_all(class_='sin_borde')
         print(categoria)
-        for k, insi in enumerate(inside): # entra en la noticia k para obtener la fecha
-            fecha = insi.find(class_='ulthora fecha_publicacion').get_text()
-            print(fecha)
-        #Instancia a la base de datos 
-        bd.insertarAlerta(c,titulo,fecha,url,distrito,categoria,"madridDiario")
+        if( categoria != "Nada"):
+            for k, insi in enumerate(inside): # entra en la noticia k para obtener la fecha
+                fecha = insi.find(class_='ulthora fecha_publicacion').get_text()
+                print(fecha)
+            #Instancia a la base de datos
+            bd.insertarAlerta(c,titulo,fecha,url,distrito,categoria,"madridDiario")
     
 def var():
     distritos = [ "arganzuela", "barajas", "carabanchel", "centro", "chamartin", "chamberi", "ciudad lineal", "fuencarral-el pardo", "hortaleza", "latina", "moncloa-aravaca", "moratalaz", "puente de vallecas", "retiro", "salamanca", "san blas", "tetuan", "usera", "vicalvaro", "villa de vallecas", "villaverde"]

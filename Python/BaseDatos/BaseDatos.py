@@ -17,13 +17,6 @@ class baseDatosClass():
         diccionario = {"alerta": alerta, "fecha" : fecha, "url" : url, "distrito": distrito, "categoria": categoria, "fuente": fuente}
         coleccion.insert(diccionario)
     #def eliminarAlertas(fecha)
-                
-
-
-bd = baseDatosClass()
-c=bd.conexion()
-bd.insertarAlerta(c, "Lluvia fuerte", "12/05/2017","www.google.com", "chamberi","desastre","ppi")
-
 
 
 
