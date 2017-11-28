@@ -28,7 +28,7 @@ class listener(StreamListener):
                     if (not mencion):
                         mencionVacia= True
                     #Es una mencion de un usuario de la lista a otro
-                    elif not (mencion[0]["id_str"]in usuarios):
+                    elif ((mencion[0]["id_str"]in usuarios) and (carga["user"]["id_str"] in usuarios)):
                             mencionInteresa= True
                 if "created_at" in carga and not("RT" in carga["text"]) and (mencionVacia or mencionInteresa):
                     f.write(u'{0}\n'.format(json.dumps(carga, ensure_ascii=False)))
