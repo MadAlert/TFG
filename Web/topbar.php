@@ -10,7 +10,7 @@
                             <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
                             
                             <!-- LOGO MADALERT-->
-                            <img src="assets/images/logo-light-icon.png" alt="homepage" class="light-logo" />
+                            <img src="assets/images/logoAzulBlanco34.png" alt="homepage" class="light-logo" />
                         </b>
                         <!--End Logo icon -->
                         <!-- Logo text --><span>
