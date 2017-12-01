@@ -92,7 +92,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-block">
-                                <h4 class="card-title">Simple Basic Map</h4>
+                                
                                 <div id="gmaps-simple" class="gmaps"></div>
                             </div>
                         </div>
@@ -109,7 +109,7 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer">
-                © 2017 Material Pro Admin by wrappixel.com
+                © 2017 MadAlert
             </footer>
             <!-- ============================================================== -->
             <!-- End footer -->
@@ -140,7 +140,7 @@
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
     <!-- google maps api -->
-    <script src="https://maps.google.com/maps/api/js?key=AIzaSyCUBL-6KdclGJ2a_UpmB2LXvq7VOcPT7K4&sensor=true"></script>
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyAZduBv0lBj1OsO4gaUq_xifc7N7ZuhPz8&sensor=true"></script>
     <script src="assets/plugins/gmaps/gmaps.min.js"></script>
     <script src="assets/plugins/gmaps/jquery.gmaps.js"></script>
 </body>
