@@ -8,7 +8,7 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li> <a class="waves-effect waves-dark" href="index.php" aria-expanded="false"><i class="mdi mdi-bell"></i><span class="hide-menu">Alertas</span></a>
+                        <li> <a class="waves-effect waves-dark" href="alertas.php" aria-expanded="false"><i class="mdi mdi-bell"></i><span class="hide-menu">Alertas</span></a>
                         </li>
                         <li> <a class="waves-effect waves-dark" aria-expanded="false"><i class="mdi mdi-format-list-numbers"></i><span class="hide-menu">Estadísticas</span></a>
 							<ul>
