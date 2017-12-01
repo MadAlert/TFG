@@ -8,27 +8,25 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav">
                     <ul id="sidebarnav">
-                        <li> <a class="waves-effect waves-dark" href="index.php" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">Alertas</span></a>
+                        <li> <a class="waves-effect waves-dark" href="index.php" aria-expanded="false"><i class="mdi mdi-bell"></i><span class="hide-menu">Alertas</span></a>
                         </li>
-                        <li> <a class="waves-effect waves-dark" href="pages-profile.html" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">Estadísticas</span></a>
+                        <li> <a class="waves-effect waves-dark" aria-expanded="false"><i class="mdi mdi-format-list-numbers"></i><span class="hide-menu">Estadísticas</span></a>
 							<ul>
-								<li> <a class="waves-effect waves-dark" href="pages-profile.html" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">Generales</span></a>
+								<li> <a class="waves-effect waves-dark" href="estadisticasGenerales.php" aria-expanded="false"><i class="mdi mdi-view-agenda"></i><span class="hide-menu"> Generales</span></a>
 								</li>
-								<li> <a class="waves-effect waves-dark" href="pages-profile.html" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">Distritos</span></a>
+								<li> <a class="waves-effect waves-dark" href="estadisticasDistritos.php" aria-expanded="false"><i class="mdi mdi-grid"></i><span class="hide-menu"> Distritos</span></a>
 								</li>
 							</ul>
 						</li>
-                        <li> <a class="waves-effect waves-dark" href="table-basic.html" aria-expanded="false"><i class="mdi mdi-table"></i><span class="hide-menu">Información</span></a>
+                        <li> <a class="waves-effect waves-dark" aria-expanded="false"><i class="mdi mdi-information"></i><span class="hide-menu">Información</span></a>
 							<ul>
-								<li> <a class="waves-effect waves-dark" href="pages-profile.html" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">Soporte</span></a>
+								<li> <a class="waves-effect waves-dark" href="soporte.php" aria-expanded="false"><i class="mdi mdi-help-circle"></i><span class="hide-menu"> Soporte</span></a>
 								</li>
-								<li> <a class="waves-effect waves-dark" href="pages-profile.html" aria-expanded="false"><i class="mdi mdi-account-check"></i><span class="hide-menu">About us</span></a>
+								<li> <a class="waves-effect waves-dark" href="aboutus.php" aria-expanded="false"><i class="mdi mdi-contacts"></i><span class="hide-menu"> About us</span></a>
 								</li>
 							</ul>						
 						</li>
-                        <li> <a class="waves-effect waves-dark" href="map-google.php" aria-expanded="false"><i class="mdi mdi-earth"></i><span class="hide-menu">Google Map</span></a>
-                        </li>
-                        <li> <a class="waves-effect waves-dark" href="pages-error-404.html" aria-expanded="false"><i class="mdi mdi-help-circle"></i><span class="hide-menu">Error 404</span></a>
+                        <li> <a class="waves-effect waves-dark" href="pages-error-404.php" aria-expanded="false"><i class="mdi mdi-error"></i><span class="hide-menu">Error 404</span></a>
                         </li>
                     </ul>
                 </nav>
