@@ -71,7 +71,7 @@
                 <?php 
                     include ("claseAlertas.php");
                     $alertas = new claseAlertas();
-                    if(isset($_POST['distrito'])){
+                    if(!isset($_POST['distrito'])){
                            $alertas->mostrarDistritos();
                     }else{
                 ?>
