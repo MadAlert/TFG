@@ -101,8 +101,8 @@
                                                 <option>Barajas</option>
                                                 <option>Carabanchel</option>
                                                 <option>Centro</option>
-                                                <option>Chamart√≠n</option>
-												<option>Chamber√≠</option>
+                                                <option>ChamartÌn</option>
+                                                <option>ChamberÌ</option>
                                                 <option>Ciudad Lineal</option>
                                                 <option>Fuencarral-El Pardo</option>
                                                 <option>Hortaleza</option>
@@ -113,9 +113,9 @@
                                                 <option>Retiro</option>
                                                 <option>Salamanca</option>
 												<option>San Blas - Canillejas</option>
-                                                <option>Tetu√°n</option>
+                                                <option>Tetu·n</option>
                                                 <option>Usera</option>
-                                                <option>Vic√°lvaro</option>
+                                                <option>Vic·lvaro</option>
                                                 <option>Villa de Vallecas</option>
 												<option>Villaverde</option>
                                             </select>                                            
