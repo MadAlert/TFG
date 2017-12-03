@@ -71,18 +71,7 @@
                 <!-- ============================================================== -->
                 <!-- Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
-                
-              <!--  <div class="row page-titles">
-                    <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor m-b-0 m-t-0">Home</h3>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Estadisticas</a></li>
-							<li class="breadcrumb-item"><a href="javascript:void(0)">Distritos</a></li>
-                        </ol>
-                    </div>
-                </div>-->
-                
-                <!-- MODO ADRI EN ALERTAS -->
+
                 <?php 
                     include ("claseAlertas.php");
                     $alertas = new claseAlertas();
@@ -96,43 +85,7 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <!--<div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-block">
-                                <div class="form-group">
-                                        <label class="col-sm-12">Selecciona un distrito</label>
-                                        <div class="col-sm-12">                                        
-                                            <select class="form-control form-control-line">
-                                                <option>Arganzuela</option>
-                                                <option>Barajas</option>
-                                                <option>Carabanchel</option>
-                                                <option>Centro</option>
-                                                <option>Chamartín</option>
-                                                <option>Chamberí/option>
-                                                <option>Ciudad Lineal</option>
-                                                <option>Fuencarral-El Pardo</option>
-                                                <option>Hortaleza</option>
-                                                <option>Latina</option>
-												<option>Moncloa-Aravaca</option>
-                                                <option>Moratalaz</option>
-                                                <option>Puente de Vallecas</option>
-                                                <option>Retiro</option>
-                                                <option>Salamanca</option>
-												<option>San Blas - Canillejas</option>
-                                                <option>Tetuán</option>
-                                                <option>Usera</option>
-                                                <option>Vicálvaro</option>
-                                                <option>Villa de Vallecas</option>
-												<option>Villaverde</option>
-                                            </select>                                            
-                                        </div>										
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>	-->			
+                		
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
