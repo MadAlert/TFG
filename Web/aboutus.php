@@ -23,6 +23,7 @@
     <link href="css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="css/colors/blue.css" id="theme" rel="stylesheet">
+    <link href="css/contacto.css" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -93,19 +94,39 @@
                         <div class="card">
                             <div class="card-block">
                                 <h1 class="card-title"> ¿Quiénes somos? </h1>
-                                <p class="m-t-30"> Somos un grupo de estudiante de la Facultad de Informática de la Universidad Complutense de Madrid. (Aquí poner que no tenemos ánimo de lucro)
+                                <p class="m-t-30"> Somos un grupo de estudiante de la Facultad de Informática de la Universidad Complutense de Madrid. </br> Esta web pertenece a nuestro Trabajo de Fin de Grado realizado durante el curso 2017/2018.
                                 </p>
-                                <hr>
-                                <h1 class="card-title"> Integrantes del grupo </h1>
-                                <p class="m-t-30">
-                                    En esta parte describirnos un poco cada uno o q jaja xD q paxa chavales
                                     <ul>
                                         <li> <h2> Nerea Gómez Domínguez </h2> </li>
                                         <li> <h2> Silvia Lendínez Fernández </h2> </li>
                                         <li> <h2> Gonzalo Molina Díaz </h2> </li>
                                         <li> <h2> Adrián Panadero González </h2> </li>
                                     </ul>
-                                </p>
+                                <hr>
+                                <h1 class="card-title"> Contáctanos </h1>                                
+                                <form id="form_contact" class="contacto" action="mailto:madalert2017@gmail.com" method="post" enctype="text/plain">
+                                    <ul>
+                                    <li>
+                                        <label>Tu nombre</label>
+                                        <input type="text" value="" />
+                                    </li>
+                                    <li>
+                                        <label>Tu Email</label>
+                                        <input type="text" value="" />
+                                    </li>
+                                    <li>                                    
+                                        <label>Asunto</label>
+                                        <input type="text" value=""  />
+                                    </li>
+                                    <li>                                    
+                                        <label>Mensaje</label>
+                                        <textarea cols="40" rows="6"></textarea>
+                                    </li>                                    
+                                    <li>  
+                                        <button class="btn waves-effect waves-light btn-danger pull-center hidden-sm-down" type="submit"> Enviar </button>
+                                    </li>
+                                  </ul>
+                                </form>                                    
                             </div>
                         </div>
                     </div>
