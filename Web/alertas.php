@@ -75,22 +75,23 @@
                            $alertas->mostrarDistritos();
                     }else{
                 ?>
-                        <div class="col-lg-8 col-xlg-9 col-md-7">
+                        <div class="col-lg-13 col-xlg-14 col-md-12">
                                 <div class="card">
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs profile-tab" role="tablist">
                                         <?php
                                         $distrito = "Arganzuela";
-                                        echo "<li class='nav-item'> <a class='nav-link active' data-toggle='tab' role='tab'>Distrito $distrito </a> </li>"
+                                        echo "<li class='nav-item'> <a class='nav-link active' data-toggle='tab' role='tab'><b>Distrito $distrito </b></a> </li>"
                                         ?>
                                     </ul>
                                     <!-- Tab panes -->
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="home" role="tabpanel">
+                                            <div class="card-block">
                                             <?php
                                                 $alertas->obtenerAlertas($distrito)
                                             ?>
-                                             	
+                                            </div> 	
                                         </div>
                                     </div>
                                 </div>

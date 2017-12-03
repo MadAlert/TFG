@@ -37,12 +37,14 @@ class claseAlertas {
     //Funcion que muestra una alerta con el formato correspondiente
     public function mostrarAlertas($distrito, $fecha, $texto, $categoria, $autor, $url){
     	echo '
-    	<div class="card-block">
+    	
             <div class="profiletimeline">
                 <div class="sl-item">
-                    <div class="sl-left">'.$categoria.'</div>
-                    <div class="sl-right">';
-                        echo '<div><span class=sl-date">' .$fecha. '</span>';
+                    <div class="sl-left"></div>
+                    <div class="sl-right">
+                    <div>';
+                    	echo '<a class="link"><u>'.$categoria.'</u></a>';
+                        echo '<span class="sl-date">' .$fecha. '</span>';
                         	echo "<p></p>";
                         	if ($url != Null){
                             	echo "<p><a href=".$url.">".$texto."</a></p>";
@@ -50,12 +52,11 @@ class claseAlertas {
                             	echo "<p>$texto</p>";
                             }
                            
-                            echo '<div class="like-comm"> <a href="javascript:void(0)" class="link m-r-10">2 comment</a><class="link m-r-10"><i class="fa fa-heart text-danger"></i>' .$autor.'</div>';
-                        echo '</div>';
+                            echo '<div class="like-comm"> <a href="javascript:void(0)" class="link m-r-10">Fuente:</a><class="link m-r-10">' .$autor.'</div>';
+                    echo '</div>';
                     echo '</div>';
                 echo '</div>';
            echo ' </div>';
-       echo ' </div>';
        echo '<hr>';
     }
 

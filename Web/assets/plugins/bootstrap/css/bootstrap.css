@@ -3840,7 +3840,7 @@ tbody.collapse.show {
 }
 
 .nav-tabs {
-  border-bottom: 1px solid #ddd;
+  border-bottom: 2px solid #ddd;
 }
 
 .nav-tabs .nav-item {
@@ -4420,6 +4420,7 @@ tbody.collapse.show {
       -ms-flex: 1 1 auto;
           flex: 1 1 auto;
   padding: 1.25rem;
+  margin-bottom: -0.75rem;
 }
 
 .card-title {
