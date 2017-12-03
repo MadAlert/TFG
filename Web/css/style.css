@@ -1824,9 +1824,11 @@ Form-control
   background-color: #26c6da; }
 
 form label {
-  font-weight: 400; }
+  font-weight: 400; 
+}
 
 .form-group {
+  margin-top: 25px;
   margin-bottom: 25px; }
 
 .form-horizontal label {
@@ -1838,6 +1840,36 @@ form label {
 .form-bordered .form-group {
   border-bottom: 1px solid rgba(120, 130, 140, 0.13);
   padding-bottom: 20px; }
+
+
+/*******************
+Items Button Group
+*******************/
+.items-collection{
+    margin: 5px 0 0 0;
+}
+.items-collection label.btn-default.active{
+    background-color:#1e88e5;
+    color: #FFF;
+}
+.items-collection label.btn-default.active h6{
+    color: #FAFAFA;
+}
+.items-collection label.btn-default{
+    width:100%;
+    border:1px solid #305891;
+    margin:5px; 
+    border-radius: 17px;
+    color: #305891;
+}
+.items-collection label .itemcontent h6{
+    width:100%;
+    margin-bottom: 0px;
+}
+.items-collection .btn-group{
+    width:100%
+}
+
 
 /*******************
 Layouts
@@ -1926,7 +1958,7 @@ File: scss
   padding-bottom: 60px; }
 
 .container-fluid {
-  padding: 0 30px 25px 30px; }
+  padding: 25px 30px 25px 30px; }
 
 /*******************
  Topbar
@@ -2341,6 +2373,7 @@ ul#themecolors {
  Card title
 *******************/
 .card {
+  margin-top: 30px;
   margin-bottom: 30px; }
   .card .card-subtitle {
     font-weight: 300;
