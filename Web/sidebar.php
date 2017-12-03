@@ -26,8 +26,6 @@
 								</li>
 							</ul>						
 						</li>
-                        <li> <a class="waves-effect waves-dark" href="pages-error-404.php" aria-expanded="false"><i class="mdi mdi-error"></i><span class="hide-menu">Error 404</span></a>
-                        </li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
