@@ -1,5 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
+ï»¿<!DOCTYPE html>
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
@@ -71,7 +71,8 @@
                 <!-- ============================================================== -->
                 <!-- Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
-                <div class="row page-titles">
+                
+              <!--  <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
                         <h3 class="text-themecolor m-b-0 m-t-0">Home</h3>
                         <ol class="breadcrumb">
@@ -79,17 +80,23 @@
 							<li class="breadcrumb-item"><a href="javascript:void(0)">Distritos</a></li>
                         </ol>
                     </div>
-                    <div class="col-md-7 col-4 align-self-center">
-                        <a href="https://themewagon.com/themes/material-bootstrap-4-free-admin-template/" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Download Now</a>
-                    </div>
-                </div>
+                </div>-->
+                
+                <!-- MODO ADRI EN ALERTAS -->
+                <?php 
+                    include ("claseAlertas.php");
+                    $alertas = new claseAlertas();
+                    if(!isset($_POST['distrito'])){
+                           $alertas->mostrarDistritos();
+                    }
+                ?>
                 <!-- ============================================================== -->
                 <!-- End Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <div class="row">
+                <!--<div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-block">
@@ -101,8 +108,8 @@
                                                 <option>Barajas</option>
                                                 <option>Carabanchel</option>
                                                 <option>Centro</option>
-                                                <option>Chamartín</option>
-                                                <option>Chamberí</option>
+                                                <option>ChamartÃ­n</option>
+                                                <option>ChamberÃ­/option>
                                                 <option>Ciudad Lineal</option>
                                                 <option>Fuencarral-El Pardo</option>
                                                 <option>Hortaleza</option>
@@ -113,9 +120,9 @@
                                                 <option>Retiro</option>
                                                 <option>Salamanca</option>
 												<option>San Blas - Canillejas</option>
-                                                <option>Tetuán</option>
+                                                <option>TetuÃ¡n</option>
                                                 <option>Usera</option>
-                                                <option>Vicálvaro</option>
+                                                <option>VicÃ¡lvaro</option>
                                                 <option>Villa de Vallecas</option>
 												<option>Villaverde</option>
                                             </select>                                            
@@ -125,7 +132,7 @@
                             </div>
                         </div>
                     </div>
-                </div>				
+                </div>	-->			
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
@@ -137,7 +144,10 @@
             <!-- footer -->
             <!-- ============================================================== -->
             <footer class="footer">
+                Â© 2017 MadAlert
             </footer>
+
+            
             <!-- ============================================================== -->
             <!-- End footer -->
             <!-- ============================================================== -->
@@ -162,7 +172,7 @@
     <script src="js/waves.js"></script>
     <!--Menu sidebar -->
     <script src="js/sidebarmenu.js"></script>
-    <!--stickey kit AQUI ESTA LO DE SELECCIONAR EL PRIMER ELEMENTOO COÑOOO-->
+    <!--stickey kit AQUI ESTA LO DE SELECCIONAR EL PRIMER ELEMENTOO CO?OO-->
     <script src="assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>

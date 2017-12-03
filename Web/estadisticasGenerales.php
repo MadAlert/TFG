@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="utf-8">
@@ -72,19 +72,19 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <div class="row page-titles">
-                    <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor">Estadísticas Generales</h3>
+              <!--  <div class="row page-titles">-->
+                    <!--<div class="col-md-5 col-8 align-self-center">-->
+                      <!--  <h3 class="text-themecolor">Estadísticas Generales</h3>
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item"><a> Estadísticas </a></li> <!-- Cambiar enlace-->
+                            <li class="breadcrumb-item"><a> Estadísticas </a></li> 
                             <li class="breadcrumb-item active"><a> Generales </a></li>
-                        </ol>
-                    </div>
+                        </ol> -->
+                   <!-- </div>-->
                    <!-- <div class="col-md-7 col-4 align-self-center">
                         <a href="https://themewagon.com/themes/bootstrap-4-responsive-admin-template/" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Download Now</a>
                     </div>-->
-                </div>
+              <!--  </div>-->
 
                 <!-- Row -->
                 <!-- ============================================================== -->
@@ -153,9 +153,10 @@
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
 
-        <footer class="footer"> © 2017 MadAlert </footer> 
-       
-
+        <footer class="footer">
+                © 2017 MadAlert
+        </footer>
+        
     </div>   
  
     <!-- ============================================================== -->
