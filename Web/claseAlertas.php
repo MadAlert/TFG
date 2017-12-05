@@ -69,13 +69,13 @@ class claseAlertas {
                                     <div class="form-group">
                                             <label class="col-sm-12">Selecciona un distrito</label>
                                             <div class="col-sm-12">      
-								    				<select class="form-control form-control-line">
+								    				<select class="form-control form-control-line" name="distritos">
 								                        <option>Arganzuela</option>
 								                        <option>Barajas</option>
 								                        <option>Carabanchel</option>
 								                        <option>Centro</option>
 								                        <option>Chamartín</option>
-								                        <option>Chamberí­</option>
+								                        <option>Chamberí</option>
 								                        <option>Ciudad Lineal</option>
 								                        <option>Fuencarral-El Pardo</option>
 								                        <option>Hortaleza</option>
@@ -85,7 +85,7 @@ class claseAlertas {
 								                        <option>Puente de Vallecas</option>
 								                        <option>Retiro</option>
 								                        <option>Salamanca</option>
-								                        <option>San Blas - Canillejas</option>
+								                        <option>San Blas-Canillejas</option>
 								                        <option>Tetuán</option>
 								                        <option>Usera</option>
 								                        <option>Vicálvaro</option>
@@ -94,7 +94,6 @@ class claseAlertas {
 								                    </select>
 								              </div>                                      
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
