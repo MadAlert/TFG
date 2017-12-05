@@ -71,17 +71,33 @@
                 <?php 
                     include ("claseAlertas.php");
                     $alertas = new claseAlertas();
+<<<<<<< HEAD
                     //if(!isset($_POST['distrito'])){
                     //       $alertas->mostrarDistritos();
                    // }else{
+=======
+                    if(!isset($_POST['atributo'])){
+                           $alertas->mostrarDistritos();
+                    }
+                    if(isset($_POST['atributo'])){
+>>>>>>> 8609403ea8f5ffbd9f361c4bfda3a4292098618c
                 ?>
+                        <!--Recupero los campos de index.php -->
+
                         <div class="col-lg-13 col-xlg-14 col-md-12">
                                 <div class="card">
                                     <!-- Nav tabs -->
                                     <ul class="nav nav-tabs profile-tab" role="tablist">
                                         <?php
-                                        $distrito = "Arganzuela";
-                                        echo "<li class='nav-item'> <a class='nav-link active' data-toggle='tab' role='tab'><b>Distrito $distrito </b></a> </li>"
+                                        //Recupero los campos de index.php
+
+                                        $distrito = $_POST['distritos'];
+                                        $categorias = $_POST['var_id'];
+                                        $count = count($categorias);
+                                        for ($i = 0; $i < $count; $i++) {
+                                            $categorias[$i];
+                                        }
+                                        echo "<li class='nav-item'> <a class='nav-link active' data-toggle='tab' role='tab'><b>Distrito $distrito</b></a> </li>"
                                         ?>
                                     </ul>
                                     <!-- Tab panes -->

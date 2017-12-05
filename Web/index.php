@@ -76,128 +76,112 @@
                         <div class="card">
                             <div class="card-block">
                                 <div id="gmaps-simple" class="gmaps"></div>
-                                <div class="form-group">
-                                        <label class="col-sm-12">Selecciona un distrito</label>
-                                        <div class="col-sm-12">                                        
-                                            <select class="form-control form-control-line">
-                                                <option>Arganzuela</option>
-                                                <option>Barajas</option>
-                                                <option>Carabanchel</option>
-                                                <option>Centro</option>
-                                                <option>Chamartín</option>
-                                                <option>Chamberí</option>
-                                                <option>Ciudad Lineal</option>
-                                                <option>Fuencarral-El Pardo</option>
-                                                <option>Hortaleza</option>
-                                                <option>Latina</option>
-                                                <option>Moncloa-Aravaca</option>
-                                                <option>Moratalaz</option>
-                                                <option>Puente de Vallecas</option>
-                                                <option>Retiro</option>
-                                                <option>Salamanca</option>
-                                                <option>San Blas - Canillejas</option>
-                                                <option>Tetuán</option>
-                                                <option>Usera</option>
-                                                <option>Vicálvaro</option>
-                                                <option>Villa de Vallecas</option>
-                                                <option>Villaverde</option>
-                                            </select>                                            
-                                        </div>                                      
+                                    <form method="post" action="alertas.php">
+                                        <input type="hidden" name="atributo" id="atributo" value="si"/>
+                                        <div class="form-group">
+                                            <?php 
+                                                include ("claseAlertas.php");
+                                                $alertas = new claseAlertas();
+                                                $alertas->mostrarDistritos();
+                                            ?>                              
+                                        </div>
+                                        <div class="form-group">
+                                                <label class="col-sm-12">Selecciona las categorías</label>
+                                                 <div class="items-collection">
+                                                    <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                                        <div class="info-block block-info clearfix">
+                                                            <div data-toggle="buttons" class="btn-group bizmoduleselect">
+                                                                <label class="btn btn-default">
+                                                                    <div class="itemcontent">
+                                                                        <input type="checkbox" name="var_id[]" autocomplete="off" value="Desastres y accidentes">
+                                                                        <h6>Desastres y accidentes</h6>
+                                                                    </div>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                                        <div class="info-block block-info clearfix">
+                                                            <div data-toggle="buttons" class="btn-group itemcontent">
+                                                                <label class="btn btn-default">
+                                                                    <div class="itemcontent">
+                                                                        <input type="checkbox" name="var_id[]" autocomplete="off" value="Terrorismo">
+                                                                        <h6>Terrorismo</h6>
+                                                                    </div>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                                        <div class="info-block block-info clearfix">
+                                                            <div data-toggle="buttons" class="btn-group itemcontent">
+                                                                <label class="btn btn-default">
+                                                                    <div class="itemcontent">
+                                                                        <input type="checkbox" name="var_id[]" autocomplete="off" value="Criminalidad">
+                                                                        <h6>Criminalidad</h6>
+                                                                    </div>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                                        <div class="info-block block-info clearfix">
+                                                            <div data-toggle="buttons" class="btn-group itemcontent">
+                                                                <label class="btn btn-default">
+                                                                    <div class="itemcontent">
+                                                                        <input type="checkbox" name="var_id[]" autocomplete="off" value="Tráfico">
+                                                                        <h6>Tráfico</h6>
+                                                                    </div>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                                        <div class="info-block block-info clearfix">
+                                                            <div data-toggle="buttons" class="btn-group itemcontent">
+                                                                <label class="btn btn-default">
+                                                                    <div class="itemcontent">
+                                                                        <input type="checkbox" name="var_id[]" autocomplete="off" value="Eventos">
+                                                                        <h6>Eventos</h6>
+                                                                    </div>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                                        <div class="info-block block-info clearfix">
+                                                            <div data-toggle="buttons" class="btn-group itemcontent">
+                                                                <label class="btn btn-default">
+                                                                    <div class="itemcontent">
+                                                                        <input type="checkbox" name="var_id[]" autocomplete="off" value="Transporte público">
+                                                                        <h6>Transporte público</h6>
+                                                                    </div>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                                        <div class="info-block block-info clearfix">
+                                                            <div data-toggle="buttons" class="btn-group itemcontent">
+                                                                <label class="btn btn-default">
+                                                                    <div class="itemcontent">
+                                                                        <input type="checkbox" name="var_id[]" autocomplete="off" value="Contaminación">
+                                                                        <h6>Contaminación</h6>
+                                                                    </div>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>                              
+                                            </div>
+                                        </div>
+                                        <div class="form-group" style="margin: auto; margin-bottom: 20px;">
+                                            <div class="items col-sm-12">
+                                                <input type="submit" class="btn btn-success" value="Buscar">
+                                            </div>    
+                                        </div>
+                                    </form>
                                 </div>
-                                <div class="form-group">
-                                        <label class="col-sm-12">Selecciona las categorías</label>
-                                         <div class="items-collection">
-                                            <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                                                <div class="info-block block-info clearfix">
-                                                    <div data-toggle="buttons" class="btn-group bizmoduleselect">
-                                                        <label class="btn btn-default">
-                                                            <div class="itemcontent">
-                                                                <input type="checkbox" name="var_id[]" autocomplete="off" value="">
-                                                                <h6>Desastres y accidentes</h6>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                                                <div class="info-block block-info clearfix">
-                                                    <div data-toggle="buttons" class="btn-group itemcontent">
-                                                        <label class="btn btn-default">
-                                                            <div class="itemcontent">
-                                                                <input type="checkbox" name="var_id[]" autocomplete="off" value="">
-                                                                <h6>Terrorismo</h6>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                                                <div class="info-block block-info clearfix">
-                                                    <div data-toggle="buttons" class="btn-group itemcontent">
-                                                        <label class="btn btn-default">
-                                                            <div class="itemcontent">
-                                                                <input type="checkbox" name="var_id[]" autocomplete="off" value="">
-                                                                <h6>Criminalidad</h6>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                                                <div class="info-block block-info clearfix">
-                                                    <div data-toggle="buttons" class="btn-group itemcontent">
-                                                        <label class="btn btn-default">
-                                                            <div class="itemcontent">
-                                                                <input type="checkbox" name="var_id[]" autocomplete="off" value="">
-                                                                <h6>Tráfico</h6>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                                                <div class="info-block block-info clearfix">
-                                                    <div data-toggle="buttons" class="btn-group itemcontent">
-                                                        <label class="btn btn-default">
-                                                            <div class="itemcontent">
-                                                                <input type="checkbox" name="var_id[]" autocomplete="off" value="">
-                                                                <h6>Eventos</h6>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                                                <div class="info-block block-info clearfix">
-                                                    <div data-toggle="buttons" class="btn-group itemcontent">
-                                                        <label class="btn btn-default">
-                                                            <div class="itemcontent">
-                                                                <input type="checkbox" name="var_id[]" autocomplete="off" value="">
-                                                                <h6>Transporte público</h6>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                                                <div class="info-block block-info clearfix">
-                                                    <div data-toggle="buttons" class="btn-group itemcontent">
-                                                        <label class="btn btn-default">
-                                                            <div class="itemcontent">
-                                                                <input type="checkbox" name="var_id[]" autocomplete="off" value="">
-                                                                <h6>Contaminación</h6>
-                                                            </div>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>                              
-                                </div>
-                            </div>
-                            <div class="form-group" style="margin: auto; margin-bottom: 20px;">
-                                <div class="items col-sm-12">
-                                    <button class="btn btn-success">Buscar</button>
-                                </div>    
                             </div>
                         </div>
                     </div>
