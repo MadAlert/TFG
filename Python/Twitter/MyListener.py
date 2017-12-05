@@ -55,8 +55,8 @@ class listener(StreamListener):
         lista.append(tweet)
         categoria = c.clasificarTweets(lista)
         if(categoria != "Nada"):
-            fechaCreacion = carga["created_at"]
+            fecha= time.strftime('%d-%m-%Y %H:%M:%S', time.strptime(carga['created_at'],'%a %b %d %H:%M:%S +0000 %Y'))
             nombreUsuario = "@"+carga["user"]["screen_name"]
             zona = c.clasificadorZona(lista)
-            bd.insertarAlerta(con,tweet,fechaCreacion,None,zona,categoria,nombreUsuario)
+            bd.insertarAlerta(con,tweet,fecha,None,zona,categoria,nombreUsuario)
         
