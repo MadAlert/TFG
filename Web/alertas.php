@@ -71,16 +71,15 @@
                 <?php 
                     include ("claseAlertas.php");
                     $alertas = new claseAlertas();
-<<<<<<< HEAD
+
                     //if(!isset($_POST['distrito'])){
                     //       $alertas->mostrarDistritos();
                    // }else{
-=======
+
                     if(!isset($_POST['atributo'])){
                            $alertas->mostrarDistritos();
                     }
-                    if(isset($_POST['atributo'])){
->>>>>>> 8609403ea8f5ffbd9f361c4bfda3a4292098618c
+                    
                 ?>
                         <!--Recupero los campos de index.php -->
 
