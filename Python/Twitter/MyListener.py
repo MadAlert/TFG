@@ -3,6 +3,11 @@ import io
 import json
 import var
 import time
+import sys
+sys.path.append('../')
+from Clasificador import Clasificador
+import os
+from BaseDatos import BaseDatos
 
 from tweepy import Stream
 from tweepy.streaming import StreamListener
@@ -13,28 +18,25 @@ usuarios = var.var()
 class listener(StreamListener):
     def on_data(self, data):
         try:
-            fechaActual = time.strftime("%d%m%y")
-            file = fichero+fechaActual+".json"
-            with io.open(file, 'a', encoding='utf-8', buffering=1) as f:
-                data.rstrip('\n')
-                carga = json.loads(data)
-                mencionVacia = False
-                mencionInteresa = False
-                #existe mencion
-                if "entities" in carga:
-                    #Obtenemos la mencion
-                    mencion =carga["entities"]["user_mentions"]
-                    #La lista de menciones es vacia, es porque no es una mencion
-                    if (not mencion):
-                        mencionVacia= True
-                    #Es una mencion de un usuario de la lista a otro
-                    elif ((mencion[0]["id_str"]in usuarios) and (carga["user"]["id_str"] in usuarios)):
-                            mencionInteresa= True
-                if "created_at" in carga and not("RT" in carga["text"]) and (mencionVacia or mencionInteresa):
-                    f.write(u'{0}\n'.format(json.dumps(carga, ensure_ascii=False)))
-                    print("Me sirve")
-                else:
-                    print("Este tweet no me importa")
+            data.rstrip('\n')
+            carga = json.loads(data)
+            mencionVacia = False
+            mencionInteresa = False
+            #existe mencion
+            if "entities" in carga:
+                #Obtenemos la mencion
+                mencion =carga["entities"]["user_mentions"]
+                #La lista de menciones es vacia, es porque no es una mencion
+                if (not mencion):
+                    mencionVacia= True
+                #Es una mencion de un usuario de la lista a otro
+                elif ((mencion[0]["id_str"]in usuarios) and (carga["user"]["id_str"] in usuarios)):
+                    mencionInteresa= True
+            if "created_at" in carga and not("RT" in carga["text"]) and (mencionVacia or mencionInteresa):
+                self.insertarDatos(carga);
+                print("Me sirve")
+            else:
+                print("Este tweet no me importa")
             return True
         except BaseException as e:
             print ("Error" + e)
@@ -43,3 +45,18 @@ class listener(StreamListener):
     def on_error(self, status):
         print(status)
         return True
+
+    def insertarDatos(self, carga):
+        bd = BaseDatos.baseDatosClass()
+        con = bd.conexion()
+        c = Clasificador.ClasificadorClass()
+        tweet = carga["text"]
+        lista = []
+        lista.append(tweet)
+        categoria = c.clasificarTweets(lista)
+        if(categoria != "Nada"):
+            fechaCreacion = carga["created_at"]
+            nombreUsuario = "@"+carga["user"]["screen_name"]
+            zona = c.clasificadorZona(lista)
+            bd.insertarAlerta(con,tweet,fechaCreacion,None,zona,categoria,nombreUsuario)
+        
