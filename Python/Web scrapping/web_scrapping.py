@@ -7,6 +7,7 @@ import sys
 sys.path.append('../')
 from Clasificador import Clasificador
 from BaseDatos import BaseDatos
+from parseoFecha import ParseoFecha
 
 page = requests.get("https://www.madridiario.es/indice-distritos/")
 #print(page.status_code)
@@ -50,9 +51,12 @@ for i, entrada in enumerate(entradas):
         print(categoria)
         if( categoria != "Nada"):
             for k, insi in enumerate(inside): # entra en la noticia k para obtener la fecha
-                fecha = insi.find(class_='ulthora fecha_publicacion').get_text()
+                fechaPre = insi.find(class_='ulthora fecha_publicacion').get_text()
+                f = parseoFecha.ParseoFechaClass()
+                fecha = f.parseo(fechaPre)
                 print(fecha)
             #Instancia a la base de datos
+            # Cuando inserta a Mongo la fecha al final muestra una 'Z'. Esto es Zulu Time, lo que nosotros conocemos como UTC Time
             bd.insertarAlerta(c,titulo,fecha,url,distrito,categoria,"madridDiario")
     
 def var():
