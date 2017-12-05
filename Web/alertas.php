@@ -77,9 +77,18 @@
                    // }else{
 
                     if(!isset($_POST['atributo'])){
-                           $alertas->mostrarDistritos();
+                        echo '<div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-block">';
+                                        $alertas->mostrarDistritos();
+                                    echo '</div>
+                                </div>
+                            </div>
+                        </div> ';
                     }
                     
+                    if(isset($_POST['atributo'])){
                 ?>
                         <!--Recupero los campos de index.php -->
 
@@ -93,8 +102,9 @@
                                         $distrito = $_POST['distritos'];
                                         $categorias = $_POST['var_id'];
                                         $count = count($categorias);
+
                                         for ($i = 0; $i < $count; $i++) {
-                                            $categorias[$i];
+                                           $categorias[$i];
                                         }
                                         echo "<li class='nav-item'> <a class='nav-link active' data-toggle='tab' role='tab'><b>Distrito $distrito</b></a> </li>"
                                         ?>
@@ -104,7 +114,10 @@
                                         <div class="tab-pane active" id="home" role="tabpanel">
                                             <div class="card-block">
                                             <?php
-                                                $alertas->obtenerAlertas($distrito)
+                                                $num = $alertas->obtenerAlertas($distrito);
+                                                if($num == false){
+                                                    echo "<p>Este distrito no dispone de alertas todavía</p>";
+                                                }
                                             ?>
                                             </div> 	
                                         </div>
@@ -112,7 +125,7 @@
                                 </div>
                         </div>
                 <?php
-                 //   }
+                    }
                 ?>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->

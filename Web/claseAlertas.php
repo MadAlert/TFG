@@ -20,17 +20,25 @@ class claseAlertas {
    		//echo "Hola";
     	//Query para ver alertas de distritos -> habria que añadir la condicion de fecha
     	$documento = $coleccion->find(['distrito' => $distrito]);
-    	foreach ($documento as $doc) {
-    		# code...
-    		$distrito = $doc->distrito;
-    		$texto = $doc->alerta;
-    		$fecha = $doc->fecha;
-    		$categoria = $doc->categoria;
-    		$autor = $doc->fuente;
-    		$url = $doc->url;
-    		$this->mostrarAlertas($distrito, $fecha, $texto, $categoria, $autor, $url);
-    		
-    	}
+    	$total = $coleccion->count(['distrito' => $distrito]);
+    	if($total > 0){
+	    	foreach ($documento as $doc) {
+	    		# code...
+	    		$distrito = $doc->distrito;
+	    		$texto = $doc->alerta;
+	    		$fecha = $doc->fecha;
+	    		$categoria = $doc->categoria;
+	    		$autor = $doc->fuente;
+	    		$url = $doc->url;
+	    		$this->mostrarAlertas($distrito, $fecha, $texto, $categoria, $autor, $url);
+	    		
+	    	}
+	    	return true;
+	    }
+	    else{
+	    	return false;
+	    }
+
     	
     }
 
@@ -62,10 +70,7 @@ class claseAlertas {
 
     public function mostrarDistritos(){
     	echo '<html>
-    		<div class="row">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-block">
+    		
                                     <div class="form-group">
                                             <label class="col-sm-12">Selecciona un distrito</label>
                                             <div class="col-sm-12">      
@@ -94,10 +99,7 @@ class claseAlertas {
 								                    </select>
 								              </div>                                      
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                    
 			 </html>';
     }
 

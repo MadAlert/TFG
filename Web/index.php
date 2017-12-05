@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -74,38 +74,39 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class="card-block">
-                                <div id="gmaps-simple" class="gmaps"></div>
-                                    <form method="post" action="alertas.php">
-                                        <input type="hidden" name="atributo" id="atributo" value="si"/>
-                                        <div class="form-group">
-                                            <?php 
-                                                include ("claseAlertas.php");
-                                                $alertas = new claseAlertas();
-                                                $alertas->mostrarDistritos();
+                                <div class="card-block">
+                                  <div id="gmaps-simple" class="gmaps"></div>
+                                    <form method="post" action="alertas.php" id="buscarAlertas" onsubmit="return valida()">
+                                         <input type="hidden" name="atributo" id="atributo" value="si"/>
+                                         <div class="form-group">
+                                             <?php 
+                                                 include ("claseAlertas.php");
+                                                 $alertas = new claseAlertas();
+                                                 $alertas->mostrarDistritos();
                                             ?>                              
-                                        </div>
+                                         </div>
                                         <div class="form-group">
                                                 <label class="col-sm-12">Selecciona las categorías</label>
-                                                 <div class="items-collection">
+                                                <div class="items-collection">
                                                     <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
                                                         <div class="info-block block-info clearfix">
                                                             <div data-toggle="buttons" class="btn-group bizmoduleselect">
-                                                                <label class="btn btn-default">
-                                                                    <div class="itemcontent">
-                                                                        <input type="checkbox" name="var_id[]" autocomplete="off" value="Desastres y accidentes">
-                                                                        <h6>Desastres y accidentes</h6>
+                                                               <label class="btn btn-default">
+                                                                   <div class="itemcontent">
+                                                                        <input type="checkbox" id="var_id[]" name="var_id[]" autocomplete="off" value="Desastres y accidentes">
+                                                                         <h6>Desastres y accidentes</h6>
                                                                     </div>
-                                                                </label>
+                                                                 </label>
                                                             </div>
                                                         </div>
                                                     </div>
+                                
                                                     <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
                                                         <div class="info-block block-info clearfix">
                                                             <div data-toggle="buttons" class="btn-group itemcontent">
                                                                 <label class="btn btn-default">
                                                                     <div class="itemcontent">
-                                                                        <input type="checkbox" name="var_id[]" autocomplete="off" value="Terrorismo">
+                                                                        <input type="checkbox" id="var_id[]" name="var_id[]" autocomplete="off" value="Terrorismo">
                                                                         <h6>Terrorismo</h6>
                                                                     </div>
                                                                 </label>
@@ -172,17 +173,17 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>                              
-                                            </div>
-                                        </div>
-                                        <div class="form-group" style="margin: auto; margin-bottom: 20px;">
-                                            <div class="items col-sm-12">
-                                                <input type="submit" class="btn btn-success" value="Buscar">
-                                            </div>    
-                                        </div>
+                                                </div>    
+                                        </div>                              
+                                    
+                                </div>
+                                    <div class="form-group" style="margin: auto; margin-bottom: 20px;">
+                                        <div class="items col-sm-12">
+                                            <button class="btn btn-success" id="alertas">Buscar</button>
+                                        </div>    
+                                    </div>
                                     </form>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -227,6 +228,7 @@
     <script src="assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
+    <script src="javaScript.js"></script>
     <!-- google maps api -->
     <script src="https://maps.google.com/maps/api/js?key=AIzaSyAZduBv0lBj1OsO4gaUq_xifc7N7ZuhPz8&sensor=true"></script>
     <script src="assets/plugins/gmaps/gmaps.min.js"></script>
