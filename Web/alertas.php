@@ -71,9 +71,9 @@
                 <?php 
                     include ("claseAlertas.php");
                     $alertas = new claseAlertas();
-                    if(!isset($_POST['distrito'])){
-                           $alertas->mostrarDistritos();
-                    }else{
+                    //if(!isset($_POST['distrito'])){
+                    //       $alertas->mostrarDistritos();
+                   // }else{
                 ?>
                         <div class="col-lg-13 col-xlg-14 col-md-12">
                                 <div class="card">
@@ -97,7 +97,7 @@
                                 </div>
                         </div>
                 <?php
-                    }
+                 //   }
                 ?>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
