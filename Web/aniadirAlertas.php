@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -23,6 +23,7 @@
     <link href="css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="css/colors/blue.css" id="theme" rel="stylesheet">
+    <link href="css/contacto.css" id="theme" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -35,7 +36,10 @@
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
-    
+    <div class="preloader">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
+    </div>
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
@@ -44,15 +48,15 @@
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
 
-		<?php 
-			include('topbar.php'); 
-		?>
+        <?php 
+            include('topbar.php'); 
+        ?>
 
         <!-- ============================================================== -->
-		
-		<?php 
-			include('sidebar.php');
-		?>
+        
+        <?php 
+            include('sidebar.php');
+        ?>
 
         <!-- ============================================================== -->
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
@@ -68,65 +72,71 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <?php 
-                    include ("claseAlertas.php");
-                    $alertas = new claseAlertas();
-
-                    //if(!isset($_POST['distrito'])){
-                    //       $alertas->mostrarDistritos();
-                   // }else{
-
-                    if(!isset($_POST['atributo'])){
-                        echo '<div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-block">';
-                                        $alertas->mostrarDistritos();
-                                    echo '</div>
-                                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <h1 class="card-title"> Añadir alertas en tiempo real</h1>                                
+                                <form id="form_contact" class="contacto" action="procesarAniadir.php" method="post">
+                                    <ul>
+                                    <li>
+                                        <label>Nombre</label>
+                                        <input type="text" name="nombre" id="nombre" value="" required />
+                                    </li>
+                                    <li>
+                                        <label>Email</label>
+                                        <input type="Email" name="email" id="email" value="" required/>
+                                    </li>
+                                    <li>                                    
+                                        <label>Categoria</label>
+                                        <select name="categoria">
+                                            <option>Desastre y accidentes</option>
+                                            <option>Criminalidad</option>
+                                            <option>Terrorismo </option>
+                                            <option>Contaminación</option>
+                                            <option>Eventos</option>
+                                            <option>Tráfico</option>
+                                        </select>
+                                    </li>
+                                    <li>                                    
+                                        <label>Distrito</label>
+                                        <select name="distrito">
+                                                        <option>Arganzuela</option>
+                                                        <option>Barajas</option>
+                                                        <option>Carabanchel</option>
+                                                        <option>Centro</option>
+                                                        <option>Chamartín</option>
+                                                        <option>Chamberí</option>
+                                                        <option>Ciudad Lineal</option>
+                                                        <option>Fuencarral-El Pardo</option>
+                                                        <option>Hortaleza</option>
+                                                        <option>Latina</option>
+                                                        <option>Moncloa-Aravaca</option>
+                                                        <option>Moratalaz</option>
+                                                        <option>Puente de Vallecas</option>
+                                                        <option>Retiro</option>
+                                                        <option>Salamanca</option>
+                                                        <option>San Blas-Canillejas</option>
+                                                        <option>Tetuán</option>
+                                                        <option>Usera</option>
+                                                        <option>Vicálvaro</option>
+                                                        <option>Villa de Vallecas</option>
+                                                        <option>Villaverde</option>
+                                        </select>
+                                    </li>
+                                    <li>                                    
+                                        <label>Alerta</label>
+                                        <textarea cols="40" rows="6" name="alerta" required></textarea>
+                                    </li>                                    
+                                    <li>  
+                                        <button class="btn waves-effect waves-light btn-danger pull-center hidden-sm-down" type="submit"> Añadir alerta </button>
+                                    </li>
+                                  </ul>
+                                </form>                                    
                             </div>
-                        </div> ';
-                    }
-                    
-                    if(isset($_POST['atributo'])){
-                ?>
-                        <!--Recupero los campos de index.php -->
-
-                        <div class="col-lg-13 col-xlg-14 col-md-12">
-                                <div class="card">
-                                    <!-- Nav tabs -->
-                                    <ul class="nav nav-tabs profile-tab" role="tablist">
-                                        <?php
-                                        //Recupero los campos de index.php
-
-                                        $distrito = $_POST['distritos'];
-                                        $categorias = $_POST['var_id'];
-                                        $count = count($categorias);
-
-                                        for ($i = 0; $i < $count; $i++) {
-                                           $categorias[$i];
-                                        }
-                                        echo "<li class='nav-item'> <a class='nav-link active' data-toggle='tab' role='tab'><b>Distrito $distrito</b></a> </li>"
-                                        ?>
-                                    </ul>
-                                    <!-- Tab panes -->
-                                    <div class="tab-content">
-                                        <div class="tab-pane active" id="home" role="tabpanel">
-                                            <div class="card-block">
-                                            <?php
-                                                $num = $alertas->obtenerAlertas($distrito, $categorias);
-                                                if($num == false){
-                                                    echo "<p>Este distrito no dispone de alertas con esos filtros todavía</p>";
-                                                }
-                                            ?>
-                                            </div> 	
-                                        </div>
-                                    </div>
-                                </div>
                         </div>
-                <?php
-                    }
-                ?>
+                    </div>
+                </div>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
@@ -168,6 +178,7 @@
     <script src="assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
+    <!-- google maps api -->
 </body>
 
 </html>

@@ -15,12 +15,12 @@ class claseAlertas {
 		
 	}
 
-   public function obtenerAlertas($distrito) {
+   public function obtenerAlertas($distrito, $categorias) {
    		$coleccion = $this->conexion();
    		//echo "Hola";
     	//Query para ver alertas de distritos -> habria que añadir la condicion de fecha
-    	$documento = $coleccion->find(['distrito' => $distrito]);
-    	$total = $coleccion->count(['distrito' => $distrito]);
+    	$documento = $coleccion->find(['distrito' => $distrito, 'categoria'=>array('$in' => $categorias)]);
+    	$total = $coleccion->count(['distrito' => $distrito, 'categoria'=>array('$in' => $categorias)]);
     	if($total > 0){
 	    	foreach ($documento as $doc) {
 	    		# code...
@@ -30,7 +30,13 @@ class claseAlertas {
 	    		$categoria = $doc->categoria;
 	    		$autor = $doc->fuente;
 	    		$url = $doc->url;
-	    		$this->mostrarAlertas($distrito, $fecha, $texto, $categoria, $autor, $url);
+	    		if(isset($doc->veridico)){
+	    			$verificado = $doc->veridico;
+	    		}
+	    		else{
+	    			$verificado = true;
+	    		}
+	    		$this->mostrarAlertas($distrito, $fecha, $texto, $categoria, $autor, $url, $verificado);
 	    		
 	    	}
 	    	return true;
@@ -42,8 +48,16 @@ class claseAlertas {
     	
     }
 
+    //Funcion que inserta las alertas creadas por un usuario
+    public function insertarAlerta($nombre, $categoria, $distrito, $alerta){
+    	$coleccion = $this->conexion();
+    	$fecha=strftime( "%Y-%m-%d %H-%M-%S", time());
+    	$documento = ['alerta'=> $alerta, 'fecha'=>$fecha, 'distrito'=>$distrito, 'categoria'=>$categoria,'fuente'=>$nombre, 'veridico'=>false];
+    	$coleccion->insertOne($documento);
+    }
+
     //Funcion que muestra una alerta con el formato correspondiente
-    public function mostrarAlertas($distrito, $fecha, $texto, $categoria, $autor, $url){
+    public function mostrarAlertas($distrito, $fecha, $texto, $categoria, $autor, $url, $verificado){
     	echo '
     	
             <div class="profiletimeline">
@@ -52,12 +66,18 @@ class claseAlertas {
                     <div class="sl-right">
                     <div>';
                     	echo '<a class="link"><u>'.$categoria.'</u></a>';
-                        echo '<span class="sl-date">' .$fecha. '</span>';
+                        echo '<span class="sl-date"> '.$fecha.' </span>';
                         	echo "<p></p>";
+                        	if($verificado != false){
+                        		echo '<p><i class="mdi mdi-verified"></i>';
+                        	}
+                        	else{
+                        		echo '<p>';
+                        	}
                         	if ($url != Null){
-                            	echo "<p><a href=".$url.">".$texto."</a></p>";
+                            	echo "<a href=".$url.">".$texto."</a></p>";
                             }else{
-                            	echo "<p>$texto</p>";
+                            	echo "$texto</p>";
                             }
                            
                             echo '<div class="like-comm"> <a href="javascript:void(0)" class="link m-r-10">Fuente:</a><class="link m-r-10">' .$autor.'</div>';

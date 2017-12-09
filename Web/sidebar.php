@@ -10,6 +10,8 @@
                     <ul id="sidebarnav">
                         <li> <a class="waves-effect waves-dark" href="alertas.php" aria-expanded="false"><i class="mdi mdi-bell"></i><span class="hide-menu">Alertas</span></a>
                         </li>
+                        <li> <a class="waves-effect waves-dark" href="aniadiralertas.php" aria-expanded="false"><i class="mdi mdi-bell-plus"></i><span class="hide-menu">Añadir Alertas</span></a>
+                        </li>
                         <li> <a class="waves-effect waves-dark" aria-expanded="false"><i class="mdi mdi-format-list-numbers"></i><span class="hide-menu">Estadísticas</span></a>
 							<ul>
 								<li> <a class="waves-effect waves-dark" href="estadisticasGenerales.php" aria-expanded="false"><i class="mdi mdi-view-agenda"></i><span class="hide-menu"> Generales</span></a>
