@@ -105,18 +105,21 @@ class claseAlertas {
                     	echo '<a class="link"><u>'.$categoria.'</u></a>';
                         echo '<span class="sl-date"> '.$fecha.' </span>';
                         	echo "<p></p>";
+                        	echo '<div class="m-t-20 row">
+                        			<div class="col-md-1">';
                         	if($verificado != false){
-                        		echo '<p><i class="mdi mdi-verified"></i>';
+                        		echo '<i class="mdi mdi-verified"></i></div>';
                         	}
                         	else{
-                        		echo '<p>';
+                        		echo '</div>';
                         	}
                         	if ($url != Null){
-                            	echo "<a href=".$url.">".$texto."</a></p>";
+                            	echo "<a href=".$url.">".$texto."</a>";
                             }else{
-                            	echo "$texto</p>";
+                            	echo "$texto";
                             }
-                           
+                            echo '</div>';
+                            echo '<p></p>';
                             echo '<div class="like-comm"> <a href="javascript:void(0)" class="link m-r-10">Fuente:</a><class="link m-r-10">' .$autor.'</div>';
                     echo '</div>';
                     echo '</div>';
