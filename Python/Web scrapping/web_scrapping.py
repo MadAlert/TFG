@@ -7,7 +7,7 @@ import sys
 sys.path.append('../')
 from Clasificador import Clasificador
 from BaseDatos import BaseDatos
-from parseoFecha import ParseoFecha
+import ParseoFecha
 
 page = requests.get("https://www.madridiario.es/indice-distritos/")
 #print(page.status_code)
@@ -22,6 +22,7 @@ clasificador = Clasificador.ClasificadorClass()
 
 bd = BaseDatos.baseDatosClass()
 c = bd.conexion()
+f = ParseoFecha.ParseoFechaClass()
 
 for i, entrada in enumerate(entradas): 
     link = entrada.find('a').get('href') # con esto obtenemos el link a todos los distritos
@@ -52,7 +53,6 @@ for i, entrada in enumerate(entradas):
         if( categoria != "Nada"):
             for k, insi in enumerate(inside): # entra en la noticia k para obtener la fecha
                 fechaPre = insi.find(class_='ulthora fecha_publicacion').get_text()
-                f = parseoFecha.ParseoFechaClass()
                 fecha = f.parseo(fechaPre)
                 print(fecha)
             #Instancia a la base de datos

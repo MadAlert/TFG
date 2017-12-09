@@ -2,7 +2,7 @@ import time
 from datetime import datetime
 
 class ParseoFechaClass():
-	def parseo(fecha): 
+	def parseo(self,fecha): 
 		trozos = fecha.split()
 
 		dia = trozos[1] # dia
