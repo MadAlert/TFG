@@ -35,10 +35,7 @@
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
-    <div class="preloader">
-        <svg class="circular" viewBox="25 25 50 50">
-            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
-    </div>
+    
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
@@ -47,15 +44,15 @@
         <!-- Topbar header - style you can find in pages.scss -->
         <!-- ============================================================== -->
 
-        <?php 
-            include('topbar.php'); 
-        ?>
+		<?php 
+			include('topbar.php'); 
+		?>
 
         <!-- ============================================================== -->
-        
-        <?php 
-            include('sidebar.php');
-        ?>
+		
+		<?php 
+			include('sidebar.php');
+		?>
 
         <!-- ============================================================== -->
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
@@ -71,122 +68,65 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                                <div class="card-block">
-                                  
-                                    <form method="post" action="alertas.php" id="buscarAlertas" onsubmit="return valida()">
-                                         <input type="hidden" name="atributo" id="atributo" value="si"/>
-                                        <div class="form-group">
-                                             <?php 
-                                                 include ("claseAlertas.php");
-                                                 $alertas = new claseAlertas();
-                                                 $alertas->mostrarDistritos();
-                                            ?>                              
-                                        </div>
-                                         <div class="form-group">
-                                                <label class="col-sm-12"> Selecciona las categorías: </label>
-                                                <div class="items-collection">
-                                                    <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                                                        <div class="info-block block-info clearfix">
-                                                            <div data-toggle="buttons" class="btn-group bizmoduleselect">
-                                                               <label class="btn btn-default">
-                                                                   <div class="itemcontent">
-                                                                        <input type="checkbox" id="var_id[]" name="var_id[]" autocomplete="off" value="Desastres y accidentes">
-                                                                         <h6> Desastres y accidentes</h6>
-                                                                    </div>
-                                                                 </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                
-                                                    <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                                                        <div class="info-block block-info clearfix">
-                                                            <div data-toggle="buttons" class="btn-group itemcontent">
-                                                                <label class="btn btn-default">
-                                                                    <div class="itemcontent">
-                                                                        <input type="checkbox" id="var_id[]" name="var_id[]" autocomplete="off" value="Terrorismo">
-                                                                        <h6> Terrorismo </h6>
-                                                                    </div>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                                                        <div class="info-block block-info clearfix">
-                                                            <div data-toggle="buttons" class="btn-group itemcontent">
-                                                                <label class="btn btn-default">
-                                                                    <div class="itemcontent">
-                                                                        <input type="checkbox" name="var_id[]" autocomplete="off" value="Criminalidad">
-                                                                        <h6> Criminalidad </h6>
-                                                                    </div>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                                                        <div class="info-block block-info clearfix">
-                                                            <div data-toggle="buttons" class="btn-group itemcontent">
-                                                                <label class="btn btn-default">
-                                                                    <div class="itemcontent">
-                                                                        <input type="checkbox" name="var_id[]" autocomplete="off" value="Tráfico">
-                                                                        <h6> Tráfico </h6>
-                                                                    </div>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                                                        <div class="info-block block-info clearfix">
-                                                            <div data-toggle="buttons" class="btn-group itemcontent">
-                                                                <label class="btn btn-default">
-                                                                    <div class="itemcontent">
-                                                                        <input type="checkbox" name="var_id[]" autocomplete="off" value="Eventos">
-                                                                        <h6> Eventos </h6>
-                                                                    </div>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                                                        <div class="info-block block-info clearfix">
-                                                            <div data-toggle="buttons" class="btn-group itemcontent">
-                                                                <label class="btn btn-default">
-                                                                    <div class="itemcontent">
-                                                                        <input type="checkbox" name="var_id[]" autocomplete="off" value="Transporte público">
-                                                                        <h6>Transporte público</h6>
-                                                                    </div>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
-                                                        <div class="info-block block-info clearfix">
-                                                            <div data-toggle="buttons" class="btn-group itemcontent">
-                                                                <label class="btn btn-default">
-                                                                    <div class="itemcontent">
-                                                                        <input type="checkbox" name="var_id[]" autocomplete="off" value="Contaminación">
-                                                                        <h6> Contaminación </h6>
-                                                                    </div>
-                                                                </label>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>    
-                                        </div>                              
-                                    
+                <?php 
+                    include ("claseAlertas.php");
+                    $alertas = new claseAlertas();
+
+                    //if(!isset($_POST['distrito'])){
+                    //       $alertas->mostrarDistritos();
+                   // }else{
+
+                    if(!isset($_POST['atributo'])){
+                        echo '<div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-block">';
+                                        $alertas->mostrarDistritos();
+                                    echo '</div>
                                 </div>
-                                    <div class="form-group" style="margin: auto; margin-bottom: 20px;">
-                                        <div class="items col-sm-12">
-                                            <button class="btn btn-success" id="alertas">Buscar</button>
-                                        </div>    
+                            </div>
+                        </div> ';
+                    }
+                    
+                    if(isset($_POST['atributo'])){
+                ?>
+                        <!--Recupero los campos de index.php -->
+
+                        <div class="col-lg-13 col-xlg-14 col-md-12">
+                                <div class="card">
+                                    <!-- Nav tabs -->
+                                    <ul class="nav nav-tabs profile-tab" role="tablist">
+                                        <?php
+                                        //Recupero los campos de index.php
+
+                                        $distrito = $_POST['distritos'];
+                                        $categorias = $_POST['var_id'];
+                                        $count = count($categorias);
+
+                                        for ($i = 0; $i < $count; $i++) {
+                                           $categorias[$i];
+                                        }
+                                        echo "<li class='nav-item'> <a class='nav-link active' data-toggle='tab' role='tab'><b>Distrito $distrito</b></a> </li>"
+                                        ?>
+                                    </ul>
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="home" role="tabpanel">
+                                            <div class="card-block">
+                                            <?php
+                                                $num = $alertas->obtenerAlertas($distrito, $categorias);
+                                                if($num == false){
+                                                    echo "<p>Este distrito no dispone de alertas con esos filtros todavía</p>";
+                                                }
+                                            ?>
+                                            </div> 	
+                                        </div>
                                     </div>
-                                    </form>
                                 </div>
                         </div>
-                    </div>
-                </div>
+                <?php
+                    }
+                ?>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
@@ -228,11 +168,6 @@
     <script src="assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
-    <script src="javaScript.js"></script>
-    <!-- google maps api -->
-    <script src="https://maps.google.com/maps/api/js?key=AIzaSyAZduBv0lBj1OsO4gaUq_xifc7N7ZuhPz8&sensor=true"></script>
-    <script src="assets/plugins/gmaps/gmaps.min.js"></script>
-    <script src="assets/plugins/gmaps/jquery.gmaps.js"></script>
 </body>
 
 </html>

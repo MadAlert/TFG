@@ -92,7 +92,7 @@
                     <div class="col-12">
                         <div class="card">
                             <div class= "card-block">
-                                <h1 class="card-title"> Estadísticas generales semanales </h1>
+                                <h1 class="card-title"> Generales </h1>
                             </div>
                         </div>
                     </div>

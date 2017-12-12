@@ -72,35 +72,14 @@
                 <!-- Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
 
-
-                <div class="col-12">
-                        <div class="card">
-                                <div class="card-block">
-                                    <form method="post" action="alertas.php" id="buscarAlertas" onsubmit="return valida()">
-                                         <input type="hidden" name="atributo" id="atributo" value="si"/>
-                                         <div class="form-group">
-                                             <?php 
-                                                 include ("claseAlertas.php");
-                                                 $alertas = new claseAlertas();
-                                                 $alertas->mostrarDistritos();
-                                            ?>                              
-                                         </div>
-                                         <div class="form-group" style="margin: auto; margin-bottom: 20px;">
-                                        <div class="items col-sm-12">
-                                            <button class="btn btn-success" id="alertas"> Mostrar </button>
-                                        </div>    
-                                    
-                                         <div class="form-group">
-                                                <label class="col-sm-12"> Aqui se mostrarán las estadísticas del distrito seleccionado arriba :</label>
-                                                <img src="assets/images/rumanos.jpg">
-                                        </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
+                <?php 
+                    include ("claseAlertas.php");
+                    $alertas = new claseAlertas();
+                    if(!isset($_POST['distrito'])){
+                           $alertas->mostrarDistritos();
+                    }
+                ?>
+                <!-- ============================================================== -->
                 <!-- End Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
                 <!-- ============================================================== -->
