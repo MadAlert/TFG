@@ -88,7 +88,7 @@
                                         <div class="form-group">
                                                 <label class="col-sm-12">Selecciona las categorías</label>
                                                 <div class="items-collection">
-                                                    <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                                    <div class="items col-xs-12 col-md-4 col-lg-3">
                                                         <div class="info-block block-info clearfix">
                                                             <div data-toggle="buttons" class="btn-group bizmoduleselect">
                                                                <label class="btn btn-default">
@@ -101,7 +101,7 @@
                                                         </div>
                                                     </div>
                                 
-                                                    <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                                    <div class="items col-xs-12 col-md-4 col-lg-3">
                                                         <div class="info-block block-info clearfix">
                                                             <div data-toggle="buttons" class="btn-group itemcontent">
                                                                 <label class="btn btn-default">
@@ -113,7 +113,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                                    <div class="items col-xs-12 col-md-4 col-lg-3">
                                                         <div class="info-block block-info clearfix">
                                                             <div data-toggle="buttons" class="btn-group itemcontent">
                                                                 <label class="btn btn-default">
@@ -125,7 +125,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                                    <div class="items col-xs-12 col-md-4 col-lg-3">
                                                         <div class="info-block block-info clearfix">
                                                             <div data-toggle="buttons" class="btn-group itemcontent">
                                                                 <label class="btn btn-default">
@@ -137,7 +137,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                                    <div class="items col-xs-12 col-md-4 col-lg-3">
                                                         <div class="info-block block-info clearfix">
                                                             <div data-toggle="buttons" class="btn-group itemcontent">
                                                                 <label class="btn btn-default">
@@ -149,7 +149,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                                    <div class="items col-xs-12 col-md-4 col-lg-3">
                                                         <div class="info-block block-info clearfix">
                                                             <div data-toggle="buttons" class="btn-group itemcontent">
                                                                 <label class="btn btn-default">
@@ -161,7 +161,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
+                                                    <div class="items col-xs-12 col-md-4 col-lg-3">
                                                         <div class="info-block block-info clearfix">
                                                             <div data-toggle="buttons" class="btn-group itemcontent">
                                                                 <label class="btn btn-default">
