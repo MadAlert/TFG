@@ -86,7 +86,7 @@
                                             ?>                              
                                          </div>
                                         <div class="form-group">
-                                                <label class="col-sm-12">Selecciona las categorías</label>
+                                                <label class="col-sm-12">Selecciona las categorías:</label>
                                                 <div class="items-collection">
                                                     <div class="items col-xs-6 col-sm-3 col-md-3 col-lg-3">
                                                         <div class="info-block block-info clearfix">
@@ -179,7 +179,7 @@
                                 </div>
                                     <div class="form-group" style="margin: auto; margin-bottom: 20px;">
                                         <div class="items col-sm-12">
-                                            <button class="btn btn-success" id="alertas">Buscar</button>
+                                            <button class="btn btn-success" id="alertas">Buscar:</button>
                                         </div>    
                                     </div>
                                     </form>
