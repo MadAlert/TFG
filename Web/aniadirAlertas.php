@@ -90,12 +90,13 @@
                                     <li>                                    
                                         <label>Categoria</label>
                                         <select name="categoria">
-                                            <option>Desastre y accidentes</option>
+                                            <option>Desastres y accidentes</option>
                                             <option>Criminalidad</option>
-                                            <option>Terrorismo </option>
+                                            <option>Terrorismo</option>
                                             <option>Contaminación</option>
                                             <option>Eventos</option>
                                             <option>Tráfico</option>
+                                            <option>Transporte público</option>
                                         </select>
                                     </li>
                                     <li>                                    
