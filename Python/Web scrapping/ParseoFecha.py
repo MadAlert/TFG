@@ -22,6 +22,4 @@ class ParseoFechaClass():
 
 		fecha = dia + "-" + str(mes) + "-" + ano + " " + hora + ":00" 
 
-		formato1 = "%d-%m-%Y %H:%M:%S"
-		obj = datetime.strptime(fecha, formato1)
-		return obj
+		return fecha
