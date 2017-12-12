@@ -56,7 +56,7 @@ class listener(StreamListener):
         categoria = c.clasificarTweets(lista)
         print (categoria);
         if(categoria != "Nada"):
-            fecha= time.strftime('%Y-%m-%d %H:%M:%S', time.strptime(carga['created_at'],'%a %b %d %H:%M:%S +0000 %Y'))
+            fecha= time.strftime('%d-%m-%Y %H:%M:%S', time.strptime(carga['created_at'],'%a %b %d %H:%M:%S +0000 %Y'))
             print (fecha)
             nombreUsuario = "@"+carga["user"]["screen_name"]
             zona = c.clasificadorZona(lista)

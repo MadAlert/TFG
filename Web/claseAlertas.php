@@ -51,8 +51,8 @@ class claseAlertas {
     //Funcion que inserta las alertas creadas por un usuario
     public function insertarAlerta($nombre, $categoria, $distrito, $alerta){
     	$coleccion = $this->conexion();
-    	$fecha=strftime( "%Y-%m-%d %H-%M-%S", time());
-    	$documento = ['alerta'=> $alerta, 'fecha'=>$fecha, 'distrito'=>$distrito, 'categoria'=>$categoria,'fuente'=>$nombre, 'veridico'=>false];
+    	$fecha = strftime( "%d-%m-%Y %H:%M:%S", time());
+    	$documento = ['alerta'=> $alerta, 'fecha'=>$fecha, 'distrito'=>$distrito, 'categoria'=>$categoria,'fuente'=>$nombre, 'veridico'=>false, 'url'=> NULL];
     	$coleccion->insertOne($documento);
     }
 

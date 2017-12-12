@@ -43,9 +43,9 @@ for i, entrada in enumerate(entradas):
         url = dist.find('a').get('href')
         print(url)
         #Obtener categoria
-        lista = []
-        lista.append(titulo)
-        categoria = clasificador.clasificadorNoticias(lista)
+        #lista = []
+        #lista.append(titulo)
+        categoria = clasificador.clasificadorNoticias(titulo)
         page3 = requests.get(dist.find('a').get('href'))
         soup3 = BeautifulSoup(page3.content, 'html.parser')
         inside = soup3.find_all(class_='sin_borde')
