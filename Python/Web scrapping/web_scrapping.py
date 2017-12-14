@@ -8,6 +8,7 @@ sys.path.append('../')
 from Clasificador import Clasificador
 from BaseDatos import BaseDatos
 import ParseoFecha
+from datetime import datetime, timedelta
 
 page = requests.get("https://www.madridiario.es/indice-distritos/")
 #print(page.status_code)
@@ -55,9 +56,13 @@ for i, entrada in enumerate(entradas):
                 fechaPre = insi.find(class_='ulthora fecha_publicacion').get_text()
                 fecha = f.parseo(fechaPre)
                 print(fecha)
-            #Instancia a la base de datos
+            # Instancia a la base de datos
             # Cuando inserta a Mongo la fecha al final muestra una 'Z'. Esto es Zulu Time, lo que nosotros conocemos como UTC Time
-            bd.insertarAlerta(c,titulo,fecha,url,distrito,categoria,"madridDiario")
+            # aqui es donde hay que crear lo de la fecha
+            dif = datetime.now() - timedelta(minutes=5)  
+            fd = datetime.strptime(fecha, "%d-%m-%Y %H:%M:%S")
+            if(fd > dif): # si la fecha de la noticia es superior a la hora_actual - 5 min se tiene que guardar
+                bd.insertarAlerta(c,titulo,fecha,url,distrito,categoria,"madridDiario")
     
 def var():
     distritos = [ "arganzuela", "barajas", "carabanchel", "centro", "chamartin", "chamberi", "ciudad lineal", "fuencarral-el pardo", "hortaleza", "latina", "moncloa-aravaca", "moratalaz", "puente de vallecas", "retiro", "salamanca", "san blas", "tetuan", "usera", "vicalvaro", "villa de vallecas", "villaverde"]

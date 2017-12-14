@@ -15,8 +15,11 @@ class ClasificadorClass:
         r = requests.request('POST', api, data=parameters)
         response = r.content
         response_json = json.loads(response.decode('utf-8'))
-        cat = response_json['category_list'][0]['label']
-        print(cat)
+        if(response_json['category_list']):
+            cat = response_json['category_list'][0]['label']
+        else:
+            cat = "Nada"
+        print(cat)    
         print("\n")
         return cat
 

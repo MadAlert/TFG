@@ -12,7 +12,7 @@ soup = BeautifulSoup(page.content, 'html.parser')
 entradas = soup.find_all('li')
 listaTitulo = []
 
-csvSalida = open("newWeb.tsv", "w", encoding = "utf-8")
+csvSalida = open("newWeb.csv", "w", encoding = "utf-8")
 
 cont = 0
 
@@ -31,5 +31,5 @@ for i, entrada in enumerate(entradas):
         csvSalida.write("\t\n")
         cont = cont + 1
 
-print("tsv created")
+print("csv created")
 csvSalida.close()
