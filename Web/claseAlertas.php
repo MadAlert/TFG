@@ -48,6 +48,43 @@ class claseAlertas {
     	
     }
 
+
+
+    public function obtenerAlertasDistrito($distrito) {
+   		$coleccion = $this->conexion();
+   		//echo "Hola";
+    	//Query para ver alertas de distritos -> habria que añadir la condicion de fecha
+    	$documento = $coleccion->find(['distrito' => $distrito]);
+    	$total = $coleccion->count(['distrito' => $distrito]);
+    	if($total > 0){
+	    	foreach ($documento as $doc) {
+	    		# code...
+	    		$distrito = $doc->distrito;
+	    		$texto = $doc->alerta;
+	    		$fecha = $doc->fecha;
+	    		$categoria = $doc->categoria;
+	    		$autor = $doc->fuente;
+	    		$url = $doc->url;
+	    		if(isset($doc->veridico)){
+	    			$verificado = $doc->veridico;
+	    		}
+	    		else{
+	    			$verificado = true;
+	    		}
+	    		$this->mostrarAlertas($distrito, $fecha, $texto, $categoria, $autor, $url, $verificado);
+	    		
+	    	}
+	    	return true;
+	    }
+	    else{
+	    	return false;
+	    }
+
+    	
+    }
+
+
+
     //Funcion que inserta las alertas creadas por un usuario
     public function insertarAlerta($nombre, $categoria, $distrito, $alerta){
     	$coleccion = $this->conexion();
