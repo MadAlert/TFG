@@ -65,31 +65,77 @@
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid">
+
+                <form method="post" action="alertas.php" id="buscarAlertas" ">
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
+               
+
+
                 <?php 
                     include ("claseAlertas.php");
                     $alertas = new claseAlertas();
 
-                    //if(!isset($_POST['distrito'])){
-                    //       $alertas->mostrarDistritos();
-                   // }else{
 
                     if(!isset($_POST['atributo'])){
+                        //$atributo = $_POST['atributo'];
                         echo '<div class="row">
-                            <div class="col-12">
-                                <div class="card">
-                                    <div class="card-block">';
+                                 <div class="col-12">
+                                    <div class="card">
+                                     <div class="card-block">';
                                         $alertas->mostrarDistritos();
+                                        //$alertas->obtenerAlertasDistrito(atributo);
+                                        //echo $atributo;
                                     echo '</div>
+                                    
+                                            <div class="form-group" style="margin: auto; margin-bottom: 20px;">
+                                                 <div class="items col-sm-12">
+                                                     <button class="btn btn-success" id="alertas">Mostrar</button>
+                                                 </div>    
+                                             </div>
+
+                                        </div>
                                 </div>
-                            </div>
-                        </div> ';
+                            </div> 
+
+                                    
+                                  <div class="tab-content">
+                                        <div class="tab-pane active" id="home" role="tabpanel">
+                                            <div class="card-block">';
+
+                                            if(isset($_POST['distritos'])){
+                                                $distrito = $_POST['distritos'];
+                                                echo "<b> Distrito $distrito </b>";
+                                                
+                                                $alertas->obtenerAlertasDistrito($distrito);
+                                            }
+                                    
+                                    
+                                echo '</div>
+                                </div>
+                                
+                                
+                                </div> 
+                        </div>';
                     }
                     
+
+
+
                     if(isset($_POST['atributo'])){
                 ?>
+
+
+                
+
+
+
+
+
+
+
+
                         <!--Recupero los campos de index.php -->
 
                         <div class="col-lg-13 col-xlg-14 col-md-12">
@@ -127,6 +173,7 @@
                 <?php
                     }
                 ?>
+            </form>
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->

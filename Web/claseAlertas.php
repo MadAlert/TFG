@@ -49,11 +49,11 @@ class claseAlertas {
     }
 
 
-
+    // Muetsra todas las alertas de un distrito (sin tener en cuenta categorías)
     public function obtenerAlertasDistrito($distrito) {
    		$coleccion = $this->conexion();
-   		//echo "Hola";
-    	//Query para ver alertas de distritos -> habria que añadir la condicion de fecha
+   		
+    	
     	$documento = $coleccion->find(['distrito' => $distrito]);
     	$total = $coleccion->count(['distrito' => $distrito]);
     	if($total > 0){

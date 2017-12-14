@@ -19,15 +19,3 @@ function valida() {
 	}
 	return ok;
 }
-
-
-// Función usada para mostrar todas las alertas de un distrito seleccionado
-function distritoSilvia() {
-	
-	var ok = true;
-	var msg = "Mensaje 1: \n";
-	
-	alert(msg);
-
-	return ok;
-}
