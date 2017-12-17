@@ -9,7 +9,7 @@
   - pymongo
   - tweepy
   
-  pip install <nombre_paquete>
+  ```pip install <nombre_paquete>```
 
 
 Miembros del equipo:  
