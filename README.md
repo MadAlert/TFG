@@ -4,10 +4,10 @@
 ## Prerrequisitos
 - Python 3.6
 - Paquetes de python:
-  -- Beautiful Soup
-  -- json
-  -- pymongo
-  -- tweepy
+  - Beautiful Soup
+  - json
+  - pymongo
+  - tweepy
   
   pip install <nombre_paquete>
 
