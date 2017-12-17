@@ -22,7 +22,7 @@
 - Ejecute los archivos [Python/Web scrapping/web_scrapping.py](Python/Web scrapping/web_scrapping.py) y [Python/Twitter/MyListener.py](Python/Twitter/MyListener.py).
 - Abra en su navegador preferido: ```localhost/TFG/Web/index.php``` 
 
-### Miembros del equipo:  
+## Miembros del equipo:  
 * Nerea Gómez Domínguez
 * Silvia Lendínez Fernández
 * Gonzalo Molina Díaz
