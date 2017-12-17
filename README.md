@@ -1,5 +1,5 @@
 # TFG
-### Desarrollo de aplicación web y móvil que genera alertas según la geolocalizacion y en tiempo real.
+### Desarrollo de aplicación web y móvil que genera alertas según la geolocalización y en tiempo real.
 
 ## Prerrequisitos
 - Python 3.6
@@ -19,7 +19,7 @@
 ## Instalación y uso
 - Clone el proyecto en su servidor local.
 - Lance el servidor de MongoDB.
-- Ejecute los archivos [Python/Web scrapping/web_scrapping.py] (Python/Web scrapping/web_scrapping.py) y [Python/Twitter/MyListener.py](Python/Twitter/MyListener.py).
+- Ejecute los archivos [Python/Web scrapping/web_scrapping.py](Python/Web scrapping/web_scrapping.py) y [Python/Twitter/MyListener.py](Python/Twitter/MyListener.py).
 - Abra en su navegador preferido: ```localhost/TFG/Web/index.php``` 
 
 ### Miembros del equipo:  
