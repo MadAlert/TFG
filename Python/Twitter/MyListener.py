@@ -49,6 +49,8 @@ class listener(StreamListener):
     def insertarDatos(self, carga):
         bd = BaseDatos.baseDatosClass()
         con = bd.conexion()
+        bdAlertas = bd.conexionAlertas(con)
+        bdEstadisticas = bd.conexionEstadisticas(con)
         c = Clasificador.ClasificadorClass()
         tweet = carga["text"]
         lista = []
@@ -57,9 +59,11 @@ class listener(StreamListener):
         print (categoria);
         if(categoria != "Nada"):
             fecha= time.strftime('%d-%m-%Y %H:%M:%S', time.strptime(carga['created_at'],'%a %b %d %H:%M:%S +0000 %Y'))
+            mes = time.strftime('%m', time.strptime(carga['created_at'],'%a %b %d %H:%M:%S +0000 %Y'))
             print (fecha)
             nombreUsuario = "@"+carga["user"]["screen_name"]
             zona = c.clasificadorZona(lista)
             print(zona)
-            bd.insertarAlerta(con,tweet,fecha,None,zona,categoria,nombreUsuario)
+            bd.insertarEstadisticas(bdEstadisticas,zona,categoria,mes)
+            bd.insertarAlerta(bdAlertas,tweet,fecha,None,zona,categoria,nombreUsuario)
         
