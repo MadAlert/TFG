@@ -97,27 +97,34 @@
 
                                         </div>
                                 </div>
-                            </div> 
+                            </div> ';
 
+                                        if(isset($_POST['distritos'])){
+                                            echo ' 
+                                              <div class="row">
+                                                <div class="col-12">
+                                                 <div class="card">
+                                                  <div class="tab-content">
+                                                        <div class="tab-pane active" id="home" role="tabpanel">
+                                                        <div class="card-block"> 
+                                                            <ul class="nav nav-tabs profile-tab" role="tablist">';
+                                                                
+                                                            $distrito = $_POST['distritos'];
+                                                            echo "<li class='nav-item'> <a class='nav-link active' data-toggle='tab' role='tab'><b>Distrito $distrito</b></a> </li>";
+                                                            
+                                                            echo '</ul>';
+                                                            $alertas->obtenerAlertasDistrito($distrito);
+                                                        }
                                     
-                                  <div class="tab-content">
-                                        <div class="tab-pane active" id="home" role="tabpanel">
-                                            <div class="card-block">';
-
-                                            if(isset($_POST['distritos'])){
-                                                $distrito = $_POST['distritos'];
-                                                echo "<b> Distrito $distrito </b>";
-                                                
-                                                $alertas->obtenerAlertasDistrito($distrito);
-                                            }
                                     
-                                    
-                                echo '</div>
-                                </div>
-                                
-                                
-                                </div> 
-                        </div>';
+                                             echo '        </div>
+                                                         </div>
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                      </div> 
+                              </div>
+                        </form>';
                     }
                     
 
@@ -125,13 +132,6 @@
 
                     if(isset($_POST['atributo'])){
                 ?>
-
-
-                
-
-
-
-
 
 
 
