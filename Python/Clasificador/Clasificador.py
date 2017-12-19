@@ -1,10 +1,14 @@
 import json
 import requests
 
+from monkeylearn import MonkeyLearn
+
 # We define the variables need to call the API
 api = 'http://api.meaningcloud.com/class-1.1'
 keyNoticias = '05ed9a7c754aeee5d5f99470a756a5f8'
 modelNews = 'news'
+
+mlZona = MonkeyLearn('aaa6317e0336ea1698db5d01c2aed231abd4c1a1')
 
 class ClasificadorClass:
     #def clasificarTweets(self, tweet):
@@ -22,5 +26,13 @@ class ClasificadorClass:
         print(cat)    
         print("\n")
         return cat
+
+    def clasificadorZona(self, tweet):
+        module_id = 'cl_iYYd3Hj2'
+        res = mlZona.classifiers.classify(module_id, tweet, sandbox=True)
+        resultado = res.result
+        zona = resultado[0][0]["label"]
+        print(zona)
+        return zona
 
         

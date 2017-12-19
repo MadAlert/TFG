@@ -9,6 +9,7 @@
   - request
   - pymongo
   - tweepy
+  - MonkeyLearn
   
   ```pip install <nombre_paquete>```
 
