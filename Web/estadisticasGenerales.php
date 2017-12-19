@@ -101,9 +101,9 @@
 
 
                  <!-- Row -->
-                <div class="row">
+               <!-- <div class="row">
                     <!-- Column -->
-                    <div class="col-lg-8 col-md-7">
+                    <!--<div class="col-lg-8 col-md-7">
                         <div class="card">
                             <div class="card-block">
                                 <div class="row">
@@ -135,9 +135,10 @@
                     </div>
                     
                 </div>
-               
+               -->
                  
-                           
+                  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+                    <div id="chart_div"></div>
                 
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
@@ -183,6 +184,8 @@
     <script src="https://maps.google.com/maps/api/js?key=AIzaSyCUBL-6KdclGJ2a_UpmB2LXvq7VOcPT7K4&sensor=true"></script>
     <script src="assets/plugins/gmaps/gmaps.min.js"></script>
     <script src="assets/plugins/gmaps/jquery.gmaps.js"></script>
+
+    <script src="js/javaScriptEstadisticas.js"></script> <!-- nuevo script de estadisticas-->
 </body>
 
 </html>
