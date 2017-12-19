@@ -18,6 +18,8 @@
 								</li>
 								<li> <a class="waves-effect waves-dark" href="estadisticasDistritos.php" aria-expanded="false"><i class="mdi mdi-grid"></i><span class="hide-menu"> Distritos</span></a>
 								</li>
+                                <li> <a class="waves-effect waves-dark" href="estadisticasDistritos.php" aria-expanded="false"><i class="mdi mdi-grid"></i><span class="hide-menu"> Policia Municipal </span></a>
+                                </li>
 							</ul>
 						</li>
                         <li> <a class="waves-effect waves-dark" aria-expanded="false"><i class="mdi mdi-information"></i><span class="hide-menu">Información</span></a>
