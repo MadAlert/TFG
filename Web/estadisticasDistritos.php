@@ -80,7 +80,7 @@
                 <!-- ============================================================== -->
                
 
-                <form method="post" action="estadisticasDistritos.php" id="buscarAlertas">
+                <form method="post" name="alertas" action="estadisticasDistritos.php" id="buscarAlertas">
                 <input type="hidden" id="busqueda" name="busqueda" value="busqueda"/>
                 <?php 
                     include ("claseAlertas.php");
@@ -106,9 +106,25 @@
                     </form>';
                     
                     if(isset($_POST['busqueda'])){
-
-
-                        echo ' hay atributo';
+                        $distrito = $_POST['distritos'];
+                        include ("claseEstadisticas.php");
+                        $estadisticas = new claseEstadisticas();
+                        $totalTerrorismo= $estadisticas->obtenerEstadisticas($distrito, "Terrorismo");
+                        $totalDesastres = $estadisticas->obtenerEstadisticas($distrito, "Desastres y accidentes");
+                        $totalEventos= $estadisticas->obtenerEstadisticas($distrito, "Eventos");
+                        $totalTransporte= $estadisticas->obtenerEstadisticas($distrito, "Transporte público");
+                        $totalCriminalidad= $estadisticas->obtenerEstadisticas($distrito, "Criminalidas");
+                        $totalContaminacion= $estadisticas->obtenerEstadisticas($distrito, "Contaminación");
+                        $totalTrafico= $estadisticas->obtenerEstadisticas($distrito, "Tráfico");
+                        echo ' <input type="hidden" name="distrito" value='.$distrito.' id="distrito"/>';
+                        echo ' <input type="hidden" name="terrorismo" value='.$totalTerrorismo.' id="terrorismo"/>';
+                        echo ' <input type="hidden" name="desastres" value='.$totalDesastres.' id="desastres"/>';
+                        echo ' <input type="hidden" name="eventos" value='.$totalEventos.' id="eventos"/>';
+                        echo ' <input type="hidden" name="transporte" value='.$totalTransporte.' id="transporte"/>';
+                        echo ' <input type="hidden" name="terrorismo" value='.$totalTerrorismo.' id="terrorismo"/>';
+                        echo ' <input type="hidden" name="criminalidad" value='.$totalCriminalidad.' id="criminalidad"/>';
+                        echo ' <input type="hidden" name="contaminacion" value='.$totalContaminacion.' id="contaminacion"/>';
+                        echo ' <input type="hidden" name="trafico" value='.$totalTrafico.' id="trafico"/>';
                         echo '
                        <div class="row">
                          <div class="col-12">

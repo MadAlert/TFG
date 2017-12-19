@@ -5,19 +5,28 @@ google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
 
+    var distrito = document.getElementById('distrito').value;
+    var desastres = document.getElementById("desastres").value;
+    var eventos = document.getElementById("eventos").value;
+    var transporte = document.getElementById("transporte").value;
+    var terrorismo = document.getElementById("terrorismo").value;
+    var criminalidad = document.getElementById("criminalidad").value;
+    var contaminacion = document.getElementById("contaminacion").value;
+    var trafico = document.getElementById("trafico").value;
+
     var data = google.visualization.arrayToDataTable([
       ['Distritos', 'Categorias'],
-      ['Desastres y accidentes',     11],
-      ['Eventos',      2],
-      ['Transporte publico',      2],
-      ['Terrorismo',      2],
-      ['Criminalidad',  2],
-      ['Contaminacion', 2],
-      ['Trafico',    7]
+      ['Desastres y accidentes',     desastres],
+      ['Eventos',      eventos],
+      ['Transporte publico',      transporte],
+      ['Terrorismo',      terrorismo],
+      ['Criminalidad',  criminalidad],
+      ['Contaminacion', contaminacion],
+      ['Trafico',    trafico]
     ]);
 
     var options = {
-      title: 'Distrito: '
+      title: 'Distrito: ' + distrito
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('piechart'));

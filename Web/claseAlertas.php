@@ -134,7 +134,7 @@ class claseAlertas {
                                     <div class="form-group">
                                             <label class="col-sm-12">Selecciona un distrito</label>
                                             <div class="col-sm-12">      
-								    				<select class="form-control form-control-line" name="distritos">
+								    				<select class="form-control form-control-line" name="distritos" id="distritos">
 								                        <option>Arganzuela</option>
 								                        <option>Barajas</option>
 								                        <option>Carabanchel</option>
