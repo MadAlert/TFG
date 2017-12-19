@@ -14,11 +14,11 @@
                         </li>
                         <li> <a class="waves-effect waves-dark" aria-expanded="false"><i class="mdi mdi-format-list-numbers"></i><span class="hide-menu">Estadísticas</span></a>
 							<ul>
-								<li> <a class="waves-effect waves-dark" href="estadisticasGenerales.php" aria-expanded="false"><i class="mdi mdi-view-agenda"></i><span class="hide-menu"> Generales</span></a>
+								<li> <a class="waves-effect waves-dark" href="estadisticasGenerales.php" aria-expanded="false"><i class="mdi mdi-chart-bar"></i><span class="hide-menu"> Generales</span></a>
 								</li>
-								<li> <a class="waves-effect waves-dark" href="estadisticasDistritos.php" aria-expanded="false"><i class="mdi mdi-grid"></i><span class="hide-menu"> Distritos</span></a>
+								<li> <a class="waves-effect waves-dark" href="estadisticasDistritos.php" aria-expanded="false"><i class="mdi mdi-poll-box"></i><span class="hide-menu"> Distritos</span></a>
 								</li>
-                                <li> <a class="waves-effect waves-dark" href="estadisticasDistritos.php" aria-expanded="false"><i class="mdi mdi-grid"></i><span class="hide-menu"> Policia Municipal </span></a>
+                                <li> <a class="waves-effect waves-dark" href="estadisticasDistritos.php" aria-expanded="false"><i class="mdi mdi-poll"></i><span class="hide-menu"> Policia Municipal </span></a>
                                 </li>
 							</ul>
 						</li>
