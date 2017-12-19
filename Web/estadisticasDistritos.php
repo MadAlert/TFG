@@ -72,13 +72,69 @@
                 <!-- Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
 
+            
+
+                
+                <!-- ============================================================== -->
+                <!-- Start Page Content -->
+                <!-- ============================================================== -->
+               
+
+                <form method="post" action="estadisticasDistritos.php" id="buscarAlertas">
+                <input type="hidden" id="busqueda" name="busqueda" value="busqueda"/>
                 <?php 
                     include ("claseAlertas.php");
                     $alertas = new claseAlertas();
-                    if(!isset($_POST['distrito'])){
-                           $alertas->mostrarDistritos();
-                    }
+
+                    //$atributo = $_POST['atributo'];
+                    echo '<div class="row">
+                             <div class="col-12">
+                                <div class="card">
+                                 <div class="card-block">';
+                                    $alertas->mostrarDistritos();
+                                    
+                                echo '</div>
+                                
+                                        <div class="form-group" style="margin: auto; margin-bottom: 20px;">
+                                             <div class="items col-sm-12">
+                                                 <button class="btn btn-success" id="alertas">Mostrar</button>
+                                             </div>    
+                                         </div>
+                                    </div>
+                            </div>
+                        </div> 
+                    </form>';
+                    
+                    if(isset($_POST['busqueda'])){
+
+
+                        echo ' hay atributo';
+                        echo '
+                       <div class="row">
+                         <div class="col-12">
+                            <div class="card">
+                             <div class="card-block">
+                                    <div id="piechart" style="width: 900px; height: 500px;"></div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>';
+                    
+               
+                  
+                    echo "
+                    <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'>
+                    google.load()</script>
+                    <script type='text/javascript'>
+                            google.charts.load('current', {'packages':['corechart']});
+                            google.charts.setOnLoadCallback(drawChart);
+                        </script>";
+                  }
                 ?>
+
+                
+               
+                
                 <!-- ============================================================== -->
                 <!-- End Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
@@ -129,6 +185,34 @@
     <script src="assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
+    <script src="js/javaScriptEstadisticas.js"></script> <!-- nuevo script de estadisticas-->
+    <script>
+        function drawChart() {
+
+    var data = google.visualization.arrayToDataTable([
+      ['Distritos', 'Categorias'],
+      ['Desastres y accidentes',     11],
+      ['Eventos',      2],
+      ['Transporte publico',      2],
+      ['Terrorismo',      2],
+      ['Criminalidad',  2],
+      ['Contaminacion', 2],
+      ['Trafico',    7]
+    ]);
+
+    var options = {
+      title: 'Distrito: '
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+
+    chart.draw(data, options);
+  }
+    </script>
+
+   
+
+
 </body>
 
 </html>
