@@ -19,7 +19,7 @@
 ## Instalación y uso
 - Clone el proyecto en su servidor local.
 - Lance el servidor de MongoDB.
-- Ejecute los archivos [Python/WebScrapping/web_scrapping.py](Python/WebScrapping/web_scrapping.py) y [Python/Twitter/MyListener.py](Python/Twitter/MyListener.py).
+- Ejecute los archivos [Python/WebScrapping/web_scrapping.py](Python/WebScrapping/web_scrapping.py) y [Python/Twitter/ObtenerStream.py](Python/Twitter/ObtenerStream.py).
 - Abra en su navegador preferido: ```localhost/TFG/Web/index.php``` 
 
 ## Miembros del equipo:  
