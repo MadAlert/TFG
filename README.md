@@ -10,6 +10,8 @@
   - pymongo
   - tweepy
   - MonkeyLearn
+  - wget 3.2
+  - openpyxl
   
   ```pip install <nombre_paquete>```
 
