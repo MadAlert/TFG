@@ -15,6 +15,16 @@ class claseEstadisticas {
 		
 	}
 
+    public function conexionEstSeg(){
+    $client = new MongoDB\Client;
+    //DB
+    $db = $client->noticias;
+    $coleccion = $db->esSeguridad;
+
+    return $coleccion;
+    
+  }
+
 	//Devuelve el numero total de alertas en un distrito con una categoria dada 
    public function obtenerEstadisticas($distrito, $categorias) {
    		$coleccion = $this->conexion();
@@ -24,6 +34,13 @@ class claseEstadisticas {
     	return $total;
     }
 
+    // Devuelve el 
+    public function obtenerEstSeguridad($distrito, $personas, $patrimonio, $armas, $ten_drogas, $con_drogas) {
+      $coleccion = $this->conexion();
+      $total = $coleccion->['distrito' => $distrito, 'personas'=> $personas, 'patrimonio' => $patrimonio
+                                   'armas'=> $armas, 'ten_drogas'=>$ten_drogas, 'con_drogas'=>$con_drogas];
+      return $total;
+    }
 
 
     //Funcion que inserta las alertas creadas por un usuario

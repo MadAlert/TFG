@@ -85,7 +85,77 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                		
+                 <form method="post" name="alertas" action="estadisticasPolicia.php" id="buscarAlertas">
+                <input type="hidden" id="busqueda" name="busqueda" value="busqueda"/>
+                <?php 
+                    include ("claseAlertas.php");
+                    $alertas = new claseAlertas();
+
+                    //$atributo = $_POST['atributo'];
+                    echo '<div class="row">
+                             <div class="col-12">
+                                <div class="card">
+                                 <div class="card-block">';
+                                    $alertas->mostrarDistritos();
+                                    
+                                echo '</div>
+                                
+                                        <div class="form-group" style="margin: auto; margin-bottom: 20px;">
+                                             <div class="items col-sm-12">
+                                                 <button class="btn btn-success" id="alertas">Mostrar</button>
+                                             </div>    
+                                         </div>
+                                    </div>
+                            </div>
+                        </div> 
+                    </form>';
+                    
+                    if(isset($_POST['busqueda'])){
+                        $distrito = $_POST['distritos'];
+                        $personas = $_POST['personas'];
+                        $patrimonio = $_POST['patrimonio'];
+                        $armas = $_POST['armas'];
+                        $ten_drogas = $_POST['ten_drogas'];
+                        $con_drogas = $_POST['con_drogas'];
+                        include ("claseEstadisticas.php");
+                        $estadisticas = new claseEstadisticas();
+                        $totalPersonas= $estadisticas->obtenerEstSeguridad($distrito, $personas, $patrimonio, $armas, $ten_drogas, $con_drogas);
+                        $totalPatrimonio = $estadisticas->obtenerEstSeguridad($distrito, $personas, $patrimonio, $armas, $ten_drogas, $con_drogas);
+                        $totalArmas= $estadisticas->obtenerEstSeguridad($distrito, $personas, $patrimonio, $armas, $ten_drogas, $con_drogas);
+                        $totalTenDrogas= $estadisticas->obtenerEstSeguridad($distrito, $personas, $patrimonio, $armas, $ten_drogas, $con_drogas);
+                        $totalConDrogas= $estadisticas->obtenerEstSeguridad($distrito, $personas, $patrimonio, $armas, $ten_drogas, $con_drogas);
+                        echo ' <input type="hidden" name="distrito" value='.$distrito.' id="distrito"/>';
+                        echo ' <input type="hidden" name="personas" value='.$personas.' id="personas"/>';
+                        echo ' <input type="hidden" name="patrimonio" value='.$patrimonio.' id="patrimonio"/>';
+                        echo ' <input type="hidden" name="armas" value='.$armas.' id="armas"/>';
+                        echo ' <input type="hidden" name="ten_drogas" value='.$ten_drogas.' id="ten_drogas"/>';
+                        echo ' <input type="hidden" name="con_drogas" value='.$con_drogas.' id="con_drogas"/>';                        
+                        echo '
+                       <div class="row">
+                         <div class="col-12">
+                            <div class="card">
+                             <div class="card-block">
+                                    <div id="piechart" style="width: 900px; height: 500px;"></div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>';
+                    
+               
+                  
+                    echo "
+                    <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'>
+                    google.load()</script>
+                    <script type='text/javascript'>
+                            google.charts.load('current', {'packages':['corechart']});
+                            google.charts.setOnLoadCallback(drawChart);
+                        </script>";
+                  }
+                ?>
+                
+                <!-- ============================================================== -->
+                <!-- End Bread crumb and right sidebar toggle -->
+                <!-- ============================================================== -->               
                 <!-- ============================================================== -->
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
