@@ -40,10 +40,10 @@ class claseEstadisticas {
       return $total;
     }*/
 
-    public function obtenerEstSeguridadPersona($distrito, $personas) {
+    public function obtenerEstSeguridadPersona($distrito) {
       $coleccion = $this->conexionEstSeg();
-      $total = $coleccion->find(['distrito' => $distrito, 'personas'=> $personas]);
-      return $total;
+      $total = $coleccion->findOne(['distrito' => $distrito]).personas;
+      return int($total);
     }
 
     //Funcion que inserta las alertas creadas por un usuario
