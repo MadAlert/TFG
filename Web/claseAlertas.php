@@ -170,11 +170,11 @@ class claseAlertas {
                     <label class="col-sm-12">Selecciona un categoria</label>
                     <div class="col-sm-12">      
 						<select class="form-control form-control-line" name="categorias" id="categorias">
-							<option>Desastres y accidentes</option>
-                            <option>Criminalidad</option>
-                            <option>Terrorismo</option>
                             <option>Contaminación</option>
+                            <option>Criminalidad</option>
+                            <option>Desastres y accidentes</option>
                             <option>Eventos</option>
+                            <option>Terrorismo</option>
                             <option>Tráfico</option>
                             <option>Transporte público</option>
 						</select>
