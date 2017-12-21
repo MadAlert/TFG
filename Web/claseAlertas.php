@@ -64,7 +64,12 @@ class claseAlertas {
 	    		$fecha = $doc->fecha;
 	    		$categoria = $doc->categoria;
 	    		$autor = $doc->fuente;
-	    		$url = $doc->url;
+	    		if(isset($doc->url)){
+	    			$url = $doc->url;
+	    		}
+	    		else{
+	    			$url = null;
+	    		}
 	    		if(isset($doc->veridico)){
 	    			$verificado = $doc->veridico;
 	    		}
