@@ -49,7 +49,7 @@ class claseAlertas {
     }
 
 
-    // Muetsra todas las alertas de un distrito (sin tener en cuenta categorías)
+    // Muestra todas las alertas de un distrito (sin tener en cuenta categorías)
     public function obtenerAlertasDistrito($distrito) {
    		$coleccion = $this->conexion();
    		
@@ -131,34 +131,55 @@ class claseAlertas {
     public function mostrarDistritos(){
     	echo '<html>
     		
-                                    <div class="form-group">
-                                            <label class="col-sm-12">Selecciona un distrito</label>
-                                            <div class="col-sm-12">      
-								    				<select class="form-control form-control-line" name="distritos" id="distritos">
-								                        <option>Arganzuela</option>
-								                        <option>Barajas</option>
-								                        <option>Carabanchel</option>
-								                        <option>Centro</option>
-								                        <option>Chamartín</option>
-								                        <option>Chamberí</option>
-								                        <option>Ciudad Lineal</option>
-								                        <option>Fuencarral-El Pardo</option>
-								                        <option>Hortaleza</option>
-								                        <option>Latina</option>
-								                        <option>Moncloa-Aravaca</option>
-								                        <option>Moratalaz</option>
-								                        <option>Puente de Vallecas</option>
-								                        <option>Retiro</option>
-								                        <option>Salamanca</option>
-								                        <option>San Blas-Canillejas</option>
-								                        <option>Tetuán</option>
-								                        <option>Usera</option>
-								                        <option>Vicálvaro</option>
-								                        <option>Villa de Vallecas</option>
-								                        <option>Villaverde</option>
-								                    </select>
-								              </div>                                      
-                                        </div>
+                <div class="form-group">
+                    <label class="col-sm-12">Selecciona un distrito</label>
+                    <div class="col-sm-12">      
+						<select class="form-control form-control-line" name="distritos" id="distritos">
+							<option>Arganzuela</option>
+							<option>Barajas</option>
+							<option>Carabanchel</option>
+							<option>Centro</option>
+							<option>Chamartín</option>
+							<option>Chamberí</option>
+							<option>Ciudad Lineal</option>
+							<option>Fuencarral-El Pardo</option>
+							<option>Hortaleza</option>
+							<option>Latina</option>
+							<option>Moncloa-Aravaca</option>
+							<option>Moratalaz</option>
+							<option>Puente de Vallecas</option>
+							<option>Retiro</option>
+							<option>Salamanca</option>
+							<option>San Blas-Canillejas</option>
+							<option>Tetuán</option>
+							<option>Usera</option>
+							<option>Vicálvaro</option>
+							<option>Villa de Vallecas</option>
+							<option>Villaverde</option>
+						</select>
+					</div>                                      
+                </div>
+                                    
+			 </html>';
+    }
+
+   public function mostrarCategorias(){
+    	echo '<html>
+    		
+                <div class="form-group">
+                    <label class="col-sm-12">Selecciona un categoria</label>
+                    <div class="col-sm-12">      
+						<select class="form-control form-control-line" name="categorias" id="categorias">
+                            <option>Contaminación</option>
+                            <option>Criminalidad</option>
+                            <option>Desastres y accidentes</option>
+                            <option>Eventos</option>
+                            <option>Terrorismo</option>
+                            <option>Tráfico</option>
+                            <option>Transporte público</option>
+						</select>
+					</div>                                      
+                </div>
                                     
 			 </html>';
     }

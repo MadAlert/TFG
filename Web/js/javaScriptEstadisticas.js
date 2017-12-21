@@ -16,13 +16,13 @@ function drawChart() {
 
     var data = google.visualization.arrayToDataTable([
       ['Distritos', 'Categorias'],
-      ['Desastres y accidentes',     desastres],
-      ['Eventos',      eventos],
-      ['Transporte publico',      transporte],
-      ['Terrorismo',      terrorismo],
-      ['Criminalidad',  criminalidad],
-      ['Contaminacion', contaminacion],
-      ['Trafico',    trafico]
+      ['Desastres y accidentes',     parseInt(desastres)],
+      ['Eventos',      parseInt(eventos)],
+      ['Transporte publico',      parseInt(transporte)],
+      ['Terrorismo',      parseInt(terrorismo)],
+      ['Criminalidad',  parseInt(criminalidad)],
+      ['Contaminacion', parseInt(contaminacion)],
+      ['Trafico',    parseInt(trafico)]
     ]);
 
     var options = {

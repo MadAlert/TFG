@@ -4,8 +4,8 @@ $alertas = new claseAlertas();
 
 $nombre = $_POST['nombre'];
 $email = $_POST['email'];
-$categoria = $_POST['categoria'];
-$distrito = $_POST['distrito'];
+$categoria = $_POST['categorias'];
+$distrito = $_POST['distritos'];
 $alerta = $_POST['alerta'];
 
 $alertas->insertarAlerta($nombre, $categoria, $distrito, $alerta);

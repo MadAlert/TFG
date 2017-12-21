@@ -76,64 +76,42 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-block">
-                                <h1 class="card-title"> Añadir alertas en tiempo real</h1>                                
-                                <form id="form_contact" class="contacto" action="procesarAniadir.php" method="post">
-                                    <ul>
-                                    <li>
-                                        <label>Nombre</label>
-                                        <input type="text" name="nombre" id="nombre" value="" required />
-                                    </li>
-                                    <li>
-                                        <label>Email</label>
-                                        <input type="Email" name="email" id="email" value="" required/>
-                                    </li>
-                                    <li>                                    
-                                        <label>Categoria</label>
-                                        <select name="categoria">
-                                            <option>Desastres y accidentes</option>
-                                            <option>Criminalidad</option>
-                                            <option>Terrorismo</option>
-                                            <option>Contaminación</option>
-                                            <option>Eventos</option>
-                                            <option>Tráfico</option>
-                                            <option>Transporte público</option>
-                                        </select>
-                                    </li>
-                                    <li>                                    
-                                        <label>Distrito</label>
-                                        <select name="distrito">
-                                                        <option>Arganzuela</option>
-                                                        <option>Barajas</option>
-                                                        <option>Carabanchel</option>
-                                                        <option>Centro</option>
-                                                        <option>Chamartín</option>
-                                                        <option>Chamberí</option>
-                                                        <option>Ciudad Lineal</option>
-                                                        <option>Fuencarral-El Pardo</option>
-                                                        <option>Hortaleza</option>
-                                                        <option>Latina</option>
-                                                        <option>Moncloa-Aravaca</option>
-                                                        <option>Moratalaz</option>
-                                                        <option>Puente de Vallecas</option>
-                                                        <option>Retiro</option>
-                                                        <option>Salamanca</option>
-                                                        <option>San Blas-Canillejas</option>
-                                                        <option>Tetuán</option>
-                                                        <option>Usera</option>
-                                                        <option>Vicálvaro</option>
-                                                        <option>Villa de Vallecas</option>
-                                                        <option>Villaverde</option>
-                                        </select>
-                                    </li>
-                                    <li>                                    
-                                        <label>Alerta</label>
-                                        <textarea cols="40" rows="6" name="alerta" required></textarea>
-                                    </li>                                    
-                                    <li>  
-                                        <button class="btn waves-effect waves-light btn-danger pull-center hidden-sm-down" type="submit"> Añadir alerta </button>
-                                    </li>
-                                  </ul>
-                                </form>                                    
+                                <h1 class="card-title"> Añadir alertas en tiempo real</h1>
+                                <form class="form-horizontal form-material" class="contacto" action="procesarAniadir.php" method="post">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <input type="text" placeholder="Nombre" class="form-control form-control-line" name="nombre" id="nombre" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <input type="email" placeholder="Email" class="form-control form-control-line" name="email" id="email" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <?php 
+                                        include ("claseAlertas.php");
+                                        $alertas = new claseAlertas();
+                                        $alertas->mostrarCategorias();
+                                        ?> 
+                                    </div>
+                                    <div class="form-group">
+                                        <?php
+                                        $alertas->mostrarDistritos();
+                                        ?> 
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <textarea rows="5" placeholder="Introduce la alerta..."
+                                            class="form-control form-control-line" name="alerta" required/></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <button class="btn btn-danger" type="submit">Añadir alerta</button>
+                                        </div>
+                                    </div>
+                                </form>                                                                
                             </div>
                         </div>
                     </div>
