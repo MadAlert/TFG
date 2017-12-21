@@ -136,7 +136,14 @@
                     </div>';
                     
                
-                  
+                  echo '<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <div id="chart_div"></div>';
+                    
+
+
+
+
+
                     echo "
                     <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'>
                     google.load()</script>

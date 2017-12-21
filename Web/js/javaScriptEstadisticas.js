@@ -71,15 +71,58 @@ google.charts.load('current', {packages: ['corechart', 'bar']});
 google.charts.setOnLoadCallback(drawMultSeries);
 
 function drawMultSeries() {
+
+    var categoria = document.getElementById("categoria").value;
+    /*var aravaca = document.getElementById("aravaca").value;
+    var barajas = document.getElementById("barajas").value;
+    var carabanchel = document.getElementById("carabanchel").value;
+    var centro = document.getElementById("centro").value;
+    var chamartin = document.getElementById("chamartin").value;
+    var chamberi = document.getElementById("chamberi").value;
+    var ciudadLineal = document.getElementById("ciudadLineal").value;
+    var fuencarral = document.getElementById("fuencarral").value;
+    var general = document.getElementById("general").value;
+    var hortaleza = document.getElementById("hortaleza").value;
+    var latina = document.getElementById("latina").value;
+    var moncloa = document.getElementById("moncloa").value;
+    var moratalaz = document.getElementById("moratalaz").value;
+    var puenteVallecas = document.getElementById("puenteVallecas").value;
+    var retiro = document.getElementById("retiro").value;
+    var salamanca = document.getElementById("salamanca").value;
+    var sanblas = document.getElementById("sanblas").value;
+    var tetuan = document.getElementById("tetuan").value;
+    var usera = document.getElementById("usera").value;
+    var vicalvaro = document.getElementById("vicalvaro").value;
+    var villaVallecas = document.getElementById("villaVallecas").value;
+    var villaverde = document.getElementById("villaverde").value;*/
+ 
+
     var data = google.visualization.arrayToDataTable([
-         ['Distrito', 'Categoria', { role: 'style' }],
-         ['Arganzuela', 8, '#b87333'],            // RGB value
-         ['Barajas', 10, 'silver'],            // English color name
-         ['Carabanchel', 40, 'gold'],
-         ['Centro', 25, 'black'],
-         ['Chamartin', 15, 'pink'],
-         ['Chamberi', 19.30, 'yellow'],
-         ['Ciudad Lineal', 19.30, 'red'],
+         ['Element', 'Density', { role: 'style' }],
+         ['Copper', 8.94, '#b87333'],            // RGB value
+         ['Silver', 10.49, 'silver'],            // English color name
+         ['Gold', 19.30, 'gold'],
+
+       ['Platinum', 21.45, 'color: #e5e4e2' ], // CSS-style declaration
+      ]);
+
+    /*var data = google.visualization.arrayToDataTable([
+         ['Distrito', 'Num', { role: 'style' }],
+         ['hola', 5, '#b87333'],
+         ['dsdsdsd', 2, '#b87333'],
+         ['casasa', 2, '#b87333'],
+         ['categoria', 7, '#b87333'],
+         ['adiosss', 8, '#b87333'],
+         ['holaaa', 3, '#b87333'],
+         ['dssdsdsd', 2, '#b87333'],
+
+        /* [categoria, aravaca, '#b87333'],            // RGB value
+         [categoria, barajas, 'silver'],            // English color name
+         [categoria, carabanchel, 'gold'],
+         [categoria, centro, 'black'],
+         [categoria, chamartin, 'pink'],
+         [categoria , chamberi, 'red'],*/
+       /*  ['Ciudad Lineal', 19.30, 'red'],
          ['Fuencarral', 15, 'green'],
          ['Hortaleza', 30, 'orange'],
          ['Latina', 19.30, 'blue'],
@@ -93,15 +136,15 @@ function drawMultSeries() {
          ['Usera', 32, 'blue'],
          ['Vicalvaro', 20, 'red'],
          ['Villa de Vallecas', 19.30, 'gold'],
-         ['Villaverde', 19.30, 'green'],
+         ['Villaverde', 19.30, 'green'],*/
 
-       ['Platinum', 21.45, 'color: #e5e4e2' ], // CSS-style declaration
+       //['Platinum', 21.45, 'color: #e5e4e2' ], // CSS-style declaration
       ]);
 
       var options = {
-        title: 'Según la categoría : Criminalidad ',
+        title: 'Según la categoría :  ' + categoria,
         hAxis: {
-          title: 'Distritos',
+          title: 'Cat',
          // format: 'number',
           //viewWindow: {
            // min: 0,

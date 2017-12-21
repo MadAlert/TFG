@@ -109,21 +109,112 @@
                    
                       if(isset($_POST['categorias'])){
                         $categoria = $_POST['categorias'];
-                        //include ("claseEstadisticas.php");
-                       //$estadisticas = new claseEstadisticas();
-                                                
-                          echo ' <div class="row">
+                        include ("claseEstadisticas.php");
+                        $estadisticas = new claseEstadisticas();
+
+
+                        //Obtengo el total por la categoria seleccionada (segun el distrito)
+                       /*  $totalAravaca= $estadisticas->obtenerEstadisticas("Aravaca", $categoria);
+                         $totalBarajas= $estadisticas->obtenerEstadisticas("Barajas", $categoria);
+                         $totalCarabanchel= $estadisticas->obtenerEstadisticas("Carabanchel", $categoria);
+                         $totalCentro= $estadisticas->obtenerEstadisticas("Centro", $categoria);
+                         $totalChamartin= $estadisticas->obtenerEstadisticas("Chamartin", $categoria);
+                         $totalChamberi= $estadisticas->obtenerEstadisticas("Chamberi", $categoria);   
+                         $totalCiudadLineal= $estadisticas->obtenerEstadisticas("CiudadLineal", $categoria);
+                         $totalFuencarral= $estadisticas->obtenerEstadisticas("Fuencarral", $categoria);
+                         $totalGeneral= $estadisticas->obtenerEstadisticas("General", $categoria);
+                         $totalHortaleza= $estadisticas->obtenerEstadisticas("Hortaleza", $categoria);
+                         $totalLatina= $estadisticas->obtenerEstadisticas("Latina", $categoria);
+                         $totalMoncloa= $estadisticas->obtenerEstadisticas("Moncloa", $categoria);
+                         $totalMoratalaz= $estadisticas->obtenerEstadisticas("Moratalaz", $categoria);
+                         $totalPuenteVallecas= $estadisticas->obtenerEstadisticas("Puente Vallecas", $categoria);
+                         $totalRetiro= $estadisticas->obtenerEstadisticas("Retiro", $categoria);
+                         $totalSalamanca= $estadisticas->obtenerEstadisticas("Salamanca", $categoria);
+                         $totalSanBlas= $estadisticas->obtenerEstadisticas("San Blas", $categoria);
+                         $totalTetuan= $estadisticas->obtenerEstadisticas("Tetuan", $categoria);
+                         $totalUsera= $estadisticas->obtenerEstadisticas("Usera", $categoria);
+                         $totalVicalvaro= $estadisticas->obtenerEstadisticas("Vicalvaro", $categoria);
+                         $totalVillaVallecas= $estadisticas->obtenerEstadisticas("Villa de Vallecas", $categoria);
+                         $totalVillaverde= $estadisticas->obtenerEstadisticas("Villaverde", $categoria);
+
+
+
+
+                         echo ' <input type="hidden" name="categoria" value='.$categoria.' id="categoria"/>';
+                         echo ' <input type="hidden" name="aravaca" value='.$totalAravaca.' id="aravaca"/>';     
+                         echo ' <input type="hidden" name="barajas" value='.$totalBarajas.' id="barajas"/>';
+                         echo ' <input type="hidden" name="carabanchel" value='.$totalCarabanchel.' id="carabanchel"/>';
+                         echo ' <input type="hidden" name="centro" value='.$totalCentro.' id="centro"/>';
+                         echo ' <input type="hidden" name="chamartin" value='.$totalChamartin.' id="chamartin"/>';
+                         echo ' <input type="hidden" name="chamberi" value='.$totalChamberi.' id="chamberi"/>';
+                         echo ' <input type="hidden" name="ciudadLineal" value='.$totalCiudadLineal.' id="ciudadLineal"/>';
+                         echo ' <input type="hidden" name="fuencarral" value='.$totalFuencarral.' id="fuencarral"/>';
+                         echo ' <input type="hidden" name="general" value='.$totalGeneral.' id="general"/>';
+                         echo ' <input type="hidden" name="hortaleza" value='.$totalHortaleza.' id="hortaleza"/>';
+                         echo ' <input type="hidden" name="latina" value='.$totalLatina.' id="latina"/>';
+                         echo ' <input type="hidden" name="moncloa" value='.$totalMoncloa.' id="moncloa"/>';
+                         echo ' <input type="hidden" name="moratalaz" value='.$totalMoratalaz.' id="moratalaz"/>';
+                         echo ' <input type="hidden" name="puenteVallecas" value='.$totalPuenteVallecas.' id="puenteVallecas"/>';
+                         echo ' <input type="hidden" name="retiro" value='.$totalRetiro.' id="retiro"/>';
+                         echo ' <input type="hidden" name="salamanca" value='.$totalSalamanca.' id="salamanca"/>';
+                         echo ' <input type="hidden" name="sanblas" value='.$totalSanBlas.' id="sanblas"/>';
+                         echo ' <input type="hidden" name="tetuan" value='.$totalTetuan.' id="tetuan"/>';
+                         echo ' <input type="hidden" name="usera" value='.$totalUsera.' id="usera"/>';
+                         echo ' <input type="hidden" name="vicalvaro" value='.$totalVicalvaro.' id="vicalvaro"/>';
+                         echo ' <input type="hidden" name="villaVallecas" value='.$totalVillaVallecas.' id="villaVallecas"/>';
+                         echo ' <input type="hidden" name="villaverde" value='.$totalVillaverde.' id="villaverde"/>';*/
+
+
+
+                         /* echo ' <div class="row">
                             <div class="col-12">
                                 <div class="card">
                                         <div class="card-block">';
-                                            echo "<b> $categoria </b>";
-
+                                            echo "<b> Categoria:  $categoria </b>";
+                                             echo '<div id="chart_div" style="width: 900px; height: 300px;"></div>';
 
 
                                        echo ' </div>
                                 </div>
                             </div>
-                        </div>';
+                        </div>';*/
+
+
+
+/*echo '
+                         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <div id="chart_div"></div>';
+
+                         echo "
+                            <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'>
+                            google.load()</script>
+                            <script type='text/javascript'>
+                                    google.charts.load('current', {'packages':['corechart']});
+                                    google.charts.setOnLoadCallback(drawChart);
+                                </script>";*/
+
+
+
+                                 echo '
+                       <div class="row">
+                         <div class="col-12">
+                            <div class="card">
+                             <div class="card-block">
+                                    <div id="columnchart_values></div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>';
+                    
+               
+                  
+                    echo "
+                    <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'>
+                    google.load()</script>
+                    <script type='text/javascript'>
+                            google.charts.load('current', {'packages':['corechart']});
+                            google.charts.setOnLoadCallback(drawMultSeries);
+                        </script>";
                     }
 
                 ?>  
