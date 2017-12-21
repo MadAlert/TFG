@@ -79,29 +79,33 @@
                                 <h1 class="card-title"> Añadir alertas en tiempo real</h1>
                                 <form class="form-horizontal form-material" class="contacto" action="procesarAniadir.php" method="post">
                                     <div class="form-group">
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <input type="text" placeholder="Nombre" class="form-control form-control-line" name="nombre" id="nombre" required/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <input type="email" placeholder="Email" class="form-control form-control-line" name="email" id="email" required/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <?php 
-                                        include ("claseAlertas.php");
-                                        $alertas = new claseAlertas();
-                                        $alertas->mostrarCategorias();
-                                        ?> 
+                                        <div class="col-md-6">
+                                            <?php 
+                                            include ("claseAlertas.php");
+                                            $alertas = new claseAlertas();
+                                            $alertas->mostrarCategorias();
+                                            ?>
+                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        <?php
-                                        $alertas->mostrarDistritos();
-                                        ?> 
+                                        <div class="col-md-6">
+                                            <?php
+                                            $alertas->mostrarDistritos();
+                                            ?>
+                                        </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <textarea rows="5" placeholder="Introduce la alerta..."
                                             class="form-control form-control-line" name="alerta" required/></textarea>
                                         </div>
