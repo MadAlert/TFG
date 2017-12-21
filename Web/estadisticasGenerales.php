@@ -72,84 +72,66 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-              <!--  <div class="row page-titles">-->
-                    <!--<div class="col-md-5 col-8 align-self-center">-->
-                      <!--  <h3 class="text-themecolor">Estadísticas Generales</h3>
-                        <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="javascript:void(0)">Home</a></li>
-                            <li class="breadcrumb-item"><a> Estadísticas </a></li> 
-                            <li class="breadcrumb-item active"><a> Generales </a></li>
-                        </ol> -->
-                   <!-- </div>-->
-                   <!-- <div class="col-md-7 col-4 align-self-center">
-                        <a href="https://themewagon.com/themes/bootstrap-4-responsive-admin-template/" class="btn waves-effect waves-light btn-danger pull-right hidden-sm-down">Download Now</a>
-                    </div>-->
-              <!--  </div>-->
-
+             
                 <!-- Row -->
                 <!-- ============================================================== -->
-                <div class="row">  
+              
+                  <div class="row">
                     <div class="col-12">
                         <div class="card">
-                            <div class= "card-block">
-                                <h1 class="card-title"> Generales </h1>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-
-
-                 <!-- Row -->
-               <!-- <div class="row">
-                    <!-- Column -->
-                    <!--<div class="col-lg-8 col-md-7">
-                        <div class="card">
-                            <div class="card-block">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <div class="d-flex flex-wrap">
-                                            <div>
-                                                <h3 class="card-title">Estadisticas...</h3>
-                                                
-                                            <div class="ml-auto">
-                                                <ul class="list-inline">
-                                                    <li>
-                                                        <h6 class="text-muted text-success"><i class="fa fa-circle font-10 m-r-10 "></i>Incendio</h6> </li>
-                                                    <li>
-                                                        <h6 class="text-muted  text-info"><i class="fa fa-circle font-10 m-r-10"></i>Robo</h6> </li>
-                                                    <li>
-                                                        <h6 class="text-muted  text-muted"><i class="fa fa-circle font-10 m-r-10"></i> Evento </h6> </li>
-                                                </ul>
-
-                                                <img src="assets/images/rumanos.jpg">
+                                <div class="card-block">
+                                    <h1 class="card-title"> Estadísticas Generales por categorías </h1>
+                                
+                                        <form method="post" action="estadisticasGenerales.php" id="buscarAlertas" >
+                                             <input type="hidden" name="atributo" id="atributo" value="si"/>
+                                             <div class="form-group">
+                                                 <?php 
+                                                     include ("claseAlertas.php");
+                                                     $alertas = new claseAlertas();
+                                                     $alertas->mostrarCategorias();
+                                                ?>                              
+                                             </div>
+                                              </div>
+                                            <div class="form-group" style="margin: auto; margin-bottom: 20px;">
+                                                <div class="items col-sm-12">
+                                                    <button class="btn btn-success" id="alertas">Buscar</button>
+                                                </div>    
                                             </div>
+                                        
+                               
+                                 </div>
+                             </div>
+                         </div>
+
+                    
+
+                <?php 
+                   
+                      if(isset($_POST['atributo'])){
+                       // $categoria = $_POST['atributo'];
+                      // include ("claseEstadisticas.php");
+                       //$estadisticas = new claseEstadisticas();
+                                                
+                          echo '   <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                        <div class="card-block">
+                                            <b> hola categoria </b>
+
+
+
                                         </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="amp-pxl" style="height: 360px;"></div>
-                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    
-                </div>
-               -->
-                 
-                  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-                    <div id="chart_div"></div>
-                
-                <!-- ============================================================== -->
-                <!-- End PAge Content -->
-                <!-- ============================================================== -->
-            </div>
+                        </div>';
+                    }
 
+                ?>  
 
+        </div> 
 
             <!-- ============================================================== -->
-            </div>
-        </div>
+          
         <!-- ============================================================== -->
         <!-- End Page wrapper  -->
         <!-- ============================================================== -->
@@ -158,8 +140,8 @@
                 © 2017 MadAlert
         </footer>
         
-    </div>   
- 
+     
+    </div>
     <!-- ============================================================== -->
     <!-- End Wrapper -->
     <!-- ============================================================== -->
@@ -186,6 +168,8 @@
     <script src="assets/plugins/gmaps/jquery.gmaps.js"></script>
 
     <script src="js/javaScriptEstadisticas.js"></script> <!-- nuevo script de estadisticas-->
+
+
 </body>
 
 </html>

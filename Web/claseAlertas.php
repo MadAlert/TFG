@@ -163,5 +163,26 @@ class claseAlertas {
 			 </html>';
     }
 
+    public function mostrarCategorias(){
+    	echo '<html>
+    		
+                    <div class="form-group">
+                            <label class="col-sm-12">Selecciona una categoria</label>
+                            <div class="col-sm-12">      
+				    				<select class="form-control form-control-line" name="categorias" id="categorias">
+				                        <option>Criminalidad</option>
+				                        <option>Contaminacion</option>
+				                        <option>Desastres y accidentes</option>
+				                        <option>Eventos</option>
+				                        <option>Transporte publico</option>
+				                        <option>Trafico</option>
+				                        <option>Terrorismo</option>
+				                    </select>
+				              </div>                                      
+                    </div>
+                                    
+			 </html>';
+    }
+
 }
 ?>
