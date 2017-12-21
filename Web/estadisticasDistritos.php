@@ -78,8 +78,7 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-               
-
+            
                 <form method="post" name="alertas" action="estadisticasDistritos.php" id="buscarAlertas">
                 <input type="hidden" id="busqueda" name="busqueda" value="busqueda"/>
                 <?php 
@@ -113,7 +112,7 @@
                         $totalDesastres = $estadisticas->obtenerEstadisticas($distrito, "Desastres y accidentes");
                         $totalEventos= $estadisticas->obtenerEstadisticas($distrito, "Eventos");
                         $totalTransporte= $estadisticas->obtenerEstadisticas($distrito, "Transporte público");
-                        $totalCriminalidad= $estadisticas->obtenerEstadisticas($distrito, "Criminalidas");
+                        $totalCriminalidad= $estadisticas->obtenerEstadisticas($distrito, "Criminalidad");
                         $totalContaminacion= $estadisticas->obtenerEstadisticas($distrito, "Contaminación");
                         $totalTrafico= $estadisticas->obtenerEstadisticas($distrito, "Tráfico");
                         echo ' <input type="hidden" name="distrito" value='.$distrito.' id="distrito"/>';

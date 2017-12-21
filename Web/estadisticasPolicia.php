@@ -23,11 +23,13 @@
     <link href="css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="css/colors/blue.css" id="theme" rel="stylesheet">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+
 <![endif]-->
 </head>
 
@@ -72,22 +74,15 @@
                 <!-- Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
 
-                <?php 
-                    include ("claseAlertas.php");
-                    $alertas = new claseAlertas();
-                    if(!isset($_POST['distrito'])){
-                           $alertas->mostrarDistritos();
-                    }
-                ?>
-                <!-- ============================================================== -->
-                <!-- End Bread crumb and right sidebar toggle -->
-                <!-- ============================================================== -->
-                <!-- ============================================================== -->
+
+
+
+
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
-                 <form method="post" name="alertas" action="estadisticasPolicia.php" id="buscarAlertas">
+                <form method="post" name="alertas" action="estadisticasPolicia.php" id="buscarAlertas">
                 <input type="hidden" id="busqueda" name="busqueda" value="busqueda"/>
-                <?php 
+                <?php                 
                     include ("claseAlertas.php");
                     $alertas = new claseAlertas();
 
@@ -109,27 +104,22 @@
                             </div>
                         </div> 
                     </form>';
-                    
-                    if(isset($_POST['busqueda'])){
-                        $distrito = $_POST['distritos'];
-                        $personas = $_POST['personas'];
-                        $patrimonio = $_POST['patrimonio'];
-                        $armas = $_POST['armas'];
-                        $ten_drogas = $_POST['ten_drogas'];
-                        $con_drogas = $_POST['con_drogas'];
-                        include ("claseEstadisticas.php");
-                        $estadisticas = new claseEstadisticas();
-                        $totalPersonas= $estadisticas->obtenerEstSeguridad($distrito, $personas, $patrimonio, $armas, $ten_drogas, $con_drogas);
-                        $totalPatrimonio = $estadisticas->obtenerEstSeguridad($distrito, $personas, $patrimonio, $armas, $ten_drogas, $con_drogas);
+
+                    if(isset($_POST['busqueda'])){                    
+                        $distrito = $_POST['distritos'];                        
+                        include("claseEstadisticas.php");                        
+                        $estadisticas = new claseEstadisticas();                        
+                        $totalPersonas= $estadisticas->obtenerEstSeguridadPersona($distrito, "personas");                        
+                        /*$totalPatrimonio = $estadisticas->obtenerEstSeguridad($distrito, $personas, $patrimonio, $armas, $ten_drogas, $con_drogas);
                         $totalArmas= $estadisticas->obtenerEstSeguridad($distrito, $personas, $patrimonio, $armas, $ten_drogas, $con_drogas);
                         $totalTenDrogas= $estadisticas->obtenerEstSeguridad($distrito, $personas, $patrimonio, $armas, $ten_drogas, $con_drogas);
-                        $totalConDrogas= $estadisticas->obtenerEstSeguridad($distrito, $personas, $patrimonio, $armas, $ten_drogas, $con_drogas);
+                        $totalConDrogas= $estadisticas->obtenerEstSeguridad($distrito, $personas, $patrimonio, $armas, $ten_drogas, $con_drogas);*/
                         echo ' <input type="hidden" name="distrito" value='.$distrito.' id="distrito"/>';
-                        echo ' <input type="hidden" name="personas" value='.$personas.' id="personas"/>';
-                        echo ' <input type="hidden" name="patrimonio" value='.$patrimonio.' id="patrimonio"/>';
-                        echo ' <input type="hidden" name="armas" value='.$armas.' id="armas"/>';
-                        echo ' <input type="hidden" name="ten_drogas" value='.$ten_drogas.' id="ten_drogas"/>';
-                        echo ' <input type="hidden" name="con_drogas" value='.$con_drogas.' id="con_drogas"/>';                        
+                        echo ' <input type="hidden" name="personas" value='.$totalPersonas.' id="personas"/>';
+                        /*echo ' <input type="hidden" name="patrimonio" value='.$totalPatrimonio.' id="patrimonio"/>';
+                        echo ' <input type="hidden" name="armas" value='.$totalArmas.' id="armas"/>';
+                        echo ' <input type="hidden" name="ten_drogas" value='.$totalTenDrogas.' id="ten_drogas"/>';
+                        echo ' <input type="hidden" name="con_drogas" value='.$totalConDrogas.' id="con_drogas"/>';                        */
                         echo '
                        <div class="row">
                          <div class="col-12">
@@ -148,8 +138,11 @@
                     google.load()</script>
                     <script type='text/javascript'>
                             google.charts.load('current', {'packages':['corechart']});
-                            google.charts.setOnLoadCallback(drawChart);
+                            google.charts.setOnLoadCallback(drawChartSeguridad);
                         </script>";
+                  }
+                  else{
+                    echo "no lo hace";
                   }
                 ?>
                 
@@ -197,6 +190,7 @@
     <script src="js/sidebarmenu.js"></script>
     <!--stickey kit AQUI ESTA LO DE SELECCIONAR EL PRIMER ELEMENTOO CO?OO-->
     <script src="assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+    <script src="js/javaScriptEstadisticas.js"></script> <!-- nuevo script de estadisticas-->
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
 </body>

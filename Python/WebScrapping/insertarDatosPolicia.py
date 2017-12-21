@@ -44,4 +44,6 @@ for filas in seleccion:
         if i == 5:
             con_drogas = filas[i].value
             #print(con_drogas)
-    bd.insertarEstSeguridad(bdEstSeguridad, distrito, personas, patrimonio, armas, ten_drogas, con_drogas)
+    bd.insertarEstSeguridad(bdEstSeguridad, distrito, str(personas), str(patrimonio), str(armas), str(ten_drogas), str(con_drogas))
+
+print("Datos insertados en la bd EstSeguridad")
