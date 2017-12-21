@@ -109,15 +109,16 @@
                         $distrito = $_POST['distritos'];                        
                         include("claseEstadisticas.php");                        
                         $estadisticas = new claseEstadisticas();                        
-                        $totalPersonas= $estadisticas->obtenerEstSeguridadPersona($distrito, "personas");                        
-                        /*$totalPatrimonio = $estadisticas->obtenerEstSeguridad($distrito, $personas, $patrimonio, $armas, $ten_drogas, $con_drogas);
-                        $totalArmas= $estadisticas->obtenerEstSeguridad($distrito, $personas, $patrimonio, $armas, $ten_drogas, $con_drogas);
+                        $totalPersonas= $estadisticas->obtenerEstSeguridadPersona($distrito, $personas);                        
+                        /*$totalPatrimonio = $estadisticas->obtenerEstSeguridad($distrito);*/
+                        echo "$totalPersonas";
+                       /* $totalArmas= $estadisticas->obtenerEstSeguridad($distrito, $personas, $patrimonio, $armas, $ten_drogas, $con_drogas);
                         $totalTenDrogas= $estadisticas->obtenerEstSeguridad($distrito, $personas, $patrimonio, $armas, $ten_drogas, $con_drogas);
                         $totalConDrogas= $estadisticas->obtenerEstSeguridad($distrito, $personas, $patrimonio, $armas, $ten_drogas, $con_drogas);*/
                         echo ' <input type="hidden" name="distrito" value='.$distrito.' id="distrito"/>';
                         echo ' <input type="hidden" name="personas" value='.$totalPersonas.' id="personas"/>';
-                        /*echo ' <input type="hidden" name="patrimonio" value='.$totalPatrimonio.' id="patrimonio"/>';
-                        echo ' <input type="hidden" name="armas" value='.$totalArmas.' id="armas"/>';
+                       /* echo ' <input type="hidden" name="patrimonio" value='.$totalPatrimonio.' id="patrimonio"/>';*/
+                       /* echo ' <input type="hidden" name="armas" value='.$totalArmas.' id="armas"/>';
                         echo ' <input type="hidden" name="ten_drogas" value='.$totalTenDrogas.' id="ten_drogas"/>';
                         echo ' <input type="hidden" name="con_drogas" value='.$totalConDrogas.' id="con_drogas"/>';                        */
                         echo '

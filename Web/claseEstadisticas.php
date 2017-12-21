@@ -42,7 +42,7 @@ class claseEstadisticas {
 
     public function obtenerEstSeguridadPersona($distrito, $personas) {
       $coleccion = $this->conexionEstSeg();
-      $total = $coleccion->find(['distrito' => $distrito, 'personas'=> $personas]);
+      $total = $coleccion->find(['distrito' => $distrito, 'personas' => $personas]);
       return $total;
     }
 
