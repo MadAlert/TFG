@@ -109,7 +109,7 @@
                         $distrito = $_POST['distritos'];                        
                         include("claseEstadisticas.php");                        
                         $estadisticas = new claseEstadisticas();                        
-                        $totalPersonas= $estadisticas->obtenerEstSeguridadPersona($distrito, $personas);                        
+                        $totalPersonas= $estadisticas->obtenerEstSeguridadPersona($distrito);                        
                         /*$totalPatrimonio = $estadisticas->obtenerEstSeguridad($distrito);*/
                         echo "$totalPersonas";
                        /* $totalArmas= $estadisticas->obtenerEstSeguridad($distrito, $personas, $patrimonio, $armas, $ten_drogas, $con_drogas);

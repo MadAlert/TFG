@@ -4,7 +4,6 @@ class claseAlertas {
 
 	public $dbhost ="localHost";
 
-
 	public function conexion(){
 		$client = new MongoDB\Client;
 		//DB
