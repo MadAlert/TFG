@@ -143,6 +143,7 @@ class claseAlertas {
 							<option>Chamberí</option>
 							<option>Ciudad Lineal</option>
 							<option>Fuencarral-El Pardo</option>
+							<option>General</option>
 							<option>Hortaleza</option>
 							<option>Latina</option>
 							<option>Moncloa-Aravaca</option>
