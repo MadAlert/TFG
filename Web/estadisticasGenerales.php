@@ -83,7 +83,7 @@
                                     <h1 class="card-title"> Estadísticas Generales por categorías </h1>
                                 
                                         <form method="post" action="estadisticasGenerales.php" id="buscarAlertas" >
-                                             <input type="hidden" name="atributo" id="atributo" value="si"/>
+                                             <input type="hidden" name="categorias" id="categorias" value="si"/>
                                              <div class="form-group">
                                                  <?php 
                                                      include ("claseAlertas.php");
@@ -107,20 +107,20 @@
 
                 <?php 
                    
-                      if(isset($_POST['atributo'])){
-                       // $categoria = $_POST['atributo'];
-                      // include ("claseEstadisticas.php");
+                      if(isset($_POST['categorias'])){
+                        $categoria = $_POST['categorias'];
+                        //include ("claseEstadisticas.php");
                        //$estadisticas = new claseEstadisticas();
                                                 
-                          echo '   <div class="row">
+                          echo ' <div class="row">
                             <div class="col-12">
                                 <div class="card">
-                                        <div class="card-block">
-                                            <b> hola categoria </b>
+                                        <div class="card-block">';
+                                            echo "<b> $categoria </b>";
 
 
 
-                                        </div>
+                                       echo ' </div>
                                 </div>
                             </div>
                         </div>';
