@@ -13,6 +13,7 @@ function drawChart() {
     var criminalidad = document.getElementById("criminalidad").value;
     var contaminacion = document.getElementById("contaminacion").value;
     var trafico = document.getElementById("trafico").value;
+    var nombre = document.getElementById("nombre").value;
 
     var data = google.visualization.arrayToDataTable([
       ['Distritos', 'Categorias'],
@@ -29,7 +30,7 @@ function drawChart() {
       title: 'Distrito: ' + distrito
     };
 
-    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+    var chart = new google.visualization.PieChart(document.getElementById(nombre));
 
     chart.draw(data, options);
   }
@@ -40,7 +41,7 @@ google.charts.setOnLoadCallback(drawChartSeguridad);
 function drawChartSeguridad() {
 
     var distrito = document.getElementById("distrito").value;
-    var personas = document.getElementById("personas").value;
+    //var personas = document.getElementById("personas").value;
    /* var patrimonio = document.getElementById("patrimonio").value;
     var armas = document.getElementById("armas").value;
     var ten_drogas = document.getElementById("ten_drogas").value;
@@ -139,7 +140,7 @@ function drawMultSeries() {
          ['Villaverde', 19.30, 'green'],*/
 
        //['Platinum', 21.45, 'color: #e5e4e2' ], // CSS-style declaration
-      ]);
+      //]);
 
       var options = {
         title: 'Según la categoría :  ' + categoria,

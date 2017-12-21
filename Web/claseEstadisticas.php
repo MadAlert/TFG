@@ -25,11 +25,11 @@ class claseEstadisticas {
   }
 
 	//Devuelve el numero total de alertas en un distrito con una categoria dada 
-   public function obtenerEstadisticas($distrito, $categorias) {
+   public function obtenerEstadisticas($distrito, $categorias, $mes) {
    		$coleccion = $this->conexion();
    		//echo "Hola";
     	//Query para ver alertas de distritos -> habria que añadir la condicion de fecha
-    	$total = $coleccion->count(['distrito' => $distrito, 'categoria'=> $categorias]);
+    	$total = $coleccion->count(['distrito' => $distrito, 'categoria'=> $categorias , 'mes' => $mes]);
     	return $total;
     }
 
@@ -52,6 +52,46 @@ class claseEstadisticas {
     	$fecha = strftime("%m", time());
     	$documento = ['fecha'=>$fecha, 'distrito'=>$distrito, 'categoria'=>$categoria,'fuente'=>$nombre, 'veridico'=>false, 'url'=> NULL];
     	$coleccion->insertOne($documento);
+    }
+
+    public function obtenerMes($i){
+      $mesAnterior1 = date('m', strtotime('-1 month'));
+      $mesAnterior2 = date('m', strtotime('-2 month'));
+      if($i==1){
+          $mes=$mesAnterior1;
+      }
+      else{
+        $mes = $mesAnterior2;
+      }
+      return $mes;
+    }
+    
+    public function crearCamposOcultos($distrito, $totalTerrorismo, $totalEventos, $totalDesastres, $totalCriminalidad, $totalTransporte, $totalContaminacion, $totalTrafico, $i){
+      echo ' <input type="hidden" name="distrito" value='.$distrito.' id="distrito"/>';
+      echo ' <input type="hidden" name="terrorismo" value='.$totalTerrorismo.' id="terrorismo"/>';
+      echo ' <input type="hidden" name="desastres" value='.$totalDesastres.' id="desastres"/>';
+      echo ' <input type="hidden" name="eventos" value='.$totalEventos.' id="eventos"/>';
+      echo ' <input type="hidden" name="transporte" value='.$totalTransporte.' id="transporte"/>';
+      echo ' <input type="hidden" name="terrorismo" value='.$totalTerrorismo.' id="terrorismo"/>';
+      echo ' <input type="hidden" name="criminalidad" value='.$totalCriminalidad.' id="criminalidad"/>';
+      echo ' <input type="hidden" name="contaminacion" value='.$totalContaminacion.' id="contaminacion"/>';
+      echo ' <input type="hidden" name="trafico" value='.$totalTrafico.' id="trafico"/>';
+      if($i==1){
+            echo ' <input type="hidden" name="nombre" value="piechart1" id="nombre"/>';
+      }
+      else{
+            echo ' <input type="hidden" name="nombre" value="piechart2" id="nombre"/>';
+      }
+    }
+
+    public function noHayEstadisticas($totalTerrorismo, $totalEventos, $totalDesastres, $totalCriminalidad, $totalTransporte, $totalContaminacion, $totalTrafico){
+      if($totalTrafico == 0 && $totalTerrorismo==0 && $totalDesastres==0 && $totalContaminacion==0 && $totalEventos==0 && $totalTransporte==0 && $totalCriminalidad==0){
+                return true;                  
+      }
+      else{
+                return false;
+      }
+
     }
 
 }
