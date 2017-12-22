@@ -33,6 +33,15 @@ class claseEstadisticas {
     	return $total;
     }
 
+    //Devuelve el numero total de alertas en un distrito con una categoria dada 
+   public function obtenerEstadisticasSinMes($distrito, $categorias) {
+      $coleccion = $this->conexion();
+      //echo "Hola";
+      //Query para ver alertas de distritos -> habria que añadir la condicion de fecha
+      $total = $coleccion->count(['distrito' => $distrito, 'categoria'=> $categorias ]);
+      return $total;
+    }
+
     /*public function obtenerEstSeguridad($distrito, $personas, $patrimonio, $armas, $ten_drogas, $con_drogas) {
       $coleccion = $this->conexionEstSeg();
       $total = $coleccion->['distrito' => $distrito, 'personas'=> $personas, 'patrimonio' => $patrimonio
