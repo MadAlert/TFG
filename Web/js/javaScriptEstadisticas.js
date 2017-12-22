@@ -74,7 +74,7 @@ google.charts.setOnLoadCallback(drawMultSeries);
 function drawMultSeries() {
 
     var categoria = document.getElementById("categoria").value;
-    /*var aravaca = document.getElementById("aravaca").value;
+    var arganzuela = document.getElementById("arganzuela").value;
     var barajas = document.getElementById("barajas").value;
     var carabanchel = document.getElementById("carabanchel").value;
     var centro = document.getElementById("centro").value;
@@ -95,57 +95,39 @@ function drawMultSeries() {
     var usera = document.getElementById("usera").value;
     var vicalvaro = document.getElementById("vicalvaro").value;
     var villaVallecas = document.getElementById("villaVallecas").value;
-    var villaverde = document.getElementById("villaverde").value;*/
+    var villaverde = document.getElementById("villaverde").value;
  
 
     var data = google.visualization.arrayToDataTable([
-         ['Element', 'Density', { role: 'style' }],
-         ['Copper', 8.94, '#b87333'],            // RGB value
-         ['Silver', 10.49, 'silver'],            // English color name
-         ['Gold', 19.30, 'gold'],
-
-       ['Platinum', 21.45, 'color: #e5e4e2' ], // CSS-style declaration
+         ['Distrito', '', { role: 'style' }],
+         ['Arganzuela', parseInt(arganzuela), 'red'],            // RGB value
+         ['Barajas', parseInt(barajas), 'yellow'],
+         ['Carabanchel', parseInt(carabanchel), 'gold'],            // English color name
+         ['Centro', parseInt(centro), 'gold'],
+         ['Chamartin', parseInt(chamartin), 'gold'],
+         ['Chamberi', parseInt(chamberi), 'gold'],
+         ['Ciudad Lineal', parseInt(ciudadLineal), 'gold'],
+         ['Fuencarral', parseInt(fuencarral), 'green'],
+         ['General', parseInt(general), 'green'],
+         ['Hortaleza', parseInt(hortaleza), 'orange'],
+         ['Latina', parseInt(latina), 'blue'],
+         ['Moncloa-Aravaca', parseInt(moncloa), 'brown'],
+         ['Moratalaz', parseInt(moratalaz), 'gold'],
+         ['Puente de Vallecas', parseInt(puenteVallecas), 'gold'],
+         ['Retiro', parseInt(retiro), 'gold'],
+         ['Salamanca', parseInt(salamanca), 'gold'],
+         ['San Blas-Canillejas', parseInt(sanblas), 'red'],
+         ['Tetuan', parseInt(tetuan), 'pink'],
+         ['Usera', parseInt(usera), 'blue'],
+         ['Vicalvaro', parseInt(vicalvaro), 'red'],
+         ['Villa de Vallecas', parseInt(villaVallecas), 'gold'],
+         ['Villaverde', parseInt(villaverde), 'green'], // CSS-style declaration
       ]);
 
-    /*var data = google.visualization.arrayToDataTable([
-         ['Distrito', 'Num', { role: 'style' }],
-         ['hola', 5, '#b87333'],
-         ['dsdsdsd', 2, '#b87333'],
-         ['casasa', 2, '#b87333'],
-         ['categoria', 7, '#b87333'],
-         ['adiosss', 8, '#b87333'],
-         ['holaaa', 3, '#b87333'],
-         ['dssdsdsd', 2, '#b87333'],
-
-        /* [categoria, aravaca, '#b87333'],            // RGB value
-         [categoria, barajas, 'silver'],            // English color name
-         [categoria, carabanchel, 'gold'],
-         [categoria, centro, 'black'],
-         [categoria, chamartin, 'pink'],
-         [categoria , chamberi, 'red'],*/
-       /*  ['Ciudad Lineal', 19.30, 'red'],
-         ['Fuencarral', 15, 'green'],
-         ['Hortaleza', 30, 'orange'],
-         ['Latina', 19.30, 'blue'],
-         ['Moncloa-Aravaca', 19, 'brown'],
-         ['Moratalaz', 14, 'gold'],
-         ['Puente de Vallecas', 19.30, 'gold'],
-         ['Retiro', 12, 'gold'],
-         ['Salamanca', 5, 'gold'],
-         ['San Blas-Canillejas', 11, 'red'],
-         ['Tetuan', 18, 'pink'],
-         ['Usera', 32, 'blue'],
-         ['Vicalvaro', 20, 'red'],
-         ['Villa de Vallecas', 19.30, 'gold'],
-         ['Villaverde', 19.30, 'green'],*/
-
-       //['Platinum', 21.45, 'color: #e5e4e2' ], // CSS-style declaration
-      //]);
-
       var options = {
-        title: 'Según la categoría :  ' + categoria,
+        title: 'Según la categoría : ' + categoria   ,
         hAxis: {
-          title: 'Cat',
+          title: 'DISTRITOS',
          // format: 'number',
           //viewWindow: {
            // min: 0,
@@ -153,7 +135,7 @@ function drawMultSeries() {
           //}
         },
         vAxis: {
-          //title: 'Escala del 1 al 10'
+          title: 'ALERTAS',
         }
       };
 
@@ -165,4 +147,4 @@ function drawMultSeries() {
 
   
 
-     
+
