@@ -6,7 +6,7 @@
     $db = $client->noticias;
     $coleccion = $db->estSeguridad;
      
-   // $total = $coleccion->findOne(array('distrito' => 'CENTRO'), array('personas'));  
-   $total = $coleccion->findOne(['distrito' => "CENTRO"]).personas;
-   print_r($total);
+   $total = $coleccion->findOne(array('distrito' => 'Centro'), array('personas'));  
+   //$total = $coleccion->findOne(['distrito' => "CENTRO"]).personas;
+   print_r($total['personas']);
 ?>

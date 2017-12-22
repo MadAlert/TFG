@@ -41,26 +41,26 @@ google.charts.setOnLoadCallback(drawChartSeguridad);
 function drawChartSeguridad() {
 
     var distrito = document.getElementById("distrito").value;
-    //var personas = document.getElementById("personas").value;
-   /* var patrimonio = document.getElementById("patrimonio").value;
+    var personas = document.getElementById("personas").value;
+    var patrimonio = document.getElementById("patrimonio").value;
     var armas = document.getElementById("armas").value;
     var ten_drogas = document.getElementById("ten_drogas").value;
-    var con_drogas = document.getElementById("con_drogas").value;*/
+    var con_drogas = document.getElementById("con_drogas").value;
 
     var data = google.visualization.arrayToDataTable([
-      ['Distritos', 'Categorias'],
-      ['Relacionado con personas',     personas],
-      /*['Relacionado con el patrimonio',      patrimonio],
-      ['Relacionado con las tenencia de armas',      armas],
-      ['Relacionado con las tenencia de drogas',      ten_drogas],
-      ['Relacionado con las consumo de drogas',  con_drogas]*/
+      ['Distritos', 'Tipos'],
+      ['Relacionado con personas',     parseInt(personas)],
+      ['Relacionado con el patrimonio',      parseInt(patrimonio)],
+      ['Relacionado con las tenencia de armas',     parseInt(armas)],
+      ['Relacionado con las tenencia de drogas',      parseInt(ten_drogas)],
+      ['Relacionado con las consumo de drogas',  parseInt(con_drogas)]
     ]);
 
     var options = {
-      title: 'Distrito: ' + distrito
+     title: 'Distrito: ' + distrito
     };
 
-    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+    var chart = new google.visualization.PieChart(document.getElementById("piechart"));
 
     chart.draw(data, options);
   }

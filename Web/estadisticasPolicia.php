@@ -90,7 +90,8 @@
                     echo '<div class="row">
                              <div class="col-12">
                                 <div class="card">
-                                 <div class="card-block">';
+                                 <div class="card-block">
+                                 <h1 class="card-title"> Estadísticas de la Policía Municipal </h1>';
                                     $alertas->mostrarDistritos();
                                     
                                 echo '</div>
@@ -108,25 +109,25 @@
                     if(isset($_POST['busqueda'])){                    
                         $distrito = $_POST['distritos'];                        
                         include("claseEstadisticas.php");                        
-                        $estadisticas = new claseEstadisticas();                        
-                        $totalPersonas= $estadisticas->obtenerEstSeguridadPersona($distrito);                        
-                        /*$totalPatrimonio = $estadisticas->obtenerEstSeguridad($distrito);*/
-                        echo "$totalPersonas";
-                       /* $totalArmas= $estadisticas->obtenerEstSeguridad($distrito, $personas, $patrimonio, $armas, $ten_drogas, $con_drogas);
-                        $totalTenDrogas= $estadisticas->obtenerEstSeguridad($distrito, $personas, $patrimonio, $armas, $ten_drogas, $con_drogas);
-                        $totalConDrogas= $estadisticas->obtenerEstSeguridad($distrito, $personas, $patrimonio, $armas, $ten_drogas, $con_drogas);*/
+                        $estadisticas = new claseEstadisticas();                       ;                        
+                        $totalPersonas= $estadisticas->obtenerEstSeguridad($distrito, 'personas');                        
+                        $totalPatrimonio = $estadisticas->obtenerEstSeguridad($distrito, 'patrimonio');                        
+                        $totalArmas= $estadisticas->obtenerEstSeguridad($distrito, 'armas');
+                        $totalTenDrogas= $estadisticas->obtenerEstSeguridad($distrito, 'ten_drogas');
+                        $totalConDrogas= $estadisticas->obtenerEstSeguridad($distrito, 'con_drogas');
                         echo ' <input type="hidden" name="distrito" value='.$distrito.' id="distrito"/>';
                         echo ' <input type="hidden" name="personas" value='.$totalPersonas.' id="personas"/>';
-                       /* echo ' <input type="hidden" name="patrimonio" value='.$totalPatrimonio.' id="patrimonio"/>';*/
-                       /* echo ' <input type="hidden" name="armas" value='.$totalArmas.' id="armas"/>';
+                        echo ' <input type="hidden" name="patrimonio" value='.$totalPatrimonio.' id="patrimonio"/>';
+                        echo ' <input type="hidden" name="armas" value='.$totalArmas.' id="armas"/>';
                         echo ' <input type="hidden" name="ten_drogas" value='.$totalTenDrogas.' id="ten_drogas"/>';
-                        echo ' <input type="hidden" name="con_drogas" value='.$totalConDrogas.' id="con_drogas"/>';                        */
+                        echo ' <input type="hidden" name="con_drogas" value='.$totalConDrogas.' id="con_drogas"/>';                        
                         echo '
                        <div class="row">
                          <div class="col-12">
                             <div class="card">
                              <div class="card-block">
                                     <div id="piechart" style="width: 900px; height: 500px;"></div>
+                                    <p> Fuente: <a href="http://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=bffff1d2a9fdb410VgnVCM2000000c205a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD"> Datos estadísticos actuaciones Policía Municipal </a> </p>
                             </div>
                             </div>
                         </div>
@@ -141,9 +142,6 @@
                             google.charts.load('current', {'packages':['corechart']});
                             google.charts.setOnLoadCallback(drawChartSeguridad);
                         </script>";
-                  }
-                  else{
-                    echo "no lo hace";
                   }
                 ?>
                 

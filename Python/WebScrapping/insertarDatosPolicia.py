@@ -3,6 +3,7 @@ import os
 import sys
 sys.path.append('../')
 from BaseDatos import BaseDatos
+import parseoDistrito
 
 # conexion a la bd y a la coleccion que queremos
 bd = BaseDatos.baseDatosClass()
@@ -44,6 +45,11 @@ for filas in seleccion:
         if i == 5:
             con_drogas = filas[i].value
             #print(con_drogas)
-    bd.insertarEstSeguridad(bdEstSeguridad, distrito, personas, patrimonio, armas, ten_drogas, con_drogas)
+    d = parseoDistrito.ParseoDistritoClass()
+    bd.insertarEstSeguridad(bdEstSeguridad, d.parseoDistrito(distrito), personas, patrimonio, armas, ten_drogas, con_drogas)
 
 print("Datos insertados en la bd EstSeguridad")
+
+
+
+    
