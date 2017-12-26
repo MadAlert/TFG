@@ -75,33 +75,57 @@ class claseEstadisticas {
       return $mes;
     }
     
-    public function crearCamposOcultos($distrito, $totalTerrorismo, $totalEventos, $totalDesastres, $totalCriminalidad, $totalTransporte, $totalContaminacion, $totalTrafico, $i){
+    public function crearCamposOcultosPrimerMes($distrito, $lista, $mes){
       echo ' <input type="hidden" name="distrito" value='.$distrito.' id="distrito"/>';
-      echo ' <input type="hidden" name="terrorismo" value='.$totalTerrorismo.' id="terrorismo"/>';
-      echo ' <input type="hidden" name="desastres" value='.$totalDesastres.' id="desastres"/>';
-      echo ' <input type="hidden" name="eventos" value='.$totalEventos.' id="eventos"/>';
-      echo ' <input type="hidden" name="transporte" value='.$totalTransporte.' id="transporte"/>';
-      echo ' <input type="hidden" name="terrorismo" value='.$totalTerrorismo.' id="terrorismo"/>';
-      echo ' <input type="hidden" name="criminalidad" value='.$totalCriminalidad.' id="criminalidad"/>';
-      echo ' <input type="hidden" name="contaminacion" value='.$totalContaminacion.' id="contaminacion"/>';
-      echo ' <input type="hidden" name="trafico" value='.$totalTrafico.' id="trafico"/>';
-      if($i==1){
-            echo ' <input type="hidden" name="nombre" value="piechart1" id="nombre"/>';
-      }
-      else{
-            echo ' <input type="hidden" name="nombre" value="piechart2" id="nombre"/>';
-      }
+      echo ' <input type="hidden" name="terrorismo" value='.$lista[0].' id="terrorismo"/>';
+      echo ' <input type="hidden" name="desastres" value='.$lista[1].' id="desastres"/>';
+      echo ' <input type="hidden" name="eventos" value='.$lista[2].' id="eventos"/>';
+      echo ' <input type="hidden" name="transporte" value='.$lista[3].' id="transporte"/>';
+      echo ' <input type="hidden" name="criminalidad" value='.$lista[4].' id="criminalidad"/>';
+      echo ' <input type="hidden" name="contaminacion" value='.$lista[5].' id="contaminacion"/>';
+      echo ' <input type="hidden" name="trafico" value='.$lista[6].' id="trafico"/>';
+      echo ' <input type="hidden" name="mes1" value='.$mes.' id="mes1"/>';
+
     }
 
-    public function noHayEstadisticas($totalTerrorismo, $totalEventos, $totalDesastres, $totalCriminalidad, $totalTransporte, $totalContaminacion, $totalTrafico){
-      if($totalTrafico == 0 && $totalTerrorismo==0 && $totalDesastres==0 && $totalContaminacion==0 && $totalEventos==0 && $totalTransporte==0 && $totalCriminalidad==0){
+    public function crearCamposOcultosSegundoMes($distrito, $lista , $mes){
+      echo ' <input type="hidden" name="distrito" value='.$distrito.' id="distrito"/>';
+      echo ' <input type="hidden" name="terrorismo2" value='.$lista[0].' id="terrorismo2"/>';
+      echo ' <input type="hidden" name="desastres2" value='.$lista[1].' id="desastres2"/>';
+      echo ' <input type="hidden" name="eventos2" value='.$lista[2].' id="eventos2"/>';
+      echo ' <input type="hidden" name="transporte2" value='.$lista[3].' id="transporte2"/>';
+      echo ' <input type="hidden" name="criminalidad2" value='.$lista[4].' id="criminalidad2"/>';
+      echo ' <input type="hidden" name="contaminacion2" value='.$lista[5].' id="contaminacion2"/>';
+      echo ' <input type="hidden" name="trafico2" value='.$lista[6].' id="trafico2"/>';
+      echo ' <input type="hidden" name="mes2" value='.$mes.' id="mes2"/>';
+
+    }
+
+    public function noHayEstadisticas($lista){
+      if($lista[0] == 0 && $lista[1]==0 && $lista[2]==0 && $lista[3]==0 && $lista[4]==0 && $lista[5]==0 && $lista[6]==0){
                 return true;                  
       }
       else{
                 return false;
       }
-
     }
+
+    public function obtenerDatos ($distrito, $mes){
+      $totalTerrorismo= $this->obtenerEstadisticas($distrito, "Terrorismo",$mes);
+      $totalDesastres = $this->obtenerEstadisticas($distrito, "Desastres y accidentes",$mes);
+      $totalEventos= $this->obtenerEstadisticas($distrito, "Eventos",$mes);
+      $totalTransporte= $this->obtenerEstadisticas($distrito, "Transporte público",$mes);
+      $totalCriminalidad= $this->obtenerEstadisticas($distrito, "Criminalidad",$mes);
+      $totalContaminacion= $this->obtenerEstadisticas($distrito, "Contaminación",$mes);
+      $totalTrafico= $this->obtenerEstadisticas($distrito, "Tráfico",$mes);
+      $lista = [$totalTerrorismo,$totalDesastres,$totalEventos,$totalTransporte,$totalCriminalidad,$totalContaminacion,$totalTrafico];
+      return $lista;
+    }
+     
+    public function mesEnLetras($mes){
+      $meses  = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+        return $meses[$mes-1];
+    }                   
 
 }
 ?>
