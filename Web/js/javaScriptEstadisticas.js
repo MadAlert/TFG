@@ -1,11 +1,16 @@
 // pie chart - > quesito
 
+function ObtenerMes(mes){
+  var meses  = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+  return meses[mes-1];
+}
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
+google.charts.setOnLoadCallback(drawChart2);
 
+//Dibujar el mes 1
 function drawChart() {
 
-    var distrito = document.getElementById("distrito").value;
     var desastres = document.getElementById("desastres").value;
     var eventos = document.getElementById("eventos").value;
     var transporte = document.getElementById("transporte").value;
@@ -13,7 +18,9 @@ function drawChart() {
     var criminalidad = document.getElementById("criminalidad").value;
     var contaminacion = document.getElementById("contaminacion").value;
     var trafico = document.getElementById("trafico").value;
-    var nombre = document.getElementById("nombre").value;
+    var mes = document.getElementById("mes1").value;
+
+    var m = ObtenerMes(parseInt(mes));
 
     var data = google.visualization.arrayToDataTable([
       ['Distritos', 'Categorias'],
@@ -27,14 +34,48 @@ function drawChart() {
     ]);
 
     var options = {
-      title: 'Distrito: ' + distrito
+      title: 'Mes de ' + m
     };
 
-    var chart = new google.visualization.PieChart(document.getElementById(nombre));
+    var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
     chart.draw(data, options);
-  }
-            
+}
+
+//Dibujar el 2 mes
+function drawChart2() {
+
+    var desastres = document.getElementById("desastres2").value;
+    var eventos = document.getElementById("eventos2").value;
+    var transporte = document.getElementById("transporte2").value;
+    var terrorismo = document.getElementById("terrorismo2").value;
+    var criminalidad = document.getElementById("criminalidad2").value;
+    var contaminacion = document.getElementById("contaminacion2").value;
+    var trafico = document.getElementById("trafico2").value;
+    var mes = document.getElementById("mes2").value;
+    var m = ObtenerMes(parseInt(mes));
+
+
+    var data = google.visualization.arrayToDataTable([
+      ['Distritos', 'Categorias'],
+      ['Desastres y accidentes',     parseInt(desastres)],
+      ['Eventos',      parseInt(eventos)],
+      ['Transporte publico',      parseInt(transporte)],
+      ['Terrorismo',      parseInt(terrorismo)],
+      ['Criminalidad',  parseInt(criminalidad)],
+      ['Contaminacion', parseInt(contaminacion)],
+      ['Trafico',    parseInt(trafico)]
+    ]);
+
+    var options = {
+      title: 'Mes de ' + m
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+
+    chart.draw(data, options);
+}            
+
 google.charts.load('current', {'packages':['corechart']});            
 google.charts.setOnLoadCallback(drawChartSeguridad);
 
@@ -144,6 +185,7 @@ function drawMultSeries() {
 
       chart.draw(data, options);
   }
+
 
   
 

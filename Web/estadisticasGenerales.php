@@ -118,8 +118,8 @@
                          $totalBarajas= $estadisticas->obtenerEstadisticasSinMes("Barajas", $categoria);
                          $totalCarabanchel= $estadisticas->obtenerEstadisticasSinMes("Carabanchel", $categoria);
                          $totalCentro= $estadisticas->obtenerEstadisticasSinMes("Centro", $categoria);
-                         $totalChamartin= $estadisticas->obtenerEstadisticasSinMes("Chamartin", $categoria);
-                         $totalChamberi= $estadisticas->obtenerEstadisticasSinMes("Chamberi", $categoria);   
+                         $totalChamartin= $estadisticas->obtenerEstadisticasSinMes("Chamartín", $categoria);
+                         $totalChamberi= $estadisticas->obtenerEstadisticasSinMes("Chamberí", $categoria);   
                          $totalCiudadLineal= $estadisticas->obtenerEstadisticasSinMes("CiudadLineal", $categoria);
                          $totalFuencarral= $estadisticas->obtenerEstadisticasSinMes("Fuencarral", $categoria);
                          $totalGeneral= $estadisticas->obtenerEstadisticasSinMes("General", $categoria);
@@ -133,7 +133,7 @@
                          $totalSanBlas= $estadisticas->obtenerEstadisticasSinMes("San Blas", $categoria);
                          $totalTetuan= $estadisticas->obtenerEstadisticasSinMes("Tetuan", $categoria);
                          $totalUsera= $estadisticas->obtenerEstadisticasSinMes("Usera", $categoria);
-                         $totalVicalvaro= $estadisticas->obtenerEstadisticasSinMes("Vicalvaro", $categoria);
+                         $totalVicalvaro= $estadisticas->obtenerEstadisticasSinMes("Vicálvaro", $categoria);
                          $totalVillaVallecas= $estadisticas->obtenerEstadisticasSinMes("Villa de Vallecas", $categoria);
                          $totalVillaverde= $estadisticas->obtenerEstadisticasSinMes("Villaverde", $categoria);
 

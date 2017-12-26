@@ -35,10 +35,7 @@
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
-    <div class="preloader">
-        <svg class="circular" viewBox="25 25 50 50">
-            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" /> </svg>
-    </div>
+    
     <!-- ============================================================== -->
     <!-- Main wrapper - style you can find in pages.scss -->
     <!-- ============================================================== -->
@@ -71,6 +68,10 @@
                 <!-- ============================================================== -->
                 <!-- Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
+
+            
+
+                
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
@@ -105,60 +106,95 @@
                              <div class="card-block">';
                         $distrito = $_POST['distritos'];
                         include ("claseEstadisticas.php");
+                        echo '<h3>Estadisticas en el distrito: '.$distrito .' </h3>';
                         $estadisticas = new claseEstadisticas();
-                        for($i=1; $i<=2; $i++){
-                            $mes = $estadisticas->obtenerMes($i);
-                            $totalTerrorismo= $estadisticas->obtenerEstadisticas($distrito, "Terrorismo",$mes);
-                            $totalDesastres = $estadisticas->obtenerEstadisticas($distrito, "Desastres y accidentes",$mes);
-                            $totalEventos= $estadisticas->obtenerEstadisticas($distrito, "Eventos",$mes);
-                            $totalTransporte= $estadisticas->obtenerEstadisticas($distrito, "Transporte público",$mes);
-                            $totalCriminalidad= $estadisticas->obtenerEstadisticas($distrito, "Criminalidad",$mes);
-                            $totalContaminacion= $estadisticas->obtenerEstadisticas($distrito, "Contaminación",$mes);
-                            $totalTrafico= $estadisticas->obtenerEstadisticas($distrito, "Tráfico",$mes);
-                            $noHayEstadisticas = $estadisticas->noHayEstadisticas($totalTerrorismo, $totalEventos, $totalDesastres, $totalCriminalidad, $totalTransporte, $totalContaminacion, $totalTrafico);
-                            if($noHayEstadisticas){
-                                echo 'No hay estadisticas disponibles para este distrito en el mes: '.$mes;
-                            }
-                            else{
-                                 $estadisticas->crearCamposOcultos($distrito, $totalTerrorismo, $totalEventos, $totalDesastres, $totalCriminalidad, $totalTransporte, $totalContaminacion, $totalTrafico, $i);
-                                 if($i==1){
-                                        echo '
-                                            <div id="piechart1" style="width: 900px; height: 500px;"></div>
-                                    ';
-                                 }
-                                 else{
-                                    echo '
-                                            <div id="piechart2" style="width: 900px; height: 500px;"></div>
-                                    ';
-                                 }
-                                
-                                echo "
-                                <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'>
-                                google.load()</script>
-
-                                <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'>
-                                google.load()</script>
-                                <script type='text/javascript'>
-                                        google.charts.load('current', {'packages':['corechart']});
-                                        google.charts.setOnLoadCallback(drawChart);
-                                </script>";
-                            }
-                    }   
+                        //Calculos para el mes 1
+                        $mes1 = $estadisticas->obtenerMes("1");
+                        $lista = $estadisticas->obtenerDatos($distrito, $mes1);
+                        $noHayEstadisticas1 = $estadisticas->noHayEstadisticas($lista);
+                        //Calculos para el mes 2
+                        $mes2 =  $estadisticas->obtenerMes("2");
+                        $lista2 = $estadisticas->obtenerDatos($distrito, $mes2);
+                        $noHayEstadisticas2 = $estadisticas->noHayEstadisticas($lista2);
+                        $mostrado = false;
+                        //No hay estadisticas de ningun mes
+                        if($noHayEstadisticas1 && $noHayEstadisticas2){
+                            $mostrado = true;
+                            $mes1 = $estadisticas->mesEnLetras($mes1);
+                            $mes2 = $estadisticas->mesEnLetras($mes2);
+                            echo '<table class="columns">
+                                        <td>
+                                        <tr><p>No hay estadísticas para el mes de ' .$mes1.'</p></tr>
+                                         <hr></hr>
+                                        <tr><p>No hay estadísticas para el mes de ' .$mes2.'</p></tr>
+                                        </td>
+                                    </table>';
+                        }
+                        //Hay estadisticas de ambos meses
+                        if(!$noHayEstadisticas1 && !$noHayEstadisticas2){
+                            $mostrado = true;
+                            $estadisticas->crearCamposOcultosPrimerMes($distrito, $lista , $mes1);
+                            $estadisticas->crearCamposOcultosSegundoMes($distrito, $lista2, $mes2);
+                            echo '<table class="columns">
+                                        <td>
+                                        <tr><div id="piechart" ></div></tr>
+                                        <hr></hr>
+                                        <tr><div id="piechart2"></div></tr>
+                                        </td>
+                                    </table>';
+                            echo "
+                            <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'>
+                            google.load()</script>
+                            <script type='text/javascript'>
+                                    google.charts.load('current', {'packages':['corechart']});
+                                    google.charts.setOnLoadCallback(drawChart);
+                                    google.charts.setOnLoadCallback(drawChart2);
+                            </script>";
+                        }
+                        //No hay estadisticas del mes 1 , pero si del 2
+                        if($noHayEstadisticas1 && !$mostrado){
+                           $estadisticas->crearCamposOcultosSegundoMes($distrito, $lista2, $mes2);
+                           $mes1 = $estadisticas->mesEnLetras($mes1);
+                           echo '<table class="columns">
+                                        <td>
+                                        <tr><p>No hay estádisticas para el mes de ' .$mes1.'</p></tr>
+                                         <hr></hr>
+                                        <tr><div id="piechart2"></div></tr>
+                                        </td>
+                                    </table>';
+                            echo "
+                            <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'>
+                            google.load()</script>
+                            <script type='text/javascript'>
+                                    google.charts.load('current', {'packages':['corechart']});
+                                    google.charts.setOnLoadCallback(drawChart2);
+                            </script>";
+                        }
+                        //No hay estadisticas del mes 2 pero si del 1
+                        if($noHayEstadisticas2 && !$mostrado){
+                           $estadisticas->crearCamposOcultosPrimerMes($distrito, $lista , $mes1);
+                           $mes2 = $estadisticas->mesEnLetras($mes2);
+                           echo '<table class="columns">
+                                        <td>
+                                        <tr><div id="piechart"></div></tr>
+                                        <hr></hr>
+                                        <tr><p>No hay estádisticas para el mes de ' .$mes2.'</p></tr>
+                                        </td>
+                                    </table>';
+                            echo "
+                            <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'>
+                            google.load()</script>
+                            <script type='text/javascript'>
+                                    google.charts.load('current', {'packages':['corechart']});
+                                    google.charts.setOnLoadCallback(drawChart);
+                            </script>";
+                        }
                   echo '</div>
                             </div>
                         </div>
                     </div>';
               }
                 ?>
-
-            
-                <!-- ============================================================== -->
-                <!-- Start Page Content -->
-                <!-- ============================================================== -->
-                		
-                <!-- ============================================================== -->
-                <!-- End PAge Content -->
-                <!-- ============================================================== -->
             </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
@@ -199,5 +235,4 @@
     <script src="js/custom.min.js"></script>
     <script src="js/javaScriptEstadisticas.js"></script> <!-- nuevo script de estadisticas-->
 </body>
-
 </html>
