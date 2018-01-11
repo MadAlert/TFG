@@ -140,7 +140,7 @@ function drawMultSeries() {
  
 
     var data = google.visualization.arrayToDataTable([
-         ['Distrito', '', { role: 'style' }],
+         ['Distrito', {role: 'data'}, { role: 'style' }],
          ['Arganzuela', parseInt(arganzuela), 'red'],            // RGB value
          ['Barajas', parseInt(barajas), 'yellow'],
          ['Carabanchel', parseInt(carabanchel), 'gold'],            // English color name
@@ -167,16 +167,25 @@ function drawMultSeries() {
 
       var options = {
         title: 'Según la categoría : ' + categoria   ,
+        legend: 'none',
+        height: 500,
+        chartArea:{
+          height: 200,
+          top:100
+        },
         hAxis: {
-          title: 'DISTRITOS',
+          title: 'DISTRITO',
+          slantedText: true,
+          slantedTextAngle: 45
          // format: 'number',
-          //viewWindow: {
-           // min: 0,
-           // max: 21,
-          //}
         },
         vAxis: {
           title: 'ALERTAS',
+          format: 'short',
+          viewWindow: {
+            min: 0,
+           // max: 21,
+          }
         }
       };
 
