@@ -5078,6 +5078,11 @@ Error Page
 /*******************
 google map Page
 ******************/
+#mapa {
+  height: 650px;
+  width: 100%;
+}
+
 .gmaps,
 .gmaps-panaroma {
   height: 650px; }

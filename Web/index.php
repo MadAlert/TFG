@@ -75,7 +75,7 @@
                     <div class="col-12">
                         <div class="card">
                                 <div class="card-block">
-                                  <div id="gmaps-simple" class="gmaps"></div>
+                                    <div id="mapa" class="gmaps"></div>
                                     <form method="post" action="alertas.php" id="buscarAlertas" onsubmit="return valida()">
                                          <input type="hidden" name="atributo" id="atributo" value="si"/>
                                          <div class="form-group">
@@ -230,9 +230,77 @@
     <script src="js/custom.min.js"></script>
     <script src="javaScript.js"></script>
     <!-- google maps api -->
-    <script src="https://maps.google.com/maps/api/js?key=AIzaSyAZduBv0lBj1OsO4gaUq_xifc7N7ZuhPz8&sensor=true"></script>
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <script>
+      function initMap() {
+        var marcadores = [
+            ['Arganzuela', 40.400861, -3.699350], //Arganzuela
+            ['Barajas', 40.4839402, -3.5701402], //Barajas
+            ['Carabanchel', 40.381607, -3.735203], //Carabanchel
+            ['Centro', 40.4169416, -3.7083759], //Centro
+            ['Chamartín', 40.460367, -3.676567], //Chamartín
+            ['Chamberí', 40.438656, -3.704180], //Chamberí
+            ['Ciudad Lineal', 40.455531, -3.656119], //Ciudad Lineal
+            ['Fuencarral-ElPardo', 40.494289, -3.693477], //Fuencarral-ElPardo
+            ['Hortaleza', 40.485152, -3.634796], //Hortaleza
+            ['Latina', 40.387812, -3.773530], //Latina
+            ['Moncloa-Aravaca', 40.443568,  -3.742829], //Moncloa-Aravaca
+            ['Moratalaz', 40.407016, -3.644330], //Moratalaz
+            ['Puente de Vallecas', 40.386887, -3.658476], //Puente de Vallecas
+            ['Retiro', 40.4101076, -3.6736514], //Retiro
+            ['Salamanca', 40.429807, -3.673778], //Salamanca
+            ['San Blas-Canillejas', 40.436229, -3.599431], //San Blas-Canillejas
+            ['Tetuán', 40.460158, -3.698835], //Tetuán
+            ['Usera', 40.377026, -3.701982], //Usera
+            ['Vicálvaro', 40.393974, -3.581134], //Vicálvaro
+            ['Villa de Vallecas', 40.355089, -3.621192], //Villa de Vallecas
+            ['Villaverde', 40.345987, -3.693332] //Villaverde
+        ];
+
+        var map = new google.maps.Map(document.getElementById('mapa'),{
+          zoom: 12,
+          zoomControl: false,
+          streetViewControl: false,
+          scrollwheel: false,
+          center: new google.maps.LatLng(40.422163, -3.689101),
+        });
+
+        var infowindow = new google.maps.InfoWindow(); //Abre ventana del marcador
+        // Create an array of alphabetical characters used to label the markers.
+        //var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+
+        /*var markers = locations.map(function(location, i) {
+          return new google.maps.Marker({
+            position: locations,
+            label: labels[i % labels.length]
+          });
+        });*/
+
+        var marker, i;
+        for (i = 0; i < marcadores.length; i++) {  
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(marcadores[i][1], marcadores[i][2]),
+          map: map
+        });
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+            infowindow.setContent(marcadores[i][0]);
+            infowindow.open(map, marker);
+          }
+        })(marker, i));
+      }
+
+        //Muestra todas las marcas del array locations en el mapa
+        /*var markersCluster = new MarkerClusterer(map, markers,
+            {imagePath: 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'});
+        //marker.setMap(map);
+        */
+      }
+      //google.maps.event.addDomListener(window, 'load', initMap);
+    </script>
+    <script async defer src="https://maps.google.com/maps/api/js?key=AIzaSyAgXFPH3QXZqFd571ptZm6p2dNYK18aSQQ&callback=initMap"></script>
     <script src="assets/plugins/gmaps/gmaps.min.js"></script>
-    <script src="assets/plugins/gmaps/jquery.gmaps.js"></script>
+    <!--script src="assets/plugins/gmaps/jquery.gmaps.js"></script-->
 </body>
 
 </html>
