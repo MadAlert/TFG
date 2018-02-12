@@ -141,42 +141,51 @@ function drawMultSeries() {
 
     var data = google.visualization.arrayToDataTable([
          ['Distrito', '', { role: 'style' }],
-         ['Arganzuela', parseInt(arganzuela), 'red'],            // RGB value
-         ['Barajas', parseInt(barajas), 'yellow'],
-         ['Carabanchel', parseInt(carabanchel), 'gold'],            // English color name
-         ['Centro', parseInt(centro), 'gold'],
-         ['Chamartin', parseInt(chamartin), 'gold'],
-         ['Chamberi', parseInt(chamberi), 'gold'],
-         ['Ciudad Lineal', parseInt(ciudadLineal), 'gold'],
-         ['Fuencarral', parseInt(fuencarral), 'green'],
-         ['General', parseInt(general), 'green'],
-         ['Hortaleza', parseInt(hortaleza), 'orange'],
-         ['Latina', parseInt(latina), 'blue'],
-         ['Moncloa-Aravaca', parseInt(moncloa), 'brown'],
-         ['Moratalaz', parseInt(moratalaz), 'gold'],
-         ['Puente de Vallecas', parseInt(puenteVallecas), 'gold'],
-         ['Retiro', parseInt(retiro), 'gold'],
-         ['Salamanca', parseInt(salamanca), 'gold'],
+         ['Arganzuela', parseInt(arganzuela), 'green'],            // RGB value
+         ['Barajas', parseInt(barajas), 'khaki'],
+         ['Carabanchel', parseInt(carabanchel), 'red'],            // English color name
+         ['Centro', parseInt(centro), 'pink'],
+         ['Chamartin', parseInt(chamartin), 'black'],
+         ['Chamberi', parseInt(chamberi), 'orange'],
+         ['Ciudad Lineal', parseInt(ciudadLineal), 'royalblue'],
+         ['Fuencarral', parseInt(fuencarral), 'hotpink'],
+         ['General', parseInt(general), 'gold'],
+         ['Hortaleza', parseInt(hortaleza), 'brown'],
+         ['Latina', parseInt(latina), 'darkseagreen'],
+         ['Moncloa-Aravaca', parseInt(moncloa), 'beige'],
+         ['Moratalaz', parseInt(moratalaz), 'plum'],
+         ['Puente de Vallecas', parseInt(puenteVallecas), 'palegreen'],
+         ['Retiro', parseInt(retiro), 'salmon'],
+         ['Salamanca', parseInt(salamanca), 'navy'],
          ['San Blas-Canillejas', parseInt(sanblas), 'red'],
-         ['Tetuan', parseInt(tetuan), 'pink'],
-         ['Usera', parseInt(usera), 'blue'],
-         ['Vicalvaro', parseInt(vicalvaro), 'red'],
-         ['Villa de Vallecas', parseInt(villaVallecas), 'gold'],
-         ['Villaverde', parseInt(villaverde), 'green'], // CSS-style declaration
+         ['Tetuan', parseInt(tetuan), 'sienna'],
+         ['Usera', parseInt(usera), 'aqua'],
+         ['Vicalvaro', parseInt(vicalvaro), 'coral'],
+         ['Villa de Vallecas', parseInt(villaVallecas), 'grey'],
+         ['Villaverde', parseInt(villaverde), 'teal'], // CSS-style declaration
       ]);
 
       var options = {
         title: 'Según la categoría : ' + categoria   ,
+        legend: 'none',
+        height: 500,
+        chartArea:{
+          height: 200,
+          top:100
+        },
         hAxis: {
           title: 'DISTRITOS',
+          slantedText: true,
+          slantedTextAngle: 45
          // format: 'number',
-          //viewWindow: {
-           // min: 0,
-           // max: 21,
-          //}
         },
         vAxis: {
           title: 'ALERTAS',
+          format: 'short',
+          viewWindow: {
+            min: 0,
+           // max: 21,
+          }
         }
       };
 
