@@ -109,7 +109,7 @@
                     if(isset($_POST['busqueda'])){                    
                         $distrito = $_POST['distritos'];                        
                         include("claseEstadisticas.php");                        
-                        $estadisticas = new claseEstadisticas();                       ;                        
+                        $estadisticas = new claseEstadisticas();                       
                         $totalPersonas= $estadisticas->obtenerEstSeguridad($distrito, 'personas');                        
                         $totalPatrimonio = $estadisticas->obtenerEstSeguridad($distrito, 'patrimonio');                        
                         $totalArmas= $estadisticas->obtenerEstSeguridad($distrito, 'armas');
@@ -126,6 +126,7 @@
                          <div class="col-12">
                             <div class="card">
                              <div class="card-block">
+                             <h2> Estadísticas relacionadas con la seguridad</h2> 
                                     <div id="piechart" style="width: 900px; height: 500px;"></div>
                                     <p> Fuente: <a href="http://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=bffff1d2a9fdb410VgnVCM2000000c205a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD"> Datos estadísticos actuaciones Policía Municipal </a> </p>
                             </div>

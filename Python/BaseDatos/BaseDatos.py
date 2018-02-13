@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 from pymongo import *
 from datetime import *
 from time import *
@@ -24,6 +26,11 @@ class baseDatosClass():
         db = conexion.noticias
         coleccion = db.estSeguridad #coleccion
         return coleccion
+
+    def conexionEstDetenidos(self, conexion):
+        db = conexion.noticias
+        coleccion = db.estDetenidos #coleccion
+        return coleccion    
     
     def desconexion(self):
         mongoClient.close()
@@ -40,6 +47,10 @@ class baseDatosClass():
     def insertarEstSeguridad(self, coleccion, distrito, personas, patrimonio, armas, ten_drogas, con_drogas):
         diccionario = {"distrito": distrito, "personas": personas, "patrimonio": patrimonio,
                         "armas": armas, "ten_drogas": ten_drogas, "con_drogas": con_drogas}
+        coleccion.insert(diccionario)
+
+    def insertarEstDetenidos(self, coleccion, distrito, detenidos):
+        diccionario = {"distrito": distrito, "detenidos": detenidos}
         coleccion.insert(diccionario)
 
 

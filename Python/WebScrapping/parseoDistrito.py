@@ -1,4 +1,5 @@
-
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 class ParseoDistritoClass:
     def parseoDistrito(self, distrito):
         d = ""
@@ -10,7 +11,7 @@ class ParseoDistritoClass:
             d = "Carabanchel"
         if distrito == "CENTRO":
             d = "Centro"
-        if distrito == "CHAMARTÍN":
+        if distrito == ("CHAMARTÍN"):
             d = "Chamartín"
         if distrito == "CHAMBERÍ":
             d = "Chamberí"
