@@ -22,7 +22,16 @@ class claseEstadisticas {
     $coleccion = $db->estSeguridad;
 
     return $coleccion;
-  }
+    }
+
+    public function conexionEstDetenidos(){
+      $client = new MongoDB\Client;
+      //DB
+      $db = $client->noticias;
+      $coleccion = $db->estDetenidos;
+
+      return $coleccion;
+    }
 
 	//Devuelve el numero total de alertas en un distrito con una categoria dada 
    public function obtenerEstadisticas($distrito, $categorias, $mes) {
@@ -53,6 +62,12 @@ class claseEstadisticas {
       $coleccion = $this->conexionEstSeg();
       $total = $coleccion->findOne(array('distrito' => $distrito), array($tipo));
       return $total[$tipo];
+    }
+
+    public function obtenerEstDetenidos($distrito, $detenidos){
+      $coleccion = $this->conexionEstDetenidos();
+      $total = $coleccion->findOne(array('distrito' => $distrito), array($detenidos));      
+      return $total[$detenidos];
     }
 
     //Funcion que inserta las alertas creadas por un usuario

@@ -11,7 +11,7 @@ class ParseoDistritoClass:
             d = "Carabanchel"
         if distrito == "CENTRO":
             d = "Centro"
-        if distrito == ("CHAMARTÍN"):
+        if distrito == "CHAMARTÍN":
             d = "Chamartín"
         if distrito == "CHAMBERÍ":
             d = "Chamberí"

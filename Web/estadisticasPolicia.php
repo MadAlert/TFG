@@ -23,7 +23,8 @@
     <link href="css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="css/colors/blue.css" id="theme" rel="stylesheet">
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>    
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>   
+    <script src="js/javaScriptEstadisticas.js"></script> <!-- nuevo script de estadisticas--> 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -106,10 +107,76 @@
                         </div> 
                     </form>';
 
+                    include("claseEstadisticas.php");
+                    $estadisticas = new claseEstadisticas();
+
+                    $totalArganzuela= $estadisticas->obtenerEstDetenidos("Arganzuela", "detenidos");
+                    $totalBarajas= $estadisticas->obtenerEstDetenidos("Barajas", "detenidos");
+                    $totalCarabanchel= $estadisticas->obtenerEstDetenidos("Carabanchel", "detenidos");
+                    $totalCentro= $estadisticas->obtenerEstDetenidos("Centro", "detenidos");
+                    $totalChamartin= $estadisticas->obtenerEstDetenidos("Chamartín", "detenidos");
+                    $totalChamberi= $estadisticas->obtenerEstDetenidos("Chamberí", "detenidos");   
+                    $totalCiudadLineal= $estadisticas->obtenerEstDetenidos("Ciudad Lineal", "detenidos");
+                    $totalFuencarral= $estadisticas->obtenerEstDetenidos("Fuencarral-El Pardo", "detenidos");                    
+                    $totalHortaleza= $estadisticas->obtenerEstDetenidos("Hortaleza", "detenidos");
+                    $totalLatina= $estadisticas->obtenerEstDetenidos("Latina", "detenidos");
+                    $totalMoncloa= $estadisticas->obtenerEstDetenidos("Moncloa-Aravaca", "detenidos");
+                    $totalMoratalaz= $estadisticas->obtenerEstDetenidos("Moratalaz", "detenidos");
+                    $totalPuenteVallecas= $estadisticas->obtenerEstDetenidos("Puente de Vallecas", "detenidos");
+                    $totalRetiro= $estadisticas->obtenerEstDetenidos("Retiro", "detenidos");
+                    $totalSalamanca= $estadisticas->obtenerEstDetenidos("Salamanca", "detenidos");
+                    $totalSanBlas= $estadisticas->obtenerEstDetenidos("San Blas-Canillejas", "detenidos");
+                    $totalTetuan= $estadisticas->obtenerEstDetenidos("Tetuán", "detenidos");
+                    $totalUsera= $estadisticas->obtenerEstDetenidos("Usera", "detenidos");
+                    $totalVicalvaro= $estadisticas->obtenerEstDetenidos("Vicálvaro", "detenidos");
+                    $totalVillaVallecas= $estadisticas->obtenerEstDetenidos("Villa de Vallecas", "detenidos");
+                    $totalVillaverde= $estadisticas->obtenerEstDetenidos("Villaverde", "detenidos");                    
+
+                    
+                    echo ' <input type="hidden" name="arganzuela" value='.$totalArganzuela.' id="arganzuela"/>';     
+                    echo ' <input type="hidden" name="barajas" value='.$totalBarajas.' id="barajas"/>';
+                    echo ' <input type="hidden" name="carabanchel" value='.$totalCarabanchel.' id="carabanchel"/>';
+                    echo ' <input type="hidden" name="centro" value='.$totalCentro.' id="centro"/>';
+                    echo ' <input type="hidden" name="chamartin" value='.$totalChamartin.' id="chamartin"/>';
+                    echo ' <input type="hidden" name="chamberi" value='.$totalChamberi.' id="chamberi"/>';
+                    echo ' <input type="hidden" name="ciudadLineal" value='.$totalCiudadLineal.' id="ciudadLineal"/>';
+                    echo ' <input type="hidden" name="fuencarral" value='.$totalFuencarral.' id="fuencarral"/>';                 
+                    echo ' <input type="hidden" name="hortaleza" value='.$totalHortaleza.' id="hortaleza"/>';
+                    echo ' <input type="hidden" name="latina" value='.$totalLatina.' id="latina"/>';
+                    echo ' <input type="hidden" name="moncloa" value='.$totalMoncloa.' id="moncloa"/>';
+                    echo ' <input type="hidden" name="moratalaz" value='.$totalMoratalaz.' id="moratalaz"/>';
+                    echo ' <input type="hidden" name="puenteVallecas" value='.$totalPuenteVallecas.' id="puenteVallecas"/>';
+                    echo ' <input type="hidden" name="retiro" value='.$totalRetiro.' id="retiro"/>';
+                    echo ' <input type="hidden" name="salamanca" value='.$totalSalamanca.' id="salamanca"/>';
+                    echo ' <input type="hidden" name="sanblas" value='.$totalSanBlas.' id="sanblas"/>';
+                    echo ' <input type="hidden" name="tetuan" value='.$totalTetuan.' id="tetuan"/>';
+                    echo ' <input type="hidden" name="usera" value='.$totalUsera.' id="usera"/>';
+                    echo ' <input type="hidden" name="vicalvaro" value='.$totalVicalvaro.' id="vicalvaro"/>';
+                    echo ' <input type="hidden" name="villaVallecas" value='.$totalVillaVallecas.' id="villaVallecas"/>';
+                    echo ' <input type="hidden" name="villaverde" value='.$totalVillaverde.' id="villaverde"/>';
+
+                    echo "
+                    <script type='text/javascript'>
+                            google.charts.load('current', {'packages':['bar']});
+                            google.charts.setOnLoadCallback(drawColumns);
+                    </script>";
+
+                    echo '
+                   <div class="row">
+                     <div class="col-12">
+                        <div class="card">
+                         <div class="card-block">
+                         <h2> Estadísticas de detenidos por distrito</h2> 
+                                <div id="column_id" style="width: 900px; height: 500px;"></div>
+                        </div>
+                        </div>
+                    </div>
+                </div>';
+
+
                     if(isset($_POST['busqueda'])){                    
                         $distrito = $_POST['distritos'];                        
-                        include("claseEstadisticas.php");                        
-                        $estadisticas = new claseEstadisticas();                       
+                                                                                          
                         $totalPersonas= $estadisticas->obtenerEstSeguridad($distrito, 'personas');                        
                         $totalPatrimonio = $estadisticas->obtenerEstSeguridad($distrito, 'patrimonio');                        
                         $totalArmas= $estadisticas->obtenerEstSeguridad($distrito, 'armas');
@@ -127,8 +194,7 @@
                             <div class="card">
                              <div class="card-block">
                              <h2> Estadísticas relacionadas con la seguridad</h2> 
-                                    <div id="piechart" style="width: 900px; height: 500px;"></div>
-                                    <p> Fuente: <a href="http://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=bffff1d2a9fdb410VgnVCM2000000c205a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD"> Datos estadísticos actuaciones Policía Municipal </a> </p>
+                                    <div id="piechart" style="width: 900px; height: 500px;"></div>                                   
                             </div>
                             </div>
                         </div>
@@ -136,13 +202,15 @@
                     
                
                   
-                    echo "
-                    <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'>
-                    google.load()</script>
+                    echo "                   
                     <script type='text/javascript'>
                             google.charts.load('current', {'packages':['corechart']});
                             google.charts.setOnLoadCallback(drawChartSeguridad);
-                        </script>";
+                     </script>
+
+                      <p> Fuente: <a href='http://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=bffff1d2a9fdb410VgnVCM2000000c205a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD'> Datos estadísticos actuaciones Policía Municipal </a> </p>";
+
+
                   }
                 ?>
                 
@@ -189,8 +257,7 @@
     <!--Menu sidebar -->
     <script src="js/sidebarmenu.js"></script>
     <!--stickey kit AQUI ESTA LO DE SELECCIONAR EL PRIMER ELEMENTOO CO?OO-->
-    <script src="assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
-    <script src="js/javaScriptEstadisticas.js"></script> <!-- nuevo script de estadisticas-->
+    <script src="assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>   
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
 </body>
