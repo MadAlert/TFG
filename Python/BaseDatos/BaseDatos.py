@@ -32,6 +32,11 @@ class baseDatosClass():
         coleccion = db.estDetenidos #coleccion
         return coleccion    
     
+    def conexionEstAccidentes(self, conexion):
+        db = conexion.noticias
+        coleccion = db.estAccidentes #coleccion
+        return coleccion    
+
     def desconexion(self):
         mongoClient.close()
         
@@ -51,6 +56,10 @@ class baseDatosClass():
 
     def insertarEstDetenidos(self, coleccion, distrito, detenidos):
         diccionario = {"distrito": distrito, "detenidos": detenidos}
+        coleccion.insert(diccionario)
+
+    def insertarEstAccidentes(self, coleccion, distrito, conHeridos, sinHeridos):
+        diccionario = {"distrito": distrito, "conHeridos": conHeridos, "sinHeridos": sinHeridos}
         coleccion.insert(diccionario)
 
 
