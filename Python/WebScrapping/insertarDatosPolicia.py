@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
 import openpyxl
 import os
 import sys
@@ -9,6 +11,8 @@ import parseoDistrito
 bd = BaseDatos.baseDatosClass()
 con = bd.conexion()
 bdEstSeguridad = bd.conexionEstSeguridad(con)
+bdEstDetenidos = bd.conexionEstDetenidos(con)
+bdEstAccidentes = bd.conexionEstAccidentes(con)
 
 
 # Obtiene el archivo del que va a tomar los datos
@@ -20,15 +24,19 @@ route = ruta_app + contenido[0]
 doc = openpyxl.load_workbook(route)
 print(doc)
 
-# hojas del excel a examinar
-doc.get_sheet_names()
-hoja = doc.get_sheet_by_name('SEGURIDAD')
+doc.sheetnames
+# hojas del excel a examinar SEGURIDAD
+hoja = doc['SEGURIDAD']
+# hojas del excel a examinar DETENIDOS
+hoja2 = doc['DETENIDOS X DISTRITOS']
+# hojas del excel a examinar ACCIDENTES
+hoja3 = doc['ACCIDENTES']
 
-seleccion = hoja['A4':'F25']
+seleccion = hoja['A4':'F24']
 for filas in seleccion:
     for i in range(0,6):
         if i == 0:
-            distrito = filas[i].value
+            distrito = filas[i].value.encode("utf-8")
             #print("Distrito: " + distrito)
         if i == 1:
             personas = filas[i].value
@@ -50,6 +58,33 @@ for filas in seleccion:
 
 print("Datos insertados en la bd EstSeguridad")
 
+seleccion2 = hoja2['A4':'B24']
+for filas in seleccion2:
+    for i in range(0,2):
+        if i == 0:
+            distrito = filas[i].value.encode("utf-8")
+            #print("Distrito: " + distrito)
+        if i == 1:
+            detenidos = filas[i].value
+            #print("Detenidos: " + str(detenidos))
+    d = parseoDistrito.ParseoDistritoClass()
+    bd.insertarEstDetenidos(bdEstDetenidos, d.parseoDistrito(distrito), detenidos)
+
+print("Datos insertados en la bd EstDetenidos")
+
+seleccion3 = hoja3['A4:C24']
+for filas in seleccion3:
+    for i in range(0,3):
+        if i == 0:
+            distrito = filas[i].value.encode("utf-8")
+        if i == 1:
+            conHeridos = filas[i].value
+        if i == 2:
+            sinHeridos = filas[i].value
+    d = parseoDistrito.ParseoDistritoClass()
+    bd.insertarEstAccidentes(bdEstAccidentes, d.parseoDistrito(distrito), conHeridos, sinHeridos)
+
+print("Datos insertados en la bd estAccidentes")
 
 
     

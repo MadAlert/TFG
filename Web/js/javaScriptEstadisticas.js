@@ -195,7 +195,160 @@ function drawMultSeries() {
       chart.draw(data, options);
   }
 
+google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawColumns);
 
+function drawColumns() {
+
+    var arganzuela = document.getElementById("arganzuela").value;
+    var barajas = document.getElementById("barajas").value;
+    var carabanchel = document.getElementById("carabanchel").value;
+    var centro = document.getElementById("centro").value;
+    var chamartin = document.getElementById("chamartin").value;
+    var chamberi = document.getElementById("chamberi").value;
+    var ciudadLineal = document.getElementById("ciudadLineal").value;
+    var fuencarral = document.getElementById("fuencarral").value;
+    var hortaleza = document.getElementById("hortaleza").value;
+    var latina = document.getElementById("latina").value;
+    var moncloa = document.getElementById("moncloa").value;
+    var moratalaz = document.getElementById("moratalaz").value;
+    var puenteVallecas = document.getElementById("puenteVallecas").value;
+    var retiro = document.getElementById("retiro").value;
+    var salamanca = document.getElementById("salamanca").value;
+    var sanblas = document.getElementById("sanblas").value;
+    var tetuan = document.getElementById("tetuan").value;
+    var usera = document.getElementById("usera").value;
+    var vicalvaro = document.getElementById("vicalvaro").value;
+    var villaVallecas = document.getElementById("villaVallecas").value;
+    var villaverde = document.getElementById("villaverde").value;
+ 
+
+    var data = google.visualization.arrayToDataTable([
+         ['Distrito', 'Detenidos'],
+         ['Arganzuela', parseInt(arganzuela)],            // RGB value
+         ['Barajas', parseInt(barajas)],
+         ['Carabanchel', parseInt(carabanchel)],            // English color name
+         ['Centro', parseInt(centro)],
+         ['Chamartin', parseInt(chamartin)],
+         ['Chamberi', parseInt(chamberi)],
+         ['Ciudad Lineal', parseInt(ciudadLineal)],
+         ['Fuencarral', parseInt(fuencarral)],
+         /*['General', parseInt(general), 'gold'],*/
+         ['Hortaleza', parseInt(hortaleza)],
+         ['Latina', parseInt(latina)],
+         ['Moncloa-Aravaca', parseInt(moncloa)],
+         ['Moratalaz', parseInt(moratalaz)],
+         ['Puente de Vallecas', parseInt(puenteVallecas)],
+         ['Retiro', parseInt(retiro)],
+         ['Salamanca', parseInt(salamanca)],
+         ['San Blas-Canillejas', parseInt(sanblas)],
+         ['Tetuan', parseInt(tetuan)],
+         ['Usera', parseInt(usera)],
+         ['Vicalvaro', parseInt(vicalvaro)],
+         ['Villa de Vallecas', parseInt(villaVallecas)],
+         ['Villaverde', parseInt(villaverde)],
+      ]);
+
+    var options = {
+      title: "Según el distrito",
+      width: 1000,
+      height: 400,
+      bar: {groupWidth: "75%"},
+      legend: {position: "none"},
+    };
+
+    var chart = new google.visualization.ColumnChart(document.getElementById('column_id'));
+    chart.draw(data, options);
+
+}
+
+google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.setOnLoadCallback(drawColumnsDouble);
+
+function drawColumnsDouble() {
+
+    var arganzuelaC = document.getElementById("arganzuelaC").value;
+    var arganzuelaS = document.getElementById("arganzuelaS").value;
+    var barajasC = document.getElementById("barajasC").value;
+    var barajasS = document.getElementById("barajasS").value;
+    var carabanchelC = document.getElementById("carabanchelC").value;
+    var carabanchelS = document.getElementById("carabanchelS").value;
+    var centroC = document.getElementById("centroC").value;
+    var centroS = document.getElementById("centroS").value;
+    var chamartinC = document.getElementById("chamartinC").value;
+    var chamartinS = document.getElementById("chamartinS").value;
+    var chamberiC = document.getElementById("chamberiC").value;
+    var chamberiS = document.getElementById("chamberiS").value;
+    var ciudadLinealC = document.getElementById("ciudadLinealC").value;
+    var ciudadLinealS = document.getElementById("ciudadLinealS").value;
+    var fuencarralC = document.getElementById("fuencarralC").value;
+    var fuencarralS = document.getElementById("fuencarralS").value;
+    var hortalezaC = document.getElementById("hortalezaC").value;
+    var hortalezaS = document.getElementById("hortalezaS").value;
+    var latinaC = document.getElementById("latinaC").value;
+    var latinaS = document.getElementById("latinaS").value;
+    var moncloaC = document.getElementById("moncloaC").value;
+    var moncloaS = document.getElementById("moncloaS").value;
+    var moratalazC = document.getElementById("moratalazC").value;
+    var moratalazS = document.getElementById("moratalazS").value;
+    var puenteVallecasC = document.getElementById("puenteVallecasC").value;
+    var puenteVallecasS = document.getElementById("puenteVallecasS").value;
+    var retiroC = document.getElementById("retiroC").value;
+    var retiroS = document.getElementById("retiroS").value;
+    var salamancaC = document.getElementById("salamancaC").value;
+    var salamancaS = document.getElementById("salamancaS").value;
+    var sanblasC = document.getElementById("sanblasC").value;
+    var sanblasS = document.getElementById("sanblasS").value;
+    var tetuanC = document.getElementById("tetuanC").value;
+    var tetuanS = document.getElementById("tetuanS").value;
+    var useraC = document.getElementById("useraC").value;
+    var useraS = document.getElementById("useraS").value;
+    var vicalvaroC = document.getElementById("vicalvaroC").value;
+    var vicalvaroS = document.getElementById("vicalvaroS").value;
+    var villaVallecasC = document.getElementById("villaVallecasC").value;
+    var villaVallecasS = document.getElementById("villaVallecasS").value;
+    var villaverdeC = document.getElementById("villaverdeC").value;
+    var villaverdeS = document.getElementById("villaverdeS").value;
+ 
+
+    var data = google.visualization.arrayToDataTable([
+         ['Distrito', 'Con Heridos', 'Sin Heridos'],
+         ['Arganzuela', parseInt(arganzuelaC), parseInt(arganzuelaS)],            // RGB value
+         ['Barajas', parseInt(barajasC), parseInt(barajasS)],
+         ['Carabanchel', parseInt(carabanchelC), parseInt(carabanchelS)],            // English color name
+         ['Centro', parseInt(centroC), parseInt(centroS)],
+         ['Chamartin', parseInt(chamartinC), parseInt(chamartinS)],
+         ['Chamberi', parseInt(chamberiC), parseInt(chamberiS)],
+         ['Ciudad Lineal', parseInt(ciudadLinealC), parseInt(ciudadLinealS)],
+         ['Fuencarral', parseInt(fuencarralC), parseInt(fuencarralS)],
+         /*['General', parseInt(general), 'gold'],*/
+         ['Hortaleza', parseInt(hortalezaC), parseInt(hortalezaS)],
+         ['Latina', parseInt(latinaC), parseInt(latinaS)],
+         ['Moncloa-Aravaca', parseInt(moncloaC), parseInt(moncloaS)],
+         ['Moratalaz', parseInt(moratalazC), parseInt(moratalazS)],
+         ['Puente de Vallecas', parseInt(puenteVallecasC), parseInt(puenteVallecasS)],
+         ['Retiro', parseInt(retiroC), parseInt(retiroS)],
+         ['Salamanca', parseInt(salamancaC), parseInt(salamancaS)],
+         ['San Blas-Canillejas', parseInt(sanblasC), parseInt(sanblasS)],
+         ['Tetuan', parseInt(tetuanC), parseInt(tetuanS)],
+         ['Usera', parseInt(useraC), parseInt(useraS)],
+         ['Vicalvaro', parseInt(vicalvaroC), parseInt(vicalvaroS)],
+         ['Villa de Vallecas', parseInt(villaVallecasC), parseInt(villaVallecasS)],
+         ['Villaverde', parseInt(villaverdeC), parseInt(villaverdeS)],
+      ]);
+
+    var options = {
+      title: "Según el distrito",
+      width: 1000,
+      height: 400,
+      bar: {groupWidth: "75%"},
+      legend: {position: "none"},
+    };
+
+    var chart = new google.charts.Bar(document.getElementById('doubleColumn_id'));
+    chart.draw(data, google.charts.Bar.convertOptions(options));
+
+}
   
 
 

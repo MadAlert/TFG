@@ -22,7 +22,25 @@ class claseEstadisticas {
     $coleccion = $db->estSeguridad;
 
     return $coleccion;
-  }
+    }
+
+    public function conexionEstDetenidos(){
+      $client = new MongoDB\Client;
+      //DB
+      $db = $client->noticias;
+      $coleccion = $db->estDetenidos;
+
+      return $coleccion;
+    }
+
+    public function conexionEstAccidentes(){
+      $client = new MongoDB\Client;
+      //DB
+      $db = $client->noticias;
+      $coleccion = $db->estAccidentes;
+
+      return $coleccion;
+    }
 
 	//Devuelve el numero total de alertas en un distrito con una categoria dada 
    public function obtenerEstadisticas($distrito, $categorias, $mes) {
@@ -42,17 +60,22 @@ class claseEstadisticas {
       return $total;
     }
 
-    /*public function obtenerEstSeguridad($distrito, $personas, $patrimonio, $armas, $ten_drogas, $con_drogas) {
-      $coleccion = $this->conexionEstSeg();
-      $total = $coleccion->['distrito' => $distrito, 'personas'=> $personas, 'patrimonio' => $patrimonio
-                                   'armas'=> $armas, 'ten_drogas'=>$ten_drogas, 'con_drogas'=>$con_drogas];
-      return $total;
-    }*/
-
     public function obtenerEstSeguridad($distrito, $tipo) {
       $coleccion = $this->conexionEstSeg();
       $total = $coleccion->findOne(array('distrito' => $distrito), array($tipo));
       return $total[$tipo];
+    }
+
+    public function obtenerEstDetenidos($distrito, $detenidos){
+      $coleccion = $this->conexionEstDetenidos();
+      $total = $coleccion->findOne(array('distrito' => $distrito), array($detenidos));      
+      return $total[$detenidos];
+    }
+
+    public function obtenerEstAccidentes($distrito, $conHeridos, $sinHeridos){
+      $coleccion = $this->conexionEstAccidentes();
+      $total = $coleccion->findOne(array('distrito' => $distrito), array($conHeridos, $sinHeridos));      
+      return $total;
     }
 
     //Funcion que inserta las alertas creadas por un usuario
