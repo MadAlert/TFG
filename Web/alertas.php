@@ -77,8 +77,32 @@
                     include ("claseAlertas.php");
                     $alertas = new claseAlertas();
 
-
+                    if(isset($_GET['distritomapa'])) {
+                        $distritoMapa = $_GET['distritomapa'];
+                    }
                     if(!isset($_POST['atributo'])){
+                        if(isset($distritoMapa)) {
+                ?>
+                            <div class="col-lg-13 col-xlg-14 col-md-12">
+                                <div class="card">
+                                    <ul class="nav nav-tabs profile-tab" role="tablist">
+                                        <?php
+                                        echo "<li class='nav-item'> <a class='nav-link active' data-toggle='tab' role='tab'><b>Distrito $distritoMapa</b></a> </li>"
+                                        ?>
+                                    </ul>
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="home" role="tabpanel">
+                                            <div class="card-block">
+                                                <?php
+                                                    $num = $alertas->obtenerAlertasDistrito($distritoMapa);
+                                                ?>
+                                            </div>  
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    <?php
+                        } else {
                         //$atributo = $_POST['atributo'];
                         echo '<div class="row">
                                  <div class="col-12">
@@ -125,6 +149,7 @@
                                       </div> 
                               </div>
                         </form>';
+                        }
                     }
                     
 
@@ -144,14 +169,18 @@
                                     <ul class="nav nav-tabs profile-tab" role="tablist">
                                         <?php
                                         //Recupero los campos de index.php
+                                        //En index pasar un atributo hidden atributo, hidden distrito y hidden index
+                                        //Si es index no hago lo de categorias
+                                        if(!isset($distritoMapa)) {
+                                            $distrito = $_POST['distritos'];
+                                            $categorias = $_POST['var_id'];
+                                            $count = count($categorias);
 
-                                        $distrito = $_POST['distritos'];
-                                        $categorias = $_POST['var_id'];
-                                        $count = count($categorias);
-
-                                        for ($i = 0; $i < $count; $i++) {
-                                           $categorias[$i];
+                                            for ($i = 0; $i < $count; $i++) {
+                                               $categorias[$i];
+                                            }
                                         }
+                                        //esto de arriba no se hace si es index
                                         echo "<li class='nav-item'> <a class='nav-link active' data-toggle='tab' role='tab'><b>Distrito $distrito</b></a> </li>"
                                         ?>
                                     </ul>
@@ -160,7 +189,10 @@
                                         <div class="tab-pane active" id="home" role="tabpanel">
                                             <div class="card-block">
                                             <?php
-                                                $num = $alertas->obtenerAlertas($distrito, $categorias);
+                                                //Compruebo de nuevo si NO es INDEX LLAMO A EsTA FUNCION
+                                                if(!isset($distritoMapa)) {
+                                                    $num = $alertas->obtenerAlertas($distrito, $categorias);
+                                                }
                                                 if($num == false){
                                                     echo "<p>Este distrito no dispone de alertas con esos filtros todavía</p>";
                                                 }

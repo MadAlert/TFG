@@ -51,18 +51,12 @@ function initMap() {
                 map: map
             });
         }
-        
-
-            
-              //'<p>Attribution: Uluru, <a href="https://en.wikipedia.org/w/index.php?title=Uluru&oldid=297882194">'+
-              //'https://en.wikipedia.org/w/index.php?title=Uluru</a> '+
-              //'(last visited June 22, 2009).</p>';
 
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
                 if(marcadores[i][3] != 0) {
                     var contentString = '<h1>' + marcadores[i][0] +'</h1>'+
-                    '<p> Se han encontrado <b>' + marcadores[i][3] + ' alertas</b>. </p>';
+                    '<p> Se han encontrado <b><a href="alertas.php?distritomapa=' + marcadores[i][0] + '">'+ marcadores[i][3] + ' alertas</a></b>. </p>';
                     infowindow.setContent(contentString);
                     infowindow.open(map, marker);
                 }
