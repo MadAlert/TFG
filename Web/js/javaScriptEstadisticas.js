@@ -313,9 +313,9 @@ function drawColumnsDouble() {
 
     var data = google.visualization.arrayToDataTable([
          ['Distrito', 'Con Heridos', 'Sin Heridos'],
-         ['Arganzuela', parseInt(arganzuelaC), parseInt(arganzuelaS)],            // RGB value
+         ['Arganzuela', parseInt(arganzuelaC), parseInt(arganzuelaS)],           
          ['Barajas', parseInt(barajasC), parseInt(barajasS)],
-         ['Carabanchel', parseInt(carabanchelC), parseInt(carabanchelS)],            // English color name
+         ['Carabanchel', parseInt(carabanchelC), parseInt(carabanchelS)],            
          ['Centro', parseInt(centroC), parseInt(centroS)],
          ['Chamartin', parseInt(chamartinC), parseInt(chamartinS)],
          ['Chamberi', parseInt(chamberiC), parseInt(chamberiS)],

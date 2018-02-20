@@ -109,6 +109,19 @@
 
                     include("claseEstadisticas.php");
                     $estadisticas = new claseEstadisticas();
+                    $mes = $estadisticas->mesEnLetras(date("m")-1);
+
+
+                    echo '<div class="row">
+                     <div class="col-12">
+                        <div class="card">
+                         <div class="card-block">                        
+                                <h1> Estadísticas del mes de ' . $mes . '</h1>
+                         </div>
+                        </div>
+                    </div>
+                    </div>';
+                    
 
                     $totalArganzuela= $estadisticas->obtenerEstDetenidos("Arganzuela", "detenidos");
                     $totalBarajas= $estadisticas->obtenerEstDetenidos("Barajas", "detenidos");
@@ -165,7 +178,7 @@
                    <div class="row">
                      <div class="col-12">
                         <div class="card">
-                         <div class="card-block">
+                         <div class="card-block">                        
                          <h2> Estadísticas de detenidos por distrito </h2> 
                                 <div id="column_id" style="width: 900px; height: 500px;"></div>
                         </div>
