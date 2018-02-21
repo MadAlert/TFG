@@ -77,9 +77,11 @@
                     include ("claseAlertas.php");
                     $alertas = new claseAlertas();
 
-                    if(isset($_GET['distritomapa'])) {
+                    /*if(isset($_GET['distritomapa'])) {
                         $distritoMapa = $_GET['distritomapa'];
-                    }
+                    }*/
+                    $distritoMapa = $_POST['distritoM'];
+                    
                     if(!isset($_POST['atributo'])){
                         if(isset($distritoMapa)) {
                 ?>

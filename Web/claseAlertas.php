@@ -14,7 +14,7 @@ class claseAlertas {
 		
 	}
 
-   public function obtenerAlertas($distrito, $categorias) {
+    public function obtenerAlertas($distrito, $categorias) {
    		$coleccion = $this->conexion();
    		//echo "Hola";
     	//Query para ver alertas de distritos -> habria que añadir la condicion de fecha
@@ -86,7 +86,7 @@ class claseAlertas {
     	
     }
 
-    //Obtiene el numero de alertas de todos los distristos
+    //Obtiene el numero de alertas de todos los distritos
     public function obtenerNumeroAlertas($distrito) {
    	  $coleccion = $this->conexion();
 
@@ -144,6 +144,13 @@ class claseAlertas {
       return $lista;
     }
 
+    public function crearCamposOcultosMarcadores($distrito){
+      	echo '<input type="hidden" name="distrito" value='.$distrito.' id="distrito"/>';
+    }
+
+    public function obtenerDatosMarcadores($distrito){
+    	return $distritoMapa = $this->obtenerAlertasDistrito($distrito);
+    }
 
 
     //Funcion que inserta las alertas creadas por un usuario
