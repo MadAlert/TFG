@@ -85,11 +85,14 @@
                                         <form method="post" action="estadisticasGenerales.php" id="buscarAlertas" >
                                              <input type="hidden" name="categorias" id="categorias" value="si"/>
                                              <div class="form-group">
-                                                 <?php 
-                                                     include ("claseAlertas.php");
-                                                     $alertas = new claseAlertas();
-                                                     $alertas->mostrarCategorias();
-                                                ?>                              
+                                                <label class="col-sm-12">Selecciona una categoria</label>
+                                                <div class="col-sm-12">
+                                                    <?php 
+                                                        include ("claseAlertas.php");
+                                                        $alertas = new claseAlertas();
+                                                        $alertas->mostrarCategorias();
+                                                    ?>
+                                                </div>                              
                                              </div>
                                               </div>
                                             <div class="form-group" style="margin: auto; margin-bottom: 20px;">

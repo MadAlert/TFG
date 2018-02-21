@@ -89,6 +89,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label class="col-md-6">Selecciona una categoria</label>
                                         <div class="col-md-6">
                                             <?php 
                                             include ("claseAlertas.php");
@@ -98,6 +99,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label class="col-md-6">Selecciona un distrito</label>
                                         <div class="col-md-6">
                                             <?php
                                             $alertas->mostrarDistritos();

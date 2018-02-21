@@ -85,16 +85,16 @@
                                          <input type="hidden" name="atributo" id="atributo" value="si"/>
                                          <input type="hidden" name="index" value="si" id="index"/>
                                          <div class="form-group">
+                                            <label class="col-sm-12">Selecciona un distrito</label>
+                                            <div class="col-sm-12">
                                              <?php 
                                                  include ("claseAlertas.php");
                                                  $alertas = new claseAlertas();
                                                  $alertas->mostrarDistritos();
                                                  $lista = $alertas->obtenerDatos();
                                                  $alertas->crearCamposOcultosNumAlertas($lista);
-                                                 /*$distrito = $_POST['distritoM'];
-                                                 $distritoMarcador = $alertas->obtenerDatosMarcadores($distrito);
-                                                 $alertas->crearCamposOcultosMarcadores($distritoMarcador);*/
-                                             ?>                              
+                                             ?>
+                                             </div>                              
                                          </div>
                                         <div class="form-group">
                                                 <label class="col-sm-12">Selecciona las categorías</label>

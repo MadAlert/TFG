@@ -198,10 +198,7 @@ class claseAlertas {
 
     public function mostrarDistritos(){
     	echo '<html>
-    		
-                <div class="form-group">
-                    <label class="col-sm-12">Selecciona un distrito</label>
-                    <div class="col-sm-12">      
+    		      
 						<select class="form-control form-control-line" name="distritos" id="distritos">
 							<option>Arganzuela</option>
 							<option>Barajas</option>
@@ -226,8 +223,6 @@ class claseAlertas {
 							<option>Villa de Vallecas</option>
 							<option>Villaverde</option>
 						</select>
-					</div>                                      
-                </div>
                                     
 			 </html>';
     }
@@ -235,9 +230,7 @@ class claseAlertas {
    public function mostrarCategorias(){
     	echo '<html>
     		
-                <div class="form-group">
-                    <label class="col-sm-12">Selecciona un categoria</label>
-                    <div class="col-sm-12">      
+                      
 						<select class="form-control form-control-line" name="categorias" id="categorias">
                             <option>Contaminación</option>
                             <option>Criminalidad</option>
@@ -247,8 +240,6 @@ class claseAlertas {
                             <option>Tráfico</option>
                             <option>Transporte público</option>
 						</select>
-					</div>                                      
-                </div>
                                     
 			 </html>';
     }
