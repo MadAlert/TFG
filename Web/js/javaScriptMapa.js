@@ -59,7 +59,7 @@ function initMap() {
                     '<h1>' + marcadores[i][0] + '</h1>'+
                     '<input type="hidden" name="distritoM" value='+ marcadores[i][0] + ' id="distritoM"/>' +
                     '<p> Se han encontrado <b>'+ marcadores[i][3] + ' alertas</b>. </p>' +
-                    '<input type="submit" name="boton" value="Ver alertas" id="boton"/>' +
+                    '<button class="btn btn-info" type="submit">Ver alertas</button>' +
                     '</form>';
                     infowindow.setContent(contentString);
                     infowindow.open(map, marker);
