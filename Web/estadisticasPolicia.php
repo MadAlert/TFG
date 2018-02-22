@@ -113,21 +113,9 @@
                     </form>';
 
                     include("claseEstadisticas.php");
-                    $estadisticas = new claseEstadisticas();
-                    $mes = $estadisticas->obtenerMesEstPolicias("Centro", "mes");                    
+                    $estadisticas = new claseEstadisticas();                                                    
 
-                    echo '<div class="row">
-                     <div class="col-12">
-                        <div class="card">
-                         <div class="card-block">                        
-                                <h1> Estadísticas del mes de ' . $mes . '</h1>
-                         </div>
-                        </div>
-                    </div>
-                    </div>';
-                    
-
-                    $mes = $estadisticas->mesEnLetras(date("m")-1);
+                    $mes = $estadisticas->obtenerMesEstPolicias("Centro", "mes");
                     echo ' <div class="row">
                             <div class="col-12">
                                 <div class="card">
@@ -194,9 +182,15 @@
                    <div class="row">
                      <div class="col-12">
                         <div class="card">
-                         <div class="card-block form-center">                        
-                         <h3> Estadísticas de detenidos por distrito </h3> 
-                                <div id="column_id" style="width: 900px; height: 500px;"></div>
+                         <div class="card-block">
+                         <div class="form-group">
+                         <div class="col-sm-12">
+                                                   
+                                 <h3> Estadísticas de detenidos por distrito </h3>                            
+                                        <div id="column_id" ></div>                            
+                            
+                        </div>
+                        </div>
                         </div>
                         </div>
                     </div>
@@ -281,9 +275,11 @@
                    <div class="row">
                      <div class="col-12">
                         <div class="card">
-                         <div class="card-block form-center">
+                         <div class="card-block">
+                          <div id = "graficas" class = "graf">
                          <h3> Estadísticas de accidentes por distrito </h3> 
-                                <div id="doubleColumn_id" style="width: 900px; height: 500px;"></div>
+                                <div id="doubleColumn_id"></div>
+                        </div>
                         </div>
                         </div>
                     </div>
@@ -308,9 +304,11 @@
                        <div class="row">
                          <div class="col-12">
                             <div class="card">
-                             <div class="card-block form-center">
+                             <div class="card-block">
+                              <div id = "graficas" class = "graf">
                              <h3> Estadísticas relacionadas con la seguridad </h3> 
-                                    <div id="piechart" style="width: 900px; height: 500px;"></div>                                   
+                                    <div id="piechart"></div>                                   
+                                </div>
                             </div>
                             </div>
                         </div>

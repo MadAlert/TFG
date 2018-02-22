@@ -355,7 +355,7 @@ function drawColumns() {
 
     var options = {
       title: "Según el distrito",
-      width: 1000,
+      width: "90%",
       height: 400,
       bar: {groupWidth: "75%"},
       legend: {position: "none"},
@@ -453,7 +453,7 @@ function drawColumnsDouble() {
 
     var options = {
       title: "Según el distrito",
-      width: 1000,
+      width: "100%",
       height: 400,
       bar: {groupWidth: "75%"},
       legend: {position: "none"},
