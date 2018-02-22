@@ -172,7 +172,6 @@ function drawMultSeriesMes1() {
       ]);
 
       var options = {
-        //title: 'Según la categoría: ' + categoria   ,
         legend: 'none',
         height: 500,
         chartArea:{
@@ -262,7 +261,7 @@ function drawMultSeriesMes2() {
       ]);
 
       var options = {
-        //title: 'Según la categoría: ' + categoria   ,
+       
         legend: 'none',
         height: 500,
         chartArea:{
