@@ -25,7 +25,7 @@ function initMap() {
 
     var map = new google.maps.Map(document.getElementById('mapa'),{
         zoom: 12,
-        zoomControl: false,
+        //zoomControl: false,
         streetViewControl: false,
         scrollwheel: false,
         center: new google.maps.LatLng(40.422163, -3.689101),
@@ -56,7 +56,7 @@ function initMap() {
             return function() {
                 if(marcadores[i][3] != 0) {
                     var contentString = '<form id="formulario_marcador" method="POST" action="alertas.php">' +
-                    '<h1>' + marcadores[i][0] + '</h1>'+
+                    '<h2>' + marcadores[i][0] + '</h2>'+
                     '<input type="hidden" name="distritoM" value='+ marcadores[i][0] + ' id="distritoM"/>' +
                     '<p> Se han encontrado <b>'+ marcadores[i][3] + ' alertas</b>. </p>' +
                     '<button class="btn btn-info" type="submit">Ver alertas</button>' +

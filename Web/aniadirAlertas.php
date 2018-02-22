@@ -113,7 +113,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="col-sm-12">
+                                        <div class="col-md-6">
                                             <button class="btn btn-danger" type="submit">Añadir alerta</button>
                                         </div>
                                     </div>

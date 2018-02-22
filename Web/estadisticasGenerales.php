@@ -118,7 +118,15 @@
 
                         //Obtengo la categoría
                         echo ' <input type="hidden" name="categoria" value='.$categoria.' id="categoria"/>';
-
+                        echo ' <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                            <div class="card-block form-center">';
+                                                 echo '<h2> Estadísticas de la categoria: '.$categoria .' </h2>';
+                                            echo ' </div>
+                                       </div>
+                                </div>
+                            </div>';
                          //Calculo los meses 
                         $mes1 = $estadisticas->obtenerMes("1");
                         $mes2 =  $estadisticas->obtenerMes("2");
@@ -247,19 +255,26 @@
                             
                             $mes1 = $estadisticas->mesEnLetras($mes1);
                             $mes2 = $estadisticas->mesEnLetras($mes2); // Pongo el mes con letras y no con números
+                           echo ' <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                        <div class="card-block">';
                             echo '<table class="columns">
                                         <td>
                                         <tr><p>No hay estadísticas de '.$categoria.' para el mes de ' .$mes1.'</p></tr>
                                         </td>
                                     </table>';
-
+                             echo ' </div>
+                                       </div>
+                                </div>
+                            </div>';
 
                               // Gráfico del mes 2
                           echo ' <div class="row">
                             <div class="col-12">
                                 <div class="card">
-                                        <div class="card-block">';
-                                             echo "<p>Estas son las estadísticas de $categoria para el mes $mes2 :</p>";
+                                        <div class="card-block form-center">'; 
+                                             echo "<p><h3>Estas son las estadísticas para el mes $mes2 </h3></p>";
                                              echo " <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
                                               <div id='chart_div'></div> <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
                                               <div id='chart_div2'></div>";
@@ -280,21 +295,28 @@
                             
                             $mes1 = $estadisticas->mesEnLetras($mes1);
                             $mes2 = $estadisticas->mesEnLetras($mes2); // Pongo el mes con letras y no con números
+
+                            echo ' <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                        <div class="card-block">';
                             echo '<table class="columns">
                                         <td>
                                         <tr><p>No hay estadísticas de '.$categoria.' para el mes de ' .$mes2.'</p></tr>
-                                         <hr></hr>
-                                        <tr><p>No hay estadísticas para el mes de ' .$mes2.'</p></tr>
                                         </td>
                                     </table>';
+                            echo ' </div>
+                                       </div>
+                                </div>
+                            </div>';
 
 
                             // Gráfico del mes 1
                           echo ' <div class="row">
                             <div class="col-12">
                                 <div class="card">
-                                        <div class="card-block">';
-                                             echo "<p>Estas son las estadísticas de $categoria para el mes $mes1 :</p>";
+                                        <div class="card-block form-center">';
+                                             echo "<p><h3>Estas son las estadísticas para el mes $mes1 </h3></p>";
                                              echo " <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
                                               <div id='chart_div'></div> <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
                                               <div id='chart_div1'></div>";
@@ -313,13 +335,35 @@
                         if ($noHayEstadisticasMes1 && $noHayEstadisticasMes2){
                              $mes1 = $estadisticas->mesEnLetras($mes1);
                              $mes2 = $estadisticas->mesEnLetras($mes2); // Pongo el mes con letras y no con números
+                             
+                            echo ' <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                        <div class="card-block">';
                             echo '<table class="columns">
                                         <td>
                                         <tr><p>No hay estadísticas de '.$categoria.' para el mes de ' .$mes2.'</p></tr>
-                                         <hr></hr>
+                                        </td>
+                                    </table>';
+                             echo ' </div>
+                                       </div>
+                                </div>
+                            </div>';
+
+
+                            echo ' <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                        <div class="card-block">';
+                            echo '<table class="columns">
+                                        <td>
                                         <tr><p>No hay estadísticas de '.$categoria.' para el mes de ' .$mes1.'</p></tr>
                                         </td>
                                     </table>';
+                            echo ' </div>
+                                       </div>
+                                </div>
+                            </div>';
 
                         }
 
@@ -333,9 +377,9 @@
                             echo ' <div class="row">
                             <div class="col-12">
                                 <div class="card">
-                                        <div class="card-block">';
+                                        <div class="card-block form-center">';
                                            // echo "<b> Categoria:  $categoria </b>";
-                                            echo "<p>Estas son las estadísticas de $categoria para el mes $mes1 :</p>";
+                                            echo "<p><h3>Estas son las estadísticas para el mes $mes1 </h3></p>";
                                              echo " <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
                                               <div id='chart_div'></div> <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
                                               <div id='chart_div1'></div>";
@@ -354,9 +398,9 @@
                               echo ' <div class="row">
                                 <div class="col-12">
                                     <div class="card">
-                                            <div class="card-block">';
+                                            <div class="card-block form-center">';
                                                 //echo "<b> Categoria:  $categoria </b>";
-                                                echo "<p>Estas son las estadísticas de $categoria para el mes de $mes2 :</p>";
+                                                echo "<p><h3>Estas son las estadísticas para el mes de $mes2 </h3></p>";
                                                  echo " <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
                                                   <div id='chart_div'></div> <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
                                                   <div id='chart_div2'></div>";
