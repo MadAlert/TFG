@@ -133,6 +133,16 @@ class claseEstadisticas {
       }
     }
 
+
+     public function noHayEstadisticasGenerales($lista){
+      if($lista==0){
+                return true;                  
+      }
+      else{
+                return false;
+      }
+    }
+
     public function obtenerDatos ($distrito, $mes){
       $totalTerrorismo= $this->obtenerEstadisticas($distrito, "Terrorismo",$mes);
       $totalDesastres = $this->obtenerEstadisticas($distrito, "Desastres y accidentes",$mes);

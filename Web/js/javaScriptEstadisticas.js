@@ -107,12 +107,18 @@ function drawChartSeguridad() {
   }
 
 
-// column chart - > diagrama de barras
+// SILVIA column chart - > diagrama de barras
+
+
+
+//google.charts.load('current', {packages: ['corechart', 'bar']});
+//google.charts.setOnLoadCallback(drawMultSeriesMes1);
 
 google.charts.load('current', {packages: ['corechart', 'bar']});
-google.charts.setOnLoadCallback(drawMultSeries);
+google.charts.setOnLoadCallback(drawMultSeriesMes1);
+google.charts.setOnLoadCallback(drawMultSeriesMes2);
 
-function drawMultSeries() {
+function drawMultSeriesMes1() {
 
     var categoria = document.getElementById("categoria").value;
     var arganzuela = document.getElementById("arganzuela").value;
@@ -162,11 +168,10 @@ function drawMultSeries() {
          ['Usera', parseInt(usera), 'aqua'],
          ['Vicalvaro', parseInt(vicalvaro), 'coral'],
          ['Villa de Vallecas', parseInt(villaVallecas), 'grey'],
-         ['Villaverde', parseInt(villaverde), 'teal'], // CSS-style declaration
+         ['Villaverde', parseInt(villaverde), 'teal'], // CSS-style declaration*/
       ]);
 
       var options = {
-        title: 'Según la categoría : ' + categoria   ,
         legend: 'none',
         height: 500,
         chartArea:{
@@ -190,10 +195,107 @@ function drawMultSeries() {
       };
 
       var chart = new google.visualization.ColumnChart(
-        document.getElementById('chart_div'));
+        document.getElementById('chart_div1'));
 
       chart.draw(data, options);
   }
+
+
+// column chart - > diagrama de barras
+// MES 2
+
+
+
+
+function drawMultSeriesMes2() {
+
+    var categoria = document.getElementById("categoria").value;
+    var arganzuela = document.getElementById("arganzuela2").value;
+    var barajas = document.getElementById("barajas2").value;
+    var carabanchel = document.getElementById("carabanchel2").value;
+    var centro = document.getElementById("centro2").value;
+    var chamartin = document.getElementById("chamartin2").value;
+    var chamberi = document.getElementById("chamberi2").value;
+    var ciudadLineal = document.getElementById("ciudadLineal2").value;
+    var fuencarral = document.getElementById("fuencarral2").value;
+    var general = document.getElementById("general2").value;
+    var hortaleza = document.getElementById("hortaleza2").value;
+    var latina = document.getElementById("latina2").value;
+    var moncloa = document.getElementById("moncloa2").value;
+    var moratalaz = document.getElementById("moratalaz2").value;
+    var puenteVallecas = document.getElementById("puenteVallecas2").value;
+    var retiro = document.getElementById("retiro2").value;
+    var salamanca = document.getElementById("salamanca2").value;
+    var sanblas = document.getElementById("sanblas2").value;
+    var tetuan = document.getElementById("tetuan2").value;
+    var usera = document.getElementById("usera2").value;
+    var vicalvaro = document.getElementById("vicalvaro2").value;
+    var villaVallecas = document.getElementById("villaVallecas2").value;
+    var villaverde = document.getElementById("villaverde2").value;
+ 
+
+    var data = google.visualization.arrayToDataTable([
+         ['Distrito', '', { role: 'style' }],
+         ['Arganzuela', parseInt(arganzuela), 'green'],            // RGB value
+         ['Barajas', parseInt(barajas), 'khaki'],
+         ['Carabanchel', parseInt(carabanchel), 'red'],            // English color name
+         ['Centro', parseInt(centro), 'pink'],
+         ['Chamartin', parseInt(chamartin), 'black'],
+         ['Chamberi', parseInt(chamberi), 'orange'],
+         ['Ciudad Lineal', parseInt(ciudadLineal), 'royalblue'],
+         ['Fuencarral', parseInt(fuencarral), 'hotpink'],
+         ['General', parseInt(general), 'gold'],
+         ['Hortaleza', parseInt(hortaleza), 'brown'],
+         ['Latina', parseInt(latina), 'darkseagreen'],
+         ['Moncloa-Aravaca', parseInt(moncloa), 'beige'],
+         ['Moratalaz', parseInt(moratalaz), 'plum'],
+         ['Puente de Vallecas', parseInt(puenteVallecas), 'palegreen'],
+         ['Retiro', parseInt(retiro), 'salmon'],
+         ['Salamanca', parseInt(salamanca), 'navy'],
+         ['San Blas-Canillejas', parseInt(sanblas), 'red'],
+         ['Tetuan', parseInt(tetuan), 'sienna'],
+         ['Usera', parseInt(usera), 'aqua'],
+         ['Vicalvaro', parseInt(vicalvaro), 'coral'],
+         ['Villa de Vallecas', parseInt(villaVallecas), 'grey'],
+         ['Villaverde', parseInt(villaverde), 'teal'], // CSS-style declaration*/
+      ]);
+
+      var options = {
+       
+        legend: 'none',
+        height: 500,
+        chartArea:{
+          height: 200,
+          top:100
+        },
+        hAxis: {
+          title: 'DISTRITOS',
+          slantedText: true,
+          slantedTextAngle: 45
+         // format: 'number',
+        },
+        vAxis: {
+          title: 'ALERTAS',
+          format: 'short',
+          viewWindow: {
+            min: 0,
+           // max: 21,
+          }
+        }
+      };
+
+      var chart = new google.visualization.ColumnChart(
+        document.getElementById('chart_div2'));
+
+      chart.draw(data, options);
+  }
+
+
+
+
+
+// A PARTIR DE AQUI ES LO DE GONZALO
+
 
 google.charts.load('current', {packages: ['corechart', 'bar']});
 google.charts.setOnLoadCallback(drawColumns);

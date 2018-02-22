@@ -116,46 +116,78 @@
                         $estadisticas = new claseEstadisticas();
 
 
-                        //Obtengo el numero total de alertas que hay segun la categoria seleccionada (y segun el distrito)
-                         $totalArganzuela= $estadisticas->obtenerEstadisticasSinMes("Arganzuela", $categoria);
-                         $totalBarajas= $estadisticas->obtenerEstadisticasSinMes("Barajas", $categoria);
-                         $totalCarabanchel= $estadisticas->obtenerEstadisticasSinMes("Carabanchel", $categoria);
-                         $totalCentro= $estadisticas->obtenerEstadisticasSinMes("Centro", $categoria);
-                         $totalChamartin= $estadisticas->obtenerEstadisticasSinMes("Chamartín", $categoria);
-                         $totalChamberi= $estadisticas->obtenerEstadisticasSinMes("Chamberí", $categoria);   
-                         $totalCiudadLineal= $estadisticas->obtenerEstadisticasSinMes("CiudadLineal", $categoria);
-                         $totalFuencarral= $estadisticas->obtenerEstadisticasSinMes("Fuencarral", $categoria);
-                         $totalGeneral= $estadisticas->obtenerEstadisticasSinMes("General", $categoria);
-                         $totalHortaleza= $estadisticas->obtenerEstadisticasSinMes("Hortaleza", $categoria);
-                         $totalLatina= $estadisticas->obtenerEstadisticasSinMes("Latina", $categoria);
-                         $totalMoncloa= $estadisticas->obtenerEstadisticasSinMes("Moncloa", $categoria);
-                         $totalMoratalaz= $estadisticas->obtenerEstadisticasSinMes("Moratalaz", $categoria);
-                         $totalPuenteVallecas= $estadisticas->obtenerEstadisticasSinMes("Puente Vallecas", $categoria);
-                         $totalRetiro= $estadisticas->obtenerEstadisticasSinMes("Retiro", $categoria);
-                         $totalSalamanca= $estadisticas->obtenerEstadisticasSinMes("Salamanca", $categoria);
-                         $totalSanBlas= $estadisticas->obtenerEstadisticasSinMes("San Blas", $categoria);
-                         $totalTetuan= $estadisticas->obtenerEstadisticasSinMes("Tetuan", $categoria);
-                         $totalUsera= $estadisticas->obtenerEstadisticasSinMes("Usera", $categoria);
-                         $totalVicalvaro= $estadisticas->obtenerEstadisticasSinMes("Vicálvaro", $categoria);
-                         $totalVillaVallecas= $estadisticas->obtenerEstadisticasSinMes("Villa de Vallecas", $categoria);
-                         $totalVillaverde= $estadisticas->obtenerEstadisticasSinMes("Villaverde", $categoria);
+                        //Obtengo la categoría
+                        echo ' <input type="hidden" name="categoria" value='.$categoria.' id="categoria"/>';
 
-                         /*
-                        ------- PARA VER SI LO HACE BIEN -----
-                         echo "Arganzuela : $totalArganzuela";
-                         echo"Barajas: $totalBarajas";
-                         echo"Carabanchel: $totalCarabanchel";
-                         echo"Centro: $totalCentro";
-                         echo"Chamartin: $totalChamartin";
-                         echo"Chamberi: $totalChamberi";
-                         echo"Ciudad Lineal: $totalCiudadLineal";
-                         echo"Fuencarral: $totalFuencarral";
-                         echo"General: $totalGeneral";
-                         echo"Hortaleza: $totalHortaleza";
-                         echo"Latina: $totalLatina";*/
+                         //Calculo los meses 
+                        $mes1 = $estadisticas->obtenerMes("1");
+                        $mes2 =  $estadisticas->obtenerMes("2");
+                     
+
+                        //Obtengo el numero total de alertas que hay segun la categoria seleccionada (y segun el distrito) 
+
+                        // PARA EL  MES 1
+
+                         $totalArganzuela= $estadisticas->obtenerEstadisticas("Arganzuela", $categoria, $mes1);
+                         $totalBarajas= $estadisticas->obtenerEstadisticas("Barajas", $categoria, $mes1);
+                         $totalCarabanchel= $estadisticas->obtenerEstadisticas("Carabanchel", $categoria, $mes1);
+                         $totalCentro= $estadisticas->obtenerEstadisticas("Centro", $categoria, $mes1);
+                         $totalChamartin= $estadisticas->obtenerEstadisticas("Chamartín", $categoria, $mes1);
+                         $totalChamberi= $estadisticas->obtenerEstadisticas("Chamberí", $categoria, $mes1);   
+                         $totalCiudadLineal= $estadisticas->obtenerEstadisticas("CiudadLineal", $categoria, $mes1);
+                         $totalFuencarral= $estadisticas->obtenerEstadisticas("Fuencarral", $categoria, $mes1);
+                         $totalGeneral= $estadisticas->obtenerEstadisticas("General", $categoria, $mes1);
+                         $totalHortaleza= $estadisticas->obtenerEstadisticas("Hortaleza", $categoria, $mes1);
+                         $totalLatina= $estadisticas->obtenerEstadisticas("Latina", $categoria, $mes1);
+                         $totalMoncloa= $estadisticas->obtenerEstadisticas("Moncloa", $categoria, $mes1);
+                         $totalMoratalaz= $estadisticas->obtenerEstadisticas("Moratalaz", $categoria, $mes1);
+                         $totalPuenteVallecas= $estadisticas->obtenerEstadisticas("Puente Vallecas", $categoria, $mes1);
+                         $totalRetiro= $estadisticas->obtenerEstadisticas("Retiro", $categoria, $mes1);
+                         $totalSalamanca= $estadisticas->obtenerEstadisticas("Salamanca", $categoria, $mes1);
+                         $totalSanBlas= $estadisticas->obtenerEstadisticas("San Blas", $categoria, $mes1);
+                         $totalTetuan= $estadisticas->obtenerEstadisticas("Tetuan", $categoria, $mes1);
+                         $totalUsera= $estadisticas->obtenerEstadisticas("Usera", $categoria, $mes1);
+                         $totalVicalvaro= $estadisticas->obtenerEstadisticas("Vicálvaro", $categoria, $mes1);
+                         $totalVillaVallecas= $estadisticas->obtenerEstadisticas("Villa de Vallecas", $categoria, $mes1);
+                         $totalVillaverde= $estadisticas->obtenerEstadisticas("Villaverde", $categoria, $mes1);
 
 
-                         echo ' <input type="hidden" name="categoria" value='.$categoria.' id="categoria"/>';
+                         // PARA EL MES 2
+                        
+                         $totalArganzuela2= $estadisticas->obtenerEstadisticas("Arganzuela", $categoria, $mes2);
+                         $totalBarajas2= $estadisticas->obtenerEstadisticas("Barajas", $categoria, $mes2);
+                         $totalCarabanchel2= $estadisticas->obtenerEstadisticas("Carabanchel", $categoria, $mes2);
+                         $totalCentro2= $estadisticas->obtenerEstadisticas("Centro", $categoria, $mes2);
+                         $totalChamartin2= $estadisticas->obtenerEstadisticas("Chamartín", $categoria, $mes2);
+                         $totalChamberi2= $estadisticas->obtenerEstadisticas("Chamberí", $categoria, $mes2);   
+                         $totalCiudadLineal2= $estadisticas->obtenerEstadisticas("CiudadLineal", $categoria, $mes2);
+                         $totalFuencarral2= $estadisticas->obtenerEstadisticas("Fuencarral", $categoria, $mes2);
+                         $totalGeneral2= $estadisticas->obtenerEstadisticas("General", $categoria, $mes2);
+                         $totalHortaleza2= $estadisticas->obtenerEstadisticas("Hortaleza", $categoria, $mes2);
+                         $totalLatina2= $estadisticas->obtenerEstadisticas("Latina", $categoria, $mes2);
+                         $totalMoncloa2= $estadisticas->obtenerEstadisticas("Moncloa", $categoria, $mes2);
+                         $totalMoratalaz2= $estadisticas->obtenerEstadisticas("Moratalaz", $categoria, $mes2);
+                         $totalPuenteVallecas2= $estadisticas->obtenerEstadisticas("Puente Vallecas", $categoria, $mes2);
+                         $totalRetiro2= $estadisticas->obtenerEstadisticas("Retiro", $categoria, $mes2);
+                         $totalSalamanca2= $estadisticas->obtenerEstadisticas("Salamanca", $categoria, $mes2);
+                         $totalSanBlas2= $estadisticas->obtenerEstadisticas("San Blas", $categoria, $mes2);
+                         $totalTetuan2= $estadisticas->obtenerEstadisticas("Tetuan", $categoria, $mes2);
+                         $totalUsera2= $estadisticas->obtenerEstadisticas("Usera", $categoria, $mes2);
+                         $totalVicalvaro2= $estadisticas->obtenerEstadisticas("Vicálvaro", $categoria, $mes2);
+                         $totalVillaVallecas2= $estadisticas->obtenerEstadisticas("Villa de Vallecas", $categoria, $mes2);
+                         $totalVillaverde2= $estadisticas->obtenerEstadisticas("Villaverde", $categoria, $mes2);
+
+                         // Sumo el total de las alertas de cada distrito para cada uno de los meses
+
+                         $totalTodosMes1 = $totalArganzuela + $totalBarajas + $totalCarabanchel + $totalCentro + $totalChamartin + $totalChamberi + $totalCiudadLineal + $totalFuencarral + $totalGeneral + $totalHortaleza + $totalLatina +  $totalMoncloa + $totalMoratalaz + $totalPuenteVallecas + $totalRetiro + $totalSalamanca + $totalSanBlas + $totalTetuan + $totalUsera + $totalVicalvaro + $totalVillaVallecas + $totalVillaverde;
+
+                         $totalTodosMes2 = $totalArganzuela2 + $totalBarajas2 + $totalCarabanchel2 + $totalCentro2 + $totalChamartin2 + $totalChamberi2 + $totalCiudadLineal2 + $totalFuencarral2 + $totalGeneral2 + $totalHortaleza2 + $totalLatina2 +  $totalMoncloa2 + $totalMoratalaz2 + $totalPuenteVallecas2 + $totalRetiro2 + $totalSalamanca2 + $totalSanBlas2 + $totalTetuan2 + $totalUsera2 + $totalVicalvaro2 + $totalVillaVallecas2 + $totalVillaverde2;
+
+                         // Si la lista suma 0, será que no hay hay estadísticas y me devolverá true (la función está implementada en claseEstadisticas)
+
+                         $noHayEstadisticasMes1 = $estadisticas->noHayEstadisticasGenerales($totalTodosMes1);
+                         $noHayEstadisticasMes2 = $estadisticas->noHayEstadisticasGenerales($totalTodosMes2);
+
                          echo ' <input type="hidden" name="arganzuela" value='.$totalArganzuela.' id="arganzuela"/>';     
                          echo ' <input type="hidden" name="barajas" value='.$totalBarajas.' id="barajas"/>';
                          echo ' <input type="hidden" name="carabanchel" value='.$totalCarabanchel.' id="carabanchel"/>';
@@ -178,17 +210,66 @@
                          echo ' <input type="hidden" name="vicalvaro" value='.$totalVicalvaro.' id="vicalvaro"/>';
                          echo ' <input type="hidden" name="villaVallecas" value='.$totalVillaVallecas.' id="villaVallecas"/>';
                          echo ' <input type="hidden" name="villaverde" value='.$totalVillaverde.' id="villaverde"/>';
+                         
 
 
 
+
+                          echo ' <input type="hidden" name="arganzuela2" value='.$totalArganzuela2.' id="arganzuela2"/>';   
+                         echo ' <input type="hidden" name="barajas2" value='.$totalBarajas2.' id="barajas2"/>';
+                         echo ' <input type="hidden" name="carabanchel2" value='.$totalCarabanchel2.' id="carabanchel2"/>';
+                         echo ' <input type="hidden" name="centro2" value='.$totalCentro2.' id="centro2"/>';
+                         echo ' <input type="hidden" name="chamartin2" value='.$totalChamartin2.' id="chamartin2"/>';
+                         echo ' <input type="hidden" name="chamberi2" value='.$totalChamberi2.' id="chamberi2"/>';
+                         echo ' <input type="hidden" name="ciudadLineal2" value='.$totalCiudadLineal2.' id="ciudadLineal2"/>';
+                         echo ' <input type="hidden" name="fuencarral2" value='.$totalFuencarral2.' id="fuencarral2"/>';
+                         echo ' <input type="hidden" name="general2" value='.$totalGeneral2.' id="general2"/>';
+                         echo ' <input type="hidden" name="hortaleza2" value='.$totalHortaleza2.' id="hortaleza2"/>';
+                         echo ' <input type="hidden" name="latina2" value='.$totalLatina2.' id="latina2"/>';
+                         echo ' <input type="hidden" name="moncloa2" value='.$totalMoncloa2.' id="moncloa2"/>';
+                         echo ' <input type="hidden" name="moratalaz2" value='.$totalMoratalaz2.' id="moratalaz2"/>';
+                         echo ' <input type="hidden" name="puenteVallecas2" value='.$totalPuenteVallecas2.' id="puenteVallecas2"/>';
+                         echo ' <input type="hidden" name="retiro2" value='.$totalRetiro2.' id="retiro2"/>';
+                         echo ' <input type="hidden" name="salamanca2" value='.$totalSalamanca2.' id="salamanca2"/>';
+                         echo ' <input type="hidden" name="sanblas2" value='.$totalSanBlas2.' id="sanblas2"/>';
+                         echo ' <input type="hidden" name="tetuan2" value='.$totalTetuan2.' id="tetuan2"/>';
+                         echo ' <input type="hidden" name="usera2" value='.$totalUsera2.' id="usera2"/>';
+                         echo ' <input type="hidden" name="vicalvaro2" value='.$totalVicalvaro2.' id="vicalvaro2"/>';
+                         echo ' <input type="hidden" name="villaVallecas2" value='.$totalVillaVallecas2.' id="villaVallecas2"/>';
+                         echo ' <input type="hidden" name="villaverde2" value='.$totalVillaverde2.' id="villaverde2"/>';
+
+
+
+                         //Muestro el mensaje de que no hay estadísticas en este mes
+
+                        // No hay estadísticas del mes 1 y si del 2
+                        if($noHayEstadisticasMes1 && !$noHayEstadisticasMes2){ 
+                            
+                            $mes1 = $estadisticas->mesEnLetras($mes1);
+                            $mes2 = $estadisticas->mesEnLetras($mes2); // Pongo el mes con letras y no con números
+                           echo ' <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                        <div class="card-block">';
+                            echo '<table class="columns">
+                                        <td>
+                                        <tr><p>No hay estadísticas de '.$categoria.' para el mes de ' .$mes1.'</p></tr>
+                                        </td>
+                                    </table>';
+                             echo ' </div>
+                                       </div>
+                                </div>
+                            </div>';
+
+                              // Gráfico del mes 2
                           echo ' <div class="row">
                             <div class="col-12">
                                 <div class="card">
                                         <div class="card-block">';
-                                            echo "<b> Categoria:  $categoria </b>";
+                                             echo "<p>Estas son las estadísticas de $categoria para el mes $mes2 :</p>";
                                              echo " <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
                                               <div id='chart_div'></div> <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
-                                              <div id='chart_div'></div>";
+                                              <div id='chart_div2'></div>";
                                            
                                               
 
@@ -196,10 +277,124 @@
                                        echo ' </div>
                                        </div>
                                 </div>
-                            </div>
-                        </div>';   
-                  
-                    
+                            </div>';
+
+
+                        }
+
+                        // No hay estadísticas del mes 2 y si del 1
+                        if($noHayEstadisticasMes2 && !$noHayEstadisticasMes1){ 
+                            
+                            $mes1 = $estadisticas->mesEnLetras($mes1);
+                            $mes2 = $estadisticas->mesEnLetras($mes2); // Pongo el mes con letras y no con números
+
+                            echo ' <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                        <div class="card-block">';
+                            echo '<table class="columns">
+                                        <td>
+                                        <tr><p>No hay estadísticas de '.$categoria.' para el mes de ' .$mes2.'</p></tr>
+                                         <hr></hr>
+                                        <tr><p>No hay estadísticas para el mes de ' .$mes2.'</p></tr>
+                                        </td>
+                                    </table>';
+                            echo ' </div>
+                                       </div>
+                                </div>
+                            </div>';
+
+
+                            // Gráfico del mes 1
+                          echo ' <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                        <div class="card-block">';
+                                             echo "<p>Estas son las estadísticas de $categoria para el mes $mes1 :</p>";
+                                             echo " <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+                                              <div id='chart_div'></div> <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+                                              <div id='chart_div1'></div>";
+                                           
+                                              
+
+
+                                       echo ' </div>
+                                       </div>
+                                </div>
+                            </div>';
+                        }
+
+
+                        // Si no hay estadísticas de ninguno de los dos meses
+                        if ($noHayEstadisticasMes1 && $noHayEstadisticasMes2){
+                             $mes1 = $estadisticas->mesEnLetras($mes1);
+                             $mes2 = $estadisticas->mesEnLetras($mes2); // Pongo el mes con letras y no con números
+                             
+                            echo ' <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                        <div class="card-block">';
+                            echo '<table class="columns">
+                                        <td>
+                                        <tr><p>No hay estadísticas de '.$categoria.' para el mes de ' .$mes2.'</p></tr>
+                                         <hr></hr>
+                                        <tr><p>No hay estadísticas de '.$categoria.' para el mes de ' .$mes1.'</p></tr>
+                                        </td>
+                                    </table>';
+                             echo ' </div>
+                                       </div>
+                                </div>
+                            </div>';
+
+                        }
+
+                         // Si hay estadísticas de los dos meses, entonces si que muestro los dos charts
+
+                        if (!$noHayEstadisticasMes1 && !$noHayEstadisticasMes2){
+                             $mes1 = $estadisticas->mesEnLetras($mes1);
+                             $mes2 = $estadisticas->mesEnLetras($mes2);
+
+                             // Gráfico del mes 1
+                            echo ' <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                        <div class="card-block">';
+                                           // echo "<b> Categoria:  $categoria </b>";
+                                            echo "<p>Estas son las estadísticas de $categoria para el mes $mes1 :</p>";
+                                             echo " <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+                                              <div id='chart_div'></div> <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+                                              <div id='chart_div1'></div>";
+                                           
+                                              
+
+
+                                       echo ' </div>
+                                       </div>
+                                </div>
+                            </div>';   
+
+
+
+                            // Gráfico del mes 2
+                              echo ' <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                            <div class="card-block">';
+                                                //echo "<b> Categoria:  $categoria </b>";
+                                                echo "<p>Estas son las estadísticas de $categoria para el mes de $mes2 :</p>";
+                                                 echo " <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+                                                  <div id='chart_div'></div> <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+                                                  <div id='chart_div2'></div>";
+                                               
+                                                  
+
+
+                                           echo ' </div>
+                                           </div>
+                                    </div>
+                                </div>';   
+                       }
+
                     }
                 ?>  
 
