@@ -105,11 +105,6 @@
                     </form>';
                     
                     if(isset($_POST['busqueda'])){
-                        echo'
-                        <div class="row">
-                         <div class="col-12">
-                            <div class="card">
-                             <div class="card-block">';
                         $distrito = $_POST['distritos'];
                         include ("claseEstadisticas.php");
                         echo '<h3>Estadisticas en el distrito: '.$distrito .' </h3>';
@@ -128,26 +123,74 @@
                             $mostrado = true;
                             $mes1 = $estadisticas->mesEnLetras($mes1);
                             $mes2 = $estadisticas->mesEnLetras($mes2);
+
+                            //Mes 1
+                            echo ' <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                        <div class="card-block">';
                             echo '<table class="columns">
                                         <td>
                                         <tr><p>No hay estadísticas para el mes de ' .$mes1.'</p></tr>
-                                         <hr></hr>
+                                        </td>
+                                    </table>';
+                             echo ' </div>
+                                       </div>
+                                </div>
+                            </div>';
+
+                            //Mes 2
+                            echo ' <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                        <div class="card-block">';
+                            echo '<table class="columns">
+                                        <td>
                                         <tr><p>No hay estadísticas para el mes de ' .$mes2.'</p></tr>
                                         </td>
                                     </table>';
+                             echo ' </div>
+                                       </div>
+                                </div>
+                            </div>';
+
                         }
                         //Hay estadisticas de ambos meses
                         if(!$noHayEstadisticas1 && !$noHayEstadisticas2){
                             $mostrado = true;
                             $estadisticas->crearCamposOcultosPrimerMes($distrito, $lista , $mes1);
                             $estadisticas->crearCamposOcultosSegundoMes($distrito, $lista2, $mes2);
+
+
+                            //Mes 1 
+                            echo ' <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                        <div class="card-block">';
                             echo '<table class="columns">
                                         <td>
-                                        <tr><div id="piechart" ></div></tr>
-                                        <hr></hr>
-                                        <tr><div id="piechart2"></div></tr>
+                                        <tr><div id="piechart" ></div></tr></tr>
                                         </td>
                                     </table>';
+                             echo ' </div>
+                                       </div>
+                                </div>
+                            </div>';
+
+                            //Mes 2
+                            echo ' <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                        <div class="card-block">';
+                            echo '<table class="columns">
+                                        <td>
+                                        <tr><div id="piechart2" ></div></tr></tr>
+                                        </td>
+                                    </table>';
+                             echo ' </div>
+                                       </div>
+                                </div>
+                            </div>';
                             echo "
                             <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'>
                             google.load()</script>
@@ -157,17 +200,41 @@
                                     google.charts.setOnLoadCallback(drawChart2);
                             </script>";
                         }
+
                         //No hay estadisticas del mes 1 , pero si del 2
                         if($noHayEstadisticas1 && !$mostrado){
                            $estadisticas->crearCamposOcultosSegundoMes($distrito, $lista2, $mes2);
                            $mes1 = $estadisticas->mesEnLetras($mes1);
-                           echo '<table class="columns">
+
+                           echo ' <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                        <div class="card-block">';
+                            echo '<table class="columns">
                                         <td>
-                                        <tr><p>No hay estádisticas para el mes de ' .$mes1.'</p></tr>
-                                         <hr></hr>
-                                        <tr><div id="piechart2"></div></tr>
+                                        <tr><p>No hay estádisticas para el mes de ' .$mes1.'</p></tr></tr>
                                         </td>
                                     </table>';
+                             echo ' </div>
+                                       </div>
+                                </div>
+                            </div>';
+
+                            //Mes 2
+                            echo ' <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                        <div class="card-block">';
+                            echo '<table class="columns">
+                                        <td>
+                                        <tr><div id="piechart2" ></div></tr></tr>
+                                        </td>
+                                    </table>';
+                             echo ' </div>
+                                       </div>
+                                </div>
+                            </div>';
+
                             echo "
                             <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'>
                             google.load()</script>
@@ -180,13 +247,35 @@
                         if($noHayEstadisticas2 && !$mostrado){
                            $estadisticas->crearCamposOcultosPrimerMes($distrito, $lista , $mes1);
                            $mes2 = $estadisticas->mesEnLetras($mes2);
-                           echo '<table class="columns">
+
+                            echo ' <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                        <div class="card-block">';
+                            echo '<table class="columns">
                                         <td>
-                                        <tr><div id="piechart"></div></tr>
-                                        <hr></hr>
-                                        <tr><p>No hay estádisticas para el mes de ' .$mes2.'</p></tr>
+                                        <tr><div id="piechart2" ></div></tr></tr>
                                         </td>
                                     </table>';
+                             echo ' </div>
+                                       </div>
+                                </div>
+                            </div>';
+
+                            //Mes 2
+                            echo ' <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                        <div class="card-block">';
+                            echo '<table class="columns">
+                                        <td>
+                                        <tr><p>No hay estádisticas para el mes de ' .$mes2.'</p></tr></tr>
+                                        </td>
+                                    </table>';
+                             echo ' </div>
+                                       </div>
+                                </div>';
+
                             echo "
                             <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'>
                             google.load()</script>
