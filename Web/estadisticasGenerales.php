@@ -247,12 +247,19 @@
                             
                             $mes1 = $estadisticas->mesEnLetras($mes1);
                             $mes2 = $estadisticas->mesEnLetras($mes2); // Pongo el mes con letras y no con números
+                           echo ' <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                        <div class="card-block">';
                             echo '<table class="columns">
                                         <td>
                                         <tr><p>No hay estadísticas de '.$categoria.' para el mes de ' .$mes1.'</p></tr>
                                         </td>
                                     </table>';
-
+                             echo ' </div>
+                                       </div>
+                                </div>
+                            </div>';
 
                               // Gráfico del mes 2
                           echo ' <div class="row">
@@ -280,6 +287,11 @@
                             
                             $mes1 = $estadisticas->mesEnLetras($mes1);
                             $mes2 = $estadisticas->mesEnLetras($mes2); // Pongo el mes con letras y no con números
+
+                            echo ' <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                        <div class="card-block">';
                             echo '<table class="columns">
                                         <td>
                                         <tr><p>No hay estadísticas de '.$categoria.' para el mes de ' .$mes2.'</p></tr>
@@ -287,6 +299,10 @@
                                         <tr><p>No hay estadísticas para el mes de ' .$mes2.'</p></tr>
                                         </td>
                                     </table>';
+                            echo ' </div>
+                                       </div>
+                                </div>
+                            </div>';
 
 
                             // Gráfico del mes 1
@@ -313,6 +329,11 @@
                         if ($noHayEstadisticasMes1 && $noHayEstadisticasMes2){
                              $mes1 = $estadisticas->mesEnLetras($mes1);
                              $mes2 = $estadisticas->mesEnLetras($mes2); // Pongo el mes con letras y no con números
+                             
+                            echo ' <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                        <div class="card-block">';
                             echo '<table class="columns">
                                         <td>
                                         <tr><p>No hay estadísticas de '.$categoria.' para el mes de ' .$mes2.'</p></tr>
@@ -320,6 +341,10 @@
                                         <tr><p>No hay estadísticas de '.$categoria.' para el mes de ' .$mes1.'</p></tr>
                                         </td>
                                     </table>';
+                             echo ' </div>
+                                       </div>
+                                </div>
+                            </div>';
 
                         }
 
