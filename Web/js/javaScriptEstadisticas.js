@@ -357,6 +357,16 @@ function drawColumns() {
       height: 400,
       bar: {groupWidth: "75%"},
       legend: {position: "none"},
+      chartArea:{
+          height: 200,
+          top:100
+        },
+      hAxis: {
+          
+          slantedText: true,
+          slantedTextAngle: 45
+         // format: 'number',
+        },
     };
 
     var chart = new google.visualization.ColumnChart(document.getElementById('column_id'));
