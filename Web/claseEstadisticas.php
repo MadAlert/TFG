@@ -78,6 +78,12 @@ class claseEstadisticas {
       return $total;
     }
 
+    public function obtenerMesEstPolicias($distrito, $mes){
+      $coleccion = $this->conexionEstDetenidos();
+      $res = $coleccion->findOne(array('distrito' => $distrito), array($mes));
+      return $res[$mes];
+    }
+
     //Funcion que inserta las alertas creadas por un usuario
     public function insertarEstadistica($categoria, $distrito, $mes){
     	$coleccion = $this->conexion();

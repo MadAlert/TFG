@@ -114,8 +114,7 @@
 
                     include("claseEstadisticas.php");
                     $estadisticas = new claseEstadisticas();
-                    $mes = $estadisticas->mesEnLetras(date("m")-1);
-
+                    $mes = $estadisticas->obtenerMesEstPolicias("Centro", "mes");                    
 
                     echo '<div class="row">
                      <div class="col-12">

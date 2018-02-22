@@ -182,15 +182,17 @@ function drawMultSeriesMes1() {
         hAxis: {
           title: 'DISTRITOS',
           slantedText: true,
-          slantedTextAngle: 45
+          slantedTextAngle: 45,
+          minValue: 0,          
+          ticks: [0 , 1]          
          // format: 'number',
         },
         vAxis: {
           title: 'ALERTAS',
           format: 'short',
+
           viewWindow: {
-            min: 0,
-           // max: 21,
+            min: 0,          
           }
         }
       };
