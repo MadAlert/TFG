@@ -14,7 +14,7 @@ class claseAlertas {
 		
 	}
 
-   public function obtenerAlertas($distrito, $categorias) {
+    public function obtenerAlertas($distrito, $categorias) {
    		$coleccion = $this->conexion();
    		//echo "Hola";
     	//Query para ver alertas de distritos -> habria que añadir la condicion de fecha
@@ -86,7 +86,7 @@ class claseAlertas {
     	
     }
 
-    //Obtiene el numero de alertas de todos los distristos
+    //Obtiene el numero de alertas de todos los distritos
     public function obtenerNumeroAlertas($distrito) {
    	  $coleccion = $this->conexion();
 
@@ -144,6 +144,13 @@ class claseAlertas {
       return $lista;
     }
 
+    public function crearCamposOcultosMarcadores($distrito){
+      	echo '<input type="hidden" name="distrito" value='.$distrito.' id="distrito"/>';
+    }
+
+    public function obtenerDatosMarcadores($distrito){
+    	return $distritoMapa = $this->obtenerAlertasDistrito($distrito);
+    }
 
 
     //Funcion que inserta las alertas creadas por un usuario
@@ -191,10 +198,7 @@ class claseAlertas {
 
     public function mostrarDistritos(){
     	echo '<html>
-    		
-                <div class="form-group">
-                    <label class="col-sm-12">Selecciona un distrito</label>
-                    <div class="col-sm-12">      
+    		      
 						<select class="form-control form-control-line" name="distritos" id="distritos">
 							<option>Arganzuela</option>
 							<option>Barajas</option>
@@ -219,8 +223,6 @@ class claseAlertas {
 							<option>Villa de Vallecas</option>
 							<option>Villaverde</option>
 						</select>
-					</div>                                      
-                </div>
                                     
 			 </html>';
     }
@@ -228,9 +230,7 @@ class claseAlertas {
    public function mostrarCategorias(){
     	echo '<html>
     		
-                <div class="form-group">
-                    <label class="col-sm-12">Selecciona un categoria</label>
-                    <div class="col-sm-12">      
+                      
 						<select class="form-control form-control-line" name="categorias" id="categorias">
                             <option>Contaminación</option>
                             <option>Criminalidad</option>
@@ -240,8 +240,6 @@ class claseAlertas {
                             <option>Tráfico</option>
                             <option>Transporte público</option>
 						</select>
-					</div>                                      
-                </div>
                                     
 			 </html>';
     }

@@ -77,9 +77,10 @@
                     include ("claseAlertas.php");
                     $alertas = new claseAlertas();
 
-                    if(isset($_GET['distritomapa'])) {
-                        $distritoMapa = $_GET['distritomapa'];
+                    if(isset($_POST['distritoM'])) {
+                        $distritoMapa = $_POST['distritoM'];
                     }
+                    
                     if(!isset($_POST['atributo'])){
                         if(isset($distritoMapa)) {
                 ?>
@@ -107,11 +108,16 @@
                         echo '<div class="row">
                                  <div class="col-12">
                                     <div class="card">
-                                     <div class="card-block">';
-                                        $alertas->mostrarDistritos();
+                                        <div class="card-block">
+                                            <div class="form-group">
+                                            <label class="col-sm-12">Selecciona un distrito</label>
+                                                <div class="col-sm-12">';
+                                                    $alertas->mostrarDistritos();
                                         //$alertas->obtenerAlertasDistrito(atributo);
                                         //echo $atributo;
-                                    echo '</div>
+                                    echo '      </div>                                      
+                                            </div>
+                                    </div>
                                     
                                             <div class="form-group" style="margin: auto; margin-bottom: 20px;">
                                                  <div class="items col-sm-12">

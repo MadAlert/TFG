@@ -43,7 +43,7 @@ function initMap() {
         });*/
 
     var marker, i;
-    var cuentaAlertas = [];
+    var distritoM;
     for (i = 0; i < marcadores.length; i++) {
         if(marcadores[i][3] != 0) {  //Solo muestra los distritos que tienen alertas
             marker = new google.maps.Marker({
@@ -51,12 +51,16 @@ function initMap() {
                 map: map
             });
         }
-
+    
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
             return function() {
                 if(marcadores[i][3] != 0) {
-                    var contentString = '<h1>' + marcadores[i][0] +'</h1>'+
-                    '<p> Se han encontrado <b><a href="alertas.php?distritomapa=' + marcadores[i][0] + '">'+ marcadores[i][3] + ' alertas</a></b>. </p>';
+                    var contentString = '<form id="formulario_marcador" method="POST" action="alertas.php">' +
+                    '<h1>' + marcadores[i][0] + '</h1>'+
+                    '<input type="hidden" name="distritoM" value='+ marcadores[i][0] + ' id="distritoM"/>' +
+                    '<p> Se han encontrado <b>'+ marcadores[i][3] + ' alertas</b>. </p>' +
+                    '<button class="btn btn-info" type="submit">Ver alertas</button>' +
+                    '</form>';
                     infowindow.setContent(contentString);
                     infowindow.open(map, marker);
                 }

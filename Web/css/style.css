@@ -2918,6 +2918,10 @@ Form addons page
 Form Material page
  ============================================================== */
 /*Material inputs*/
+.form-center {
+  text-align: center; 
+  justify-content: space-around;}
+
 .form-material .form-group {
   overflow: hidden; }
 

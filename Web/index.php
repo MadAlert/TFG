@@ -32,6 +32,11 @@
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
+    <!-- google maps api -->
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
+    <script src="js/javaScriptMapa.js"></script><!--nuevo script de mapa-->
+    <script async defer src="https://maps.google.com/maps/api/js?key=AIzaSyAgXFPH3QXZqFd571ptZm6p2dNYK18aSQQ&callback=initMap"></script>
+    <script src="assets/plugins/gmaps/gmaps.min.js"></script>
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -78,16 +83,18 @@
                                     <div id="mapa" class="gmaps"></div>
                                     <form method="post" action="alertas.php" id="buscarAlertas" onsubmit="return valida()">
                                          <input type="hidden" name="atributo" id="atributo" value="si"/>
+                                         <input type="hidden" name="index" value="si" id="index"/>
                                          <div class="form-group">
+                                            <label class="col-sm-12">Selecciona un distrito</label>
+                                            <div class="col-sm-12">
                                              <?php 
                                                  include ("claseAlertas.php");
                                                  $alertas = new claseAlertas();
                                                  $alertas->mostrarDistritos();
-                                                 //$distrito = $_GET['marcadores[i][0]'];
                                                  $lista = $alertas->obtenerDatos();
                                                  $alertas->crearCamposOcultosNumAlertas($lista);
-        
-                                            ?>                              
+                                             ?>
+                                             </div>                              
                                          </div>
                                         <div class="form-group">
                                                 <label class="col-sm-12">Selecciona las categorías</label>
@@ -228,16 +235,11 @@
     <script src="js/waves.js"></script>
     <!--Menu sidebar -->
     <script src="js/sidebarmenu.js"></script>
-    <!--stickey kit AQUI ESTA LO DE SELECCIONAR EL PRIMER ELEMENTOO COÑOOO-->
+    <!--stickey kit AQUI ESTA LO DE SELECCIONAR EL PRIMER ELEMENTOO-->
     <script src="assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
     <script src="javaScript.js"></script>
-    <!-- google maps api -->
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
-    <script src="js/javaScriptMapa.js"></script><!--nuevo script de mapa-->
-    <script async defer src="https://maps.google.com/maps/api/js?key=AIzaSyAgXFPH3QXZqFd571ptZm6p2dNYK18aSQQ&callback=initMap"></script>
-    <script src="assets/plugins/gmaps/gmaps.min.js"></script>
     <!--script src="assets/plugins/gmaps/jquery.gmaps.js"></script-->
 </body>
 
