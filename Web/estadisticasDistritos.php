@@ -107,7 +107,15 @@
                     if(isset($_POST['busqueda'])){
                         $distrito = $_POST['distritos'];
                         include ("claseEstadisticas.php");
-                        echo '<h3>Estadisticas en el distrito: '.$distrito .' </h3>';
+                        echo ' <div class="row">
+                                <div class="col-12">
+                                    <div class="card">
+                                            <div class="card-block  form-center">';
+                                                echo '<h2> Estadísticas en el distrito: '.$distrito .' </h2>';
+                                                echo ' </div>
+                                       </div>
+                                </div>
+                            </div>';
                         $estadisticas = new claseEstadisticas();
                         //Calculos para el mes 1
                         $mes1 = $estadisticas->obtenerMes("1");
