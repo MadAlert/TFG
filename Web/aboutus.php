@@ -94,28 +94,33 @@
                                     </ul>
                                 <hr>
                                 <h1 class="card-title"> Contáctanos </h1>                                
-                                <form id="form_contact" class="contacto" action="mailto:madalert2017@gmail.com" method="post" enctype="text/plain">
-                                    <ul>
-                                    <li>
-                                        <label>Tu nombre</label>
-                                        <input type="text" value="" />
-                                    </li>
-                                    <li>
-                                        <label>Tu Email</label>
-                                        <input type="text" value="" />
-                                    </li>
-                                    <li>                                    
-                                        <label>Asunto</label>
-                                        <input type="text" value=""  />
-                                    </li>
-                                    <li>                                    
-                                        <label>Mensaje</label>
-                                        <textarea cols="40" rows="6"></textarea>
-                                    </li>                                    
-                                    <li>  
-                                        <button class="btn waves-effect waves-light btn-danger pull-center hidden-sm-down" type="submit"> Enviar </button>
-                                    </li>
-                                  </ul>
+                                <form class="form-horizontal form-material" class="contacto" action="mailto:madalert2017@gmail.com" method="post">
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <input type="text" placeholder="Nombre" class="form-control form-control-line" name="nombre" id="nombre" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <input type="email" placeholder="Email" class="form-control form-control-line" name="email" id="email" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <input type="text" placeholder="Asunto" class="form-control form-control-line" name="asunto" id="asunto" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <textarea rows="5" placeholder="Introduce el mensaje..."
+                                            class="form-control form-control-line" name="Mensaje" required/></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-12">
+                                            <button class="btn btn-danger" type="submit">Enviar</button>
+                                        </div>
+                                    </div>
                                 </form>                                    
                             </div>
                         </div>
