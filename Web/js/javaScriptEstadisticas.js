@@ -329,7 +329,6 @@ function drawColumns() {
       legend: {position: "none"},
     };
 
-
     var chart = new google.charts.Bar(document.getElementById('column_id'));
     chart.draw(data, google.charts.Bar.convertOptions(options));
 }
@@ -446,7 +445,8 @@ function drawChartSeguridad() {
     var options = {
      title: 'Distrito: ' + distrito,
      width: "100%",
-     height: 600
+     height: 600,
+     is3D: true
     };
 
     var chart = new google.visualization.PieChart(document.getElementById("piechart"));

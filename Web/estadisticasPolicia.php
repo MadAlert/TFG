@@ -174,7 +174,7 @@
                     <div class="col-12">
                         <div class="card">
                          <div class="card-block">                                                   
-                               <h3> Estadísticas de detenidos por distrito </h3>                                
+                               <h3> Estadísticas de detenidos por distrito </h3>
                                 <div id="column_id"></div>                                                        
                             </div>
                         </div>
