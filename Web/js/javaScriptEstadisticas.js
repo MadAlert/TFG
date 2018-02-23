@@ -4,6 +4,7 @@ function ObtenerMes(mes){
   var meses  = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
   return meses[mes-1];
 }
+
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 google.charts.setOnLoadCallback(drawChart2);
@@ -75,37 +76,6 @@ function drawChart2() {
 
     chart.draw(data, options);
 }            
-
-google.charts.load('current', {'packages':['corechart']});            
-google.charts.setOnLoadCallback(drawChartSeguridad);
-
-function drawChartSeguridad() {
-
-    var distrito = document.getElementById("distrito").value;
-    var personas = document.getElementById("personas").value;
-    var patrimonio = document.getElementById("patrimonio").value;
-    var armas = document.getElementById("armas").value;
-    var ten_drogas = document.getElementById("ten_drogas").value;
-    var con_drogas = document.getElementById("con_drogas").value;
-
-    var data = google.visualization.arrayToDataTable([
-      ['Distritos', 'Tipos'],
-      ['Relacionado con personas',     parseInt(personas)],
-      ['Relacionado con el patrimonio',      parseInt(patrimonio)],
-      ['Relacionado con las tenencia de armas',     parseInt(armas)],
-      ['Relacionado con las tenencia de drogas',      parseInt(ten_drogas)],
-      ['Relacionado con las consumo de drogas',  parseInt(con_drogas)]
-    ]);
-
-    var options = {
-     title: 'Distrito: ' + distrito
-    };
-
-    var chart = new google.visualization.PieChart(document.getElementById("piechart"));
-
-    chart.draw(data, options);
-  }
-
 
 // SILVIA column chart - > diagrama de barras
 
@@ -298,8 +268,7 @@ function drawMultSeriesMes2() {
 
 // A PARTIR DE AQUI ES LO DE GONZALO
 
-
-google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.load('current', {'packages':['corechart']});  
 google.charts.setOnLoadCallback(drawColumns);
 
 function drawColumns() {
@@ -329,9 +298,9 @@ function drawColumns() {
 
     var data = google.visualization.arrayToDataTable([
          ['Distrito', 'Detenidos'],
-         ['Arganzuela', parseInt(arganzuela)],            // RGB value
+         ['Arganzuela', parseInt(arganzuela)],            
          ['Barajas', parseInt(barajas)],
-         ['Carabanchel', parseInt(carabanchel)],            // English color name
+         ['Carabanchel', parseInt(carabanchel)],            
          ['Centro', parseInt(centro)],
          ['Chamartin', parseInt(chamartin)],
          ['Chamberi', parseInt(chamberi)],
@@ -353,30 +322,19 @@ function drawColumns() {
          ['Villaverde', parseInt(villaverde)],
       ]);
 
-    var options = {
-      title: "Según el distrito",
-      width: "90%",
-      height: 400,
+    var options = {      
+      width: "100%",
+      height: 500,
       bar: {groupWidth: "75%"},
       legend: {position: "none"},
-      chartArea:{
-          height: 200,
-          top:100
-        },
-      hAxis: {
-          
-          slantedText: true,
-          slantedTextAngle: 45
-         // format: 'number',
-        },
     };
 
-    var chart = new google.visualization.ColumnChart(document.getElementById('column_id'));
-    chart.draw(data, options);
 
+    var chart = new google.charts.Bar(document.getElementById('column_id'));
+    chart.draw(data, google.charts.Bar.convertOptions(options));
 }
 
-google.charts.load('current', {packages: ['corechart', 'bar']});
+google.charts.load('current', {'packages':['corechart']});  
 google.charts.setOnLoadCallback(drawColumnsDouble);
 
 function drawColumnsDouble() {
@@ -451,10 +409,9 @@ function drawColumnsDouble() {
          ['Villaverde', parseInt(villaverdeC), parseInt(villaverdeS)],
       ]);
 
-    var options = {
-      title: "Según el distrito",
+    var options = {      
       width: "100%",
-      height: 400,
+      height: 500,
       bar: {groupWidth: "75%"},
       legend: {position: "none"},
     };
@@ -465,4 +422,34 @@ function drawColumnsDouble() {
 }
   
 
+google.charts.load('current', {'packages':['corechart']});            
+google.charts.setOnLoadCallback(drawChartSeguridad);
+
+function drawChartSeguridad() {
+
+    var distrito = document.getElementById("distrito").value;
+    var personas = document.getElementById("personas").value;
+    var patrimonio = document.getElementById("patrimonio").value;
+    var armas = document.getElementById("armas").value;
+    var ten_drogas = document.getElementById("ten_drogas").value;
+    var con_drogas = document.getElementById("con_drogas").value;
+
+    var data = google.visualization.arrayToDataTable([
+      ['Distritos', 'Tipos'],
+      ['Relacionado con personas',     parseInt(personas)],
+      ['Relacionado con el patrimonio',      parseInt(patrimonio)],
+      ['Relacionado con las tenencia de armas',     parseInt(armas)],
+      ['Relacionado con las tenencia de drogas',      parseInt(ten_drogas)],
+      ['Relacionado con las consumo de drogas',  parseInt(con_drogas)]
+    ]);
+
+    var options = {
+     title: 'Distrito: ' + distrito,
+     width: "100%",
+     height: 600
+    };
+
+    var chart = new google.visualization.PieChart(document.getElementById("piechart"));
+    chart.draw(data, options);    
+}
 

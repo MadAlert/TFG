@@ -4,8 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Tell the browser to be responsive to screen width -->    
     <meta name="description" content="">
     <meta name="author" content="">
     <!-- Favicon icon -->
@@ -25,6 +24,7 @@
     <link href="css/colors/blue.css" id="theme" rel="stylesheet">    
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>   
     <script src="js/javaScriptEstadisticas.js"></script> <!-- nuevo script de estadisticas--> 
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -74,10 +74,6 @@
                 <!-- ============================================================== -->
                 <!-- Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
-
-
-
-
 
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
@@ -172,29 +168,25 @@
                     echo ' <input type="hidden" name="villaVallecas" value='.$totalVillaVallecas.' id="villaVallecas"/>';
                     echo ' <input type="hidden" name="villaverde" value='.$totalVillaverde.' id="villaverde"/>';
 
-                    echo "
-                    <script type='text/javascript'>
-                            google.charts.load('current', {'packages':['bar']});
-                            google.charts.setOnLoadCallback(drawColumns);
-                    </script>";
 
                     echo '
                    <div class="row">
-                     <div class="col-12">
+                    <div class="col-12">
                         <div class="card">
-                         <div class="card-block">
-                         <div class="form-group">
-                         <div class="col-sm-12">
-                                                   
-                                 <h3> Estadísticas de detenidos por distrito </h3>                            
-                                        <div id="column_id" ></div>                            
-                            
-                        </div>
-                        </div>
-                        </div>
+                         <div class="card-block">                                                   
+                               <h3> Estadísticas de detenidos por distrito </h3>                                
+                                <div id="column_id"></div>                                                        
+                            </div>
                         </div>
                     </div>
-                </div>';
+                    </div>
+                    ';
+
+                    echo "
+                    <script type='text/javascript'>
+                            google.charts.load('current', {'packages':['bar']});
+                            google.charts.setOnLoadCallback(drawColumns);                            
+                    </script>";
 
 
                 /*Accidentes */
@@ -263,27 +255,23 @@
                     echo ' <input type="hidden" name="villaverdeC" value='.$totalVillaverde['conHeridos'].' id="villaverdeC"/>';
                     echo ' <input type="hidden" name="villaverdeS" value='.$totalVillaverde['sinHeridos'].' id="villaverdeS"/>';
 
-
-
-                   echo "
-                    <script type='text/javascript'>
-                            google.charts.load('current', {'packages':['bar']});
-                            google.charts.setOnLoadCallback(drawColumnsDouble);
-                    </script>";
-
                     echo '
                    <div class="row">
                      <div class="col-12">
                         <div class="card">
-                         <div class="card-block">
-                          <div id = "graficas" class = "graf">
+                         <div class="card-block">                          
                          <h3> Estadísticas de accidentes por distrito </h3> 
                                 <div id="doubleColumn_id"></div>
                         </div>
                         </div>
-                        </div>
-                    </div>
-                </div>';
+                        </div>                  
+                    </div>';
+
+                    echo "
+                    <script type='text/javascript'>
+                            google.charts.load('current', {'packages':['bar']});
+                            google.charts.setOnLoadCallback(drawColumnsDouble);
+                    </script>";
 
 
                     if(isset($_POST['busqueda'])){                    
@@ -304,13 +292,11 @@
                        <div class="row">
                          <div class="col-12">
                             <div class="card">
-                             <div class="card-block">
-                              <div id = "graficas" class = "graf">
+                             <div class="card-block">                              
                              <h3> Estadísticas relacionadas con la seguridad </h3> 
                                     <div id="piechart"></div>                                   
                                 </div>
-                            </div>
-                            </div>
+                            </div>                            
                         </div>
                     </div>';
                     
@@ -319,7 +305,7 @@
                     echo "                   
                     <script type='text/javascript'>
                             google.charts.load('current', {'packages':['corechart']});
-                            google.charts.setOnLoadCallback(drawChartSeguridad);
+                            google.charts.setOnLoadCallback(drawChartSeguridad);                            
                      </script>
 
                       <p> Fuente: <a href='http://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=bffff1d2a9fdb410VgnVCM2000000c205a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD'> Datos estadísticos actuaciones Policía Municipal </a> </p>";
