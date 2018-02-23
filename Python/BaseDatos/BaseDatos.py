@@ -49,17 +49,17 @@ class baseDatosClass():
         coleccion.insert(diccionario)
     #def eliminarAlertas(fecha)
 
-    def insertarEstSeguridad(self, coleccion, distrito, personas, patrimonio, armas, ten_drogas, con_drogas):
+    def insertarEstSeguridad(self, coleccion, distrito, personas, patrimonio, armas, ten_drogas, con_drogas, mes):
         diccionario = {"distrito": distrito, "personas": personas, "patrimonio": patrimonio,
-                        "armas": armas, "ten_drogas": ten_drogas, "con_drogas": con_drogas}
+                        "armas": armas, "ten_drogas": ten_drogas, "con_drogas": con_drogas, "mes" : mes}
         coleccion.insert(diccionario)
 
-    def insertarEstDetenidos(self, coleccion, distrito, detenidos):
-        diccionario = {"distrito": distrito, "detenidos": detenidos}
+    def insertarEstDetenidos(self, coleccion, distrito, detenidos, mes):
+        diccionario = {"distrito": distrito, "detenidos": detenidos, "mes": mes}
         coleccion.insert(diccionario)
 
-    def insertarEstAccidentes(self, coleccion, distrito, conHeridos, sinHeridos):
-        diccionario = {"distrito": distrito, "conHeridos": conHeridos, "sinHeridos": sinHeridos}
+    def insertarEstAccidentes(self, coleccion, distrito, conHeridos, sinHeridos, mes):
+        diccionario = {"distrito": distrito, "conHeridos": conHeridos, "sinHeridos": sinHeridos, "mes": mes}
         coleccion.insert(diccionario)
 
 

@@ -181,15 +181,17 @@ function drawMultSeriesMes1() {
         hAxis: {
           title: 'DISTRITOS',
           slantedText: true,
-          slantedTextAngle: 45
+          slantedTextAngle: 45,
+          minValue: 0,          
+          ticks: [0 , 1]          
          // format: 'number',
         },
         vAxis: {
           title: 'ALERTAS',
           format: 'short',
+
           viewWindow: {
-            min: 0,
-           // max: 21,
+            min: 0,          
           }
         }
       };
@@ -353,10 +355,20 @@ function drawColumns() {
 
     var options = {
       title: "Según el distrito",
-      width: 1000,
+      width: "90%",
       height: 400,
       bar: {groupWidth: "75%"},
       legend: {position: "none"},
+      chartArea:{
+          height: 200,
+          top:100
+        },
+      hAxis: {
+          
+          slantedText: true,
+          slantedTextAngle: 45
+         // format: 'number',
+        },
     };
 
     var chart = new google.visualization.ColumnChart(document.getElementById('column_id'));
@@ -441,7 +453,7 @@ function drawColumnsDouble() {
 
     var options = {
       title: "Según el distrito",
-      width: 1000,
+      width: "100%",
       height: 400,
       bar: {groupWidth: "75%"},
       legend: {position: "none"},
