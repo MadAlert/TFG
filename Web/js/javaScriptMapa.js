@@ -7,7 +7,7 @@ function initMap() {
         ['Chamartín', 40.460367, -3.676567, document.getElementById("chamartin").value], //Chamartín
         ['Chamberí', 40.438656, -3.704180, document.getElementById("chamberi").value], //Chamberí
         ['Ciudad Lineal', 40.455531, -3.656119, document.getElementById("ciudadlineal").value], //Ciudad Lineal
-        ['Fuencarral-ElPardo', 40.494289, -3.693477, document.getElementById("fuencarral").value], //Fuencarral-ElPardo
+        ['Fuencarral-El Pardo', 40.494289, -3.693477, document.getElementById("fuencarral").value], //Fuencarral-El Pardo
         ['Hortaleza', 40.485152, -3.634796, document.getElementById("hortaleza").value], //Hortaleza
         ['Latina', 40.387812, -3.773530, document.getElementById("latina").value], //Latina
         ['Moncloa-Aravaca', 40.443568,  -3.742829, document.getElementById("moncloa").value], //Moncloa-Aravaca
@@ -59,7 +59,9 @@ function initMap() {
                     '<h2>' + marcadores[i][0] + '</h2>'+
                     '<input type="hidden" name="distritoM" value='+ marcadores[i][0] + ' id="distritoM"/>' +
                     '<p> Se han encontrado <b>'+ marcadores[i][3] + ' alertas</b>. </p>' +
-                    '<button class="btn btn-info" type="submit">Ver alertas</button>' +
+                    '<div class="form-center" style=" margin-left:25px; margin-top:20px">' +
+                        '<button class="btn btn-info" type="submit">Ver alertas</button>' +
+                    '</div>' +
                     '</form>';
                     infowindow.setContent(contentString);
                     infowindow.open(map, marker);

@@ -126,7 +126,7 @@ class claseAlertas {
       $totalChamartin = $this->obtenerNumeroAlertas("Chamartín");
       $totalChamberi = $this->obtenerNumeroAlertas("Chamberí");
       $totalCiudadLineal = $this->obtenerNumeroAlertas("Ciudad Lineal");
-      $totalFuencarral = $this->obtenerNumeroAlertas("Fuencarral-ElPardo");
+      $totalFuencarral = $this->obtenerNumeroAlertas("Fuencarral-El Pardo");
       $totalHortaleza = $this->obtenerNumeroAlertas("Hortaleza");
       $totalLatina = $this->obtenerNumeroAlertas("Latina");
       $totalMoncloa = $this->obtenerNumeroAlertas("Moncloa-Aravaca");
