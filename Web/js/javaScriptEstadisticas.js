@@ -152,17 +152,17 @@ function drawMultSeriesMes1() {
           title: 'DISTRITOS',
           slantedText: true,
           slantedTextAngle: 45,
-          minValue: 0,          
-          ticks: [0 , 1]          
-         // format: 'number',
         },
         vAxis: {
           title: 'ALERTAS',
-          format: 'short',
-
-          viewWindow: {
-            min: 0,          
-          }
+          //viewWindow:{
+            //max:30, // Predefino valores: maximo y minimo 
+            //min:0
+          //}
+          //format.... (se me repiten los numeros...)
+          ticks: [ 0, 5, 10, 15, 20, 25, 30, 35] ,
+          gridlines: {count: 8} // CAMBIO EL NUMERO DE LINEAS QUE VENIAN PREDEFINIDAS
+          
         }
       };
 
@@ -243,16 +243,19 @@ function drawMultSeriesMes2() {
         hAxis: {
           title: 'DISTRITOS',
           slantedText: true,
-          slantedTextAngle: 45
+          slantedTextAngle: 45,
+          
          // format: 'number',
         },
         vAxis: {
           title: 'ALERTAS',
-          format: 'short',
-          viewWindow: {
-            min: 0,
+          //format: 'number', '0'
+          //viewWindow: {
+            //min: 0,
            // max: 21,
-          }
+          //}
+          ticks: [ 0, 5, 10, 15, 20, 25, 30, 35] ,
+          gridlines: {count: 8} // CAMBIO EL NUMERO DE LINEAS QUE VENIAN PREDEFINIDAS
         }
       };
 
