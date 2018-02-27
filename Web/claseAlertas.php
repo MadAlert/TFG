@@ -1,25 +1,20 @@
 <?php
 require 'vendor/autoload.php';
+require_once("src/dao/DAOalertas.php");
 class claseAlertas {
 
 	public $dbhost ="localHost";
+	public $daoAler;
 
-	public function conexion(){
-		$client = new MongoDB\Client;
-		//DB
-		$db = $client->noticias;
-		$coleccion = $db->alertas;
+    function __construct() {
+		$this->daoAler = new DAOAlertas();
+    }
 
-		return $coleccion;
-		
-	}
 
     public function obtenerAlertas($distrito, $categorias) {
-   		$coleccion = $this->conexion();
-   		//echo "Hola";
     	//Query para ver alertas de distritos -> habria que añadir la condicion de fecha
-    	$documento = $coleccion->find(['distrito' => $distrito, 'categoria'=>array('$in' => $categorias)]);
-    	$total = $coleccion->count(['distrito' => $distrito, 'categoria'=>array('$in' => $categorias)]);
+    	$documento = $this->daoAler->obtenerAlertas($distrito, $categoria);
+    	$total = $this->daoAler->totalObtenerAlertas($distrito, $categoria);
     	if($total > 0){
 	    	foreach ($documento as $doc) {
 	    		# code...
@@ -50,10 +45,8 @@ class claseAlertas {
 
     // Muestra todas las alertas de un distrito (sin tener en cuenta categorías)
     public function obtenerAlertasDistrito($distrito) {
-   		$coleccion = $this->conexion();
-   		
-    	$documento = $coleccion->find(['distrito' => $distrito]);
-    	$total = $coleccion->count(['distrito' => $distrito]);
+   		$documento = $this->daoAler->obtenerAlertasDistrito($distrito);
+    	$total = $this->daoAler->totalAlertasDistrito($distrito);
     	if($total > 0){
 	    	foreach ($documento as $doc) {
 	    		# code...
@@ -155,10 +148,10 @@ class claseAlertas {
 
     //Funcion que inserta las alertas creadas por un usuario
     public function insertarAlerta($nombre, $categoria, $distrito, $alerta){
-    	$coleccion = $this->conexion();
     	$fecha = strftime("%d-%m-%Y %H:%M:%S", time());
     	$documento = ['alerta'=> $alerta, 'fecha'=>$fecha, 'distrito'=>$distrito, 'categoria'=>$categoria,'fuente'=>$nombre, 'veridico'=>false, 'url'=> NULL];
-    	$coleccion->insertOne($documento);
+    	$this->daoAler->insertarAlerta($documento);
+    	
     }
 
     //Funcion que muestra una alerta con el formato correspondiente
