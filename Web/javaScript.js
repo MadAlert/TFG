@@ -42,6 +42,7 @@ $("#botonAlert").click(function(){
 					$("#nombre").val('');
 					$("#email").val('');
 				}
+				//Falta que si es 0 -----> mostrar mensaje de error y no se añade
 			   }
 			  });
 			  

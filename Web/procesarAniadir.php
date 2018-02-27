@@ -12,6 +12,11 @@ $alerta = $_POST['alerta'];
 $clasificador = new Clasificador();
 $sol = $clasificador->obtenerClasificacion($alerta);
 
-$alertas->insertarAlerta($nombre, $categoria, $distrito, $alerta);
-echo"1";
+if($sol!=false && $sol==$categoria){
+	$alertas->insertarAlerta($nombre, $categoria, $distrito, $alerta);
+	echo"1";
+}
+else{
+	echo"0";
+}
 ?>

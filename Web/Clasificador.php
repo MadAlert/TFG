@@ -4,36 +4,51 @@ require 'vendor/autoload.php';
 class Clasificador {
 	
 
+	public $api = "http://api.meaningcloud.com/class-1.1";
+	public $key = "05ed9a7c754aeee5d5f99470a756a5f8";
+	public $model = "news";
+
+	private function obtenerResponse($api, $key, $model, $txt) {
+	  $data = http_build_query(array('key'=>$key,
+	                                 'model'=>$model,
+	                                 'txt'=>$txt,
+	                                 'src'=>'sdk-php-1.1')); // management internal parameter
+	  $context = stream_context_create(array('http'=>array(
+	        'method'=>'POST',
+	        'header'=>
+	          'Content-type: application/x-www-form-urlencoded'."\r\n".
+	          'Content-Length: '.strlen($data)."\r\n",
+	        'content'=>$data)));
+	  
+	  $fd = fopen($api, 'r', false, $context);
+	  $response = stream_get_contents($fd);
+	  fclose($fd);
+	  return $response;
+	}
 
 
-    public function obtenerClasificacion($alerta){
-    	$curl = curl_init();
-		curl_setopt_array($curl, array(
-		  CURLOPT_URL => 'http://api.meaningcloud.com/class-1.1',
-		  CURLOPT_RETURNTRANSFER => true,
-		  CURLOPT_ENCODING => "",
-		  CURLOPT_MAXREDIRS => 10,
-		  CURLOPT_TIMEOUT => 30,
-		  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-		  CURLOPT_CUSTOMREQUEST => "POST",
-		  CURLOPT_POSTFIELDS => "key=05ed9a7c754aeee5d5f99470a756a5f8&txt=$alerta&model=news",
-		  CURLOPT_HTTPHEADER => array(
-		    "content-type: application/x-www-form-urlencoded"
-		  ),
-		));
+	public function obtenerClasificacion($alerta){
 
-		$response = curl_exec($curl);
-		$err = curl_error($curl);
+		// We make the request and parse the response to an array
+		$response = $this->obtenerResponse($this->api, $this->key, $this->model, $alerta);
+		$json = json_decode($response, true);
 
-		curl_close($curl);
-
-		if ($err) {
-		  $var = "cURL Error #:" + $err;
-		  echo $var;
-		} else {
-		  return $response;
+		if(isset($json['category_list']) && count($json['category_list'])>0) {
+		  $i=0;
+		  foreach($json['category_list'] as $categorie) {
+		  	//if($i == 0){
+		  		$label = $categorie['label'];
+		  		return $label;
+			   // echo '  + '.$categorie['label'].' ('.$categorie['code'].") \n";
+			    //echo '     -> relevance: '.$categorie['relevance']."\n";
+			//}
+		  }
+		}else{
+		  return false;
 		}
 	}
 
 }
 ?>
+
+
