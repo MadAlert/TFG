@@ -150,8 +150,7 @@ class claseAlertas {
     public function insertarAlerta($nombre, $categoria, $distrito, $alerta){
     	$fecha = strftime("%d-%m-%Y %H:%M:%S", time());
     	$documento = ['alerta'=> $alerta, 'fecha'=>$fecha, 'distrito'=>$distrito, 'categoria'=>$categoria,'fuente'=>$nombre, 'veridico'=>false, 'url'=> NULL];
-    	$this->daoAler->insertarAlerta($documento);
-    	
+    	$this->daoAler->insertarAlerta($documento);    	
     }
 
     //Funcion que muestra una alerta con el formato correspondiente

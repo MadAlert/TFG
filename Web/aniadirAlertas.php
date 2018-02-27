@@ -109,14 +109,15 @@
                                     <div class="form-group">
                                         <div class="col-md-6">
                                             <textarea rows="5" placeholder="Introduce la alerta..."
-                                            class="form-control form-control-line" name="alerta" required/></textarea>
+                                            class="form-control form-control-line" name="alerta" id="alerta" required/></textarea>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-6">
-                                            <button class="btn btn-danger" type="submit">Añadir alerta</button>
+                                            <button class="btn btn-danger" type="submit" id="botonAlert">Añadir alerta</button>
                                         </div>
                                     </div>
+                                    <div class="correcto" id="correcto">Su mensaje ha sido enviado correctamente</div>
                                 </form>                                                                
                             </div>
                         </div>
@@ -163,6 +164,7 @@
     <script src="assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
+    <script src="javaScript.js"></script>
     <!-- google maps api -->
 </body>
 

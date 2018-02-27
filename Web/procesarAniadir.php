@@ -1,5 +1,6 @@
 <?php
 include ("claseAlertas.php");
+include ("Clasificador.php");
 $alertas = new claseAlertas();
 
 $nombre = $_POST['nombre'];
@@ -8,7 +9,9 @@ $categoria = $_POST['categorias'];
 $distrito = $_POST['distritos'];
 $alerta = $_POST['alerta'];
 
-$alertas->insertarAlerta($nombre, $categoria, $distrito, $alerta);
+$clasificador = new Clasificador();
+$sol = $clasificador->obtenerClasificacion($alerta);
 
-header('Location: aniadirAlertas.php');
+$alertas->insertarAlerta($nombre, $categoria, $distrito, $alerta);
+echo"1";
 ?>

@@ -2898,6 +2898,27 @@ widget-chart-page product review
 /*============================================================== 
 Form addons page
 ============================================================== */
+
+
+.correcto{
+    border: 1px solid;
+    margin: 10px 0px;
+    padding:15px 10px 15px 50px;
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size:13px;
+    text-align:left;
+    width:auto;
+  display: none;
+
+}
+.correcto {
+    color: #4F8A10;
+    background-color: #DFF2BF;
+}
+
+
 /*Bootstrap select*/
 .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
   width: 100%; }
