@@ -87,10 +87,10 @@
                                 <p class="m-t-30"> Somos un grupo de estudiante de la Facultad de Informática de la Universidad Complutense de Madrid. </br> Esta web pertenece a nuestro Trabajo de Fin de Grado realizado durante el curso 2017/2018.
                                 </p>
                                     <ul>
-                                        <li> <h2> Nerea Gómez Domínguez </h2> </li>
-                                        <li> <h2> Silvia Lendínez Fernández </h2> </li>
-                                        <li> <h2> Gonzalo Molina Díaz </h2> </li>
-                                        <li> <h2> Adrián Panadero González </h2> </li>
+                                        <li> <h3> Nerea Gómez Domínguez </h3> </li>
+                                        <li> <h3> Silvia Lendínez Fernández </h3> </li>
+                                        <li> <h3> Gonzalo Molina Díaz </h3> </li>
+                                        <li> <h3> Adrián Panadero González </h3> </li>
                                     </ul>
                                 <hr>
                                 <h1 class="card-title"> Contáctanos </h1>                                

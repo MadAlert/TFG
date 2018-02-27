@@ -143,7 +143,10 @@
                                                             echo "<li class='nav-item'> <a class='nav-link active' data-toggle='tab' role='tab'><b>Distrito $distrito</b></a> </li>";
                                                             
                                                             echo '</ul>';
-                                                            $alertas->obtenerAlertasDistrito($distrito);
+                                                            $num = $alertas->obtenerAlertasDistrito($distrito);
+                                                            if($num == false){
+                                                                echo "<p><p><h4>Este distrito no dispone de alertas con esos filtros todavía</h4></p></p>";
+                                                            }
                                                         }
                                     
                                     
