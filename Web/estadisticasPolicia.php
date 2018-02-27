@@ -360,6 +360,13 @@
     <script src="assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>   
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
+    <script>
+        $(window).resize(function(){
+            drawColumns();
+            drawColumnsDouble();
+            drawChartSeguridad();
+        });
+    </script>
 </body>
 
 </html>

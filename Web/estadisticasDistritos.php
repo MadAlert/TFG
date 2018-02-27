@@ -337,5 +337,11 @@
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
     <script src="js/javaScriptEstadisticas.js"></script> <!-- nuevo script de estadisticas-->
+    <script>
+        $(window).resize(function(){
+            drawChart1();
+            drawChart2();
+        });
+    </script>
 </body>
 </html>

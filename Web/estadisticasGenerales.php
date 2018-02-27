@@ -457,7 +457,12 @@
     <script src="assets/plugins/gmaps/jquery.gmaps.js"></script>
 
     <script src="js/javaScriptEstadisticas.js"></script> <!-- nuevo script de estadisticas-->
-
+    <script>
+        $(window).resize(function(){
+            drawMultSeriesMes1();
+            drawMultSeriesMes2();
+        });
+    </script>
 
 </body>
 
