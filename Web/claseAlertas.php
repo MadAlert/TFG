@@ -81,9 +81,8 @@ class claseAlertas {
 
     //Obtiene el numero de alertas de todos los distritos
     public function obtenerNumeroAlertas($distrito) {
-   	  $coleccion = $this->conexion();
+   	  $total = $this->daoAler->obtenerNumeroAlertas($distrito);
 
-      $total = $coleccion->count(['distrito' => $distrito]);
       return $total;	
     }
 
@@ -112,27 +111,27 @@ class claseAlertas {
     }
 
     public function obtenerDatos (){
-      $totalArganzuela= $this->obtenerNumeroAlertas("Arganzuela");
-      $totalBarajas = $this->obtenerNumeroAlertas("Barajas");
-      $totalCarabanchel = $this->obtenerNumeroAlertas("Carabanchel");
-      $totalCentro = $this->obtenerNumeroAlertas("Centro");
-      $totalChamartin = $this->obtenerNumeroAlertas("Chamartín");
-      $totalChamberi = $this->obtenerNumeroAlertas("Chamberí");
-      $totalCiudadLineal = $this->obtenerNumeroAlertas("Ciudad Lineal");
-      $totalFuencarral = $this->obtenerNumeroAlertas("Fuencarral-El Pardo");
-      $totalHortaleza = $this->obtenerNumeroAlertas("Hortaleza");
-      $totalLatina = $this->obtenerNumeroAlertas("Latina");
-      $totalMoncloa = $this->obtenerNumeroAlertas("Moncloa-Aravaca");
-      $totalMoratalaz = $this->obtenerNumeroAlertas("Moratalaz");
-      $totalPuenteVallecas = $this->obtenerNumeroAlertas("Puente de Vallecas");
-      $totalRetiro = $this->obtenerNumeroAlertas("Retiro");
-      $totalSalamanca = $this->obtenerNumeroAlertas("Salamanca");
-      $totalSanBlas = $this->obtenerNumeroAlertas("San Blas-Canillejas");
-      $totalTetuan = $this->obtenerNumeroAlertas("Tetuán");
-      $totalUsera = $this->obtenerNumeroAlertas("Usera");
-      $totalVicalvaro = $this->obtenerNumeroAlertas("Vicálvaro");
-      $totalVillaVallecas = $this->obtenerNumeroAlertas("Villa de Vallecas");
-      $totalVillaverde = $this->obtenerNumeroAlertas("Villaverde");
+      $totalArganzuela = $this->daoAler->obtenerNumeroAlertas("Arganzuela");
+      $totalBarajas = $this->daoAler->obtenerNumeroAlertas("Barajas");
+      $totalCarabanchel = $this->daoAler->obtenerNumeroAlertas("Carabanchel");
+      $totalCentro = $this->daoAler->obtenerNumeroAlertas("Centro");
+      $totalChamartin = $this->daoAler->obtenerNumeroAlertas("Chamartín");
+      $totalChamberi = $this->daoAler->obtenerNumeroAlertas("Chamberí");
+      $totalCiudadLineal = $this->daoAler->obtenerNumeroAlertas("Ciudad Lineal");
+      $totalFuencarral = $this->daoAler->obtenerNumeroAlertas("Fuencarral-El Pardo");
+      $totalHortaleza = $this->daoAler->obtenerNumeroAlertas("Hortaleza");
+      $totalLatina = $this->daoAler->obtenerNumeroAlertas("Latina");
+      $totalMoncloa = $this->daoAler->obtenerNumeroAlertas("Moncloa-Aravaca");
+      $totalMoratalaz = $this->daoAler->obtenerNumeroAlertas("Moratalaz");
+      $totalPuenteVallecas = $this->daoAler->obtenerNumeroAlertas("Puente de Vallecas");
+      $totalRetiro = $this->daoAler->obtenerNumeroAlertas("Retiro");
+      $totalSalamanca = $this->daoAler->obtenerNumeroAlertas("Salamanca");
+      $totalSanBlas = $this->daoAler->obtenerNumeroAlertas("San Blas-Canillejas");
+      $totalTetuan = $this->daoAler->obtenerNumeroAlertas("Tetuán");
+      $totalUsera = $this->daoAler->obtenerNumeroAlertas("Usera");
+      $totalVicalvaro = $this->daoAler->obtenerNumeroAlertas("Vicálvaro");
+      $totalVillaVallecas = $this->daoAler->obtenerNumeroAlertas("Villa de Vallecas");
+      $totalVillaverde = $this->daoAler->obtenerNumeroAlertas("Villaverde");
       $lista = [$totalArganzuela, $totalBarajas, $totalCarabanchel, $totalCentro, $totalChamartin, $totalChamberi, $totalCiudadLineal, $totalFuencarral, $totalHortaleza, $totalLatina, $totalMoncloa, $totalMoratalaz, $totalPuenteVallecas, $totalRetiro, $totalSalamanca, $totalSanBlas, $totalTetuan, $totalUsera, $totalVicalvaro, $totalVillaVallecas, $totalVillaverde];
       return $lista;
     }
@@ -142,7 +141,7 @@ class claseAlertas {
     }
 
     public function obtenerDatosMarcadores($distrito){
-    	return $distritoMapa = $this->obtenerAlertasDistrito($distrito);
+    	return $distritoMapa = $this->daoAler->obtenerAlertasDistrito($distrito);
     }
 
 

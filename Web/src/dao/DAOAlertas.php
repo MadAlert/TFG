@@ -28,6 +28,11 @@ class DAOAlertas {
 		return $documento;
 	}
 
+	public function obtenerNumeroAlertas($distrito){
+		$total = $this->con->count(['distrito' => $distrito]);
+		return $total;
+	}
+
     public function totalObtenerAlertas($distrito, $categoria){
     	$total = $this->con->count(['distrito' => $distrito, 'categoria'=>array('$in' => $categorias)]);
     	return $total;

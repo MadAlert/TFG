@@ -32,11 +32,7 @@
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
-    <!-- google maps api -->
-    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
-    <script src="js/javaScriptMapa.js"></script><!--nuevo script de mapa-->
-    <script async defer src="https://maps.google.com/maps/api/js?key=AIzaSyAgXFPH3QXZqFd571ptZm6p2dNYK18aSQQ&callback=initMap"></script>
-    <script src="assets/plugins/gmaps/gmaps.min.js"></script>
+    
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -61,7 +57,6 @@
 		<?php 
 			include('sidebar.php');
 		?>
-
         <!-- ============================================================== -->
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
@@ -240,7 +235,10 @@
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
     <script src="javaScript.js"></script>
-    <!--script src="assets/plugins/gmaps/jquery.gmaps.js"></script-->
+    <!-- google maps api -->
+    <script src="js/javaScriptMapa.js"></script><!--nuevo script de mapa-->
+    <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAgXFPH3QXZqFd571ptZm6p2dNYK18aSQQ&callback=initMap"></script>
+    <script src="assets/plugins/gmaps/gmaps.min.js"></script>
 </body>
 
 </html>
