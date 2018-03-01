@@ -234,7 +234,7 @@
     <script src="assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
-    <script src="javaScript.js"></script>
+    <script src="js/javaScript.js"></script>
     <!-- google maps api -->
     <script src="js/javaScriptMapa.js"></script><!--nuevo script de mapa-->
     <script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAgXFPH3QXZqFd571ptZm6p2dNYK18aSQQ&callback=initMap"></script>

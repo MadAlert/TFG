@@ -36,7 +36,10 @@ function drawChart() {
     ]);
 
     var options = {
-      title: 'Mes de ' + m
+        title: 'Mes de ' + m,
+        width: "100%",
+        height: 500,
+        is3D: true
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -70,7 +73,10 @@ function drawChart2() {
     ]);
 
     var options = {
-      title: 'Mes de ' + m
+        title: 'Mes de ' + m,
+        width: "100%",
+        height: 500,
+        is3D: true
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
@@ -441,7 +447,7 @@ function drawChartSeguridad() {
 
     var options = {
      width: "100%",
-     height: 600,
+     height: 500,
      is3D: true
     };
 

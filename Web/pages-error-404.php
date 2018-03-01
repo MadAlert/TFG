@@ -10,19 +10,14 @@
     <meta name="author" content="">
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
-    <title>Material Pro Admin Template - The Most Complete & Trusted Bootstrap 4 Admin Template</title>
+    <title>Oops...</title>
     <!-- Bootstrap Core CSS -->
     <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
     <link href="css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="css/colors/blue.css" id="theme" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+
 </head>
 
 <body class="fix-header card-no-border">
@@ -33,9 +28,9 @@
         <div class="error-box">
             <div class="error-body text-center">
                 <h1>404</h1>
-                <h3 class="text-uppercase">Page Not Found !</h3>
-                <p class="text-muted m-t-30 m-b-30">YOU SEEM TO BE TRYING TO FIND HIS WAY HOME</p>
-                <a href="index.php" class="btn btn-info btn-rounded waves-effect waves-light m-b-40">Back to home</a> </div>
+                <h3 class="text-uppercase">¡Página no encontrada!</h3>
+                <p class="text-muted m-t-30 m-b-30">Haz click aquí parar volver a la página principal</p>
+                <a href="index.php" class="btn btn-info btn-rounded waves-effect waves-light m-b-40"> Back to home</a> </div>
             <footer class="footer text-center">© 2017 Madlert</footer>
         </div>
     </section>
