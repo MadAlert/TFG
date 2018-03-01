@@ -137,196 +137,16 @@
                         //Obtengo el numero total de alertas que hay segun la categoria seleccionada (y segun el distrito) 
 
                         // PARA EL  MES 1
-
                         $datosMes1 = $estadisticas->obtenerEstGenerales($categoria, $mes1);
                         
                          // PARA EL MES 2
-                        $datosMes2 = $estadisticas->obtenerEstGenerales($categoria, $mes2);                        
-//
-                         $maximo = 0; // Inicializo el maximo del mes 1 a 0
-                         $maximo2 = 0; // Inicializo el maximo del mes 2 a 0
+                        $datosMes2 = $estadisticas->obtenerEstGenerales($categoria, $mes2);                
 
-                         $totalArganzuela= $estadisticas->obtenerEstadisticas("Arganzuela", $categoria, $mes1);
-                         if ($totalArganzuela > $maximo){
-                            $maximo = $totalArganzuela;
-                         }
-                         $totalBarajas= $estadisticas->obtenerEstadisticas("Barajas", $categoria, $mes1);
-                         if ($totalBarajas > $maximo){
-                            $maximo = $totalBarajas;
-                         }
-                         $totalCarabanchel= $estadisticas->obtenerEstadisticas("Carabanchel", $categoria, $mes1);
-                         if ($totalCarabanchel > $maximo){
-                            $maximo = $totalCarabanchel;
-                         }
-                         $totalCentro= $estadisticas->obtenerEstadisticas("Centro", $categoria, $mes1);
-                         if ($totalCentro > $maximo){
-                            $maximo = $totalCentro;
-                         }
-                         $totalChamartin= $estadisticas->obtenerEstadisticas("Chamartín", $categoria, $mes1);
-                         if ($totalChamartin > $maximo){
-                            $maximo = $totalChamartin;
-                         }
-                         $totalChamberi= $estadisticas->obtenerEstadisticas("Chamberí", $categoria, $mes1);   
-                         if ($totalChamberi > $maximo){
-                            $maximo = $totalChamberi;
-                         }
-                         $totalCiudadLineal= $estadisticas->obtenerEstadisticas("CiudadLineal", $categoria, $mes1);
-                         if ($totalCiudadLineal > $maximo){
-                            $maximo = $totalCiudadLineal;
-                         }
-                         $totalFuencarral= $estadisticas->obtenerEstadisticas("Fuencarral", $categoria, $mes1);
-                         if ($totalFuencarral > $maximo){
-                            $maximo = $totalFuencarral;
-                         }
-                         $totalGeneral= $estadisticas->obtenerEstadisticas("General", $categoria, $mes1);
-                         if ($totalGeneral > $maximo){
-                            $maximo = $totalGeneral;
-                         }
-                         $totalHortaleza= $estadisticas->obtenerEstadisticas("Hortaleza", $categoria, $mes1);
-                         if ($totalHortaleza > $maximo){
-                            $maximo = $totalHortaleza;
-                         }
-                         $totalLatina= $estadisticas->obtenerEstadisticas("Latina", $categoria, $mes1);
-                         if ($totalLatina > $maximo){
-                            $maximo = $totalLatina;
-                         }
-                         $totalMoncloa= $estadisticas->obtenerEstadisticas("Moncloa", $categoria, $mes1);
-                         if ($totalMoncloa > $maximo){
-                            $maximo = $totalMoncloa;
-                         }
-                         $totalMoratalaz= $estadisticas->obtenerEstadisticas("Moratalaz", $categoria, $mes1);
-                         if ($totalMoratalaz > $maximo){
-                            $maximo = $totalMoratalaz;
-                         }
-                         $totalPuenteVallecas= $estadisticas->obtenerEstadisticas("Puente Vallecas", $categoria, $mes1);
-                         if ($totalPuenteVallecas > $maximo){
-                            $maximo = $totalPuenteVallecas;
-                         }
-                         $totalRetiro= $estadisticas->obtenerEstadisticas("Retiro", $categoria, $mes1);
-                         if ($totalRetiro > $maximo){
-                            $maximo = $totalRetiro;
-                         }
-                         $totalSalamanca= $estadisticas->obtenerEstadisticas("Salamanca", $categoria, $mes1);
-                         if ($totalSalamanca > $maximo){
-                            $maximo = $totalSalamanca;
-                         }
-                         $totalSanBlas= $estadisticas->obtenerEstadisticas("San Blas", $categoria, $mes1);
-                         if ($totalSanBlas > $maximo){
-                            $maximo = $totalSanBlas;
-                         }
-                         $totalTetuan= $estadisticas->obtenerEstadisticas("Tetuan", $categoria, $mes1);
-                         if ($totalTetuan > $maximo){
-                            $maximo = $totalTetuan;
-                         }
-                         $totalUsera= $estadisticas->obtenerEstadisticas("Usera", $categoria, $mes1);
-                         if ($totalUsera > $maximo){
-                            $maximo = $totalUsera;
-                         }
-                         $totalVicalvaro= $estadisticas->obtenerEstadisticas("Vicálvaro", $categoria, $mes1);
-                         if ($totalVicalvaro > $maximo){
-                            $maximo = $totalVicalvaro;
-                         }
-                         $totalVillaVallecas= $estadisticas->obtenerEstadisticas("Villa de Vallecas", $categoria, $mes1);
-                         if ($totalVillaVallecas > $maximo){
-                            $maximo = $totalVillaVallecas;
-                         }
-                         $totalVillaverde= $estadisticas->obtenerEstadisticas("Villaverde", $categoria, $mes1);
-                         if ($totalVillaverde > $maximo){
-                            $maximo = $totalVillaverde;
-                         }
+                        // los maximos de cada mes        
+                        $maximo = $estadisticas->obtenerMaximoDistrito($datosMes1);
+                        $maximo2 = $estadisticas->obtenerMaximoDistrito($datosMes2);
 
-
-                         // PARA EL MES 2
                         
-                         $totalArganzuela2= $estadisticas->obtenerEstadisticas("Arganzuela", $categoria, $mes2);
-                         if ($totalArganzuela2 > $maximo2){
-                            $maximo2 = $totalArganzuela2;
-                         }
-                         $totalBarajas2= $estadisticas->obtenerEstadisticas("Barajas", $categoria, $mes2);
-                         if ($totalBarajas2 > $maximo2){
-                            $maximo2 = $totalBarajas2;
-                         }
-                         $totalCarabanchel2= $estadisticas->obtenerEstadisticas("Carabanchel", $categoria, $mes2);
-                         if ($totalCarabanchel2 > $maximo2){
-                            $maximo2 = $totalCarabanchel2;
-                         }
-                         $totalCentro2= $estadisticas->obtenerEstadisticas("Centro", $categoria, $mes2);
-                         if ($totalCentro2 > $maximo2){
-                            $maximo2 = $totalCentro2;
-                         }
-                         $totalChamartin2= $estadisticas->obtenerEstadisticas("Chamartín", $categoria, $mes2);
-                         if ($totalChamartin2 > $maximo2){
-                            $maximo2 = $totalChamartin2;
-                         }
-                         $totalChamberi2= $estadisticas->obtenerEstadisticas("Chamberí", $categoria, $mes2);   
-                         if ($totalChamberi2 > $maximo2){
-                            $maximo2 = $totalChamberi2;
-                         }
-                         $totalCiudadLineal2= $estadisticas->obtenerEstadisticas("CiudadLineal", $categoria, $mes2);
-                         if ($totalCiudadLineal2 > $maximo2){
-                            $maximo2 = $totalCiudadLineal2;
-                         }
-                         $totalFuencarral2= $estadisticas->obtenerEstadisticas("Fuencarral", $categoria, $mes2);
-                         if ($totalFuencarral2 > $maximo2){
-                            $maximo2 = $totalFuencarral2;
-                         }
-                         $totalGeneral2= $estadisticas->obtenerEstadisticas("General", $categoria, $mes2);
-                         if ($totalGeneral2 > $maximo2){
-                            $maximo2 = $totalGeneral2;
-                         }
-                         $totalHortaleza2= $estadisticas->obtenerEstadisticas("Hortaleza", $categoria, $mes2);
-                         if ($totalHortaleza2 > $maximo2){
-                            $maximo2 = $totalHortaleza2;
-                         }
-                         $totalLatina2= $estadisticas->obtenerEstadisticas("Latina", $categoria, $mes2);
-                         if ($totalLatina2 > $maximo2){
-                            $maximo2 = $totalLatina2;
-                         }
-                         $totalMoncloa2= $estadisticas->obtenerEstadisticas("Moncloa", $categoria, $mes2);
-                         if ($totalMoncloa2 > $maximo2){
-                            $maximo2 = $totalMoncloa2;
-                         }
-                         $totalMoratalaz2= $estadisticas->obtenerEstadisticas("Moratalaz", $categoria, $mes2);
-                         if ($totalMoratalaz2 > $maximo2){
-                            $maximo2 = $totalMoratalaz2;
-                         }
-                         $totalPuenteVallecas2= $estadisticas->obtenerEstadisticas("Puente Vallecas", $categoria, $mes2);
-                         if ($totalPuenteVallecas2 > $maximo2){
-                            $maximo2 = $totalPuenteVallecas2;
-                         }
-                         $totalRetiro2= $estadisticas->obtenerEstadisticas("Retiro", $categoria, $mes2);
-                         if ($totalRetiro2 > $maximo2){
-                            $maximo2 = $totalRetiro2;
-                         }
-                         $totalSalamanca2= $estadisticas->obtenerEstadisticas("Salamanca", $categoria, $mes2);
-                         if ($totalSalamanca2 > $maximo2){
-                            $maximo2 = $totalSalamanca2;
-                         }
-                         $totalSanBlas2= $estadisticas->obtenerEstadisticas("San Blas", $categoria, $mes2);
-                         if ($totalSanBlas2 > $maximo2){
-                            $maximo2 = $totalSanBlas2;
-                         }
-                         $totalTetuan2= $estadisticas->obtenerEstadisticas("Tetuan", $categoria, $mes2);
-                         if ($totalTetuan2 > $maximo2){
-                            $maximo2 = $totalTetuan2;
-                         }
-                         $totalUsera2= $estadisticas->obtenerEstadisticas("Usera", $categoria, $mes2);
-                         if ($totalUsera2 > $maximo2){
-                            $maximo2 = $totalUsera2;
-                         }
-                         $totalVicalvaro2= $estadisticas->obtenerEstadisticas("Vicálvaro", $categoria, $mes2);
-                         if ($totalVicalvaro2 > $maximo2){
-                            $maximo2 = $totalVicalvaro2;
-                         }
-                         $totalVillaVallecas2= $estadisticas->obtenerEstadisticas("Villa de Vallecas", $categoria, $mes2);
-                         if ($totalVillaVallecas2 > $maximo2){
-                            $maximo2 = $totalVillaVallecas2;
-                         }
-                         $totalVillaverde2= $estadisticas->obtenerEstadisticas("Villaverde", $categoria, $mes2);
-                         if ($totalVillaverde2 > $maximo2){
-                            $maximo2 = $totalVillaverde2;
-                         }
-
                          if ($maximo != 0){
                              if ($maximo%2 == 0){ // par
                                     $maximo = $maximo + 2;
@@ -361,7 +181,7 @@
 
             //             
                          // Sumo el total de las alertas de cada distrito para cada uno de los meses
-                        $totalTodosMes1 = $estadisticas->sumaAlertasPorDistrito($datosMes1);                        
+                        $totalTodosMes1 = $estadisticas->sumaAlertasPorDistrito($datosMes1);
                         $totalTodosMes2 = $estadisticas->sumaAlertasPorDistrito($datosMes2);
                         
                          // Si la lista suma 0, será que no hay hay estadísticas y me devolverá true (la función está implementada en claseEstadisticas)
@@ -374,8 +194,8 @@
 
 
                         //Muestro el mensaje de que no hay estadísticas en este mes
-                         $noHayEstadisticasMes1 = $estadisticas->noHayEstadisticasGenerales($totalTodosMes1);
-                         $noHayEstadisticasMes2 = $estadisticas->noHayEstadisticasGenerales($totalTodosMes2);
+                        $noHayEstadisticasMes1 = $estadisticas->noHayEstadisticasGenerales($totalTodosMes1);
+                        $noHayEstadisticasMes2 = $estadisticas->noHayEstadisticasGenerales($totalTodosMes2);
 
 
                          echo ' <input type="hidden" name="maximo" value='.$maximo.' id="maximo"/>';

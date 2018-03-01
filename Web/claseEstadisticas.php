@@ -259,6 +259,15 @@ class claseEstadisticas {
       return $total;
     }
 
+    public function obtenerMaximoDistrito($lista){
+      $maximo = 0;
+      foreach ($lista as $valor){
+        if($valor > $maximo)
+          $maximo = $valor;        
+      }
+      return $maximo; 
+    }
+
     public function crearCamposOcultosGenerales($lista){
       echo ' <input type="hidden" name="arganzuela" value='.$lista[0].' id="arganzuela"/>';     
       echo ' <input type="hidden" name="barajas" value='.$lista[1].' id="barajas"/>';
