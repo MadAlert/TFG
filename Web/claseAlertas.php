@@ -10,7 +10,6 @@ class claseAlertas {
 		$this->daoAler = new DAOAlertas();
     }
 
-
     public function obtenerAlertas($distrito, $categorias) {
     	//Query para ver alertas de distritos -> habria que añadir la condicion de fecha
     	$documento = $this->daoAler->obtenerAlertas($distrito, $categoria);
@@ -48,8 +47,7 @@ class claseAlertas {
    		$documento = $this->daoAler->obtenerAlertasDistrito($distrito);
     	$total = $this->daoAler->totalAlertasDistrito($distrito);
     	if($total > 0){
-	    	foreach ($documento as $doc) {
-	    		# code...
+	    	foreach ($documento as $doc) {	    		
 	    		$distrito = $doc->distrito;
 	    		$texto = $doc->alerta;
 	    		$fecha = $doc->fecha;
@@ -190,47 +188,46 @@ class claseAlertas {
     public function mostrarDistritos(){
     	echo '<html>
     		      
-						<select class="form-control form-control-line" name="distritos" id="distritos">
-							<option>Arganzuela</option>
-							<option>Barajas</option>
-							<option>Carabanchel</option>
-							<option>Centro</option>
-							<option>Chamartín</option>
-							<option>Chamberí</option>
-							<option>Ciudad Lineal</option>
-							<option>Fuencarral-El Pardo</option>
-							<option>General</option>
-							<option>Hortaleza</option>
-							<option>Latina</option>
-							<option>Moncloa-Aravaca</option>
-							<option>Moratalaz</option>
-							<option>Puente de Vallecas</option>
-							<option>Retiro</option>
-							<option>Salamanca</option>
-							<option>San Blas-Canillejas</option>
-							<option>Tetuán</option>
-							<option>Usera</option>
-							<option>Vicálvaro</option>
-							<option>Villa de Vallecas</option>
-							<option>Villaverde</option>
-						</select>
+			<select class="form-control form-control-line" name="distritos" id="distritos">
+				<option>Arganzuela</option>
+				<option>Barajas</option>
+				<option>Carabanchel</option>
+				<option>Centro</option>
+				<option>Chamartín</option>
+				<option>Chamberí</option>
+				<option>Ciudad Lineal</option>
+				<option>Fuencarral-El Pardo</option>
+				<option>General</option>
+				<option>Hortaleza</option>
+				<option>Latina</option>
+				<option>Moncloa-Aravaca</option>
+				<option>Moratalaz</option>
+				<option>Puente de Vallecas</option>
+				<option>Retiro</option>
+				<option>Salamanca</option>
+				<option>San Blas-Canillejas</option>
+				<option>Tetuán</option>
+				<option>Usera</option>
+				<option>Vicálvaro</option>
+				<option>Villa de Vallecas</option>
+				<option>Villaverde</option>
+			</select>
                                     
 			 </html>';
     }
 
    public function mostrarCategorias(){
     	echo '<html>
-    		
-                      
-						<select class="form-control form-control-line" name="categorias" id="categorias">
-                            <option>Contaminación</option>
-                            <option>Criminalidad</option>
-                            <option>Desastres y accidentes</option>
-                            <option>Eventos</option>
-                            <option>Terrorismo</option>
-                            <option>Tráfico</option>
-                            <option>Transporte público</option>
-						</select>
+    		          
+			<select class="form-control form-control-line" name="categorias" id="categorias">
+        <option>Contaminación</option>
+        <option>Criminalidad</option>
+        <option>Desastres y accidentes</option>
+        <option>Eventos</option>
+        <option>Terrorismo</option>
+        <option>Tráfico</option>
+        <option>Transporte público</option>
+			</select>
                                     
 			 </html>';
     }

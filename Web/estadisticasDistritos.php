@@ -69,9 +69,6 @@
                 <!-- Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
 
-            
-
-                
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
@@ -119,13 +116,16 @@
                         $estadisticas = new claseEstadisticas();
                         //Calculos para el mes 1
                         $mes1 = $estadisticas->obtenerMes("1");
+                        settype($mes1, 'int');
                         $lista = $estadisticas->obtenerDatos($distrito, $mes1);
                         $noHayEstadisticas1 = $estadisticas->noHayEstadisticas($lista);
                         //Calculos para el mes 2
                         $mes2 =  $estadisticas->obtenerMes("2");
+                        settype($mes2, 'int');
                         $lista2 = $estadisticas->obtenerDatos($distrito, $mes2);
                         $noHayEstadisticas2 = $estadisticas->noHayEstadisticas($lista2);
                         $mostrado = false;
+                        
                         //No hay estadisticas de ningun mes
                         if($noHayEstadisticas1 && $noHayEstadisticas2){
                             $mostrado = true;
@@ -339,7 +339,7 @@
     <script src="js/javaScriptEstadisticas.js"></script> <!-- nuevo script de estadisticas-->
     <script>
         $(window).resize(function(){
-            drawChart1();
+            drawChart();
             drawChart2();
         });
     </script>

@@ -11,7 +11,6 @@ class DAOAlertas {
 		$conexion = new Conexion();
         $this->con = $conexion->conexionAlertas();
     }
-
 	
 	public function obtenerAlertasDistrito($distrito) {
     	$documento = $this->con->find(['distrito' => $distrito]);
