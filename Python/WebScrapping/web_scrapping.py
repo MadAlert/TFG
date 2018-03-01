@@ -65,12 +65,12 @@ for i, entrada in enumerate(entradas):
                 # Cuando inserta a Mongo la fecha al final muestra una 'Z'. Esto es Zulu Time, lo que nosotros conocemos como UTC Time
                 # aqui es donde hay que crear lo de la fecha
                 dif = datetime.now() - timedelta(minutes=5)  
-                fd = datetime.strptime(fecha, "%d-%m-%Y %H:%M:%S")
+                fd = datetime.strptime(fecha, "%d-%m-%Y %H:%M:%S")                
                 mes = fd.month
                 print (mes)
                 if(fd > dif): # si la fecha de la noticia es superior a la hora_actual - 5 min se tiene que guardar
-                    bd.insertarAlerta(cAlertas,titulo,fecha,url,distrito,categoria,"madridDiario")
-                    bd.insertarEstadisticas(cEstadisticas,distrito,categoria,mes)
+                    bd.insertarAlerta(bdAlertas,titulo,fecha,url,distrito,categoria,"madridDiario")
+                    bd.insertarEstadisticas(bdEstadisticas,distrito,categoria,mes)
                 else:
                     salir = True
         
