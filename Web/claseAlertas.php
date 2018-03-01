@@ -13,11 +13,11 @@ class claseAlertas {
 
     public function obtenerAlertas($distrito, $categorias) {
     	//Query para ver alertas de distritos -> habria que añadir la condicion de fecha
-    	$documento = $this->daoAler->obtenerAlertas($distrito, $categoria);
-    	$total = $this->daoAler->totalObtenerAlertas($distrito, $categoria);
+    	$documento = $this->daoAler->obtenerAlertas($distrito, $categorias);
+    	$total = $this->daoAler->totalObtenerAlertas($distrito, $categorias);
     	if($total > 0){
 	    	foreach ($documento as $doc) {
-	    		# code...
+	    		//var_dump($doc);
 	    		$distrito = $doc->distrito;
 	    		$texto = $doc->alerta;
 	    		$fecha = $doc->fecha;
@@ -50,9 +50,11 @@ class claseAlertas {
     	if($total > 0){
 	    	foreach ($documento as $doc) {
 	    		# code...
+	    		$fecha =  $doc->fecha;
+	    		$fechaDate=$fecha->toDateTime();
+	    		$fechaString = $fechaDate->format('H:i:s d-m-Y');
 	    		$distrito = $doc->distrito;
 	    		$texto = $doc->alerta;
-	    		$fecha = $doc->fecha;
 	    		$categoria = $doc->categoria;
 	    		$autor = $doc->fuente;
 	    		if(isset($doc->url)){
@@ -67,7 +69,7 @@ class claseAlertas {
 	    		else{
 	    			$verificado = true;
 	    		}
-	    		$this->mostrarAlertas($distrito, $fecha, $texto, $categoria, $autor, $url, $verificado);
+	    		$this->mostrarAlertas($distrito, $fechaString, $texto, $categoria, $autor, $url, $verificado);
 	    		
 	    	}
 	    	return true;
@@ -162,6 +164,7 @@ class claseAlertas {
                     <div class="sl-right">
                     <div>';
                     	echo '<a class="link"><u>'.$categoria.'</u></a>';
+                    	//strftime ( "%d-%m-%Y", $fecha);
                         echo '<span class="sl-date"> '.$fecha.' </span>';
                         	echo "<p></p>";
                         	echo '<div class="m-t-20 row">
