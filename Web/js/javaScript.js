@@ -20,8 +20,11 @@ function valida() {
 	return ok;
 }
 
+//$("#botonAlert").modal('show')
+
 $("#botonAlert").click(function(){
 			  $("#correcto").hide();
+			  $("#incorrecto").hide();
 
 			  nombre=$("#nombre").val();
 			  email=$("#email").val();
@@ -37,13 +40,23 @@ $("#botonAlert").click(function(){
 				if($.trim(html) == '1'){
 					$("#correcto").slideDown();
 					$("#correcto").delay(2000);
-					$("#correcto").slideUp()
+					$("#correcto").slideUp();
+					$("#alerta").val('');
+					$("#nombre").val('');
+					$("#email").val('');
+				} else {
+					$("#incorrecto").slideDown();
+					$("#incorrecto").delay(2000);
+					$("#incorrecto").slideUp();
 					$("#alerta").val('');
 					$("#nombre").val('');
 					$("#email").val('');
 				}
 				//Falta que si es 0 -----> mostrar mensaje de error y no se añade
-			   }
+			   },
+			   error: function() {
+    				console.error('Ha fallado el proceso Ajax!');
+  			   }
 			  });
 			  
 		return false;
