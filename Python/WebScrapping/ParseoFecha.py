@@ -21,6 +21,6 @@ class ParseoFechaClass():
 		    #mes = trozos[3].index()
 		    mes = meses.index(trozos[3]) + 1
 
-		fecha = dia + "-" + str(mes) + "-" + ano + " " + hora + ":00" 
+		fecha = ano + "-" + str(mes) + "-" + dia + " " + hora + ":00" 
 
 		return fecha
