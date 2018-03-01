@@ -446,7 +446,6 @@ function drawChartSeguridad() {
     ]);
 
     var options = {
-     title: 'Distrito: ' + distrito,
      width: "100%",
      height: 600,
      is3D: true
