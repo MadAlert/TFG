@@ -262,7 +262,7 @@
                                         <div class="card-block">';
                             echo '<table class="columns">
                                         <td>
-                                        <tr><div id="piechart2" ></div></tr></tr>
+                                        <tr><div id="piechart" ></div></tr></tr>
                                         </td>
                                     </table>';
                              echo ' </div>

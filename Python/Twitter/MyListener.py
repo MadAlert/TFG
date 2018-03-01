@@ -5,6 +5,7 @@ import var
 import time
 import sys
 sys.path.append('../')
+from datetime import datetime
 from Clasificador import Clasificador
 import os
 from BaseDatos import BaseDatos
@@ -58,12 +59,13 @@ class listener(StreamListener):
         categoria = c.clasificarTweets(tweet)
         print (categoria);
         if(categoria != "Nada"):
-            fecha= time.strftime('%d-%m-%Y %H:%M:%S', time.strptime(carga['created_at'],'%a %b %d %H:%M:%S +0000 %Y'))
+            fecha= time.strftime('%Y-%m-%d %H:%M:%S', time.strptime(carga['created_at'],'%a %b %d %H:%M:%S +0000 %Y'))
+            datetime_object = datetime.strptime(fecha, '%Y-%m-%d %H:%M:%S');
             mes = time.strftime('%m', time.strptime(carga['created_at'],'%a %b %d %H:%M:%S +0000 %Y'))
             print (fecha)
             nombreUsuario = "@"+carga["user"]["screen_name"]
             zona = c.clasificadorZona(lista)
             print(zona)
             bd.insertarEstadisticas(bdEstadisticas,zona,categoria,mes)
-            bd.insertarAlerta(bdAlertas,tweet,fecha,None,zona,categoria,nombreUsuario)
+            bd.insertarAlerta(bdAlertas,tweet,datetime_object,None,zona,categoria,nombreUsuario)
         

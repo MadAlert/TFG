@@ -109,6 +109,7 @@ function drawMultSeriesMes1() {
     var vicalvaro = document.getElementById("vicalvaro").value;
     var villaVallecas = document.getElementById("villaVallecas").value;
     var villaverde = document.getElementById("villaverde").value;
+    var maximo = document.getElementById("maximo").value;
  
 
     var data = google.visualization.arrayToDataTable([
@@ -150,14 +151,16 @@ function drawMultSeriesMes1() {
           slantedTextAngle: 45,
         },
         vAxis: {
-          title: 'ALERTAS',
-          //viewWindow:{
-            //max:30, // Predefino valores: maximo y minimo 
-            //min:0
-          //}
-          //format.... (se me repiten los numeros...)
-          ticks: [ 0, 5, 10, 15, 20, 25, 30, 35] ,
-          gridlines: {count: 8} // CAMBIO EL NUMERO DE LINEAS QUE VENIAN PREDEFINIDAS
+          title: 'ALERTAS ',
+           //format: '0',
+          //gridlines: {count: 6},
+          viewWindow: {
+             min: 0,
+             max: maximo,
+          },
+           
+          //ticks: [ 0, 5, 10, 15, 20, 25, 30, 35] ,
+          
           
         }
       };
@@ -196,6 +199,7 @@ function drawMultSeriesMes2() {
     var villaVallecas = document.getElementById("villaVallecas2").value;
     var villaverde = document.getElementById("villaverde2").value;
  
+    var maximo2 = document.getElementById("maximo2").value;
 
     var data = google.visualization.arrayToDataTable([
          ['Distrito', '', { role: 'style' }],
@@ -240,13 +244,13 @@ function drawMultSeriesMes2() {
         },
         vAxis: {
           title: 'ALERTAS',
-          //format: 'number', '0'
-          //viewWindow: {
-            //min: 0,
-           // max: 21,
-          //}
-          ticks: [ 0, 5, 10, 15, 20, 25, 30, 35] ,
-          gridlines: {count: 8} // CAMBIO EL NUMERO DE LINEAS QUE VENIAN PREDEFINIDAS
+          //gridlines: {count: 6},
+          viewWindow: {
+            min: 0,
+            max: maximo2,
+          },
+          //ticks: [ 0, parseInt(maximo2)/4, parseInt(maximo2)/ 2, parseInt(maximo2), parseInt(maximo2)*1,5 ] ,
+          //gridlines: {count: 4} // CAMBIO EL NUMERO DE LINEAS QUE VENIAN PREDEFINIDAS
         }
       };
 
