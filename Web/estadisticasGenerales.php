@@ -137,12 +137,12 @@
                         //Obtengo el numero total de alertas que hay segun la categoria seleccionada (y segun el distrito) 
 
                         // PARA EL  MES 1
-<<<<<<< HEAD
+
                         $datosMes1 = $estadisticas->obtenerEstGenerales($categoria, $mes1);
                         
                          // PARA EL MES 2
                         $datosMes2 = $estadisticas->obtenerEstGenerales($categoria, $mes2);                        
-=======
+//
                          $maximo = 0; // Inicializo el maximo del mes 1 a 0
                          $maximo2 = 0; // Inicializo el maximo del mes 2 a 0
 
@@ -342,7 +342,7 @@
                              }
                         }
 
->>>>>>> 24dccc812c721511bb9cc76b18dcb970c838f9d1
+//
 
                         if ($maximo2 != 0){
                             if ($maximo2%2 == 0){ // par
@@ -359,7 +359,7 @@
                              }
                         }
 
-                         
+            //             
                          // Sumo el total de las alertas de cada distrito para cada uno de los meses
                         $totalTodosMes1 = $estadisticas->sumaAlertasPorDistrito($datosMes1);                        
                         $totalTodosMes2 = $estadisticas->sumaAlertasPorDistrito($datosMes2);
@@ -373,61 +373,10 @@
                         $totalGeneralesMes2 = $estadisticas->crearCamposOcultosGenerales2($datosMes2);
 
 
-<<<<<<< HEAD
                         //Muestro el mensaje de que no hay estadísticas en este mes
-=======
                          $noHayEstadisticasMes1 = $estadisticas->noHayEstadisticasGenerales($totalTodosMes1);
                          $noHayEstadisticasMes2 = $estadisticas->noHayEstadisticasGenerales($totalTodosMes2);
 
-                         echo ' <input type="hidden" name="arganzuela" value='.$totalArganzuela.' id="arganzuela"/>';     
-                         echo ' <input type="hidden" name="barajas" value='.$totalBarajas.' id="barajas"/>';
-                         echo ' <input type="hidden" name="carabanchel" value='.$totalCarabanchel.' id="carabanchel"/>';
-                         echo ' <input type="hidden" name="centro" value='.$totalCentro.' id="centro"/>';
-                         echo ' <input type="hidden" name="chamartin" value='.$totalChamartin.' id="chamartin"/>';
-                         echo ' <input type="hidden" name="chamberi" value='.$totalChamberi.' id="chamberi"/>';
-                         echo ' <input type="hidden" name="ciudadLineal" value='.$totalCiudadLineal.' id="ciudadLineal"/>';
-                         echo ' <input type="hidden" name="fuencarral" value='.$totalFuencarral.' id="fuencarral"/>';
-                         echo ' <input type="hidden" name="general" value='.$totalGeneral.' id="general"/>';
-                         echo ' <input type="hidden" name="hortaleza" value='.$totalHortaleza.' id="hortaleza"/>';
-                         echo ' <input type="hidden" name="latina" value='.$totalLatina.' id="latina"/>';
-                         echo ' <input type="hidden" name="moncloa" value='.$totalMoncloa.' id="moncloa"/>';
-                         echo ' <input type="hidden" name="moratalaz" value='.$totalMoratalaz.' id="moratalaz"/>';
-                         echo ' <input type="hidden" name="puenteVallecas" value='.$totalPuenteVallecas.' id="puenteVallecas"/>';
-                         echo ' <input type="hidden" name="retiro" value='.$totalRetiro.' id="retiro"/>';
-                         echo ' <input type="hidden" name="salamanca" value='.$totalSalamanca.' id="salamanca"/>';
-                         echo ' <input type="hidden" name="sanblas" value='.$totalSanBlas.' id="sanblas"/>';
-                         echo ' <input type="hidden" name="tetuan" value='.$totalTetuan.' id="tetuan"/>';
-                         echo ' <input type="hidden" name="usera" value='.$totalUsera.' id="usera"/>';
-                         echo ' <input type="hidden" name="vicalvaro" value='.$totalVicalvaro.' id="vicalvaro"/>';
-                         echo ' <input type="hidden" name="villaVallecas" value='.$totalVillaVallecas.' id="villaVallecas"/>';
-                         echo ' <input type="hidden" name="villaverde" value='.$totalVillaverde.' id="villaverde"/>';
-                         
-
-
-
-
-                          echo ' <input type="hidden" name="arganzuela2" value='.$totalArganzuela2.' id="arganzuela2"/>';   
-                         echo ' <input type="hidden" name="barajas2" value='.$totalBarajas2.' id="barajas2"/>';
-                         echo ' <input type="hidden" name="carabanchel2" value='.$totalCarabanchel2.' id="carabanchel2"/>';
-                         echo ' <input type="hidden" name="centro2" value='.$totalCentro2.' id="centro2"/>';
-                         echo ' <input type="hidden" name="chamartin2" value='.$totalChamartin2.' id="chamartin2"/>';
-                         echo ' <input type="hidden" name="chamberi2" value='.$totalChamberi2.' id="chamberi2"/>';
-                         echo ' <input type="hidden" name="ciudadLineal2" value='.$totalCiudadLineal2.' id="ciudadLineal2"/>';
-                         echo ' <input type="hidden" name="fuencarral2" value='.$totalFuencarral2.' id="fuencarral2"/>';
-                         echo ' <input type="hidden" name="general2" value='.$totalGeneral2.' id="general2"/>';
-                         echo ' <input type="hidden" name="hortaleza2" value='.$totalHortaleza2.' id="hortaleza2"/>';
-                         echo ' <input type="hidden" name="latina2" value='.$totalLatina2.' id="latina2"/>';
-                         echo ' <input type="hidden" name="moncloa2" value='.$totalMoncloa2.' id="moncloa2"/>';
-                         echo ' <input type="hidden" name="moratalaz2" value='.$totalMoratalaz2.' id="moratalaz2"/>';
-                         echo ' <input type="hidden" name="puenteVallecas2" value='.$totalPuenteVallecas2.' id="puenteVallecas2"/>';
-                         echo ' <input type="hidden" name="retiro2" value='.$totalRetiro2.' id="retiro2"/>';
-                         echo ' <input type="hidden" name="salamanca2" value='.$totalSalamanca2.' id="salamanca2"/>';
-                         echo ' <input type="hidden" name="sanblas2" value='.$totalSanBlas2.' id="sanblas2"/>';
-                         echo ' <input type="hidden" name="tetuan2" value='.$totalTetuan2.' id="tetuan2"/>';
-                         echo ' <input type="hidden" name="usera2" value='.$totalUsera2.' id="usera2"/>';
-                         echo ' <input type="hidden" name="vicalvaro2" value='.$totalVicalvaro2.' id="vicalvaro2"/>';
-                         echo ' <input type="hidden" name="villaVallecas2" value='.$totalVillaVallecas2.' id="villaVallecas2"/>';
-                         echo ' <input type="hidden" name="villaverde2" value='.$totalVillaverde2.' id="villaverde2"/>';
 
                          echo ' <input type="hidden" name="maximo" value='.$maximo.' id="maximo"/>';
                          echo "El maximo es : $maximo";
@@ -438,7 +387,6 @@
                          echo "<br>";
 
                          //Muestro el mensaje de que no hay estadísticas en este mes
->>>>>>> 24dccc812c721511bb9cc76b18dcb970c838f9d1
 
                         // No hay estadísticas del mes 1 y si del 2
                         if($noHayEstadisticasMes1 && !$noHayEstadisticasMes2){ 
