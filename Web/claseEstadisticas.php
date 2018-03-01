@@ -212,6 +212,10 @@ class claseEstadisticas {
       echo ' <input type="hidden" name="con_drogas" value='.$lista[4].' id="con_drogas"/>';
     }
 
+    public function obtenerMesPolicia(){
+      return $this->daoEst->obtenerMesEstPolicias("Centro", "mes");
+    }
+
 
     /*Para estadisticasGenerales */
 
