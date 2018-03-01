@@ -48,7 +48,7 @@ function initMap() {
                 if(marcadores[i][3] != 0) {
                     var contentString = '<form id="formulario_marcador" method="POST" action="alertas.php">' +
                     '<h2>' + marcadores[i][0] + '</h2>'+
-                    '<input type="hidden" name="distritoM" value='+ marcadores[i][0] + ' id="distritoM"/>' +
+                    '<input type="hidden" name="distritoM" value="'+ marcadores[i][0] +'" id="distritoM"/>' +
                     '<p> Se han encontrado <b>'+ marcadores[i][3] + ' alertas</b>. </p>' +
                     '<div class="form-center" style=" margin-left:25px; margin-top:20px">' +
                         '<button class="btn btn-info" type="submit">Ver alertas</button>' +
