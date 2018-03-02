@@ -23,12 +23,8 @@
     <link href="css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="css/colors/blue.css" id="theme" rel="stylesheet">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+    <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+    
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
@@ -69,40 +65,14 @@
                 <!-- Bread crumb and right sidebar toggle -->
                 <!-- ============================================================== -->
 
-            
-
-                
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <form method="post" name="alertas" action="estadisticasDistritos.php" id="buscarAlertas">
                 <input type="hidden" id="busqueda" name="busqueda" value="busqueda"/>
                 <?php 
-                    include ("claseAlertas.php");
-                    $alertas = new claseAlertas();
+                    include ("mostrarDistritos.php");
 
-                    //$atributo = $_POST['atributo'];
-                    echo '<div class="row">
-                             <div class="col-12">
-                                <div class="card">
-                                 <div class="card-block">
-                                    <h1 class="card-title"> Estadísticas de los distritos </h1>
-                                    <div class="form-group">
-                                        <label class="col-sm-12">Selecciona un distrito</label>
-                                        <div class="col-sm-12">';
-                                            $alertas->mostrarDistritos();
-                                echo '  </div>                                      
-                                    </div>
-                                </div>
-                                        <div class="form-group" style="margin: auto; margin-bottom: 20px;">
-                                             <div class="items col-sm-12">
-                                                 <button class="btn btn-success" id="alertas">Mostrar</button>
-                                             </div>    
-                                         </div>
-                                    </div>
-                            </div>
-                        </div> 
-                    </form>';
                     
                     if(isset($_POST['busqueda'])){
                         $distrito = $_POST['distritos'];
@@ -119,13 +89,16 @@
                         $estadisticas = new claseEstadisticas();
                         //Calculos para el mes 1
                         $mes1 = $estadisticas->obtenerMes("1");
+                        settype($mes1, 'int');
                         $lista = $estadisticas->obtenerDatos($distrito, $mes1);
                         $noHayEstadisticas1 = $estadisticas->noHayEstadisticas($lista);
                         //Calculos para el mes 2
                         $mes2 =  $estadisticas->obtenerMes("2");
+                        settype($mes2, 'int');
                         $lista2 = $estadisticas->obtenerDatos($distrito, $mes2);
                         $noHayEstadisticas2 = $estadisticas->noHayEstadisticas($lista2);
                         $mostrado = false;
+                        
                         //No hay estadisticas de ningun mes
                         if($noHayEstadisticas1 && $noHayEstadisticas2){
                             $mostrado = true;
@@ -169,7 +142,6 @@
                             $estadisticas->crearCamposOcultosPrimerMes($distrito, $lista , $mes1);
                             $estadisticas->crearCamposOcultosSegundoMes($distrito, $lista2, $mes2);
 
-
                             //Mes 1 
                             echo ' <div class="row">
                             <div class="col-12">
@@ -200,8 +172,7 @@
                                 </div>
                             </div>';
                             echo "
-                            <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'>
-                            google.load()</script>
+
                             <script type='text/javascript'>
                                     google.charts.load('current', {'packages':['corechart']});
                                     google.charts.setOnLoadCallback(drawChart);
@@ -243,9 +214,7 @@
                                 </div>
                             </div>';
 
-                            echo "
-                            <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'>
-                            google.load()</script>
+                            echo "                    
                             <script type='text/javascript'>
                                     google.charts.load('current', {'packages':['corechart']});
                                     google.charts.setOnLoadCallback(drawChart2);
@@ -285,8 +254,6 @@
                                 </div>';
 
                             echo "
-                            <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'>
-                            google.load()</script>
                             <script type='text/javascript'>
                                     google.charts.load('current', {'packages':['corechart']});
                                     google.charts.setOnLoadCallback(drawChart);
@@ -339,7 +306,7 @@
     <script src="js/javaScriptEstadisticas.js"></script> <!-- nuevo script de estadisticas-->
     <script>
         $(window).resize(function(){
-            drawChart1();
+            drawChart();
             drawChart2();
         });
     </script>

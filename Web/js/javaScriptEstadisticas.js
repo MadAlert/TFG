@@ -5,6 +5,7 @@ function ObtenerMes(mes){
   return meses[mes-1];
 }
 
+
 google.charts.load('current', {'packages':['corechart']});
 google.charts.setOnLoadCallback(drawChart);
 google.charts.setOnLoadCallback(drawChart2);
@@ -35,7 +36,10 @@ function drawChart() {
     ]);
 
     var options = {
-      title: 'Mes de ' + m
+        title: 'Mes de ' + m,
+        width: "100%",
+        height: 500,
+        is3D: true
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -69,7 +73,10 @@ function drawChart2() {
     ]);
 
     var options = {
-      title: 'Mes de ' + m
+        title: 'Mes de ' + m,
+        width: "100%",
+        height: 500,
+        is3D: true
     };
 
     var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
@@ -78,11 +85,6 @@ function drawChart2() {
 }            
 
 // SILVIA column chart - > diagrama de barras
-
-
-
-//google.charts.load('current', {packages: ['corechart', 'bar']});
-//google.charts.setOnLoadCallback(drawMultSeriesMes1);
 
 google.charts.load('current', {packages: ['corechart', 'bar']});
 google.charts.setOnLoadCallback(drawMultSeriesMes1);
@@ -175,12 +177,7 @@ function drawMultSeriesMes1() {
       chart.draw(data, options);
   }
 
-
-// column chart - > diagrama de barras
 // MES 2
-
-
-
 
 function drawMultSeriesMes2() {
 
@@ -399,7 +396,6 @@ function drawColumnsDouble() {
          ['Chamberi', parseInt(chamberiC), parseInt(chamberiS)],
          ['Ciudad Lineal', parseInt(ciudadLinealC), parseInt(ciudadLinealS)],
          ['Fuencarral', parseInt(fuencarralC), parseInt(fuencarralS)],
-         /*['General', parseInt(general), 'gold'],*/
          ['Hortaleza', parseInt(hortalezaC), parseInt(hortalezaS)],
          ['Latina', parseInt(latinaC), parseInt(latinaS)],
          ['Moncloa-Aravaca', parseInt(moncloaC), parseInt(moncloaS)],
@@ -451,7 +447,7 @@ function drawChartSeguridad() {
 
     var options = {
      width: "100%",
-     height: 600,
+     height: 500,
      is3D: true
     };
 

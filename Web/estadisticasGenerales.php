@@ -23,6 +23,7 @@
     <link href="css/style.css" rel="stylesheet">
     <!-- You can change the theme colors from here -->
     <link href="css/colors/blue.css" id="theme" rel="stylesheet">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -115,7 +116,6 @@
                         include ("claseEstadisticas.php");
                         $estadisticas = new claseEstadisticas();
 
-
                         //Obtengo la categoría
                         echo ' <input type="hidden" name="categoria" value='.$categoria.' id="categoria"/>';
                         echo ' <div class="row">
@@ -129,12 +129,20 @@
                             </div>';
                          //Calculo los meses 
                         $mes1 = $estadisticas->obtenerMes("1");
-                        $mes2 =  $estadisticas->obtenerMes("2");
-                     
+                        $mes2 =  $estadisticas->obtenerMes("2");     
+                        settype($mes1, 'int');
+                        settype($mes2, 'int');                   
+
 
                         //Obtengo el numero total de alertas que hay segun la categoria seleccionada (y segun el distrito) 
 
                         // PARA EL  MES 1
+
+                        $datosMes1 = $estadisticas->obtenerEstGenerales($categoria, $mes1);
+                        
+                         // PARA EL MES 2
+                        $datosMes2 = $estadisticas->obtenerEstGenerales($categoria, $mes2);                        
+//
                          $maximo = 0; // Inicializo el maximo del mes 1 a 0
                          $maximo2 = 0; // Inicializo el maximo del mes 2 a 0
 
@@ -334,6 +342,7 @@
                              }
                         }
 
+//
 
                         if ($maximo2 != 0){
                             if ($maximo2%2 == 0){ // par
@@ -350,67 +359,24 @@
                              }
                         }
 
-                         
+            //             
                          // Sumo el total de las alertas de cada distrito para cada uno de los meses
-
-                         $totalTodosMes1 = $totalArganzuela + $totalBarajas + $totalCarabanchel + $totalCentro + $totalChamartin + $totalChamberi + $totalCiudadLineal + $totalFuencarral + $totalGeneral + $totalHortaleza + $totalLatina +  $totalMoncloa + $totalMoratalaz + $totalPuenteVallecas + $totalRetiro + $totalSalamanca + $totalSanBlas + $totalTetuan + $totalUsera + $totalVicalvaro + $totalVillaVallecas + $totalVillaverde;
-
-                         $totalTodosMes2 = $totalArganzuela2 + $totalBarajas2 + $totalCarabanchel2 + $totalCentro2 + $totalChamartin2 + $totalChamberi2 + $totalCiudadLineal2 + $totalFuencarral2 + $totalGeneral2 + $totalHortaleza2 + $totalLatina2 +  $totalMoncloa2 + $totalMoratalaz2 + $totalPuenteVallecas2 + $totalRetiro2 + $totalSalamanca2 + $totalSanBlas2 + $totalTetuan2 + $totalUsera2 + $totalVicalvaro2 + $totalVillaVallecas2 + $totalVillaverde2;
-
+                        $totalTodosMes1 = $estadisticas->sumaAlertasPorDistrito($datosMes1);                        
+                        $totalTodosMes2 = $estadisticas->sumaAlertasPorDistrito($datosMes2);
+                        
                          // Si la lista suma 0, será que no hay hay estadísticas y me devolverá true (la función está implementada en claseEstadisticas)
 
+                        $noHayEstadisticasMes1 = $estadisticas->noHayEstadisticasGenerales($totalTodosMes1);
+                        $noHayEstadisticasMes2 = $estadisticas->noHayEstadisticasGenerales($totalTodosMes2);
+
+                        $totalGeneralesMes1 = $estadisticas->crearCamposOcultosGenerales($datosMes1);
+                        $totalGeneralesMes2 = $estadisticas->crearCamposOcultosGenerales2($datosMes2);
+
+
+                        //Muestro el mensaje de que no hay estadísticas en este mes
                          $noHayEstadisticasMes1 = $estadisticas->noHayEstadisticasGenerales($totalTodosMes1);
                          $noHayEstadisticasMes2 = $estadisticas->noHayEstadisticasGenerales($totalTodosMes2);
 
-                         echo ' <input type="hidden" name="arganzuela" value='.$totalArganzuela.' id="arganzuela"/>';     
-                         echo ' <input type="hidden" name="barajas" value='.$totalBarajas.' id="barajas"/>';
-                         echo ' <input type="hidden" name="carabanchel" value='.$totalCarabanchel.' id="carabanchel"/>';
-                         echo ' <input type="hidden" name="centro" value='.$totalCentro.' id="centro"/>';
-                         echo ' <input type="hidden" name="chamartin" value='.$totalChamartin.' id="chamartin"/>';
-                         echo ' <input type="hidden" name="chamberi" value='.$totalChamberi.' id="chamberi"/>';
-                         echo ' <input type="hidden" name="ciudadLineal" value='.$totalCiudadLineal.' id="ciudadLineal"/>';
-                         echo ' <input type="hidden" name="fuencarral" value='.$totalFuencarral.' id="fuencarral"/>';
-                         echo ' <input type="hidden" name="general" value='.$totalGeneral.' id="general"/>';
-                         echo ' <input type="hidden" name="hortaleza" value='.$totalHortaleza.' id="hortaleza"/>';
-                         echo ' <input type="hidden" name="latina" value='.$totalLatina.' id="latina"/>';
-                         echo ' <input type="hidden" name="moncloa" value='.$totalMoncloa.' id="moncloa"/>';
-                         echo ' <input type="hidden" name="moratalaz" value='.$totalMoratalaz.' id="moratalaz"/>';
-                         echo ' <input type="hidden" name="puenteVallecas" value='.$totalPuenteVallecas.' id="puenteVallecas"/>';
-                         echo ' <input type="hidden" name="retiro" value='.$totalRetiro.' id="retiro"/>';
-                         echo ' <input type="hidden" name="salamanca" value='.$totalSalamanca.' id="salamanca"/>';
-                         echo ' <input type="hidden" name="sanblas" value='.$totalSanBlas.' id="sanblas"/>';
-                         echo ' <input type="hidden" name="tetuan" value='.$totalTetuan.' id="tetuan"/>';
-                         echo ' <input type="hidden" name="usera" value='.$totalUsera.' id="usera"/>';
-                         echo ' <input type="hidden" name="vicalvaro" value='.$totalVicalvaro.' id="vicalvaro"/>';
-                         echo ' <input type="hidden" name="villaVallecas" value='.$totalVillaVallecas.' id="villaVallecas"/>';
-                         echo ' <input type="hidden" name="villaverde" value='.$totalVillaverde.' id="villaverde"/>';
-                         
-
-
-
-
-                          echo ' <input type="hidden" name="arganzuela2" value='.$totalArganzuela2.' id="arganzuela2"/>';   
-                         echo ' <input type="hidden" name="barajas2" value='.$totalBarajas2.' id="barajas2"/>';
-                         echo ' <input type="hidden" name="carabanchel2" value='.$totalCarabanchel2.' id="carabanchel2"/>';
-                         echo ' <input type="hidden" name="centro2" value='.$totalCentro2.' id="centro2"/>';
-                         echo ' <input type="hidden" name="chamartin2" value='.$totalChamartin2.' id="chamartin2"/>';
-                         echo ' <input type="hidden" name="chamberi2" value='.$totalChamberi2.' id="chamberi2"/>';
-                         echo ' <input type="hidden" name="ciudadLineal2" value='.$totalCiudadLineal2.' id="ciudadLineal2"/>';
-                         echo ' <input type="hidden" name="fuencarral2" value='.$totalFuencarral2.' id="fuencarral2"/>';
-                         echo ' <input type="hidden" name="general2" value='.$totalGeneral2.' id="general2"/>';
-                         echo ' <input type="hidden" name="hortaleza2" value='.$totalHortaleza2.' id="hortaleza2"/>';
-                         echo ' <input type="hidden" name="latina2" value='.$totalLatina2.' id="latina2"/>';
-                         echo ' <input type="hidden" name="moncloa2" value='.$totalMoncloa2.' id="moncloa2"/>';
-                         echo ' <input type="hidden" name="moratalaz2" value='.$totalMoratalaz2.' id="moratalaz2"/>';
-                         echo ' <input type="hidden" name="puenteVallecas2" value='.$totalPuenteVallecas2.' id="puenteVallecas2"/>';
-                         echo ' <input type="hidden" name="retiro2" value='.$totalRetiro2.' id="retiro2"/>';
-                         echo ' <input type="hidden" name="salamanca2" value='.$totalSalamanca2.' id="salamanca2"/>';
-                         echo ' <input type="hidden" name="sanblas2" value='.$totalSanBlas2.' id="sanblas2"/>';
-                         echo ' <input type="hidden" name="tetuan2" value='.$totalTetuan2.' id="tetuan2"/>';
-                         echo ' <input type="hidden" name="usera2" value='.$totalUsera2.' id="usera2"/>';
-                         echo ' <input type="hidden" name="vicalvaro2" value='.$totalVicalvaro2.' id="vicalvaro2"/>';
-                         echo ' <input type="hidden" name="villaVallecas2" value='.$totalVillaVallecas2.' id="villaVallecas2"/>';
-                         echo ' <input type="hidden" name="villaverde2" value='.$totalVillaverde2.' id="villaverde2"/>';
 
                          echo ' <input type="hidden" name="maximo" value='.$maximo.' id="maximo"/>';
                          echo "El maximo es : $maximo";
@@ -446,13 +412,9 @@
                             <div class="col-12">
                                 <div class="card">
                                         <div class="card-block form-center">'; 
-                                             echo "<p><h3>Estas son las estadísticas para el mes $mes2 </h3></p>";
-                                             echo " <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
-                                              <div id='chart_div'></div> <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+                                             echo "<h3>Estas son las estadísticas para el mes $mes2 </h3>";
+                                             echo " 
                                               <div id='chart_div2'></div>";
-                                           
-                                              
-
 
                                        echo ' </div>
                                        </div>
@@ -483,17 +445,14 @@
                             </div>';
 
 
-                            // Gráfico del mes 1
+                          // Gráfico del mes 1
                           echo ' <div class="row">
                             <div class="col-12">
                                 <div class="card">
                                         <div class="card-block form-center">';
-                                             echo "<p><h3>Estas son las estadísticas para el mes $mes1 </h3></p>";
-                                             echo " <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
-                                              <div id='chart_div'></div> <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+                                             echo "<h3>Estas son las estadísticas para el mes $mes1 </h3>";
+                                             echo "
                                               <div id='chart_div1'></div>";
-                                           
-                                              
 
 
                                        echo ' </div>
@@ -551,13 +510,10 @@
                                 <div class="card">
                                         <div class="card-block form-center">';
                                            // echo "<b> Categoria:  $categoria </b>";
-                                            echo "<p><h3>Estas son las estadísticas para el mes $mes1 </h3></p>";
-                                             echo " <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
-                                              <div id='chart_div'></div> <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
-                                              <div id='chart_div1'></div>";
-                                           
+                                            echo "<h3>Estas son las estadísticas para el mes $mes1 </h3>";
+                                             echo "
                                               
-
+                                              <div id='chart_div1'></div>";
 
                                        echo ' </div>
                                        </div>
@@ -572,14 +528,11 @@
                                     <div class="card">
                                             <div class="card-block form-center">';
                                                 //echo "<b> Categoria:  $categoria </b>";
-                                                echo "<p><h3>Estas son las estadísticas para el mes de $mes2 </h3></p>";
-                                                 echo " <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
-                                                  <div id='chart_div'></div> <script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
+                                                echo "<h3>Estas son las estadísticas para el mes de $mes2 </h3>";
+                                                 echo " 
+                                                  
                                                   <div id='chart_div2'></div>";
                                                
-                                                  
-
-
                                            echo ' </div>
                                            </div>
                                     </div>
@@ -623,11 +576,6 @@
     <script src="assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
-    <!-- google maps api -->
-    <script src="https://maps.google.com/maps/api/js?key=AIzaSyCUBL-6KdclGJ2a_UpmB2LXvq7VOcPT7K4&sensor=true"></script>
-    <script src="assets/plugins/gmaps/gmaps.min.js"></script>
-    <script src="assets/plugins/gmaps/jquery.gmaps.js"></script>
-
     <script src="js/javaScriptEstadisticas.js"></script> <!-- nuevo script de estadisticas-->
     <script>
         $(window).resize(function(){

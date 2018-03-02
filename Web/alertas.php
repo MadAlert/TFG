@@ -162,13 +162,8 @@
                     }
                     
 
-
-
                     if(isset($_POST['atributo'])){
                 ?>
-
-
-
 
                         <!--Recupero los campos de index.php -->
 
