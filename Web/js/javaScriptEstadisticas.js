@@ -234,7 +234,6 @@ function drawMultSeriesMes2() {
       ]);
 
       var options = {
-       
         legend: 'none',
         height: 500,
         chartArea:{
@@ -331,7 +330,13 @@ function drawColumns() {
       height: 500,
       bar: {groupWidth: "75%"},
       legend: {position: "none"},
+      hAxis: {
+        title: 'DISTRITOS',
+        slantedText: true,
+        slantedTextAngle: 45,
+      }
     };
+
 
     var chart = new google.charts.Bar(document.getElementById('column_id'));
     chart.draw(data, google.charts.Bar.convertOptions(options));

@@ -212,6 +212,10 @@ class claseEstadisticas {
       echo ' <input type="hidden" name="con_drogas" value='.$lista[4].' id="con_drogas"/>';
     }
 
+    public function obtenerMesPolicia(){
+      return $this->daoEst->obtenerMesEstPolicias("Centro", "mes");
+    }
+
 
     /*Para estadisticasGenerales */
 
@@ -257,6 +261,15 @@ class claseEstadisticas {
         $total += $valor;        
       }
       return $total;
+    }
+
+    public function obtenerMaximoDistrito($lista){
+      $maximo = 0;
+      foreach ($lista as $valor){
+        if($valor > $maximo)
+          $maximo = $valor;        
+      }
+      return $maximo; 
     }
 
     public function crearCamposOcultosGenerales($lista){
