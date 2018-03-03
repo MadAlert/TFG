@@ -146,40 +146,60 @@
                         $maximo = $estadisticas->obtenerMaximoDistrito($datosMes1);
                         $maximo2 = $estadisticas->obtenerMaximoDistrito($datosMes2);
 
-                        
-                         if ($maximo != 0){
-                             if ($maximo%2 == 0){ // par
-                                    $maximo = $maximo + 2;
-                             } 
-                             else{
-                                    $maximo = $maximo + 3;
-                             }
-                             if ($maximo == 10){
-                                $maximo = 12; // Lo cambio a 12 para que no me muestre decimales 
-                             }
-                             if ($maximo > 30){
-                                $maximo = 40;
-                             }
+                        // Fuerzo los máximos para que salgan bien las gráficas y no con decimales
+                        if ($maximo != 0){
+                            if ($maximo < 4){ 
+                                $maximo = 4; // Voy a ir poniendo valores múltiplos de 4
+                            } elseif ($maximo >= 4 && $maximo < 12){
+                                $maximo = 12;
+                            } elseif ($maximo >= 12 && $maximo < 20){
+                                $maximo = 20;
+                            }  elseif ($maximo >= 20 && $maximo < 40 ){
+                                $maximo = 40; 
+                            } elseif ($maximo >= 40 && $maximo < 60 ){
+                                $maximo = 60;
+                            } elseif ($maximo >= 60 && $maximo < 80 ){
+                                $maximo = 80;
+                            } elseif ($maximo >= 80 && $maximo < 120){
+                                $maximo = 120;
+                            } elseif ($maximo > 120){
+                                if ($maximo%2 == 0){ // par
+                                    $maximo = $maximo + 12; // Dejo bastante margen por arriba, sino se sale
+                                }
+                                else{ // impar
+                                    $maximo = $maximo + 13;
+                                }
+                            } 
+                                
                         }
 
-//
 
                         if ($maximo2 != 0){
-                            if ($maximo2%2 == 0){ // par
-                                    $maximo2 = $maximo2 + 2;
-                             } 
-                             else{
-                                    $maximo2 = $maximo2 + 3;
-                             }
-                             if ($maximo2 == 10){
+                            if ($maximo2 < 4){ 
+                                $maximo2 = 4; // Voy a ir poniendo valores múltiplos de 4
+                            } elseif ($maximo2 >= 4 && $maximo2 < 12){
                                 $maximo2 = 12;
-                             }
-                             if ($maximo2 > 30){
-                                $maximo2 = 40;
-                             }
+                            } elseif ($maximo2 >= 12 && $maximo2 < 20){
+                                $maximo2 = 20;
+                            }  elseif ($maximo2 >= 20 && $maximo2 < 40){
+                                $maximo2 = 40; 
+                            } elseif ($maximo2 >= 40 && $maximo2 < 60){
+                                $maximo2 = 60;
+                            } elseif ($maximo2 >= 60 && $maximo2 < 80){
+                                $maximo2 = 80;
+                            } elseif ($maximo2 >= 80 && $maximo2 < 120){
+                                $maximo2 = 120;
+                            } elseif ($maximo2 > 120){
+                                if ($maximo2%2 == 0){ // par
+                                    $maximo2 = $maximo2 + 12; // Dejo bastante margen por arriba, sino se sale
+                                }
+                                else{ // impar
+                                    $maximo2 = $maximo2 + 13;
+                                }
+                            } 
+                                
                         }
-
-            //             
+            
                          // Sumo el total de las alertas de cada distrito para cada uno de los meses
                         $totalTodosMes1 = $estadisticas->sumaAlertasPorDistrito($datosMes1);
                         $totalTodosMes2 = $estadisticas->sumaAlertasPorDistrito($datosMes2);
@@ -199,12 +219,12 @@
 
 
                          echo ' <input type="hidden" name="maximo" value='.$maximo.' id="maximo"/>';
-                         echo "El maximo es : $maximo";
-                         echo "<br>";
+                         /*echo "El maximo es : $maximo";
+                         echo "<br>";*/
 
                          echo ' <input type="hidden" name="maximo2" value='.$maximo2.' id="maximo2"/>';
-                         echo "El maximo del mes 2 es : $maximo2";
-                         echo "<br>";
+                         /*echo "El maximo del mes 2 es : $maximo2";
+                         echo "<br>";*/
 
                          //Muestro el mensaje de que no hay estadísticas en este mes
 
