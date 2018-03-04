@@ -83,7 +83,18 @@
                     include ("mostrarDistritos.php");
 
                     include("claseEstadisticas.php");
-                    $estadisticas = new claseEstadisticas();                                                    
+                    $estadisticas = new claseEstadisticas(); 
+
+                    $mes = $estadisticas->obtenerMesPolicia();
+                    echo ' <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                        <div class="card-block form-center">';
+                                            echo '<h2>Estadísticas del mes de '.$mes .' </h2>';
+                                            echo ' </div>
+                                </div>
+                            </div>
+                           </div>';                                                   
 
                     /* Detenidos */
                     $datosDetenidos = $estadisticas->obtenerDatosDetenidos();            

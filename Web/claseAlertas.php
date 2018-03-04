@@ -14,12 +14,17 @@ class claseAlertas {
     	//Query para ver alertas de distritos -> habria que añadir la condicion de fecha
     	$documento = $this->daoAler->obtenerAlertas($distrito, $categorias);
     	$total = $this->daoAler->totalObtenerAlertas($distrito, $categorias);
+<<<<<<< HEAD
+=======
+      $i =0;
+>>>>>>> 71592c4233f6e93cf1d0a78b41f57c3750b0b44a
     	if($total > 0){
 	    	foreach ($documento as $doc) {
-	    		# code...
+          $fecha =  $doc->fecha;
+          $fechaDate=$fecha->toDateTime();
+          $fechaString = $fechaDate->format('H:i:s d-m-Y');
 	    		$distrito = $doc->distrito;
 	    		$texto = $doc->alerta;
-	    		$fecha = $doc->fecha;
 	    		$categoria = $doc->categoria;
 	    		$autor = $doc->fuente;
 	    		$url = $doc->url;
@@ -29,7 +34,7 @@ class claseAlertas {
 	    		else{
 	    			$verificado = true;
 	    		}
-	    		$this->mostrarAlertas($distrito, $fecha, $texto, $categoria, $autor, $url, $verificado);
+	    		$this->mostrarAlertas($distrito, $fechaString, $texto, $categoria, $autor, $url, $verificado);
 	    		
 	    	}
 	    	return true;
@@ -47,10 +52,13 @@ class claseAlertas {
    		$documento = $this->daoAler->obtenerAlertasDistrito($distrito);
     	$total = $this->daoAler->totalAlertasDistrito($distrito);
     	if($total > 0){
-	    	foreach ($documento as $doc) {	    		
+	    	foreach ($documento as $doc) {
+	    		# code...
+	    		$fecha =  $doc->fecha;
+	    		$fechaDate=$fecha->toDateTime();
+	    		$fechaString = $fechaDate->format('H:i:s d-m-Y');
 	    		$distrito = $doc->distrito;
 	    		$texto = $doc->alerta;
-	    		$fecha = $doc->fecha;
 	    		$categoria = $doc->categoria;
 	    		$autor = $doc->fuente;
 	    		if(isset($doc->url)){
@@ -65,7 +73,7 @@ class claseAlertas {
 	    		else{
 	    			$verificado = true;
 	    		}
-	    		$this->mostrarAlertas($distrito, $fecha, $texto, $categoria, $autor, $url, $verificado);
+	    		$this->mostrarAlertas($distrito, $fechaString, $texto, $categoria, $autor, $url, $verificado);
 	    		
 	    	}
 	    	return true;
@@ -145,7 +153,7 @@ class claseAlertas {
 
     //Funcion que inserta las alertas creadas por un usuario
     public function insertarAlerta($nombre, $categoria, $distrito, $alerta){
-    	$fecha = strftime("%d-%m-%Y %H:%M:%S", time());
+      $fecha = new MongoDB\BSON\UTCDateTime(new DateTime(null, new DateTimeZone('Europe/Madrid')));
     	$documento = ['alerta'=> $alerta, 'fecha'=>$fecha, 'distrito'=>$distrito, 'categoria'=>$categoria,'fuente'=>$nombre, 'veridico'=>false, 'url'=> NULL];
     	$this->daoAler->insertarAlerta($documento);    	
     }
@@ -160,6 +168,7 @@ class claseAlertas {
                     <div class="sl-right">
                       <div>';
                     	echo '<a class="link"><u>'.$categoria.'</u></a>';
+                    	//strftime ( "%d-%m-%Y", $fecha);
                         echo '<span class="sl-date"> '.$fecha.' </span>';
                         	echo "<p></p>";
                         	echo '<div class="m-t-20 row">

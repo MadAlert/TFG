@@ -40,7 +40,7 @@ class DAOEstadisticas {
     }
 
     public function obtenerEstAccidentes($distrito, $conHeridos, $sinHeridos){
-      $documento = $this->conEstAcc->findOne(array('distrito' => $distrito), array($conHeridos, $sinHeridos));      
+      $documento = $this->conEstAcc->findOne(array('distrito' => $distrito), array($conHeridos, $sinHeridos));
       return $documento;
     }
 

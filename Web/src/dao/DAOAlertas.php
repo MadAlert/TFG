@@ -13,7 +13,7 @@ class DAOAlertas {
     }
 	
 	public function obtenerAlertasDistrito($distrito) {
-    	$documento = $this->con->find(['distrito' => $distrito]);
+    	$documento = $this->con->find(['distrito' => $distrito],['sort' => ['fecha' => -1]]);
     	return $documento;
 	}
 
@@ -22,8 +22,13 @@ class DAOAlertas {
 		return $total;
 	}
 
+<<<<<<< HEAD
 	public function obtenerAlertas($distrito, $categoria){
 		$documento = $this->con->find(['distrito' => $distrito, 'categoria'=>array('$in' => $categoria)]);
+=======
+	public function obtenerAlertas($distrito, $categorias){
+		$documento = $this->con->find(['distrito' => $distrito, 'categoria'=>array('$in' => $categorias)], ['sort' => ['fecha' => -1]]);
+>>>>>>> 71592c4233f6e93cf1d0a78b41f57c3750b0b44a
 		return $documento;
 	}
 
@@ -32,8 +37,13 @@ class DAOAlertas {
 		return $total;
 	}
 
+<<<<<<< HEAD
     public function totalObtenerAlertas($distrito, $categoria){
     	$total = $this->con->count(['distrito' => $distrito, 'categoria'=>array('$in' => $categoria)]);
+=======
+    public function totalObtenerAlertas($distrito, $categorias){
+    	$total = $this->con->count(['distrito' => $distrito, 'categoria'=>array('$in' => $categorias)]);
+>>>>>>> 71592c4233f6e93cf1d0a78b41f57c3750b0b44a
     	return $total;
     }
 

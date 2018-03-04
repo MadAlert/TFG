@@ -62,6 +62,7 @@ class listener(StreamListener):
             fecha= time.strftime('%Y-%m-%d %H:%M:%S', time.strptime(carga['created_at'],'%a %b %d %H:%M:%S +0000 %Y'))
             datetime_object = datetime.strptime(fecha, '%Y-%m-%d %H:%M:%S');
             mes = time.strftime('%m', time.strptime(carga['created_at'],'%a %b %d %H:%M:%S +0000 %Y'))
+            mes = int(mes)
             print (fecha)
             nombreUsuario = "@"+carga["user"]["screen_name"]
             zona = c.clasificadorZona(lista)
