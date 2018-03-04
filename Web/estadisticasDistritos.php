@@ -71,7 +71,7 @@
                 <form method="post" name="alertas" action="estadisticasDistritos.php" id="buscarAlertas">
                 <input type="hidden" id="busqueda" name="busqueda" value="busqueda"/>
                 <?php 
-                    include ("mostrarDistritos.php");
+                    include("mostrarDistritosDist.php");
 
                     
                     if(isset($_POST['busqueda'])){
