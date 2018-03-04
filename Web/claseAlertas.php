@@ -14,10 +14,7 @@ class claseAlertas {
     	//Query para ver alertas de distritos -> habria que añadir la condicion de fecha
     	$documento = $this->daoAler->obtenerAlertas($distrito, $categorias);
     	$total = $this->daoAler->totalObtenerAlertas($distrito, $categorias);
-<<<<<<< HEAD
-=======
       $i =0;
->>>>>>> 71592c4233f6e93cf1d0a78b41f57c3750b0b44a
     	if($total > 0){
 	    	foreach ($documento as $doc) {
           $fecha =  $doc->fecha;
