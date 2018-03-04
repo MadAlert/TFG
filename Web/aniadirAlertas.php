@@ -117,8 +117,8 @@
                                             <button class="btn btn-danger" type="submit" id="botonAlert">Añadir alerta</button><!--data-toggle="modal" data-target="#bsModal3"-->
                                         </div>
                                     </div>
-                                    <div class="correcto" id="correcto">Su mensaje ha sido enviado correctamente</div>
-                                    <div class="incorrecto" id="incorrecto">Su mensaje no se ha podido enviar</div>
+                                    <div class="correcto" id="correcto">Su alerta se ha insertado correctamente</div>
+                                    <div class="incorrecto" id="incorrecto">La categoría elegida no es la correspondiente a su alerta, intentelo de nuevo </div>
                                 </form>  
                                 <!-- Modal
                                 <div class="modal fade" id="bsModal3" tabindex="0" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -181,7 +181,7 @@
     <script src="assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
     <!--Custom JavaScript -->
     <script src="js/custom.min.js"></script>
-    <script src="javaScript.js"></script>
+    <script src="js/javaScript.js"></script>
     <!-- google maps api -->
 </body>
 
