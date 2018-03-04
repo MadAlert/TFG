@@ -12,8 +12,8 @@ class claseAlertas {
 
     public function obtenerAlertas($distrito, $categorias) {
     	//Query para ver alertas de distritos -> habria que añadir la condicion de fecha
-    	$documento = $this->daoAler->obtenerAlertas($distrito, $categoria);
-    	$total = $this->daoAler->totalObtenerAlertas($distrito, $categoria);
+    	$documento = $this->daoAler->obtenerAlertas($distrito, $categorias);
+    	$total = $this->daoAler->totalObtenerAlertas($distrito, $categorias);
     	if($total > 0){
 	    	foreach ($documento as $doc) {
 	    		# code...
@@ -158,24 +158,42 @@ class claseAlertas {
                 <div class="sl-item">
                     <div class="sl-left"></div>
                     <div class="sl-right">
-                    <div>';
+                      <div>';
                     	echo '<a class="link"><u>'.$categoria.'</u></a>';
                         echo '<span class="sl-date"> '.$fecha.' </span>';
                         	echo "<p></p>";
                         	echo '<div class="m-t-20 row">
-                        			<div class="col-md-1">';
+                            <div class="col-md-1 col-xs-12">';
+                              if($categoria == "Desastres y accidentes") {
+                                  echo '<img src= "assets/images/accident.png"/>';
+                              } else if($categoria == "Terrorismo") {
+                                  echo '<img src= "assets/images/terrorism.png"/>';
+                              } else if($categoria == "Eventos") {
+                                  echo '<img src= "assets/images/events.png"/>';
+                              } else if($categoria == "Contaminación") {
+                                  echo '<img src= "assets/images/contamination.png"/>';
+                              } else if($categoria == "Criminalidad") {
+                                  echo '<img src= "assets/images/criminal.png"/>';
+                              } else if($categoria == "Tráfico") {
+                                  echo '<img src= "assets/images/traffic.png"/>';
+                              } else if($categoria == "Transporte público") {
+                                  echo '<img src= "assets/images/bus.png"/>';
+                              }
+                          echo '</div>';
+                        			
+                              //AÑADIR LOS ICONOS AQUIIIIIIIIIIIIIIIII
                         	if($verificado != false){
+                            echo '<div class="col-md-1 col-xs-12">';
                         		echo '<i class="mdi mdi-verified"></i></div>';
                         	}
-                        	else{
-                        		echo '</div>';
-                        	}
+                          echo '<div class="col-md-10 col-xs-12">';
+                                                                
                         	if ($url != Null){
                             	echo "<a href=".$url.">".$texto."</a>";
                             }else{
                             	echo "$texto";
                             }
-                            echo '</div>';
+                            echo '</div></div>';
                             echo '<p></p>';
                             echo '<div class="like-comm"> <a href="javascript:void(0)" class="link m-r-10">Fuente:</a><class="link m-r-10">' .$autor.'</div>';
                     echo '</div>';

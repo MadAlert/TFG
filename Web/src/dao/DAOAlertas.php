@@ -23,7 +23,7 @@ class DAOAlertas {
 	}
 
 	public function obtenerAlertas($distrito, $categoria){
-		$documento = $this->con->find(['distrito' => $distrito, 'categoria'=>array('$in' => $categorias)]);
+		$documento = $this->con->find(['distrito' => $distrito, 'categoria'=>array('$in' => $categoria)]);
 		return $documento;
 	}
 
@@ -33,7 +33,7 @@ class DAOAlertas {
 	}
 
     public function totalObtenerAlertas($distrito, $categoria){
-    	$total = $this->con->count(['distrito' => $distrito, 'categoria'=>array('$in' => $categorias)]);
+    	$total = $this->con->count(['distrito' => $distrito, 'categoria'=>array('$in' => $categoria)]);
     	return $total;
     }
 
