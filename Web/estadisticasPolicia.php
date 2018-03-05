@@ -23,15 +23,8 @@
     <!-- You can change the theme colors from here -->
     <link href="css/colors/blue.css" id="theme" rel="stylesheet">    
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>   
-    <script src="js/javaScriptEstadisticas.js"></script> <!-- nuevo script de estadisticas--> 
+    <script src="js/javaScriptEstadisticas.js"></script> <!-- nuevo script de estadisticas-->                
 
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-
-<![endif]-->
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
@@ -76,36 +69,43 @@
                 <input type="hidden" id="busqueda" name="busqueda" value="busqueda"/>
                 <?php                                  
                     
-                        echo '
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-block">
-                    <h1 class="card-title"> Estadísticas de la Policía Municipal </h1>
-                        <div class="form-group">
-                            <label class="col-sm-12"> ¿Qué estadisticas quieres ver? </label>
-                                <div class="col-sm-12">';
-                                        
-                                        
-                          echo '
-                                </div>                                                              
+                echo '
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <h1 class="card-title"> Estadísticas de la Policía Municipal </h1>
+                                    <div class="form-group">
+                                        <label class="col-sm-12"> ¿Qué estadísticas quieres ver? </label>
+                                            <div class="col-sm-12">
+                                            <select class="form-control form-control-line" name="eleccion" id="eleccion" onchange="muestraDistritos()">
+                                                <option> Estadísticas de detenidos por distritos</option>
+                                                <option> Estadísticas de accidentes por distritos</option>
+                                                <option> Estadísticas relacionadas con la seguridad</option>
+                                            </select>';               
+                                                   
+                echo '
+                </div>                                                              
+                    </div>
                         </div>
-                </div>
+                            <div class="form-group" style="margin: auto; margin-bottom: 20px;">
+                                <div class="items col-sm-12">
+                                   <button class="btn btn-success" id="elec">Mostrar</button>
+                                </div>    
+                            </div>                            
+                        </div>
+                    </div>
+                </div>';
 
-                <div class="form-group" style="margin: auto; margin-bottom: 20px;">
-                    <div class="items col-sm-12">
-                       <button class="btn btn-success" id="alertas">Mostrar</button>
-                    </div>    
-                </div>
-                
-            </div>
-        </div>
-    </div>';
-
-                    include("mostrarDistritosPolicia.php");
+                echo '<p id="mostrarDistritos"> <p> ';
+                    
 
                     include("claseEstadisticas.php");
-                    $estadisticas = new claseEstadisticas();                    
+                    $estadisticas = new claseEstadisticas();         
+
+                    if(isset($_POST['busqueda'])){                    
+       
+                    $eleccion = $_POST['eleccion'];
 
                     $mes = $estadisticas->obtenerMesPolicia();
                     echo ' <div class="row">
@@ -119,6 +119,7 @@
                            </div>';            
 
 
+                    if($eleccion == 'Estadísticas de detenidos por distritos'){
                     /* Detenidos */
                     $datosDetenidos = $estadisticas->obtenerDatosDetenidos();            
                     $totalDetenidos = $estadisticas->crearCamposOcultosDetenidos($datosDetenidos);
@@ -142,7 +143,10 @@
                             google.charts.setOnLoadCallback(drawColumns);                            
                     </script>";
 
+                }
 
+                elseif ($eleccion == 'Estadísticas de accidentes por distritos') {
+                   
                 /* Accidentes */
                 $datosAccidentes = $estadisticas->obtenerDatosAccidentes();
 
@@ -164,11 +168,18 @@
                             google.charts.setOnLoadCallback(drawColumnsDouble);
                     </script>";
 
+                }
 
+                elseif ($eleccion == 'Estadísticas relacionadas con la seguridad') {
+                   /* include("mostrarDistritosPolicia.php");*/
                     /* Seguridad */
-                    if(isset($_POST['busqueda'])){                    
-                        $distrito = $_POST['distritos'];                        
-      
+
+                    echo '<form method="post" name="selecDist" action="estadisticasPolicia.php" id="buscarAlertas">
+                    <input type="hidden" id="selecDist" name="selecDist" value="selecDist"/>';
+
+                    if(isset($_POST['selecDist'])){                    
+                        $distrito = $_POST['distritos'];         
+
                         $datosSeguridad = $estadisticas->obtenerDatosSeguridad($distrito);
                         $totalSeguridad = $estadisticas->crearCamposOcultosSeguridad($distrito, $datosSeguridad);
 
@@ -182,22 +193,26 @@
                                 </div>
                             </div>                            
                         </div>
-                    </div>';
+                    </div>
+                    </form>';
                     
                
-                  
                     echo "                   
                     <script type='text/javascript'>
                             google.charts.load('current', {'packages':['corechart']});
                             google.charts.setOnLoadCallback(drawChartSeguridad);                            
-                     </script>
+                     </script>";
 
-                    <p> Fuente: <a href='http://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=bffff1d2a9fdb410VgnVCM2000000c205a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD'>Datos estadísticos actuaciones Policía Municipal </a> </p>";
+                    }
+                }
+
+                    echo "<p> Fuente: <a href='http://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=bffff1d2a9fdb410VgnVCM2000000c205a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD'>Datos estadísticos actuaciones Policía Municipal </a> </p>";
 
 
                   }
               
                 ?>
+                </form>
                 
                 <!-- ============================================================== -->
                 <!-- End Bread crumb and right sidebar toggle -->

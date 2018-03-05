@@ -30,7 +30,7 @@ class DAOEstadisticas {
     }
 
     public function obtenerEstSeguridad($distrito, $tipo) {
-      $documento = $this->conEstSeg->findOne(array('distrito' => $distrito), array($tipo));
+      $documento = $this->conEstSeg->findOne(array('distrito' => $distrito), array($tipo));      
       return $documento[$tipo];
     }
 

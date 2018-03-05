@@ -1,12 +1,14 @@
 <?php 
+
+    /*NO SE ESTA USANDO*/
+
     include ("claseAlertas.php");
     $alertas = new claseAlertas();
 
     echo '<div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-block">
-                    <h1 class="card-title"> Estadísticas de la Policía Municipal </h1>
+                <div class="card-block">                    
                         <div class="form-group">
                             <label class="col-sm-12">Selecciona un distrito</label>
                                 <div class="col-sm-12">';

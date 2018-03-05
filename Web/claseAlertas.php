@@ -7,7 +7,7 @@ class claseAlertas {
 	public $daoAler;
 
     function __construct() {
-		$this->daoAler = new DAOAlertas();
+		  $this->daoAler = new DAOAlertas();
     }
 
     public function obtenerAlertas($distrito, $categorias) {
@@ -221,7 +221,6 @@ class claseAlertas {
 				<option>Chamberí</option>
 				<option>Ciudad Lineal</option>
 				<option>Fuencarral-El Pardo</option>
-				<option>General</option>
 				<option>Hortaleza</option>
 				<option>Latina</option>
 				<option>Moncloa-Aravaca</option>
