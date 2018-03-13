@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         setToolbar(); // añadir la toolbar
+        // comentario para probar el git
 
         //setear adaptador al viewpager
         miViewPager = (ViewPager) findViewById(R.id.pager);
