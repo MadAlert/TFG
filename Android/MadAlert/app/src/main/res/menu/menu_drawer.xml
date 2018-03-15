@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/item_settings"
+            android:checked="true"
+            android:icon="@drawable/configuracion"
+            android:title="@string/item_settings"/>
+        <item
+            android:id="@+id/item_soporte"
+            android:icon="@drawable/soporte"
+            android:title="@string/item_soporte"/>
+        <item
+            android:id="@+id/item_aboutus"
+            android:icon="@drawable/soporte"
+            android:title="@string/item_aboutus"/>
+        <item
+            android:id="@+id/item_contacto"
+            android:icon="@drawable/contacto"
+            android:title="@string/item_contacto"/>
+        <item
+            android:id="@+id/item_faq"
+            android:icon="@drawable/soporte"
+            android:title="@string/item_faq"/>
+
+    </group>
+
+</menu>
