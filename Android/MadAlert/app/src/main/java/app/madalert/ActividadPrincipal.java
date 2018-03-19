@@ -19,6 +19,7 @@ import java.util.List;
 public class ActividadPrincipal extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     ViewPager miViewPager;
+    ///Prueba
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
