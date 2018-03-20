@@ -13,7 +13,7 @@
             android:title="@string/item_soporte"/>
         <item
             android:id="@+id/item_aboutus"
-            android:icon="@drawable/soporte"
+            android:icon="@drawable/aboutus"
             android:title="@string/item_aboutus"/>
         <item
             android:id="@+id/item_contacto"
@@ -21,7 +21,7 @@
             android:title="@string/item_contacto"/>
         <item
             android:id="@+id/item_faq"
-            android:icon="@drawable/soporte"
+            android:icon="@drawable/faq"
             android:title="@string/item_faq"/>
 
     </group>

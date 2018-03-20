@@ -31,7 +31,6 @@ public class ActividadPrincipal extends AppCompatActivity {
         //setear adaptador al viewpager
         miViewPager = (ViewPager) findViewById(R.id.pager);
         setupViewPager(miViewPager);
-
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         //preparar las pestañas
