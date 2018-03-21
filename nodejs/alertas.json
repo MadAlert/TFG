@@ -1,0 +1,310 @@
+[
+	{
+		"_id" : ObjectId("5a9bdafaa6ca9c2670332823"),
+		"alerta" : "Herido grave tras perder el control en la M-30",
+		"fecha" : ISODate("2018-03-03T12:15:00Z"),
+		"url" : "https://www.madridiario.es/453888/herido-grave-tras-estrellarse-en-la-m-30",
+		"distrito" : "Arganzuela",
+		"categoria" : "Desastres y accidentes",
+		"fuente" : "madridDiario"
+	},
+	{
+		"_id" : ObjectId("5a9bdafba6ca9c2670332825"),
+		"alerta" : "Requisadas dos pistolas de fogueo y munición",
+		"fecha" : ISODate("2018-02-21T18:20:00Z"),
+		"url" : "https://www.madridiario.es/453543/pistolas-fogueo-municion-navajas-arganzuela",
+		"distrito" : "Arganzuela",
+		"categoria" : "Criminalidad",
+		"fuente" : "madridDiario"
+	},
+	{
+		"_id" : ObjectId("5a9bdafea6ca9c2670332827"),
+		"alerta" : "Ya es oficial: Carmena frena el boom turístico en el centro",
+		"fecha" : ISODate("2018-02-01T15:48:00Z"),
+		"url" : "https://www.madridiario.es/452886/ayuntamiento-madrid-suspende-licencias-alojamientos-turisticos",
+		"distrito" : "Arganzuela",
+		"categoria" : "Contaminación",
+		"fuente" : "madridDiario"
+	},
+	{
+		"_id" : ObjectId("5a9bdaffa6ca9c2670332829"),
+		"alerta" : "Un año de moratoria turística para hoteles del centro",
+		"fecha" : ISODate("2018-01-25T14:32:00Z"),
+		"url" : "https://www.madridiario.es/452678/moratoria-hotelera-centro-otros-barrios",
+		"distrito" : "Arganzuela",
+		"categoria" : "Contaminación",
+		"fuente" : "madridDiario"
+	},
+	{
+		"_id" : ObjectId("5a9bdb00a6ca9c267033282b"),
+		"alerta" : "Diez afectados por un incendio en Arganzuela",
+		"fecha" : ISODate("2017-12-16T10:56:00Z"),
+		"url" : "https://www.madridiario.es/451481/diez-afectados-por-un-incendio-en-arganzuela",
+		"distrito" : "Arganzuela",
+		"categoria" : "Desastres y accidentes",
+		"fuente" : "madridDiario"
+	},
+	{
+		"_id" : ObjectId("5a9bdb02a6ca9c267033282d"),
+		"alerta" : "Explosión de gas en una tienda de Arganzuela",
+		"fecha" : ISODate("2017-12-07T08:19:00Z"),
+		"url" : "https://www.madridiario.es/451195/explosion-de-gas-en-una-tienda-de-arganzuela",
+		"distrito" : "Arganzuela",
+		"categoria" : "Desastres y accidentes",
+		"fuente" : "madridDiario"
+	},
+	{
+		"_id" : ObjectId("5a9bdb06a6ca9c267033282f"),
+		"alerta" : "Pillado al robar un coche en Arganzuela",
+		"fecha" : ISODate("2017-11-10T15:50:00Z"),
+		"url" : "https://www.madridiario.es/450244/detenido-robo-coches-arganzuela",
+		"distrito" : "Arganzuela",
+		"categoria" : "Criminalidad",
+		"fuente" : "madridDiario"
+	},
+	{
+		"_id" : ObjectId("5a9bdb07a6ca9c2670332831"),
+		"alerta" : "Dos detenidos tras una persecución en Arganzuela",
+		"fecha" : ISODate("2017-11-08T12:50:00Z"),
+		"url" : "https://www.madridiario.es/450176/detenidos-posesion-drogas-persecucion-policial-arganzuela",
+		"distrito" : "Arganzuela",
+		"categoria" : "Criminalidad",
+		"fuente" : "madridDiario"
+	},
+	{
+		"_id" : ObjectId("5a9bdb0ba6ca9c2670332833"),
+		"alerta" : "Detenidos por traficar con pastillas de Star Wars",
+		"fecha" : ISODate("2018-03-03T17:51:00Z"),
+		"url" : "https://www.madridiario.es/453892/desarticulada-una-banda-que-traficada-con-pastillas-de-star-wars",
+		"distrito" : "Barajas",
+		"categoria" : "Criminalidad",
+		"fuente" : "madridDiario"
+	},
+	{
+		"_id" : ObjectId("5a9bdb0ca6ca9c2670332835"),
+		"alerta" : "Detenidos por introducir droga desde Colombia",
+		"fecha" : ISODate("2018-02-12T11:35:00Z"),
+		"url" : "https://www.madridiario.es/453224/detenidos-por-introducir-droga-desde-colombia",
+		"distrito" : "Barajas",
+		"categoria" : "Criminalidad",
+		"fuente" : "madridDiario"
+	},
+	{
+		"_id" : ObjectId("5a9bdb0ea6ca9c2670332837"),
+		"alerta" : " Homicidio o violencia machista",
+		"fecha" : ISODate("2018-02-08T07:51:00Z"),
+		"url" : "https://www.madridiario.es/453093/homicidio-violencia-genero-asesinada-prostituta",
+		"distrito" : "Barajas",
+		"categoria" : "Eventos",
+		"fuente" : "madridDiario"
+	},
+	{
+		"_id" : ObjectId("5a9bdb0fa6ca9c2670332839"),
+		"alerta" : "Barajas, sin instituto y con la alternativa paralizada",
+		"fecha" : ISODate("2018-02-01T07:45:00Z"),
+		"url" : "https://www.madridiario.es/452837/barajas-queda-sin-segundo-instituto-alternativo-rejas-paralizado",
+		"distrito" : "Barajas",
+		"categoria" : "Transporte público",
+		"fuente" : "madridDiario"
+	},
+	{
+		"_id" : ObjectId("5a9bdb10a6ca9c267033283b"),
+		"alerta" : "A prisión por tirar por una ventana a una mujer en Barajas",
+		"fecha" : ISODate("2018-01-29T16:28:00Z"),
+		"url" : "https://www.madridiario.es/452780/prision-tirar-ventana-mujer-barajas",
+		"distrito" : "Barajas",
+		"categoria" : "Criminalidad",
+		"fuente" : "madridDiario"
+	},
+	{
+		"_id" : ObjectId("5a9bdb10a6ca9c267033283d"),
+		"alerta" : "Detenido por la muerte de una mujer, a la que arrojó por la ventana",
+		"fecha" : ISODate("2018-01-29T10:59:00Z"),
+		"url" : "https://www.madridiario.es/452752/detenido-un-hombre-de-57-anos-acusado-de-matar-a-una-mujer-arrojandola-por-la-ventana-en-barajas",
+		"distrito" : "Barajas",
+		"categoria" : "Criminalidad",
+		"fuente" : "madridDiario"
+	},
+	{
+		"_id" : ObjectId("5a9bdb11a6ca9c267033283f"),
+		"alerta" : "Detenido por introducir cocaína en cajas de películas",
+		"fecha" : ISODate("2018-01-15T12:16:00Z"),
+		"url" : "https://www.madridiario.es/452333/detenido-por-introducir-cocaina-en-cajas-de-peliculas",
+		"distrito" : "Barajas",
+		"categoria" : "Criminalidad",
+		"fuente" : "madridDiario"
+	},
+	{
+		"_id" : ObjectId("5a9bdb12a6ca9c2670332841"),
+		"alerta" : "Detenidos tres chicos por disparar balines en Barajas",
+		"fecha" : ISODate("2017-12-18T16:46:00Z"),
+		"url" : "https://www.madridiario.es/451539/detenidos-tres-chicos-disparar-balines-barajas",
+		"distrito" : "Barajas",
+		"categoria" : "Criminalidad",
+		"fuente" : "madridDiario"
+	},
+	{
+		"_id" : ObjectId("5a9bdb65a6ca9c2168126a8c"),
+		"alerta" : "#Sucesos Un hombre ha resultado herido muy grave tras chocar con su vehículo contra un muro en #Fuenlabrada https://t.co/kg3sNyDNY8",
+		"fecha" : ISODate("2018-03-04T11:41:23Z"),
+		"url" : null,
+		"distrito" : "Fuencarral-El Pardo",
+		"categoria" : "Criminalidad",
+		"fuente" : "@Madridiario"
+	},
+	{
+		"_id" : ObjectId("5a9bdb74a6ca9c2168126a8f"),
+		"alerta" : "Contaminación en Chamberí",
+		"fecha" : ISODate("2018-03-04T11:41:38Z"),
+		"url" : null,
+		"distrito" : "Chamberí",
+		"categoria" : "Contaminación",
+		"fuente" : "@mad_alert"
+	},
+	{
+		"_id" : ObjectId("5a9bdbd6a6ca9c0f08005b92"),
+		"alerta" : "contaminación en argaanzuela",
+		"fecha" : ISODate("2018-03-04T11:43:18.510Z"),
+		"distrito" : "Arganzuela",
+		"categoria" : "Contaminación",
+		"fuente" : "Nerea",
+		"veridico" : false,
+		"url" : null
+	},
+	{
+		"_id" : ObjectId("5a9bdcc3a6ca9c2168126a92"),
+		"alerta" : "#Madrid reforzará este lunes sus medidas de gestión del #tráfico ante las previsiones de #lluvia https://t.co/Z3LouDzZ84",
+		"fecha" : ISODate("2018-03-04T11:47:13Z"),
+		"url" : null,
+		"distrito" : "Barajas",
+		"categoria" : "Tráfico",
+		"fuente" : "@Gacetinmadrid"
+	},
+	{
+		"_id" : ObjectId("5a9bde94a6ca9c2168126a95"),
+		"alerta" : "#Sucesos Un participante de la VII Carrera de Bomberos de Madrid ha sido trasladado al hospital tras sufrir una par… https://t.co/6p87gUhP6w",
+		"fecha" : ISODate("2018-03-04T11:54:58Z"),
+		"url" : null,
+		"distrito" : "Fuencarral-El Pardo",
+		"categoria" : "Criminalidad",
+		"fuente" : "@Madridiario"
+	},
+	{
+		"_id" : ObjectId("5a9be008a6ca9c0f08005b93"),
+		"alerta" : "Contaminación",
+		"fecha" : ISODate("2018-03-04T12:01:12.185Z"),
+		"distrito" : "Arganzuela",
+		"categoria" : "Contaminación",
+		"fuente" : "Adrian",
+		"veridico" : false,
+		"url" : null
+	},
+	{
+		"_id" : ObjectId("5a9be051a6ca9c2168126a98"),
+		"alerta" : "#Sucesos La Fiscalía solicita 32 años de prisión para el hombre que asesinó a su pareja con una brutal paliza https://t.co/4RBKefwYM7",
+		"fecha" : ISODate("2018-03-04T12:02:23Z"),
+		"url" : null,
+		"distrito" : "General",
+		"categoria" : "Criminalidad",
+		"fuente" : "@Madridiario"
+	},
+	{
+		"_id" : ObjectId("5a9be976a6ca9c2168126a9d"),
+		"alerta" : "#Sucesos Tres hombres han sido detenidos por conducir hasta la autoescuela para examinarse sin tener el carné https://t.co/jA6tzKHAk2",
+		"fecha" : ISODate("2018-03-04T12:41:24Z"),
+		"url" : null,
+		"distrito" : "Fuencarral-El Pardo",
+		"categoria" : "Criminalidad",
+		"fuente" : "@Madridiario"
+	},
+	{
+		"_id" : ObjectId("5a9bee99a6ca9c2168126aa1"),
+		"alerta" : "Herido muy grave un hombre de 33 años tras sufrir un accidente de tráfico en #Fuenlabrada - https://t.co/zZcTT0NSl9 https://t.co/TyV0TdJ7cu",
+		"fecha" : ISODate("2018-03-04T13:03:18Z"),
+		"url" : null,
+		"distrito" : "Fuencarral-El Pardo",
+		"categoria" : "Tráfico",
+		"fuente" : "@Actualidad21"
+	},
+	{
+		"_id" : ObjectId("5a9bef2ea6ca9c2168126aa4"),
+		"alerta" : "#Galería Este deporte que combina ejercicios aeróbicos y ejercicios de típcios de gimanasia, como abdominales o dom… https://t.co/1ct0vE3Gzh",
+		"fecha" : ISODate("2018-03-04T13:05:48Z"),
+		"url" : null,
+		"distrito" : "Centro",
+		"categoria" : "Desastres y accidentes",
+		"fuente" : "@Madridiario"
+	},
+	{
+		"_id" : ObjectId("5a9bf562a6ca9c2168126aa9"),
+		"alerta" : "Hoy domingo ha comenzado la temporada de primavera del tren turístico de Arganda. Hasta el 27 de mayo se puede viaj… https://t.co/KWDaTWmxw5",
+		"fecha" : ISODate("2018-03-04T13:32:17Z"),
+		"url" : null,
+		"distrito" : "Vicálvaro",
+		"categoria" : "Transporte público",
+		"fuente" : "@el_pais_madrid"
+	},
+	{
+		"_id" : ObjectId("5a9bfaa2a6ca9c2168126aad"),
+		"alerta" : "#DiaInternacionaldelaMujer La mujer se incorporo a esta policía en 1972. Las primeras, con las de Córdoba. 52 agent… https://t.co/qK9i5yamQ4",
+		"fecha" : ISODate("2018-03-04T13:54:40Z"),
+		"url" : null,
+		"distrito" : "General",
+		"categoria" : "Criminalidad",
+		"fuente" : "@policiademadrid"
+	},
+	{
+		"_id" : ObjectId("5a9bfae8a6ca9c2168126ab0"),
+		"alerta" : "Delincuentes reincidentes: acumulan decenas de detenciones https://t.co/9HGOF0pVmo",
+		"fecha" : ISODate("2018-03-04T13:55:50Z"),
+		"url" : null,
+		"distrito" : "Centro",
+		"categoria" : "Desastres y accidentes",
+		"fuente" : "@InformativosTM"
+	},
+	{
+		"_id" : ObjectId("5a9bff7da6ca9c2168126ab4"),
+		"alerta" : "#Sucesos Una mujer detenida en #CiudadLineal tras encerrar a su hijo durante toda la mañana con un perro pitbull… https://t.co/hR8d9xSIAt",
+		"fecha" : ISODate("2018-03-04T14:15:23Z"),
+		"url" : null,
+		"distrito" : "General",
+		"categoria" : "Criminalidad",
+		"fuente" : "@Gacetinmadrid"
+	},
+	{
+		"_id" : ObjectId("5a9bfff5a6ca9c2168126ab7"),
+		"alerta" : "Teresa Rivero, a juicio por fraude a Hacienda cuando presidía el Rayo Vallecano https://t.co/WdNDA6B3pQ",
+		"fecha" : ISODate("2018-03-04T14:17:23Z"),
+		"url" : null,
+		"distrito" : "Chamartín",
+		"categoria" : "Criminalidad",
+		"fuente" : "@InformativosTM"
+	},
+	{
+		"_id" : ObjectId("5a9c0266a6ca9c2168126aba"),
+		"alerta" : "Las carreras de caballos vuelven a La Zarzuela https://t.co/eZed7oqYGD",
+		"fecha" : ISODate("2018-03-04T14:27:49Z"),
+		"url" : null,
+		"distrito" : "Centro",
+		"categoria" : "Desastres y accidentes",
+		"fuente" : "@InformativosTM"
+	},
+	{
+		"_id" : ObjectId("5a9c05bda6ca9c2168126ac1"),
+		"alerta" : "► Los ayuntamientos comienzan a hacer públicas sus cifras de superávit #España https://t.co/PDdRqv692i https://t.co/Jo9UCOCUya",
+		"fecha" : ISODate("2018-03-04T14:42:03Z"),
+		"url" : null,
+		"distrito" : "Centro",
+		"categoria" : "Desastres y accidentes",
+		"fuente" : "@madridactual"
+	},
+	{
+		"_id" : ObjectId("5a9c0744a6ca9c2168126ac4"),
+		"alerta" : "Mercado de Diseño vuelve a Matadero con un homenaje a la mujer creadora https://t.co/P7wdJBuhaj",
+		"fecha" : ISODate("2018-03-04T14:48:34Z"),
+		"url" : null,
+		"distrito" : "Centro",
+		"categoria" : "Criminalidad",
+		"fuente" : "@InformativosTM"
+	}
+]
