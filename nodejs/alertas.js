@@ -2,7 +2,7 @@
 var restful = require('node-restful');
 var mongoose = restful.mongoose;
 
-var statusSchema = new mongoose.Schema({
+var alertasSchema = new mongoose.Schema({
 	alertas: String,
 	fecha: Date,
 	url: String,
@@ -12,4 +12,4 @@ var statusSchema = new mongoose.Schema({
 });
 
 //return models
-module.exports = restful.model('alertas', statusSchema);
+module.exports = restful.model('alertas', alertasSchema);

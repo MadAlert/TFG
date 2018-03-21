@@ -50,16 +50,16 @@ public class MainActivity extends AppCompatActivity {
         mResult = (TextView) findViewById(R.id.tv_result);
 
         //Hacer petición GET
-        //new GetDataTask().execute("http://192.168.1.53:1000/api/status");
+        new GetDataTask().execute("http://192.168.1.53:1000/api/estadisticas");
 
         //Hacer petición POST
-        //new PostDataTask().execute("http://192.168.1.53:1000/api/status");
+        //new PostDataTask().execute("http://192.168.1.53:1000/api/alertas");
 
         //Hacer petición PUT
-        //new PutDataTask().execute("http://192.168.1.53:1000/api/status/5ab18c7da104795fe0c508da");
+        //new PutDataTask().execute("http://192.168.1.53:1000/api/alertas/5ab18c7da104795fe0c508da");
 
         //Hacer petición Delete
-        new DeleteDataTask().execute("http://192.168.1.53:1000/api/status/5ab18c7da104795fe0c508da");
+        //new DeleteDataTask().execute("http://192.168.1.53:1000/api/alertas/5ab18c7da104795fe0c508da");
     }
 
     @Override
