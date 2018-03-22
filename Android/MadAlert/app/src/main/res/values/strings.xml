@@ -1,23 +1,11 @@
 <resources>
     <string name="app_name">MadAlert</string>
 
-    <string name="title_section1"> Alertas </string>
-    <string name="title_section2"> Mapa </string>
-    <string name="title_section3"> Distritos</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="etiqueta_logo">Logo</string>
-
-    <string name="item_settings">Ajustes</string>
-    <string name="item_soporte">Soporte</string>
-    <string name="item_aboutus">About us</string>
-    <string name="item_contacto">Contacto</string>
-    <string name="item_faq">FAQ</string>
-
-    <string name="alertas">Alertas</string>
-    <string name="mapa">Mapa</string>
-    <string name="distritos">Distritos</string>
+    <string name="action_settings">Settings</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
 </resources>
