@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class ActividadPrincipal extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     ViewPager miViewPager;

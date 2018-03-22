@@ -45,7 +45,12 @@ class Client
      * @param array  $driverOptions Driver-specific options
      * @throws InvalidArgumentException
      */
-    public function __construct($uri = 'mongodb://localhost:27017', array $uriOptions = [], array $driverOptions = [])
+
+    /*Para que la bd sea en mlab he cambiado este uri 
+    Si quieres que sea en local: localhost/27017 
+    =============================
+    Gonzalo, 22/03/2018*/
+    public function __construct($uri = 'mongodb://admin:admin@ds235388.mlab.com:35388/noticias', array $uriOptions = [], array $driverOptions = [])
     {
         $driverOptions += ['typeMap' => self::$defaultTypeMap];
 
