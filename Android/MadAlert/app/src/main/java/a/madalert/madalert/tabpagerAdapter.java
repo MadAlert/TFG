@@ -44,4 +44,5 @@ public class tabpagerAdapter extends FragmentStatePagerAdapter {
     public int getCount() {
         return tabNumber;
     }
+
 }
