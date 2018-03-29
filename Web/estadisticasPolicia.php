@@ -79,7 +79,7 @@
                                         <label class="col-sm-12"> ¿Qué estadísticas quieres ver? </label>
                                             <div class="col-sm-12">
                                             <select class="form-control form-control-line" name="eleccion" id="eleccion" onchange="muestraDistritos()">
-                                                <option> Estadísticas de detenidos por distritos</option>
+                                                <option> Estadísticas de detenidos por distritos </option>
                                                 <option> Estadísticas de accidentes por distritos</option>
                                                 <option> Estadísticas relacionadas con la seguridad</option>
                                             </select>';               
