@@ -1,16 +1,25 @@
 package com.example.adrianpanaderogonzalez.pruebasbd;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.example.adrianpanaderogonzalez.pruebasbd.BasedeDatos.GetAlertasAsyncTask;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -24,12 +33,18 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.Inet4Address;
+import java.net.InetAddress;
 import java.net.URI;
 import java.net.URL;
+import java.net.UnknownHostException;
+import java.util.logging.Logger;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView mResult;
+    private Button but;
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,9 +63,32 @@ public class MainActivity extends AppCompatActivity {
         });
 
         mResult = (TextView) findViewById(R.id.tv_result);
+        but = (Button) findViewById(R.id.btn);
+        spinner = (Spinner) findViewById(R.id.spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.puta, android.R.layout.simple_spinner_item);
+        // Specify the layout to use when the list of choices appears
+                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        // Apply the adapter to the spinner
+        spinner.setAdapter(adapter);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+
+            public void onItemSelected(AdapterView<?> parent, View view,
+            int pos, long id) {
+                // An item was selected. You can retrieve the selected item using
+                parent.getItemAtPosition(pos);
+
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+                // Another interface callback
+            }
+        });
 
         //Hacer petición GET
-        new GetDataTask().execute("http://192.168.1.53:1000/api/estadisticas");
+        //new GetDataTask().execute("http://192.168.1.207:1000/api/alertas");
 
         //Hacer petición POST
         //new PostDataTask().execute("http://192.168.1.53:1000/api/alertas");
@@ -67,6 +105,20 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    public void onButtonClick(View v) throws UnknownHostException {
+
+        Alertas alertas= new Alertas();
+
+        String selec = spinner.getSelectedItem().toString();
+
+        //GetAlertasAsyncTask tsk= new GetAlertasAsyncTask();
+        //tsk.execute(alertas);
+
+
+        //Intent i = new Intent(this, VerAlertasActivity.class);
+        //startActivity(i);
     }
 
     @Override

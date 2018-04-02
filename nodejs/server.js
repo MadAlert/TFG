@@ -2,8 +2,10 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var bodyParser = require('body-parser');
+var port = process.env.PORT || 8080;
 
 //connect to mongoDB
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://MadAlert:tfg20172018@ds235388.mlab.com:35388/noticias'); 
 
 //express

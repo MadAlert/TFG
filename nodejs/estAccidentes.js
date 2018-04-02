@@ -10,4 +10,4 @@ var accidentesSchema = new mongoose.Schema({
 });
 
 //return models
-module.exports = restful.model('estAccidentes', accidentesSchema);
+module.exports = restful.model('estaccidentes', accidentesSchema);

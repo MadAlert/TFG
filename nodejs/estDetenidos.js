@@ -9,4 +9,4 @@ var detenidosSchema = new mongoose.Schema({
 });
 
 //return models
-module.exports = restful.model('estDetenidos', detenidosSchema);
+module.exports = restful.model('estdetenidos', detenidosSchema);

@@ -1,4 +1,11 @@
 <resources>
     <string name="app_name">PruebasBD</string>
     <string name="action_settings">Settings</string>
+    <string name="post_title">Alertas</string>
+
+        <string-array name="puta">
+            <item>Chamberí</item>
+            <item>Barajas</item>
+            <item>Arganzuela</item>
+        </string-array>
 </resources>

@@ -13,4 +13,4 @@ var seguridadSchema = new mongoose.Schema({
 });
 
 //return models
-module.exports = restful.model('estSeguridad', seguridadSchema);
+module.exports = restful.model('estseguridad', seguridadSchema);
