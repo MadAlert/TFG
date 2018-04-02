@@ -1,50 +1,43 @@
 package com.example.adrianpanaderogonzalez.pruebasbd;
 
-import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.adrianpanaderogonzalez.pruebasbd.BasedeDatos.GetAlertasAsyncTask;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.OutputStreamWriter;
-import java.net.HttpURLConnection;
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.URI;
-import java.net.URL;
 import java.net.UnknownHostException;
-import java.util.logging.Logger;
+
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import retrofit2.Response;
+import retrofit2.adapter.rxjava.HttpException;
+import rx.schedulers.Schedulers;
+import rx.subscriptions.CompositeSubscription;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView mResult;
     private Button but;
     private Spinner spinner;
+    private CompositeSubscription mSubscriptions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mSubscriptions = new CompositeSubscription();
         mResult = (TextView) findViewById(R.id.tv_result);
         but = (Button) findViewById(R.id.btn);
         spinner = (Spinner) findViewById(R.id.spinner);
@@ -100,6 +94,43 @@ public class MainActivity extends AppCompatActivity {
         //new DeleteDataTask().execute("http://192.168.1.53:1000/api/alertas/5ab18c7da104795fe0c508da");
     }
 
+    private void AlertasProcess(String distrito) {
+
+        mSubscriptions.add(NetworkUtil.getRetrofit(distrito).getAlertasDistrito(distrito)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(this::handleResponse,this::handleError));
+    }
+
+
+    private void handleResponse(Response response) {
+
+        /*mProgressbar.setVisibility(View.GONE);
+        showSnackBarMessage(response.getMessage());*/
+    }
+
+    private void handleError(Throwable error) {
+
+       // mProgressbar.setVisibility(View.GONE);
+
+        if (error instanceof HttpException) {
+
+            Gson gson = new GsonBuilder().create();
+
+            try {
+
+                String errorBody = ((HttpException) error).response().errorBody().string();
+                Response response = gson.fromJson(errorBody,Response.class);
+                //showSnackBarMessage(response.getMessage());
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+
+            //showSnackBarMessage("Network Error !");
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -134,290 +165,5 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    class GetDataTask extends AsyncTask<String, Void, String> {
-
-        ProgressDialog progressDialog;
-
-        @Override
-        protected void onPreExecute() {
-
-            super.onPreExecute();
-            progressDialog = new ProgressDialog(MainActivity.this);
-            progressDialog.setMessage("Cargando datos...");
-            progressDialog.show();
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-
-            StringBuilder result = new StringBuilder();
-
-            //Inicializa y configura la peticion, de conexion al servidor
-            try {
-                URL url = new URL(params[0]);
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setReadTimeout(10000 /*miliseg*/);
-                urlConnection.setConnectTimeout(10000 /*miliseg*/);
-                urlConnection.setRequestMethod("GET");
-                urlConnection.setRequestProperty("Content-Type", "application/json"); //añadir cabecera
-                urlConnection.connect();
-
-
-                //Leer los datos devueltos por el servidor
-                InputStream inputStream = urlConnection.getInputStream();
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                String line;
-                while ((line = bufferedReader.readLine()) != null) {
-                    result.append(line).append("\n");
-                }
-
-            } catch (IOException ex) {
-                return "Error Conexion!";
-            }
-
-            return result.toString();
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-
-            //añade los datos devueltos a textView
-            mResult.setText(result);
-
-            //Cancela el progreso del dialogo
-            if(progressDialog != null) {
-                progressDialog.dismiss();
-            }
-        }
-    }
-
-    class PostDataTask extends AsyncTask<String, Void, String> {
-
-        ProgressDialog progressDialog;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            progressDialog = new ProgressDialog(MainActivity.this);
-            progressDialog.setMessage("Insertando datos...");
-            progressDialog.show();
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-
-            try {
-                return postData(params[0]);
-            } catch (IOException ex) {
-                return "Error conexion!";
-            } catch (JSONException ex) {
-                return "Data Invalid !";
-            }
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-
-            mResult.setText(result);
-
-            if(progressDialog != null) {
-                progressDialog.dismiss();
-            }
-        }
-
-        private String postData(String urlPath) throws IOException, JSONException {
-
-            StringBuilder result = new StringBuilder();
-            BufferedWriter bufferedWriter = null;
-            BufferedReader bufferedReader = null;
-
-            try {
-                //Crea datos y los manda al servidor
-                JSONObject dataToSend = new JSONObject();
-                dataToSend.put("alertas", "Requisadas dos pistolas de fogueo y munición");
-                dataToSend.put("fecha", "2018-02-21T18:20:00Z");
-                dataToSend.put("url", "https://www.madridiario.es/453543/pistolas-fogueo-municion-navajas-arganzuela");
-                dataToSend.put("distrito", "Arganzuela");
-                dataToSend.put("categoria", "Contaminación");
-                dataToSend.put("fuente", "madridDiario");
-
-                //Inicializar y configurar la petición, despues se conecta al servidor
-                URL url = new URL(urlPath);
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setReadTimeout(10000 /*miliseg*/);
-                urlConnection.setConnectTimeout(10000 /*miliseg*/);
-                urlConnection.setRequestMethod("POST");
-                urlConnection.setDoOutput(true); //activada salida
-                urlConnection.setRequestProperty("Content-Type", "application/json"); //añadir cabecera
-                urlConnection.connect();
-
-                //Escribe datos en el servidor
-                OutputStream outputStream = urlConnection.getOutputStream();
-                bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream));
-                bufferedWriter.write(dataToSend.toString());
-                bufferedWriter.flush();
-
-                //Lee datos del servidor
-                InputStream inputStream = urlConnection.getInputStream();
-                bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-                String line;
-                while ((line = bufferedReader.readLine()) != null) {
-                    result.append(line).append("\n");
-                }
-            } finally {
-                if(bufferedReader != null) {
-                    bufferedReader.close();
-                }
-                if (bufferedWriter != null) {
-                    bufferedWriter.close();
-                }
-            }
-
-            return result.toString();
-        }
-    }
-
-    class PutDataTask extends AsyncTask<String, Void, String> {
-
-        ProgressDialog progressDialog;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            progressDialog = new ProgressDialog(MainActivity.this);
-            progressDialog.setMessage("Actualizando datos...");
-            progressDialog.show();
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-
-            try {
-                return putData(params[0]);
-            } catch (IOException ex) {
-                return "Error conexión";
-            } catch (JSONException ex) {
-                return "Datos invalidos";
-            }
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-
-            mResult.setText(result);
-
-            if(progressDialog != null) {
-                progressDialog.dismiss();
-            }
-        }
-
-        private String putData(String urlPath) throws IOException, JSONException {
-
-            BufferedWriter bufferedWriter = null;
-            String result = null;
-
-            try {
-                //Crear datos a actualizar
-                JSONObject dataToSend = new JSONObject();
-                dataToSend.put("alertas", "Requisadas dos pistolas de fogueo y munición");
-                dataToSend.put("fecha", "2018-02-21T18:20:00Z");
-                dataToSend.put("url", "https://www.madridiario.es/453543/pistolas-fogueo-municion-navajas-arganzuela");
-                dataToSend.put("distrito", "Arganzuela");
-                dataToSend.put("categoria", "Criminalidad");
-                dataToSend.put("fuente", "madridDiario");
-
-                //Inicializar y configurar la petición, despues se conecta al servidor
-                URL url = new URL(urlPath);
-                HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                urlConnection.setReadTimeout(10000 /*miliseg*/);
-                urlConnection.setConnectTimeout(10000 /*miliseg*/);
-                urlConnection.setRequestMethod("PUT");
-                urlConnection.setDoOutput(true); //activada salida
-                urlConnection.setRequestProperty("Content-Type", "application/json"); //añadir cabecera
-                urlConnection.connect();
-
-                //Escribe datos en el servidor
-                OutputStream outputStream = urlConnection.getOutputStream();
-                bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream));
-                bufferedWriter.write(dataToSend.toString());
-                bufferedWriter.flush();
-
-                //Comprueba si la actualizacion ha funcionado o no
-                if (urlConnection.getResponseCode() == 200) {
-                    return "Actualización completada !";
-                } else {
-                    return "Actualización fallida";
-                }
-            } finally {
-                if(bufferedWriter != null) {
-                    bufferedWriter.close();
-                }
-            }
-
-        }
-    }
-
-    class DeleteDataTask extends AsyncTask<String, Void, String> {
-
-        ProgressDialog progressDialog;
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-
-            progressDialog = new ProgressDialog(MainActivity.this);
-            progressDialog.setMessage("Borrando datos...");
-            progressDialog.show();
-        }
-
-        @Override
-        protected String doInBackground(String... params) {
-            try {
-                return deleteData(params[0]);
-            } catch (IOException ex) {
-                return "Error de conexión";
-            }
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-
-            mResult.setText(result);
-
-            if(progressDialog != null) {
-                progressDialog.dismiss();
-            }
-        }
-
-        private String deleteData(String urlPath) throws  IOException {
-
-            String result = null;
-
-            //Inicializar y configurar la petición, despues se conecta al servidor
-            URL url = new URL(urlPath);
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            urlConnection.setReadTimeout(10000 /*miliseg*/);
-            urlConnection.setConnectTimeout(10000 /*miliseg*/);
-            urlConnection.setRequestMethod("DELETE");
-            urlConnection.setDoOutput(true); //activada salida
-            urlConnection.setRequestProperty("Content-Type", "application/json"); //añadir cabecera
-            urlConnection.connect();
-
-            if(urlConnection.getResponseCode() == 204) {
-                result = "Borrado correctamente !";
-            } else {
-                result = "Borrado fallido";
-            }
-
-            return result;
-        }
     }
 }
