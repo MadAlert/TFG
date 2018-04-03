@@ -8,7 +8,7 @@ import okhttp3.Request;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import rx.schedulers.Schedulers;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by adrianpanaderogonzalez on 26/3/18.
