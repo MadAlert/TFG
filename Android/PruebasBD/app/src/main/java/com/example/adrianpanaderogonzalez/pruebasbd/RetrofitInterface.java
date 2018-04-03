@@ -5,7 +5,7 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.Path;
-import android.database.Observable;
+import io.reactivex.Observable;
 
 /**
  * Created by adrianpanaderogonzalez on 26/3/18.
@@ -13,6 +13,6 @@ import android.database.Observable;
 
 public interface RetrofitInterface {
 
-    @GET("users/{distrito}")
-    Observable<Alertas> getAlertasDistrito(@Path("distrito") String distrito);
+    @GET("alertas/{distrito}")
+    Observable<Alertas> getAlertasDistrito();
 }

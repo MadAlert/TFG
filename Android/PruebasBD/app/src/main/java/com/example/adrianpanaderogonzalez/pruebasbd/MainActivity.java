@@ -1,5 +1,6 @@
 package com.example.adrianpanaderogonzalez.pruebasbd;
 
+import com.example.adrianpanaderogonzalez.pruebasbd.fragmento;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -22,22 +23,22 @@ import java.net.UnknownHostException;
 
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import retrofit2.Response;
 import retrofit2.adapter.rxjava.HttpException;
-import rx.schedulers.Schedulers;
-import rx.subscriptions.CompositeSubscription;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 
 public class MainActivity extends AppCompatActivity {
 
+    public static final String TAG = MainActivity.class.getSimpleName();
+
     private TextView mResult;
     private Button but;
     private Spinner spinner;
-    private CompositeSubscription mSubscriptions;
+    private CompositeDisposable mSubscriptions;
+    private fragmento f;
+    private Class fragmentClass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,16 +47,18 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
-        mSubscriptions = new CompositeSubscription();
+        if (f == null) {
+
+            f = new fragmento();
+        }
+        getFragmentManager().beginTransaction().replace(R.id.ventanaFragmento,f,fragmento.TAG).commit();
+
+
+
+
+
+       /* mSubscriptions = new CompositeDisposable();
         mResult = (TextView) findViewById(R.id.tv_result);
         but = (Button) findViewById(R.id.btn);
         spinner = (Spinner) findViewById(R.id.spinner);
@@ -79,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
                 // Another interface callback
             }
-        });
+        });*/
 
         //Hacer petición GET
         //new GetDataTask().execute("http://192.168.1.207:1000/api/alertas");
@@ -94,43 +97,7 @@ public class MainActivity extends AppCompatActivity {
         //new DeleteDataTask().execute("http://192.168.1.53:1000/api/alertas/5ab18c7da104795fe0c508da");
     }
 
-    private void AlertasProcess(String distrito) {
 
-        mSubscriptions.add(NetworkUtil.getRetrofit(distrito).getAlertasDistrito(distrito)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(this::handleResponse,this::handleError));
-    }
-
-
-    private void handleResponse(Response response) {
-
-        /*mProgressbar.setVisibility(View.GONE);
-        showSnackBarMessage(response.getMessage());*/
-    }
-
-    private void handleError(Throwable error) {
-
-       // mProgressbar.setVisibility(View.GONE);
-
-        if (error instanceof HttpException) {
-
-            Gson gson = new GsonBuilder().create();
-
-            try {
-
-                String errorBody = ((HttpException) error).response().errorBody().string();
-                Response response = gson.fromJson(errorBody,Response.class);
-                //showSnackBarMessage(response.getMessage());
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        } else {
-
-            //showSnackBarMessage("Network Error !");
-        }
-    }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
