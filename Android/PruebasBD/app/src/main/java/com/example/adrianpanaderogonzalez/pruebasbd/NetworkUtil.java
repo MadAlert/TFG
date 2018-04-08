@@ -3,12 +3,12 @@ package com.example.adrianpanaderogonzalez.pruebasbd;
 import android.provider.SyncStateContract;
 import android.util.Base64;
 
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by adrianpanaderogonzalez on 26/3/18.
@@ -19,10 +19,10 @@ public class NetworkUtil {
 
     public static RetrofitInterface getRetrofit(){
 
-        RxJavaCallAdapterFactory rxAdapter = RxJavaCallAdapterFactory.createWithScheduler(Schedulers.io());
+        RxJava2CallAdapterFactory rxAdapter = RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io());
 
         return new Retrofit.Builder()
-                .baseUrl("http://147.96.114.247:1000/api/alertas")
+                .baseUrl("http://192.168.1.229:1000/api/alertas/")
                 .addCallAdapterFactory(rxAdapter)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build().create(RetrofitInterface.class);
@@ -45,10 +45,10 @@ public class NetworkUtil {
 
         });
 
-        RxJavaCallAdapterFactory rxAdapter = RxJavaCallAdapterFactory.createWithScheduler(Schedulers.io());
+        RxJava2CallAdapterFactory rxAdapter = RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io());
 
         return new Retrofit.Builder()
-                .baseUrl("http://147.96.114.247:1000/api/alertas")
+                .baseUrl("http://192.168.1.229:1000/api/alertas/")
                 .client(httpClient.build())
                 .addCallAdapterFactory(rxAdapter)
                 .addConverterFactory(GsonConverterFactory.create())

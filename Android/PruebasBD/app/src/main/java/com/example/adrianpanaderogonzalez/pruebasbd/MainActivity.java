@@ -25,7 +25,7 @@ import java.net.UnknownHostException;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import retrofit2.Response;
-import retrofit2.adapter.rxjava.HttpException;
+import retrofit2.adapter.rxjava2.HttpException;
 import io.reactivex.schedulers.Schedulers;
 
 

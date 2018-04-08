@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputLayout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,8 +21,7 @@ import java.io.IOException;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import retrofit2.Response;
-import retrofit2.adapter.rxjava.HttpException;
+import retrofit2.adapter.rxjava2.HttpException;
 import io.reactivex.schedulers.Schedulers;
 
 
@@ -160,7 +160,7 @@ public class fragmento extends Fragment {
 
                 String errorBody = ((HttpException) error).response().errorBody().string();
                 Response response = gson.fromJson(errorBody,Response.class);
-                //showSnackBarMessage(response.getMessage());
+                showSnackBarMessage(response.getMessage());
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -168,6 +168,14 @@ public class fragmento extends Fragment {
         } else {
 
             //showSnackBarMessage("Network Error !");
+        }
+    }
+
+    private void showSnackBarMessage(String message) {
+
+        if (getView() != null) {
+
+            Snackbar.make(getView(),message,Snackbar.LENGTH_SHORT).show();
         }
     }
 
