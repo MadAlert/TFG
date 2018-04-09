@@ -1,39 +1,36 @@
 package com.example.adrianpanaderogonzalez.pruebasbd;
 
-import android.content.Context;
+import android.app.FragmentTransaction;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonSyntaxException;
 
 import java.io.IOException;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import retrofit2.adapter.rxjava2.HttpException;
-import io.reactivex.schedulers.Schedulers;
 
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link fragmento.OnFragmentInteractionListener} interface
+ * {@link FragmentoInicio.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link fragmento#newInstance} factory method to
+ * Use the {@link FragmentoInicio#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class fragmento extends Fragment {
+public class FragmentoInicio extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
@@ -50,9 +47,9 @@ public class fragmento extends Fragment {
 
     private OnFragmentInteractionListener mListener;
 
-    public static final String TAG = fragmento.class.getSimpleName();
+    public static final String TAG = FragmentoInicio.class.getSimpleName();
 
-    public fragmento() {
+    public FragmentoInicio() {
         // Required empty public constructor
     }
 
@@ -65,8 +62,8 @@ public class fragmento extends Fragment {
      * @return A new instance of fragment fragmento.
      */
     // TODO: Rename and change types and number of parameters
-    public static fragmento newInstance(String param1, String param2) {
-        fragmento fragment = new fragmento();
+    public static FragmentoInicio newInstance(String param1, String param2) {
+        FragmentoInicio fragment = new FragmentoInicio();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -102,6 +99,14 @@ public class fragmento extends Fragment {
         buscar2.setOnClickListener(view -> getAlertasDistrito2());
     }
 
+    private void goToMostrarAlertas(){
+
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        FragmentoInicio fragment = new FragmentoInicio();
+        ft.replace(R.id.ventanaFragmento,fragment, FragmentoInicio.TAG);
+        ft.commit();
+    }
+
     private void getAlertasDistrito2() {
 
         //setError();
@@ -129,15 +134,15 @@ public class fragmento extends Fragment {
         }
         /*    mProgressBar.setVisibility(View.VISIBLE);
 
-        } else {
+        }*/ else {
 
             showSnackBarMessage("Enter Valid Details !");
-        }*/
+        }
     }
 
     private void alertasProcess(String distrito) {
 
-        mSubscriptions.add(NetworkUtil.getRetrofit(distrito).getAlertasDistrito()
+        mSubscriptions.add(NetworkUtil.getRetrofit().getAlertasDistrito(distrito)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(io.reactivex.schedulers.Schedulers.io())
                 .subscribe(this::handleResponse,this::handleError));
@@ -151,6 +156,7 @@ public class fragmento extends Fragment {
     private void handleError(Throwable error) {
 
         // mProgressbar.setVisibility(View.GONE);
+        boolean failed = false;
 
         if (error instanceof HttpException) {
 
@@ -164,10 +170,17 @@ public class fragmento extends Fragment {
 
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (IllegalStateException | JsonSyntaxException e) {
+                failed = true;
+                //e.printStackTrace();
+            }
+
+            if (failed) {
+
             }
         } else {
 
-            //showSnackBarMessage("Network Error !");
+            showSnackBarMessage("Network Error !");
         }
     }
 

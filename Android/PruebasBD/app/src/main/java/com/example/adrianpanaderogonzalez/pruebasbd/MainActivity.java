@@ -1,32 +1,19 @@
 package com.example.adrianpanaderogonzalez.pruebasbd;
 
-import com.example.adrianpanaderogonzalez.pruebasbd.fragmento;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
-import java.io.IOException;
 import java.net.UnknownHostException;
 
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import retrofit2.Response;
-import retrofit2.adapter.rxjava2.HttpException;
-import io.reactivex.schedulers.Schedulers;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -37,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
     private Button but;
     private Spinner spinner;
     private CompositeDisposable mSubscriptions;
-    private fragmento f;
+    private FragmentoInicio f;
     private Class fragmentClass;
 
     @Override
@@ -50,9 +37,9 @@ public class MainActivity extends AppCompatActivity {
 
         if (f == null) {
 
-            f = new fragmento();
+            f = new FragmentoInicio();
         }
-        getFragmentManager().beginTransaction().replace(R.id.ventanaFragmento,f,fragmento.TAG).commit();
+        getFragmentManager().beginTransaction().replace(R.id.ventanaFragmento,f, FragmentoInicio.TAG).commit();
 
 
 
