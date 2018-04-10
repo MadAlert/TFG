@@ -1,19 +1,26 @@
 package com.example.adrianpanaderogonzalez.pruebasbd;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.provider.SyncStateContract;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.adrianpanaderogonzalez.pruebasbd.dummy.DummyContent;
 import com.example.adrianpanaderogonzalez.pruebasbd.dummy.DummyContent.DummyItem;
 
 import java.util.List;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 
 /**
  * A fragment representing a list of Items.
@@ -31,12 +38,15 @@ public class FragmentoLista extends Fragment {
 
     public static final String TAG = FragmentoLista.class.getSimpleName();
 
+    private CompositeDisposable mSub;
+    private SharedPreferences mShared;
+
+    private TextView vContent;
+
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public FragmentoLista() {
-    }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
@@ -61,8 +71,10 @@ public class FragmentoLista extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_item_list, container, false);
-
-        // Set the adapter
+       /* mSub = new CompositeDisposable();
+        initViews(view);
+*/
+        // Set the adapter ESTO ES LO QUE HACE MOSTRAR LA LISTA DE ITEMS
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
@@ -74,6 +86,47 @@ public class FragmentoLista extends Fragment {
             recyclerView.setAdapter(new MyItemRecyclerViewAdapter(DummyContent.ITEMS, mListener));
         }
         return view;
+    }
+
+
+    private void initViews(View view){
+
+        vContent = (TextView) view.findViewById(R.id.content);
+
+        vContent.setOnClickListener(view1 -> muestraAlerta());
+
+    }
+
+    private void muestraAlerta(){
+
+        String alerta = vContent.getText().toString();
+
+        muestraProcess(alerta);
+
+    }
+
+    private void muestraProcess(String distrito){
+        mSub.add(NetworkUtil.getRetrofit().getAlertasDistrito(distrito)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(io.reactivex.schedulers.Schedulers.io())
+                .subscribe(this::handleResponse,this::handleError));
+    }
+
+    private void handleResponse(Alertas alertas) {
+        SharedPreferences.Editor editor = mShared.edit();
+        editor.putString("noticia", alertas.getAlertas());
+        editor.apply();
+
+        Intent intent = new Intent(getActivity(), AlertasActivity.class);
+        startActivity(intent);
+    }
+
+    private void handleError(Throwable throwable) {
+    }
+
+    private void handleResponse(Response response){
+
+
     }
 
 

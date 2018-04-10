@@ -15,6 +15,9 @@ import io.reactivex.Observable;
 public interface RetrofitInterface {
 
     //@Headers("Content-Type: application/json")
+    @GET("alertas")
+    Observable<Response> getLista();
+
     @GET("alertas/{distrito}")
     Observable<Alertas> getAlertasDistrito(@Path("distrito") String distrito);
 }

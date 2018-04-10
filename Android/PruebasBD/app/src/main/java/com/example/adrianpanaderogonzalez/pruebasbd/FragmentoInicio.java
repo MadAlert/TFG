@@ -5,6 +5,7 @@ import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -131,6 +132,7 @@ public class FragmentoInicio extends Fragment {
         if (err == 0) {
 
             alertasProcess(dist);
+
         }
         /*    mProgressBar.setVisibility(View.VISIBLE);
 
@@ -138,6 +140,7 @@ public class FragmentoInicio extends Fragment {
 
             showSnackBarMessage("Enter Valid Details !");
         }
+
     }
 
     private void alertasProcess(String distrito) {
@@ -172,7 +175,7 @@ public class FragmentoInicio extends Fragment {
                 e.printStackTrace();
             } catch (IllegalStateException | JsonSyntaxException e) {
                 failed = true;
-                //e.printStackTrace();
+                e.printStackTrace();
             }
 
             if (failed) {

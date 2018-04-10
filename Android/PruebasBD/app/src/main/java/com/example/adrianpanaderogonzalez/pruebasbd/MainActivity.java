@@ -10,13 +10,15 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.adrianpanaderogonzalez.pruebasbd.dummy.DummyContent;
+
 import java.net.UnknownHostException;
 
 
 import io.reactivex.disposables.CompositeDisposable;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements FragmentoLista.OnListFragmentInteractionListener {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
@@ -41,44 +43,6 @@ public class MainActivity extends AppCompatActivity {
         }
         getFragmentManager().beginTransaction().replace(R.id.ventanaFragmento,f, FragmentoInicio.TAG).commit();
 
-
-       /* mSubscriptions = new CompositeDisposable();
-        mResult = (TextView) findViewById(R.id.tv_result);
-        but = (Button) findViewById(R.id.btn);
-        spinner = (Spinner) findViewById(R.id.spinner);
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.puta, android.R.layout.simple_spinner_item);
-        // Specify the layout to use when the list of choices appears
-                adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        // Apply the adapter to the spinner
-        spinner.setAdapter(adapter);
-
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-
-            public void onItemSelected(AdapterView<?> parent, View view,
-            int pos, long id) {
-                // An item was selected. You can retrieve the selected item using
-                parent.getItemAtPosition(pos);
-
-            }
-
-            public void onNothingSelected(AdapterView<?> parent) {
-                // Another interface callback
-            }
-        });*/
-
-        //Hacer petición GET
-        //new GetDataTask().execute("http://192.168.1.207:1000/api/alertas");
-
-        //Hacer petición POST
-        //new PostDataTask().execute("http://192.168.1.53:1000/api/alertas");
-
-        //Hacer petición PUT
-        //new PutDataTask().execute("http://192.168.1.53:1000/api/alertas/5ab18c7da104795fe0c508da");
-
-        //Hacer petición Delete
-        //new DeleteDataTask().execute("http://192.168.1.53:1000/api/alertas/5ab18c7da104795fe0c508da");
     }
 
 
@@ -89,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    // no se usa ya
     public void onButtonClick(View v) throws UnknownHostException {
 
         Alertas alertas= new Alertas();
@@ -116,5 +81,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 }

@@ -5,9 +5,9 @@ var router = express.Router();
 //get models
 var Status = require('./alertas');
 var Estadisticas = require('./estadisticas');
-var Accidentes = require('./estaccidentes');
-var Detenidos = require('./estdetenidos');
-var Seguridad = require('./estseguridad');
+var Accidentes = require('./estAccidentes');
+var Detenidos = require('./estDetenidos');
+var Seguridad = require('./estSeguridad');
 
 
 //routes
@@ -16,11 +16,11 @@ Status.register(router, '/alertas');
 Estadisticas.methods(['get', 'post', 'put', 'delete']);
 Estadisticas.register(router, '/estadisticas');
 Accidentes.methods(['get', 'post', 'put', 'delete']);
-Accidentes.register(router, '/estaccidentes');
+Accidentes.register(router, '/estAccidentes');
 Detenidos.methods(['get', 'post', 'put', 'delete']);
-Detenidos.register(router, '/estdetenidos');
+Detenidos.register(router, '/estDetenidos');
 Seguridad.methods(['get', 'post', 'put', 'delete']);
-Seguridad.register(router, '/estseguridad');
+Seguridad.register(router, '/estSeguridad');
 
 //return router
 module.exports = router;
