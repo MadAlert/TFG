@@ -42,9 +42,6 @@ public class MainActivity extends AppCompatActivity {
         getFragmentManager().beginTransaction().replace(R.id.ventanaFragmento,f, FragmentoInicio.TAG).commit();
 
 
-
-
-
        /* mSubscriptions = new CompositeDisposable();
         mResult = (TextView) findViewById(R.id.tv_result);
         but = (Button) findViewById(R.id.btn);

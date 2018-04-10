@@ -1,9 +1,9 @@
 package com.example.adrianpanaderogonzalez.pruebasbd;
 
 import android.app.FragmentTransaction;
+import android.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -102,8 +102,8 @@ public class FragmentoInicio extends Fragment {
     private void goToMostrarAlertas(){
 
         FragmentTransaction ft = getFragmentManager().beginTransaction();
-        FragmentoInicio fragment = new FragmentoInicio();
-        ft.replace(R.id.ventanaFragmento,fragment, FragmentoInicio.TAG);
+        FragmentoLista fragmentL = new FragmentoLista();
+        ft.replace(R.id.ventanaFragmento,fragmentL, FragmentoLista.TAG);
         ft.commit();
     }
 
@@ -149,7 +149,7 @@ public class FragmentoInicio extends Fragment {
     }
 
     private void handleResponse(Alertas alertas) {
-
+        goToMostrarAlertas();
     }
 
 
@@ -176,7 +176,7 @@ public class FragmentoInicio extends Fragment {
             }
 
             if (failed) {
-
+                goToMostrarAlertas();
             }
         } else {
 
