@@ -91,7 +91,7 @@ public class FragmentoLista extends Fragment {
 
     private void initViews(View view){
 
-        vContent = (TextView) view.findViewById(R.id.content);
+        //vContent = (TextView) view.findViewById(R.id.content);
 
         vContent.setOnClickListener(view1 -> muestraAlerta());
 

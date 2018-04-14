@@ -4,7 +4,9 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.SyncStateContract;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -14,6 +16,9 @@ import io.reactivex.disposables.CompositeDisposable;
  */
 
 public class AlertasActivity extends AppCompatActivity {
+    private TextView mTv1;
+    private TextView mTv2;
+
     private CompositeDisposable mSub;
     private SharedPreferences mSharedPreferences;
 
@@ -24,8 +29,17 @@ public class AlertasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_item);
         mSub = new CompositeDisposable();
+        initViews();
         initSharedPreferences();
         loadAlerta();
+
+
+    }
+
+    private void initViews() {
+
+        mTv1 = (TextView) findViewById(R.id.tv1);
+        mTv2 = (TextView) findViewById(R.id.tv2);
 
     }
 
@@ -42,10 +56,17 @@ public class AlertasActivity extends AppCompatActivity {
     }
 
     private void handleResponse(Alertas alertas) {
+        mTv1.setText(alertas.getAlertas());
+        mTv2.setText(alertas.getDistrito());
 
     }
 
     private void handleError(Throwable error) {
+        showSnackBarMessage("ERRRRRRRR Error !");
+    }
+
+    private void showSnackBarMessage(String message) {
+        Snackbar.make(findViewById(R.id.tv1),message,Snackbar.LENGTH_SHORT).show();
     }
 
 

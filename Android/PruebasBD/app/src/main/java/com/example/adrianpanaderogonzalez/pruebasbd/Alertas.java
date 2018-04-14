@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class Alertas {
 
-    public String alertas;
+    public String alerta;
     public String fecha;
     public String url;
     public String distrito;
@@ -17,7 +17,7 @@ public class Alertas {
     public String veridico;
 
     public String getAlertas() {
-        return alertas;
+        return alerta;
     }
 
     public String getFecha() {
@@ -45,7 +45,7 @@ public class Alertas {
     }
 
     public void setAlertas(String alertas) {
-        this.alertas = alertas;
+        this.alerta = alertas;
     }
 
     public void setCategoria(String categoria) {

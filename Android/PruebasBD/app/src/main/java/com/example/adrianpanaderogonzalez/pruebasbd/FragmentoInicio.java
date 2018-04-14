@@ -2,8 +2,11 @@ package com.example.adrianpanaderogonzalez.pruebasbd;
 
 import android.app.FragmentTransaction;
 import android.app.Fragment;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -38,6 +41,7 @@ public class FragmentoInicio extends Fragment {
     private EditText distritoText;
     private Button buscar2;
     private CompositeDisposable mSubscriptions;
+    private SharedPreferences mSharedPreferences;
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -88,6 +92,7 @@ public class FragmentoInicio extends Fragment {
         View view = inflater.inflate(R.layout.fragment_fragmento, container, false);
         mSubscriptions = new CompositeDisposable();
         initViews(view);
+        initSharedPreferences();
 
         return view;
     }
@@ -99,6 +104,13 @@ public class FragmentoInicio extends Fragment {
 
         buscar2.setOnClickListener(view -> getAlertasDistrito2());
     }
+
+
+    private void initSharedPreferences() {
+
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+    }
+
 
     private void goToMostrarAlertas(){
 
@@ -145,14 +157,27 @@ public class FragmentoInicio extends Fragment {
 
     private void alertasProcess(String distrito) {
 
-        mSubscriptions.add(NetworkUtil.getRetrofit().getAlertasDistrito(distrito)
+        /*mSubscriptions.add(NetworkUtil.getRetrofit().getAlertasDistrito(distrito)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(io.reactivex.schedulers.Schedulers.io())
-                .subscribe(this::handleResponse,this::handleError));
+                .subscribe(this::handleResponse,this::handleError));*/
+        Alertas alert = new Alertas();
+        alert.setDistrito(distrito);
+        handleResponse(distrito);
     }
 
-    private void handleResponse(Alertas alertas) {
-        goToMostrarAlertas();
+    private void handleResponse(String alerta) {
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        //editor.putString(Constants.TOKEN,response.getToken())
+        editor.putString("distrito", alerta);
+        editor.apply();
+
+        //mEtEmail.setText(null);
+        //distritoText.setText(null);
+
+        Intent intent = new Intent(getActivity(), AlertasActivity.class);
+        startActivity(intent);
+        //goToMostrarAlertas();
     }
 
 
@@ -168,7 +193,7 @@ public class FragmentoInicio extends Fragment {
             try {
 
                 String errorBody = ((HttpException) error).response().errorBody().string();
-                Response response = gson.fromJson(errorBody,Response.class);
+                Response response = gson.fromJson(errorBody, Response.class);
                 showSnackBarMessage(response.getMessage());
 
             } catch (IOException e) {

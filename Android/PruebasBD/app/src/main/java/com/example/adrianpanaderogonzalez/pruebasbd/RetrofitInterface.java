@@ -16,7 +16,7 @@ public interface RetrofitInterface {
 
     //@Headers("Content-Type: application/json")
     @GET("alertas")
-    Observable<Response> getLista();
+    Observable<Response> getDistrito();
 
     @GET("alertas/{distrito}")
     Observable<Alertas> getAlertasDistrito(@Path("distrito") String distrito);

@@ -1,4 +1,6 @@
-'use strict'
+'use strict';
+
+const jwt = require('jsonwebtoken');
 
 const alertasDistrito = require('./functions/verAlertasDistrito');
 /*const login = require('./functions/login');

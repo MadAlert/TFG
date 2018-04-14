@@ -1,9 +1,12 @@
 //dependencies
-var restful = require('node-restful');
-var mongoose = restful.mongoose;
+'use strict';
+
+const mongoose = require('mongoose');
+
+const Schema = mongoose.Schema;
 
 var alertasSchema = new mongoose.Schema({
-	alertas: String,
+	alerta: String,
 	fecha: Date,
 	url: String,
 	distrito: String,
@@ -11,5 +14,8 @@ var alertasSchema = new mongoose.Schema({
 	fuente: String
 });
 
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://MadAlert:tfg20172018@ds235388.mlab.com:35388/noticias');
+
 //return models
-module.exports = restful.model('alertas', alertasSchema);
+module.exports = mongoose.model('alertas', alertasSchema);
