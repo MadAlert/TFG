@@ -6,7 +6,14 @@ import android.preference.PreferenceManager;
 import android.provider.SyncStateContract;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
+
+import com.example.adrianpanaderogonzalez.pruebasbd.Adapter.DataAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -22,6 +29,12 @@ public class AlertasActivity extends AppCompatActivity {
     private CompositeDisposable mSub;
     private SharedPreferences mSharedPreferences;
 
+    private RecyclerView mRecyclerView;
+
+    private DataAdapter mAdapter;
+
+    private ArrayList<Alertas> mAndroidArrayList;
+
     private String mDistrito;
 
     @Override
@@ -29,19 +42,28 @@ public class AlertasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_item);
         mSub = new CompositeDisposable();
-        initViews();
+        //initViews();
+        initRecyclerView();
         initSharedPreferences();
         loadAlerta();
 
 
     }
 
-    private void initViews() {
+    private void initRecyclerView() {
+
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        mRecyclerView.setLayoutManager(layoutManager);
+    }
+
+    /*private void initViews() {
 
         mTv1 = (TextView) findViewById(R.id.tv1);
         mTv2 = (TextView) findViewById(R.id.tv2);
 
-    }
+    }*/
 
     private void initSharedPreferences() {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
@@ -55,9 +77,12 @@ public class AlertasActivity extends AppCompatActivity {
                 .subscribe(this::handleResponse,this::handleError));
     }
 
-    private void handleResponse(Alertas alertas) {
-        mTv1.setText(alertas.getAlertas());
-        mTv2.setText(alertas.getDistrito());
+    private void handleResponse(List<Alertas> alertas) {
+        mAndroidArrayList = new ArrayList<>(alertas);
+        mAdapter = new DataAdapter(mAndroidArrayList);
+        mRecyclerView.setAdapter(mAdapter);
+        /*mTv1.setText(alertas.getAlertas());
+        mTv2.setText(alertas.getDistrito());*/
 
     }
 
@@ -66,7 +91,7 @@ public class AlertasActivity extends AppCompatActivity {
     }
 
     private void showSnackBarMessage(String message) {
-        Snackbar.make(findViewById(R.id.tv1),message,Snackbar.LENGTH_SHORT).show();
+        //Snackbar.make(findViewById(R.id.tv1),message,Snackbar.LENGTH_SHORT).show();
     }
 
 

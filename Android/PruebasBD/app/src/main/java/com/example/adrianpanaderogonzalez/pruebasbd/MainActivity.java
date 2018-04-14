@@ -10,15 +10,13 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.example.adrianpanaderogonzalez.pruebasbd.dummy.DummyContent;
-
 import java.net.UnknownHostException;
 
 
 import io.reactivex.disposables.CompositeDisposable;
 
 
-public class MainActivity extends AppCompatActivity implements FragmentoLista.OnListFragmentInteractionListener {
+public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
 
@@ -53,21 +51,6 @@ public class MainActivity extends AppCompatActivity implements FragmentoLista.On
         return true;
     }
 
-    // no se usa ya
-    public void onButtonClick(View v) throws UnknownHostException {
-
-        Alertas alertas= new Alertas();
-
-        String selec = spinner.getSelectedItem().toString();
-
-        //GetAlertasAsyncTask tsk= new GetAlertasAsyncTask();
-        //tsk.execute(alertas);
-
-
-        //Intent i = new Intent(this, VerAlertasActivity.class);
-        //startActivity(i);
-    }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
@@ -83,10 +66,6 @@ public class MainActivity extends AppCompatActivity implements FragmentoLista.On
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onListFragmentInteraction(DummyContent.DummyItem item) {
-
-    }
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {

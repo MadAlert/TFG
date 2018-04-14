@@ -1,6 +1,5 @@
 package com.example.adrianpanaderogonzalez.pruebasbd;
 
-import android.app.FragmentTransaction;
 import android.app.Fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,7 +7,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -111,15 +109,6 @@ public class FragmentoInicio extends Fragment {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
     }
 
-
-    private void goToMostrarAlertas(){
-
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        FragmentoLista fragmentL = new FragmentoLista();
-        ft.replace(R.id.ventanaFragmento,fragmentL, FragmentoLista.TAG);
-        ft.commit();
-    }
-
     private void getAlertasDistrito2() {
 
         //setError();
@@ -177,7 +166,6 @@ public class FragmentoInicio extends Fragment {
 
         Intent intent = new Intent(getActivity(), AlertasActivity.class);
         startActivity(intent);
-        //goToMostrarAlertas();
     }
 
 
@@ -199,12 +187,7 @@ public class FragmentoInicio extends Fragment {
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (IllegalStateException | JsonSyntaxException e) {
-                failed = true;
                 e.printStackTrace();
-            }
-
-            if (failed) {
-                goToMostrarAlertas();
             }
         } else {
 

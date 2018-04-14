@@ -8,7 +8,7 @@ exports.getAlertasDistrito = distrito =>
 		
 		alerta.find({distrito: distrito})
 
-		.then(alertas => resolve(alertas[0]))
+		.then(alertas => resolve(alertas))
 			
 		.catch(err => reject({status: 500, message: 'Internal Server Error! verAlertasDistrito.js'}))
 			

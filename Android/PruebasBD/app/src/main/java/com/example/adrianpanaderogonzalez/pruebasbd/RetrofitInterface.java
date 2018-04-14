@@ -1,5 +1,7 @@
 package com.example.adrianpanaderogonzalez.pruebasbd;
 
+import java.util.List;
+
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
@@ -19,5 +21,5 @@ public interface RetrofitInterface {
     Observable<Response> getDistrito();
 
     @GET("alertas/{distrito}")
-    Observable<Alertas> getAlertasDistrito(@Path("distrito") String distrito);
+    Observable<List<Alertas>> getAlertasDistrito(@Path("distrito") String distrito);
 }

@@ -1,5 +1,7 @@
 package com.example.adrianpanaderogonzalez.pruebasbd;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -21,7 +23,15 @@ public class Alertas {
     }
 
     public String getFecha() {
-        return fecha;
+        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss dd-MM-yyy");
+        Date fechaConvertida = new Date();
+        try {
+            fechaConvertida = dateFormat.parse(fecha);
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dateFormat.format(fechaConvertida);
     }
 
     public String getUrl() {
