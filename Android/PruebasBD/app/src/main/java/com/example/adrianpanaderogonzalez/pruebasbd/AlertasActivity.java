@@ -23,8 +23,7 @@ import io.reactivex.disposables.CompositeDisposable;
  */
 
 public class AlertasActivity extends AppCompatActivity {
-    private TextView mTv1;
-    private TextView mTv2;
+    private TextView textView;
 
     private CompositeDisposable mSub;
     private SharedPreferences mSharedPreferences;
@@ -52,6 +51,7 @@ public class AlertasActivity extends AppCompatActivity {
 
     private void initRecyclerView() {
 
+        textView = (TextView) findViewById(R.id.textView);
         mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -60,7 +60,7 @@ public class AlertasActivity extends AppCompatActivity {
 
     /*private void initViews() {
 
-        mTv1 = (TextView) findViewById(R.id.tv1);
+
         mTv2 = (TextView) findViewById(R.id.tv2);
 
     }*/
@@ -78,6 +78,7 @@ public class AlertasActivity extends AppCompatActivity {
     }
 
     private void handleResponse(List<Alertas> alertas) {
+        textView.setText("Distrito " + mDistrito);
         mAndroidArrayList = new ArrayList<>(alertas);
         mAdapter = new DataAdapter(mAndroidArrayList);
         mRecyclerView.setAdapter(mAdapter);

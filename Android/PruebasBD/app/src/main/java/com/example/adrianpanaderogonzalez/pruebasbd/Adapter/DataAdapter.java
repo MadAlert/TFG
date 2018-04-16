@@ -2,6 +2,7 @@ package com.example.adrianpanaderogonzalez.pruebasbd.Adapter;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,10 +40,20 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
         holder.mTvCategoria.setText(mAndroidList.get(position).getCategoria());
         holder.mTvAlerta.setText(mAndroidList.get(position).getAlertas());
-        holder.mTvDistrito.setText(mAndroidList.get(position).getDistrito());
-        holder.mTvFecha.setText(mAndroidList.get(position).getFecha());
+        holder.mTvFuente.setText("Fuente: " + mAndroidList.get(position).getFuente());
+
         //holder.mTvURL.setText(mAndroidList.get(position).getUrl());
-        //enlace = mAndroidList.get(position).getUrl();
+        if(mAndroidList.get(position).getUrl() != null) {
+            enlace = mAndroidList.get(position).getUrl();
+
+            holder.mTvAlerta.setOnClickListener(v -> {
+                Uri uri = Uri.parse(enlace);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                v.getContext().startActivity(intent);
+            });
+        }
+
+        holder.mTvFecha.setText(mAndroidList.get(position).getFecha());
 
     }
 
@@ -54,7 +65,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView mTvAlerta,mTvDistrito,mTvCategoria,mTvFecha,mTvURL;
+        private TextView mTvAlerta,mTvFuente,mTvCategoria,mTvFecha;
 
         public ViewHolder(View view) {
             super(view);
@@ -62,12 +73,8 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
             mTvCategoria = (TextView)view.findViewById(R.id.tv_categoria);
             mTvAlerta = (TextView)view.findViewById(R.id.tv_alerta);
-            mTvDistrito = (TextView)view.findViewById(R.id.tv_distrito);
+            mTvFuente = (TextView)view.findViewById(R.id.tv_fuente);
             mTvFecha = (TextView)view.findViewById(R.id.tv_fecha);
-
-            //mTvAlerta.setOnClickListener();
-
-            mTvURL = (TextView)view.findViewById(R.id.tv_url);
 
         }
 
