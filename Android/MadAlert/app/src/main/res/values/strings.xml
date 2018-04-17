@@ -20,8 +20,8 @@
         <item>Barajas</item>
         <item>Carabanchel</item>
         <item>Centro</item>
-        <item>Chamartin</item>
-        <item>Chamberi</item>
+        <item>Chamartín</item>
+        <item>Chamberí</item>
         <item>Ciudad Lineal</item>
         <item>Fuencarral</item>
         <item>General</item>
@@ -33,13 +33,12 @@
         <item>Retiro</item>
         <item>Salamanca</item>
         <item>San Blas-Canillejas</item>
-        <item>Tetuan</item>
+        <item>Tetuán</item>
         <item>Usera</item>
-        <item>Vicalvaro</item>
+        <item>Vicálvaro</item>
         <item>Villa de Vallecas</item>
         <item>Villaverde</item>
     </string-array>
-
 
 
     <!-- Texto del soporte -->

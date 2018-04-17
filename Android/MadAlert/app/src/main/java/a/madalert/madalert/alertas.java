@@ -23,7 +23,7 @@ public class Alertas {
     }
 
     public String getFecha() {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss dd-MM-yyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
         Date fechaConvertida = new Date();
         try {
             fechaConvertida = dateFormat.parse(fecha);
@@ -31,7 +31,9 @@ public class Alertas {
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return dateFormat.format(fechaConvertida);
+        SimpleDateFormat formatoFecha = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy");
+        String fechaReal = formatoFecha.format(fechaConvertida);
+        return fechaReal;
     }
 
     public String getUrl() {

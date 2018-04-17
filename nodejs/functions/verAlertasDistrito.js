@@ -6,7 +6,7 @@ exports.getAlertasDistrito = distrito =>
 
 	new Promise((resolve, reject) => {
 		
-		alerta.find({distrito: distrito})
+		alerta.find({distrito: distrito},{sort : ['fecha', 'asc']})
 
 		.then(alertas => resolve(alertas))
 			
