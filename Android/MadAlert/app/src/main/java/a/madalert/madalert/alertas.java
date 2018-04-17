@@ -1,40 +1,84 @@
 package a.madalert.madalert;
 
-
-import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
- * A simple {@link Fragment} subclass.
+ * Created by adrianpanaderogonzalez on 22/3/18.
  */
-public class alertas extends Fragment {
 
+public class Alertas {
 
+    public String alerta;
+    public String fecha;
+    public String url;
+    public String distrito;
+    public String categoria;
+    public String fuente;
+    public String veridico;
 
-    public alertas() {
-       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.anadirAlerta);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
+    public String getAlertas() {
+        return alerta;
     }
 
+    public String getFecha() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("hh:mm:ss dd-MM-yyy");
+        Date fechaConvertida = new Date();
+        try {
+            fechaConvertida = dateFormat.parse(fecha);
 
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_alertas, container, false);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return dateFormat.format(fechaConvertida);
     }
 
+    public String getUrl() {
+        return url;
+    }
+
+    public String getDistrito() {
+        return distrito;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+    public String getFuente() {
+        return fuente;
+    }
+
+    public String getVeridico() {
+        return veridico;
+    }
+
+    public void setAlertas(String alertas) {
+        this.alerta = alertas;
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+
+    public void setDistrito(String distrito) {
+        this.distrito = distrito;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setFuente(String fuente) {
+        this.fuente = fuente;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setVeridico(String veridico) {
+        this.veridico = veridico;
+    }
 }
