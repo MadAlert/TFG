@@ -10,10 +10,13 @@ import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -38,7 +41,7 @@ public class FragmentoInicio extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
-    private EditText distritoText;
+    private TextView titulo;
     private Button buscar2;
     private CompositeDisposable mSubscriptions;
     private SharedPreferences mSharedPreferences;
@@ -49,6 +52,9 @@ public class FragmentoInicio extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private Spinner spnr;
+    private String dist;
 
     private OnFragmentInteractionListener mListener;
 
@@ -99,10 +105,36 @@ public class FragmentoInicio extends Fragment {
 
     private void initViews(View v) {
 
-        distritoText = (EditText) v.findViewById(R.id.et_distrito);
+        titulo = (TextView)v.findViewById(R.id.textView);
         buscar2 = v.findViewById(R.id.buscar);
 
+        titulo.setText("Selecciona un distrito");
         buscar2.setOnClickListener(view -> getAlertasDistrito2());
+
+        spnr = (Spinner)v.findViewById(R.id.spinner);
+        ArrayAdapter adapter = ArrayAdapter.createFromResource(
+                getActivity(), R.array.distritos_array , android.R.layout.simple_spinner_item);
+
+        spnr.setAdapter(adapter);
+        spnr.setOnItemSelectedListener(
+                new AdapterView.OnItemSelectedListener() {
+
+                    @Override
+                    public void onItemSelected(AdapterView<?> arg0, View arg1,
+                                               int arg2, long arg3) {
+
+                        dist = (String) spnr.getSelectedItem();
+                        // TODO Auto-generated method stub
+                    }
+
+                    @Override
+                    public void onNothingSelected(AdapterView<?> arg0) {
+                        // TODO Auto-generated method stub
+
+                    }
+
+                }
+        );
     }
 
 
@@ -115,7 +147,6 @@ public class FragmentoInicio extends Fragment {
 
         //setError();
 
-        String dist = distritoText.getText().toString();
         //String password = mEtPassword.getText().toString();
 
         int err = 0;
