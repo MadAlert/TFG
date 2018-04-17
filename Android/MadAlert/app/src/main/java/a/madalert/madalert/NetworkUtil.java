@@ -1,4 +1,4 @@
-package com.example.adrianpanaderogonzalez.pruebasbd;
+package a.madalert.madalert;
 
 import android.provider.SyncStateContract;
 import android.util.Base64;

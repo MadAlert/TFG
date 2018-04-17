@@ -27,7 +27,7 @@ public class tabpagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position){
             case 0:
-                alertas aler = new alertas();
+                alertasFragmento aler = new alertasFragmento();
                 return aler;
             case 1:
                 mapa map = new mapa();

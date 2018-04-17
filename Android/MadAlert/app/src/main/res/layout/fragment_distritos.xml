@@ -1,15 +1,48 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="a.madalert.madalert.distritos">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <FrameLayout
+        android:id="@+id/content_frame_distritos"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Pestaña de distritos"
-        android:gravity="center"
-        android:textSize="24sp"/>
+        android:layout_marginTop="?attr/actionBarSize">
+    </FrameLayout>
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="5dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="20sp"
+        android:textStyle="bold"/>
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:spinnerMode="dialog"
+        android:prompt="@string/distritos_prompt"
+        android:layout_centerHorizontal="true"
+        android:entries="@array/distritos_array"
+        android:layout_marginTop="150dp" />
+
+    <Button
+        android:id="@+id/buscar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="220dp"
+        android:layout_centerHorizontal="true"
+        android:textSize="16sp"
+        android:padding="10dp"
+        android:textColor="@color/cardview_light_background"
+        android:background="@color/colorButton"
+        android:text="@string/buscar" />
+
+
+</RelativeLayout>
