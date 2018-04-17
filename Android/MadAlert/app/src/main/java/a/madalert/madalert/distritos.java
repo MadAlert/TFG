@@ -198,8 +198,7 @@ public class distritos extends Fragment {
         //mEtEmail.setText(null);
         //distritoText.setText(null);
 
-
-        getActivity().getFragmentManager().beginTransaction()
+       getActivity().getFragmentManager().beginTransaction()
                 .replace(R.id.content_frame,new ListaAlertas())
                 .addToBackStack(null)
                 .commit();
