@@ -71,7 +71,13 @@
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                
-
+                <script type="text/javascript">
+                    function reFresh() 
+                    location.reload(true)
+                    }
+                    /* Establece el tiempo 1 minuto = 60000 milliseconds. */
+                    window.setInterval("reFresh()",100); 
+                </script>
 
                 <?php 
                     include ("claseAlertas.php");
@@ -136,13 +142,25 @@
                                                  <div class="card">
                                                   <div class="tab-content">
                                                         <div class="tab-pane active" id="home" role="tabpanel">
-                                                        <div class="card-block"> 
-                                                            <ul class="nav nav-tabs profile-tab" role="tablist">';
+                                                        <div class="card-block"> ';
+                                                            echo "<div style='margin-bottom: 2%;''>
+                                   
+                                                            <button class='btn btn-success' onclick='javascript:window.location.reload();'' > Actualizar alertas <i class='mdi mdi-refresh'></i></button> 
+                                                        
+                                                            </div>";
+                                                            echo '<ul class="nav nav-tabs profile-tab" role="tablist">';
                                                                 
                                                             $distrito = $_POST['distritos'];
+                                                            
+                                        
                                                             echo "<li class='nav-item'> <a class='nav-link active' data-toggle='tab' role='tab'><b>Distrito $distrito</b></a> </li>";
                                                             
+                                                            
+                                                            
+
                                                             echo '</ul>';
+
+
                                                             $num = $alertas->obtenerAlertasDistrito($distrito);
                                                             if($num == false){
                                                                 echo "<p><p><h4>Este distrito no dispone de alertas con esos filtros todavía</h4></p></p>";
@@ -169,7 +187,17 @@
 
                         <div class="col-lg-13 col-xlg-14 col-md-12">
                                 <div class="card">
+                                    
+                                    <div style=' margin-top:2% ; margin-left: 2%'>
+                                        
                                     <!-- Nav tabs -->
+                                    <?php
+                                    
+                                    echo "<button class='btn btn-success' onclick='javascript:window.location.reload();'' > Actualizar alertas <i class='mdi mdi-refresh'></i></button> ";
+                                    
+                                    ?>
+                                        </div>
+
                                     <ul class="nav nav-tabs profile-tab" role="tablist">
                                         <?php
                                         //Recupero los campos de index.php
@@ -185,6 +213,7 @@
                                             }
                                         }
                                         //esto de arriba no se hace si es index
+
                                         echo "<li class='nav-item'> <a class='nav-link active' data-toggle='tab' role='tab'><b>Distrito $distrito</b></a> </li>"
                                         ?>
                                     </ul>

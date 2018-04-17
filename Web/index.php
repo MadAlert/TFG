@@ -71,10 +71,30 @@
                 <!-- ============================================================== -->
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
+
                 <div class="row">
                     <div class="col-12">
-                        <div class="card">
+
+
+                        <script type="text/javascript">
+                            function reFresh() 
+                            location.reload(true)
+                            }
+                            /* Establece el tiempo 1 minuto = 60000 milliseconds. */
+                            window.setInterval("reFresh()",100); 
+                        </script>
+                        
+                            <div class="card">
                                 <div class="card-block">
+                                    
+                                    <h1 class="card-title"> Mapa con las últimas alertas: </h1>
+
+                                    <div style="margin-bottom: 2%;">
+                                   
+                                        <button class="btn btn-success" onclick="javascript:window.location.reload();" > Actualizar mapa <i class="mdi mdi-refresh"></i></button> 
+                                    
+                                    </div>
+
                                     <div id="mapa" class="gmaps"></div>
                                     <form method="post" action="alertas.php" id="buscarAlertas" onsubmit="return valida()">
                                          <input type="hidden" name="atributo" id="atributo" value="si"/>
