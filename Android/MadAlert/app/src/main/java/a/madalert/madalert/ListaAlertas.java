@@ -52,6 +52,8 @@ public class ListaAlertas extends Fragment {
 
     private String mDistrito;
 
+    private String mCategorias;
+
     private OnFragmentInteractionListener mListener;
 
     public ListaAlertas() {
@@ -112,13 +114,22 @@ public class ListaAlertas extends Fragment {
     private void initSharedPreferences() {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mDistrito = mSharedPreferences.getString("distrito", "");
+        mCategorias = mSharedPreferences.getString("categorias", "");
     }
 
     private void loadAlerta() {
-        mSub.add(NetworkUtil.getRetrofit().getAlertasDistrito(mDistrito)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(io.reactivex.schedulers.Schedulers.io())
-                .subscribe(this::handleResponse,this::handleError));
+        if(mCategorias.equals("0")) {
+            mSub.add(NetworkUtil.getRetrofit().getAlertasDistrito(mDistrito)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(io.reactivex.schedulers.Schedulers.io())
+                    .subscribe(this::handleResponse, this::handleError));
+        }
+        else{
+            mSub.add(NetworkUtil.getRetrofit().getAlertasDistritoCategoria(mDistrito, mCategorias)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(io.reactivex.schedulers.Schedulers.io())
+                    .subscribe(this::handleResponse, this::handleError));
+        }
     }
 
     private void handleResponse(List<Alertas> alertas) {
