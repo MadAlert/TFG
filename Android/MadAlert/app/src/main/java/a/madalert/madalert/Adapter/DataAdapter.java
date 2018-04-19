@@ -1,6 +1,9 @@
 package a.madalert.madalert.Adapter;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -40,6 +43,8 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
         //holder.mTvURL.setText(mAndroidList.get(position).getUrl());
         if(mAndroidList.get(position).getUrl() != null) {
+            holder.mTvAlerta.setTextColor(Color.parseColor("#FF4081"));
+            holder.mTvAlerta.setPaintFlags(holder.mTvAlerta.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
 
             holder.mTvAlerta.setOnClickListener(v -> {
                 enlace = mAndroidList.get(position).getUrl();

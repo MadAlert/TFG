@@ -3,17 +3,18 @@ package a.madalert.madalert;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 
 /**
  * Created by gmolindi on 21/03/2018.
  */
 
-public class tabpagerAdapter extends FragmentStatePagerAdapter {
+public class TabpagerAdapter extends FragmentStatePagerAdapter {
 
     private String[] tabArray = new String[]{"Alertas", "Mapa", "Distritos"};
     private Integer tabNumber = tabArray.length;
 
-    public tabpagerAdapter(FragmentManager fm) {
+    public TabpagerAdapter(FragmentManager fm) {
         super(fm);
     }
 
@@ -27,13 +28,13 @@ public class tabpagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position){
             case 0:
-                alertasFragmento aler = new alertasFragmento();
+                AlertasFragmento aler = new AlertasFragmento();
                 return aler;
             case 1:
-                mapa map = new mapa();
+                MapaFragmento map = new MapaFragmento();
                 return map;
             case 2:
-                distritos dist = new distritos();
+                DistritosFragmento dist = new DistritosFragmento();
                 return dist;
         }
 

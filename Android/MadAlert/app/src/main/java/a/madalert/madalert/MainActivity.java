@@ -1,16 +1,11 @@
 package a.madalert.madalert;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v4.view.ViewPager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,13 +13,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements DistritosFragmento.OnFragmentInteractionListener,
+        SeleccionDistritoFragmento.OnFragmentInteractionListener,
+        ListaAlertas.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
 
@@ -38,7 +33,7 @@ public class MainActivity extends AppCompatActivity
         TabLayout tabLayout =(TabLayout)findViewById(R.id.tabs);
         ViewPager pager = (ViewPager)findViewById(R.id.viewpager);
 
-        tabpagerAdapter tabpagerAdapter = new tabpagerAdapter(getSupportFragmentManager());
+        TabpagerAdapter tabpagerAdapter = new TabpagerAdapter(getSupportFragmentManager());
         pager.setAdapter(tabpagerAdapter);
         tabLayout.setupWithViewPager(pager);
 
@@ -92,12 +87,12 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_contacto) {
 
         } else if (id == R.id.nav_soporte) {
-            startActivity(new Intent(this, soporte.class));
-            //fragmentClass = soporte.class;
+            startActivity(new Intent(this, SoporteFragmento.class));
+            //fragmentClass = SoporteFragmento.class;
         } else if (id == R.id.nav_aboutus) {
 
         } else if (id == R.id.nav_faq) {
-            fragmentClass = faq.class;
+            fragmentClass = FaqFragmento.class;
         }
         try {
             fragment = (Fragment) fragmentClass.newInstance();
@@ -117,4 +112,8 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
 }

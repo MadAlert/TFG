@@ -1,37 +1,30 @@
 package a.madalert.madalert;
 
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import a.madalert.madalert.Adapter.DataAdapter;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
 
 
 /**
  * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ListaAlertas.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ListaAlertas#newInstance} factory method to
- * create an instance of this fragment.
  */
-public class ListaAlertas extends Fragment {
+public class DistritosFragmento extends Fragment {
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
+
+    private SharedPreferences mSharedPreferences;
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -39,22 +32,11 @@ public class ListaAlertas extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    private TextView textView;
+    private DistritosFragmento.OnFragmentInteractionListener mListener;
 
-    private CompositeDisposable mSub;
-    private SharedPreferences mSharedPreferences;
+    public static final String TAG = DistritosFragmento.class.getSimpleName();
 
-    private RecyclerView mRecyclerView;
-
-    private DataAdapter mAdapter;
-
-    private ArrayList<Alertas> mAndroidArrayList;
-
-    private String mDistrito;
-
-    private OnFragmentInteractionListener mListener;
-
-    public ListaAlertas() {
+    public DistritosFragmento() {
         // Required empty public constructor
     }
 
@@ -64,11 +46,11 @@ public class ListaAlertas extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment ListaAlertas.
+     * @return A new instance of fragment fragmento.
      */
     // TODO: Rename and change types and number of parameters
-    public static ListaAlertas newInstance(String param1, String param2) {
-        ListaAlertas fragment = new ListaAlertas();
+    public static DistritosFragmento newInstance(String param1, String param2) {
+        DistritosFragmento fragment = new DistritosFragmento();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -89,50 +71,26 @@ public class ListaAlertas extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_item, container, false);
-        mSub = new CompositeDisposable();
-        //initViews();
-        initRecyclerView(view);
-        initSharedPreferences();
-        loadAlerta();
+        View view = inflater.inflate(R.layout.fragment_distritos, container, false);
 
+        //mEtEmail.setText(null);
+        //distritoText.setText(null);
+        initSharedPreferences();
+
+        getFragmentManager().beginTransaction()
+                .replace(R.id.distritos_frame, new SeleccionDistritoFragmento())
+                .addToBackStack(null)
+                .commit();
+
+        //return view;
         return view;
     }
 
-    private void initRecyclerView(View v) {
-
-        textView = (TextView) v.findViewById(R.id.textView);
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
-        mRecyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
-        mRecyclerView.setLayoutManager(layoutManager);
-    }
 
 
     private void initSharedPreferences() {
+
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        mDistrito = mSharedPreferences.getString("distrito", "");
-    }
-
-    private void loadAlerta() {
-        mSub.add(NetworkUtil.getRetrofit().getAlertasDistrito(mDistrito)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(io.reactivex.schedulers.Schedulers.io())
-                .subscribe(this::handleResponse,this::handleError));
-    }
-
-    private void handleResponse(List<Alertas> alertas) {
-        textView.setText("Distrito " + mDistrito);
-        mAndroidArrayList = new ArrayList<>(alertas);
-        mAdapter = new DataAdapter(mAndroidArrayList);
-        mRecyclerView.setAdapter(mAdapter);
-        /*mTv1.setText(alertas.getAlertas());
-        mTv2.setText(alertas.getDistrito());*/
-
-    }
-
-    private void handleError(Throwable error) {
-        //showSnackBarMessage("ERRRRRRRR Error !");
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -142,15 +100,16 @@ public class ListaAlertas extends Fragment {
         }
     }
 
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
+        try {
             mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement OnFragmentInteractionListener") ;
         }
+
     }
 
     @Override
@@ -173,4 +132,5 @@ public class ListaAlertas extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
 }

@@ -41,7 +41,7 @@
     </string-array>
 
 
-    <!-- Texto del soporte -->
+    <!-- Texto del SoporteFragmento -->
     <string name="sop_tyc">Términos y condiciones</string>
     <string name="sop_intro">EL SOFTWARE SE PROPORCIONA "TAL CUAL", SIN GARANTÍA DE NINGÚN TIPO, EXPLÍCITA O IMPLÍCITA, INCLUYENDO PERO NO LIMITADO A LAS GARANTÍAS DE COMERCIABILIDAD, ADECUACIÓN PARA UN FIN DETERMINADO Y NO INFRACCIÓN. EN NINGÚN CASO, LOS AUTORES O TITULARES DE DERECHOS DE AUTOR SERÁN RESPONSABLES DE CUALQUIER RECLAMACIÓN, DAÑO O CUALQUIER OTRA RESPONSABILIDAD, YA SEA EN UNA ACCIÓN DE CONTRATO, AGRAVIO O DE OTRA MANERA, QUE SURJA DE O EN RELACIÓN CON EL SOFTWARE O EL USO O OTROS NEGOCIOS EN EL SOFTWARE.</string>
     <string name="sop_ap1">1. La aplicación con licencia bajo estos términos y condiciones contiene software con licencia de terceros que es propietario de ellos, valioso y protegido por derechos de propiedad intelectual internacionales. ("Software de terceros"). El usuario de la aplicación que contiene dicho Software de Terceros ('Usted') puede utilizar el Software de Terceros solo para sus propios fines internos durante el período durante el cual usted autorizó el Software de Terceros.</string>

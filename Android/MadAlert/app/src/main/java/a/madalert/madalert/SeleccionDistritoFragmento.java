@@ -1,16 +1,13 @@
 package a.madalert.madalert;
 
-
-import android.content.Intent;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,22 +22,18 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-import a.madalert.madalert.Adapter.DataAdapter;
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import retrofit2.adapter.rxjava2.HttpException;
 
 
 /**
  * A simple {@link Fragment} subclass.
+ * Activities that contain this fragment must implement the
+ * {@link SeleccionDistritoFragmento.OnFragmentInteractionListener} interface
+ * to handle interaction events.
  */
-public class distritos extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+public class SeleccionDistritoFragmento extends Fragment {
 
     private TextView titulo;
     private Button buscar2;
@@ -57,50 +50,25 @@ public class distritos extends Fragment {
     private Spinner spnr;
     private String dist;
 
-    private distritos.OnFragmentInteractionListener mListener;
+    public static final String TAG = SeleccionDistritoFragmento.class.getSimpleName();
 
-    public static final String TAG = distritos.class.getSimpleName();
+    private OnFragmentInteractionListener mListener;
 
-    public distritos() {
+    public SeleccionDistritoFragmento() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment fragmento.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static distritos newInstance(String param1, String param2) {
-        distritos fragment = new distritos();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_distritos, container, false);
+        View view = inflater.inflate(R.layout.fragment_seleccionar_distrito, container, false);
         mSubscriptions = new CompositeDisposable();
         initViews(view);
         initSharedPreferences();
 
+        //return view;
         return view;
     }
 
@@ -110,7 +78,7 @@ public class distritos extends Fragment {
         buscar2 = v.findViewById(R.id.buscar);
 
         titulo.setText("Selecciona un distrito");
-        buscar2.setOnClickListener(view -> getAlertasDistrito2());
+        buscar2.setOnClickListener(view -> getAlertasDistrito2(view));
 
         spnr = (Spinner)v.findViewById(R.id.spinner);
         ArrayAdapter adapter = ArrayAdapter.createFromResource(
@@ -144,7 +112,7 @@ public class distritos extends Fragment {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
     }
 
-    private void getAlertasDistrito2() {
+    private void getAlertasDistrito2(View v) {
 
         //setError();
 
@@ -167,6 +135,9 @@ public class distritos extends Fragment {
         if (err == 0) {
 
             alertasProcess(dist);
+            /*buscar2.setVisibility(View.GONE);
+            titulo.setVisibility(View.GONE);
+            spnr.setVisibility(View.GONE);*/
 
         }
         /*    mProgressBar.setVisibility(View.VISIBLE);
@@ -198,10 +169,12 @@ public class distritos extends Fragment {
         //mEtEmail.setText(null);
         //distritoText.setText(null);
 
-       getActivity().getFragmentManager().beginTransaction()
-                .replace(R.id.content_frame,new ListaAlertas())
+        getFragmentManager().beginTransaction()
+                .replace(R.id.distritos_frame, new ListaAlertas())
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack(null)
                 .commit();
+
 
         /*Intent intent = new Intent(getActivity(), AlertasActivity.class);
         startActivity(intent);*/
@@ -249,16 +222,17 @@ public class distritos extends Fragment {
         }
     }
 
-   /* @Override
+
+    @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
+        try {
+            mListener = (SeleccionDistritoFragmento.OnFragmentInteractionListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement OnFragmentInteractionListener") ;
         }
-    }*/
+
+    }
 
     @Override
     public void onDetach() {

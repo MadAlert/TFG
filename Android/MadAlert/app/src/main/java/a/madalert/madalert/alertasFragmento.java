@@ -13,11 +13,11 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class alertasFragmento extends Fragment {
+public class AlertasFragmento extends Fragment {
 
 
 
-    public alertasFragmento() {
+    public AlertasFragmento() {
        /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.anadirAlerta);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override

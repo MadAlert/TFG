@@ -24,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".soporte"
+            android:name=".SoporteFragmento"
             android:label="Soporte"
             android:parentActivityName=".MainActivity">
             <!-- Gracias al atributo parentActivityName aparece la flecha de atrás-->
