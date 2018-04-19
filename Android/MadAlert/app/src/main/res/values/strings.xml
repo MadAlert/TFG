@@ -10,7 +10,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="navView">MadAlert\ninfo@madalert.com</string>
-    <string name="imagenLogo">Imagen relacionada con la categoría de la alerta</string>
+    <string name="imagenLogo">imagen logo</string>
 
     <!--Para la pestaña 'distritos'-->
     <string name="distritos_prompt">Selecciona un distrito</string>
@@ -51,5 +51,4 @@
     <string name="sop_ap5">5. Los Licenciantes de Terceros no serán responsables en relación con el Software de Terceros por cualquier pérdida indirecta o consecuente, daños punitivos o ejemplares, pérdida de beneficios o ahorros reales o potenciales, pérdida económica o pérdida de buena voluntad comercial o por el Pérdida o corrupción de datos. Ellos no se consideran como teniendo y no tendrán ninguna responsabilidad hacia usted que surja de o en conexión con su uso del Software de Terceros.</string>
     <string name="sop_ap6">6. El software de terceros se proporciona "tal cual". Es su responsabilidad asegurarse de que cumple con sus requisitos. Usted confirma que no confía en ninguna representación, garantías o pactos excepto las garantías expresamente hechas aquí. Esta cláusula es una garantía limitada. El Tercero Licenciante no hace ninguna otra garantía, expresa, implícita, legal o de otro tipo, y por la presente renuncia expresamente a todas las demás garantías, incluyendo pero no limitado a las garantías implícitas de título, comerciabilidad, idoneidad para un propósito particular o no infracción con Respecto al Software de Terceros.</string>
     <string name="sop_ap7"> 7. Estos términos y condiciones se regirán e interpretarán de acuerdo con las leyes de España cuyos tribunales tendrán jurisdicción exclusiva sobre cualquier y todas las disputas que surjan de o en relación con ellos.</string>
-    <string name="imagen_logo">imagen_logo</string>
 </resources>
