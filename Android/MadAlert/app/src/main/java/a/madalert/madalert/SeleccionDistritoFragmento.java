@@ -21,10 +21,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
-import org.json.JSONArray;
-
 import java.io.IOException;
-import java.util.ArrayList;
 
 import io.reactivex.disposables.CompositeDisposable;
 import retrofit2.adapter.rxjava2.HttpException;
@@ -52,7 +49,6 @@ public class SeleccionDistritoFragmento extends Fragment {
 
     private Spinner spnr;
     private String dist;
-    private ArrayList<String> categorias;
 
     public static final String TAG = SeleccionDistritoFragmento.class.getSimpleName();
 
@@ -138,7 +134,6 @@ public class SeleccionDistritoFragmento extends Fragment {
 
         if (err == 0) {
 
-            //Nerea - nuevo ---> alertasProcess(dist,categorias);
             alertasProcess(dist);
             /*buscar2.setVisibility(View.GONE);
             titulo.setVisibility(View.GONE);
@@ -165,23 +160,10 @@ public class SeleccionDistritoFragmento extends Fragment {
         handleResponse(distrito);
     }
 
-    /*
-     private void alertasProcess(String distrito, ArrayList<String> categorias) {
-        Alertas alert = new Alertas();
-        alert.setDistrito(distrito);
-        if(categorias.size() == 0 || (categoria.size()==0 && categoria.get(0).equals("Todas"))){
-            handleResponse(distrito);
-        }
-        else{
-            handleResponse(distrito, categorias);
-        }
-    }
-     */
     private void handleResponse(String alerta) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         //editor.putString(Constants.TOKEN,response.getToken())
         editor.putString("distrito", alerta);
-        editor.putString("categorias", "0");
         editor.apply();
 
         //mEtEmail.setText(null);
@@ -193,30 +175,11 @@ public class SeleccionDistritoFragmento extends Fragment {
                 .addToBackStack(null)
                 .commit();
 
-        /*Intent intent = new Intent(getActivity(), AlertasActivity.class);
-        startActivity(intent);*/
-    }
-
-    private void handleResponse(String alerta, ArrayList<String> distritos) {
-        SharedPreferences.Editor editor = mSharedPreferences.edit();
-        editor.putString("distrito", alerta);
-        JSONArray arrayDistritos = new JSONArray();
-        arrayDistritos.put(distritos);
-        editor.putString("categorias", arrayDistritos.toString());
-        editor.apply();
-
-        //mEtEmail.setText(null);
-        //distritoText.setText(null);
-
-        getFragmentManager().beginTransaction()
-                .replace(R.id.distritos_frame, new ListaAlertas())
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .addToBackStack(null)
-                .commit();
 
         /*Intent intent = new Intent(getActivity(), AlertasActivity.class);
         startActivity(intent);*/
     }
+
 
     private void handleError(Throwable error) {
 

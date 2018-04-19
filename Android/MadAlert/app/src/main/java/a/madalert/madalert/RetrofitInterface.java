@@ -22,8 +22,4 @@ public interface RetrofitInterface {
 
     @GET("alertas/{distrito}")
     Observable<List<Alertas>> getAlertasDistrito(@Path("distrito") String distrito);
-
-    @GET("alertas/{distrito}/{categorias}")
-    Observable<List<Alertas>> getAlertasDistritoCategoria(@Path("distrito") String distrito, @Path("categorias") String categorias);
-
 }
