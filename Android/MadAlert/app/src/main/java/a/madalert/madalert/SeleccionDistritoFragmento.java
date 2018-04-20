@@ -1,6 +1,7 @@
 package a.madalert.madalert;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -8,12 +9,16 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.GridLayout;
+import android.widget.GridView;
+import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -22,7 +27,9 @@ import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
+import a.madalert.madalert.Adapter.GridViewAdapter;
 import io.reactivex.disposables.CompositeDisposable;
 import retrofit2.adapter.rxjava2.HttpException;
 
@@ -39,6 +46,14 @@ public class SeleccionDistritoFragmento extends Fragment {
     private Button buscar2;
     private CompositeDisposable mSubscriptions;
     private SharedPreferences mSharedPreferences;
+    private GridView gridView;
+    private View btnGo;
+    private ArrayList<String> selectedStrings;
+    private static final String[] categorias = new String[]{
+            "Todas", "Desastres y accidentes", "Terrorismo", "Criminalidad",
+            "Tráfico", "Eventos", "Transporte público", "Contaminación"};
+
+
 
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
@@ -79,6 +94,25 @@ public class SeleccionDistritoFragmento extends Fragment {
 
         titulo.setText("Selecciona un distrito");
         buscar2.setOnClickListener(view -> getAlertasDistrito2(view));
+
+        gridView = (GridView) v.findViewById(R.id.grid);
+
+        selectedStrings = new ArrayList<>();
+
+        final GridViewAdapter adapter2 = new GridViewAdapter(categorias, getActivity());
+        gridView.setAdapter(adapter2);
+        gridView.setOnItemClickListener((parent, v1, position, id) -> {
+            int selectedIndex = adapter2.selectedPositions.indexOf(position);
+            if (selectedIndex > -1) {
+                adapter2.selectedPositions.remove(selectedIndex);
+                ((GridItemView) v1).display(false);
+                selectedStrings.remove((String) parent.getItemAtPosition(position));
+            } else {
+                adapter2.selectedPositions.add(position);
+                ((GridItemView) v1).display(true);
+                selectedStrings.add((String) parent.getItemAtPosition(position));
+            }
+        });
 
         spnr = (Spinner)v.findViewById(R.id.spinner);
         ArrayAdapter adapter = ArrayAdapter.createFromResource(

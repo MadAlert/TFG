@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <TextView
         android:id="@+id/textView"
@@ -10,33 +11,42 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="5dp"
-        android:layout_marginTop="80dp"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:visibility="visible"/>
+        android:layout_marginTop="40dp"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
 
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="120dp"
+        android:textSize="20sp"
         android:entries="@array/distritos_array"
         android:prompt="@string/distritos_prompt"
-        android:spinnerMode="dialog"
-        android:visibility="visible"/>
+        android:spinnerMode="dialog"/>
+
+    <GridView
+        android:id="@+id/grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnWidth="50dp"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp"
+        android:layout_marginTop="170dp"
+        android:numColumns="4"
+        android:scrollbars="none" />
 
     <Button
         android:id="@+id/buscar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="220dp"
+        android:layout_marginTop="460dp"
         android:background="@color/colorButton"
         android:padding="10dp"
         android:text="@string/buscar"
         android:textColor="@color/cardview_light_background"
-        android:textSize="16sp"
-        android:visibility="visible"/>
+        android:textSize="18sp"/>
 
 </RelativeLayout>
