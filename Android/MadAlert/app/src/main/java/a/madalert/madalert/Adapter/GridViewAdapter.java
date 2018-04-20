@@ -23,6 +23,11 @@ public class GridViewAdapter extends BaseAdapter {
         selectedPositions = new ArrayList<>();
     }
 
+    public GridViewAdapter(String[] strings){
+        this.strings = strings;
+        selectedPositions = new ArrayList<>();
+    }
+
     @Override
     public int getCount() {
         return strings.length;

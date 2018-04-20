@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="a.madalert.madalert.ConfigActivity">
+
+    <TextView
+        android:id="@+id/textRadio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="29dp"
+        android:layout_marginLeft="16dp"
+        android:text="@string/textRadio"
+        android:textSize="21sp"
+        android:textStyle="bold" />
+
+    <SeekBar
+        android:id="@+id/seekBarRadio"
+        android:layout_width="290dp"
+        android:layout_height="50dp"
+        android:layout_marginLeft="16dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textRadio"
+        android:max="25"
+        />
+
+    <TextView
+        android:id="@+id/tvKm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textRadio"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
+        android:text="@string/tvKm"
+        android:textSize="21sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/textCategorias"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/seekBarRadio"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="16dp"
+        android:text="@string/textCategorias"
+        android:textSize="21sp"
+        android:textStyle="bold" />
+
+   <GridView
+        android:id="@+id/grid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+        android:layout_marginLeft="16dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+       android:layout_centerHorizontal="true"
+        android:columnWidth="50dp"
+        android:horizontalSpacing="10dp"
+        android:numColumns="4"
+        android:scrollbars="none"
+        android:verticalSpacing="10dp"/>
+
+    <TextView
+        android:id="@+id/textUbicacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/grid"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="16dp"
+        android:text="@string/textUbi"
+        android:textSize="21sp"
+        android:textStyle="bold" />
+
+    <Switch
+        android:id="@+id/switchUbi"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textUbicacion"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="141dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="141dp"
+        android:checked="false"/>
+
+    <Spinner
+        android:id="@+id/spinnerDistritos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/textUbicacion"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="16dp"
+        android:textSize="21sp"
+        android:entries="@array/distritos_array"
+        android:prompt="@string/distritos_prompt"
+        android:spinnerMode="dialog"
+        />
+
+
+
+</RelativeLayout>

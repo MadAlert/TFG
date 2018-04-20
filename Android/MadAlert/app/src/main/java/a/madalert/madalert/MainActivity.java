@@ -48,7 +48,6 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -76,35 +75,35 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        Fragment fragment = null;
-        Class fragmentClass = null;
+        //Fragment fragment = null;
+        //Class fragmentClass = null;
 
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_ajustes) {
-            // Handle the ajustes action
+        if (id == R.id.nav_configuracion) {
+            startActivity(new Intent(getApplicationContext(), ConfigActivity.class));
         } else if (id == R.id.nav_contacto) {
 
         } else if (id == R.id.nav_soporte) {
-            startActivity(new Intent(this, SoporteFragmento.class));
+            startActivity(new Intent(getApplicationContext(), SoporteActivity.class));
             //fragmentClass = SoporteFragmento.class;
         } else if (id == R.id.nav_aboutus) {
 
         } else if (id == R.id.nav_faq) {
-            fragmentClass = FaqFragmento.class;
+            //fragmentClass = FaqFragmento.class;
         }
         try {
-            fragment = (Fragment) fragmentClass.newInstance();
+           // fragment = (Fragment) fragmentClass.newInstance();
         }
         catch (Exception e){
             e.printStackTrace();
         }
 
-        if(fragment != null){
+        /*if(fragment != null){
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-        }
+        }*/
 
         setTitle(item.getTitle());
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
