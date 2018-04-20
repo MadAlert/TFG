@@ -192,7 +192,7 @@
 
                         if (!isset($_POST['distritoSilvia2']) && !isset($_POST['distritoSilvia3']) && !isset($_POST['distritoSilvia4']) ){
 
-                        echo "AHORA AQUI";
+                       
                         echo '<div class="row">
                                  <div class="col-12">
                                     <div class="card">
