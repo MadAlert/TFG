@@ -45,13 +45,14 @@ $("#botonAlert").click(function(){
 						$("#alerta").val('');
 						$("#nombre").val('');
 						$("#email").val('');
-					} else {
+					}
+					else {
 						$("#incorrecto").slideDown();
 						$("#incorrecto").delay(2000);
 						$("#incorrecto").slideUp();
-						$("#alerta").val('');
-						$("#nombre").val('');
-						$("#email").val('');
+						$("#alerta").val(alerta);
+						$("#nombre").val(nombre);
+						$("#email").val(email);
 					}
 					//Falta que si es 0 -----> mostrar mensaje de error y no se añade
 				   },

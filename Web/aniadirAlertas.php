@@ -76,7 +76,8 @@
                     <div class="col-12">
                         <div class="card">
                             <div class="card-block">
-                                <h1 class="card-title"> Añadir alertas en tiempo real</h1>
+                                <h1 class="card-title"> Añadir alertas en tiempo real </h1>
+
                                 <form class="form-horizontal form-material" class="contacto" action="procesarAniadir.php" method="post">
                                     <div class="form-group">
                                         <div class="col-md-6">
@@ -120,6 +121,7 @@
                                     <div class="correcto" id="correcto">Su alerta se ha insertado correctamente</div>
                                     <div class="incorrecto" id="incorrecto">La categoría elegida no es la correspondiente a su alerta, intentelo de nuevo </div>
                                 </form>  
+                                
                                 <!-- Modal
                                 <div class="modal fade" id="bsModal3" tabindex="0" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                   <div class="modal-dialog modal-sm">
