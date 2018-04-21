@@ -3,6 +3,7 @@
 const jwt = require('jsonwebtoken');
 
 const alertasDistrito = require('./functions/verAlertasDistrito');
+const alertasDistritoCategoria = require('./functions/verAlertasDistritoCategoria.js');
 /*const login = require('./functions/login');
 const profile = require('./functions/profile');
 const password = require('./functions/password');
@@ -20,4 +21,13 @@ module.exports = router => {
 
 			.catch(err => res.status(err.status).json({ message: err.message }));
 	});
+	
+	router.get('/alertas/:distrito/:arr', (req,res) => {
+			
+			alertasDistritoCategoria.getAlertasDistritoCategoria(req.params.distrito, req.params.arr.split(','))
+			
+			.then(result => res.json(result))
+			.catch(err => res.status(err.status).json({ message: err.message }));
+	});
 }
+
