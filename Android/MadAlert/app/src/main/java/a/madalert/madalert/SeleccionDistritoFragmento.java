@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,7 @@ public class SeleccionDistritoFragmento extends Fragment {
     private GridView gridView;
     private View btnGo;
     private ArrayList<String> selectedStrings;
+    private ArrayList<View> listaViews;
     private static final String[] categorias = new String[]{
             "Todas", "Desastres y accidentes", "Terrorismo", "Criminalidad",
             "Tráfico", "Eventos", "Transporte público", "Contaminación"};
@@ -98,18 +100,31 @@ public class SeleccionDistritoFragmento extends Fragment {
         gridView = (GridView) v.findViewById(R.id.grid);
 
         selectedStrings = new ArrayList<>();
+        listaViews = new ArrayList<>();
 
         final GridViewAdapter adapter2 = new GridViewAdapter(categorias, getActivity());
         gridView.setAdapter(adapter2);
         gridView.setOnItemClickListener((parent, v1, position, id) -> {
             int selectedIndex = adapter2.selectedPositions.indexOf(position);
+            if(position == 0 && id == 0 && !(selectedIndex > -1)){ //Se ha selecionado la opcion TODAS
+                for(int i=0; i <listaViews.size();i++){
+                    ((GridItemView) listaViews.get(i)).display(false);
+                    listaViews.remove(i);
+                }
+
+            }
             if (selectedIndex > -1) {
                 adapter2.selectedPositions.remove(selectedIndex);
                 ((GridItemView) v1).display(false);
                 selectedStrings.remove((String) parent.getItemAtPosition(position));
+                listaViews.remove(v1);
             } else {
+                if(adapter2.selectedPositions.contains(0) && id != 0) { //Esta todas
+                    ((GridItemView) listaViews.get(0)).display(false);
+                }
                 adapter2.selectedPositions.add(position);
                 ((GridItemView) v1).display(true);
+                listaViews.add(v1);
                 selectedStrings.add((String) parent.getItemAtPosition(position));
             }
         });
