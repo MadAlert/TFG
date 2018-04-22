@@ -1,14 +1,21 @@
 package a.madalert.madalert;
 
 import android.Manifest;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.DrawableWrapper;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,10 +46,19 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
     private Spinner spinner;
     private int km;
     private SharedPreferences.Editor editor;
+    private Switch swUbi;
     private boolean isCheckedSw;
+    private ArrayList<View> listaViews;
     private String distrito; // ahora mismo no está siendo usado pero lo será en un futuro
     private int pos;
     private int MY_PERMISSIONS_REQUEST_LOCATION =1;
+    private AlertDialog alert;
+
+    private Location location;
+    private LocationManager locationManager;
+    private LocationListener locationListener;
+
+    private String categoriasArray;
 
 
     @Override
@@ -65,11 +81,13 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         isCheckedSw = mSharedPreferences.getBoolean("isCheckedSw", true);
        // distrito = mSharedPreferences.getString("distrito", "");
         pos = mSharedPreferences.getInt("posicion", -1);
+
+
         // falta guardar las categorias, recuerda lo pasos: put, get y set. QUE NO SE TE OLVIDE EL SET GONZA COÑO
     }
 
     private void initSwitch(){
-        Switch swUbi = (Switch) findViewById(R.id.switchUbi);
+        swUbi = (Switch) findViewById(R.id.switchUbi);
         swUbi.setChecked(isCheckedSw);
 
         if(swUbi != null)
@@ -80,8 +98,8 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-        Toast.makeText(this, "La ubicación está " + (isChecked ? "activada" : "desactivada"),
-                Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "La ubicación está " + (isChecked ? "activada" : "desactivada"),
+               // Toast.LENGTH_SHORT).show();
 
         isCheckedSw = isChecked;
         editor.putBoolean("isCheckedSw", isCheckedSw);
@@ -92,6 +110,17 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
 
         // Here, thisActivity is the current activity
         if(isCheckedSw) {
+            locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+           // Verificamos si el GPS esta encendido o no:
+            assert locationManager != null;
+            if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
+            {
+                localizacion();
+                AlertNoGps();
+            }
+
+
+            // Para permitir que la app acceda a la ubicacion del dispositivo
             if (ContextCompat.checkSelfPermission(this,
                     Manifest.permission.ACCESS_FINE_LOCATION)
                     != PackageManager.PERMISSION_GRANTED) {
@@ -161,22 +190,74 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
     private void initGridView(){
         GridView gridView = (GridView) findViewById(R.id.grid);
 
-        selectedStrings = new ArrayList<>();
-
         final GridViewAdapter adapter2 = new GridViewAdapter(categorias, this);
         gridView.setAdapter(adapter2);
+
+       /* for (int i = categoriasArray.size() - 1; i >= 0; i--) {
+            adapter2.selectedPositions.add(i);
+            ((GridItemView) listaViews.get(categoriasArray.get(i))).display(true);
+            categoriasArray.add(categoriasArray.get(i));
+            Log.d("TAGG", listaViews.get(i).toString());
+        }*/
+
+        selectedStrings = new ArrayList<>();
+        listaViews = new ArrayList<>();
+
         gridView.setOnItemClickListener((parent, v1, position, id) -> {
             int selectedIndex = adapter2.selectedPositions.indexOf(position);
+            if(position == 0 && id == 0 && !(selectedIndex > -1)){ //Se ha selecionado la opcion TODAS
+                for(int i= listaViews.size()-1; i >= 0; i--){
+                    ((GridItemView) listaViews.get(i)).display(false);
+                    listaViews.remove(i);
+                    selectedStrings.remove(i);
+                    adapter2.selectedPositions.remove(i);
+                }
+            }
             if (selectedIndex > -1) {
                 adapter2.selectedPositions.remove(selectedIndex);
                 ((GridItemView) v1).display(false);
                 selectedStrings.remove((String) parent.getItemAtPosition(position));
+                listaViews.remove(v1);
             } else {
+                if(adapter2.selectedPositions.contains(0) && id != 0) { //Esta todas
+                    ((GridItemView) listaViews.get(0)).display(false);
+                    selectedStrings.remove(0);
+                    listaViews.remove(0);
+                    adapter2.selectedPositions.remove(0);
+                }
                 adapter2.selectedPositions.add(position);
                 ((GridItemView) v1).display(true);
+                listaViews.add(v1);
                 selectedStrings.add((String) parent.getItemAtPosition(position));
             }
         });
+
+        if(selectedStrings.size()==1 && selectedStrings.get(0)=="Todas"){
+            editor.putString("hayCategorias", "0");
+        }
+        else{
+            categoriasArray = new String();
+            for(int i=0; i< selectedStrings.size();i++){
+                categoriasArray=categoriasArray+selectedStrings.get(i);
+                if(i < selectedStrings.size()-1){
+                    categoriasArray=categoriasArray+",";
+                }
+            }
+            editor.putString("hayCategorias", categoriasArray); //Hay que pasar el array de string por aqui
+        }
+       /* else{
+            categoriasArray = new ArrayList<>();
+            for(int i=0; i< selectedStrings.size();i++){
+                categoriasArray.set(i, Integer.valueOf(categoriasArray + selectedStrings.get(i)));
+                if(i < selectedStrings.size()-1){
+                    categoriasArray.set(i, Integer.valueOf(categoriasArray.get(i) + ","));
+                }
+            }
+            editor.putString("hayCategorias", categoriasArray.toString()); //Hay que pasar el array de string por aqui
+        }*/
+
+        editor.apply();
+
     }
 
     private void initSpinner(){
@@ -207,6 +288,72 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         });
 
 
+
+    }
+
+    private void AlertNoGps() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("El sistema GPS esta desactivado, ¿Desea activarlo?")
+                .setCancelable(false)
+                .setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                    public void onClick(@SuppressWarnings("unused") final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                    }
+                })
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(final DialogInterface dialog, @SuppressWarnings("unused") final int id) {
+                        dialog.cancel();
+                        isCheckedSw = false;
+                        editor.putBoolean("isCheckedSw", isCheckedSw);
+                        editor.apply();
+                        swUbi.setChecked(isCheckedSw);
+                    }
+                });
+        alert = builder.create();
+        alert.show();
+    }
+
+    private void localizacion(){
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+
+            if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+                return;
+            } else {
+                location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            }
+        } else {
+            location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+        }
+
+
+        locationListener = new LocationListener() {
+            @Override
+            public void onLocationChanged(Location location) {
+
+            }
+
+            @Override
+            public void onStatusChanged(String provider, int status, Bundle extras) {
+
+            }
+
+            @Override
+            public void onProviderEnabled(String provider) {
+
+            }
+
+            @Override
+            public void onProviderDisabled(String provider) {
+                isCheckedSw = false;
+                swUbi.setChecked(isCheckedSw);
+                editor.putBoolean("isCheckedSw", isCheckedSw);
+                editor.apply();
+            }
+        };
+
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
 
     }
 }

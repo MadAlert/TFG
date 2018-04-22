@@ -220,7 +220,6 @@ public class SeleccionDistritoFragmento extends Fragment {
         //editor.putString(Constants.TOKEN,response.getToken())
         editor.putString("distrito", alerta);
 
-
         if(selectedStrings.size()==1 && selectedStrings.get(0)=="Todas"){
             editor.putString("hayCategorias", "0");
         }
