@@ -4,8 +4,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -110,6 +112,7 @@ public class SeleccionDistritoFragmento extends Fragment {
                 for(int i=0; i <listaViews.size();i++){
                     ((GridItemView) listaViews.get(i)).display(false);
                     listaViews.remove(i);
+                    selectedStrings.remove(i);
                 }
 
             }
@@ -121,6 +124,7 @@ public class SeleccionDistritoFragmento extends Fragment {
             } else {
                 if(adapter2.selectedPositions.contains(0) && id != 0) { //Esta todas
                     ((GridItemView) listaViews.get(0)).display(false);
+                    selectedStrings.remove(0);
                 }
                 adapter2.selectedPositions.add(position);
                 ((GridItemView) v1).display(true);
@@ -213,8 +217,23 @@ public class SeleccionDistritoFragmento extends Fragment {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         //editor.putString(Constants.TOKEN,response.getToken())
         editor.putString("distrito", alerta);
-        editor.apply();
 
+
+        if(selectedStrings.size()==1 && selectedStrings.get(0)=="Todas"){
+            editor.putString("hayCategorias", "0");
+        }
+        else{
+            String categorias = new String();
+            for(int i=0; i< selectedStrings.size();i++){
+                categorias=categorias+selectedStrings.get(i);
+                if(i < selectedStrings.size()-1){
+                    categorias=categorias+",";
+                }
+            }
+            editor.putString("hayCategorias", categorias); //Hay que pasar el array de string por aqui
+
+        }
+        editor.apply();
         //mEtEmail.setText(null);
         //distritoText.setText(null);
 
