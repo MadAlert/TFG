@@ -33,14 +33,15 @@
             android:name=".SoporteActivity"
             android:label="Soporte"
             android:parentActivityName=".MainActivity">
+
             <!-- Gracias al atributo parentActivityName aparece la flecha de atrás -->
         </activity>
         <activity android:name=".AlertasActivity" />
         <activity
             android:name=".ConfigActivity"
             android:label="Configuración"
-            android:parentActivityName=".MainActivity">
-        </activity>
+            android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".AddAlertaActivity"></activity>
     </application>
 
 </manifest>

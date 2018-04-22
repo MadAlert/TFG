@@ -206,10 +206,6 @@ public class SeleccionDistritoFragmento extends Fragment {
 
     private void alertasProcess(String distrito) {
 
-        /*mSubscriptions.add(NetworkUtil.getRetrofit().getAlertasDistrito(distrito)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(io.reactivex.schedulers.Schedulers.io())
-                .subscribe(this::handleResponse,this::handleError));*/
         Alertas alert = new Alertas();
         alert.setDistrito(distrito);
         handleResponse(distrito);

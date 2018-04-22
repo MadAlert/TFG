@@ -45,8 +45,6 @@ public class AlertasActivity extends AppCompatActivity {
         initRecyclerView();
         initSharedPreferences();
         loadAlerta();
-
-
     }
 
     private void initRecyclerView() {
@@ -58,12 +56,6 @@ public class AlertasActivity extends AppCompatActivity {
         mRecyclerView.setLayoutManager(layoutManager);
     }
 
-    /*private void initViews() {
-
-
-        mTv2 = (TextView) findViewById(R.id.tv2);
-
-    }*/
 
     private void initSharedPreferences() {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
