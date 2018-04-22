@@ -1,9 +1,13 @@
 package a.madalert.madalert;
 
+import android.Manifest;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.DrawableWrapper;
 import android.preference.PreferenceManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -38,6 +42,7 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
     private boolean isCheckedSw;
     private String distrito; // ahora mismo no está siendo usado pero lo será en un futuro
     private int pos;
+    private int MY_PERMISSIONS_REQUEST_LOCATION =1;
 
 
     @Override
@@ -83,7 +88,44 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         Log.d("BOOL", String.valueOf(isChecked));
         editor.apply();
 
+        int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
+
+        // Here, thisActivity is the current activity
+        if(isCheckedSw) {
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.ACCESS_FINE_LOCATION)
+                    != PackageManager.PERMISSION_GRANTED) {
+
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                        Manifest.permission.ACCESS_FINE_LOCATION)) {
+
+                } else {
+
+                    ActivityCompat.requestPermissions(this,
+                            new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
+                            MY_PERMISSIONS_REQUEST_LOCATION);
+
+                }
+            }
+        }
         initSpinner();
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case 1: {
+                // If request is cancelled, the result arrays are empty.
+                if (grantResults.length > 0
+                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+
+                } else {
+
+                }
+                return;
+            }
+        }
     }
 
     private void initSeekBar(){

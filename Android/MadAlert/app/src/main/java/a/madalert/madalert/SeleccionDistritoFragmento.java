@@ -109,12 +109,12 @@ public class SeleccionDistritoFragmento extends Fragment {
         gridView.setOnItemClickListener((parent, v1, position, id) -> {
             int selectedIndex = adapter2.selectedPositions.indexOf(position);
             if(position == 0 && id == 0 && !(selectedIndex > -1)){ //Se ha selecionado la opcion TODAS
-                for(int i=0; i <listaViews.size();i++){
+                for(int i= listaViews.size()-1; i >= 0; i--){
                     ((GridItemView) listaViews.get(i)).display(false);
                     listaViews.remove(i);
                     selectedStrings.remove(i);
+                    adapter2.selectedPositions.remove(i);
                 }
-
             }
             if (selectedIndex > -1) {
                 adapter2.selectedPositions.remove(selectedIndex);
@@ -125,6 +125,8 @@ public class SeleccionDistritoFragmento extends Fragment {
                 if(adapter2.selectedPositions.contains(0) && id != 0) { //Esta todas
                     ((GridItemView) listaViews.get(0)).display(false);
                     selectedStrings.remove(0);
+                    listaViews.remove(0);
+                    adapter2.selectedPositions.remove(0);
                 }
                 adapter2.selectedPositions.add(position);
                 ((GridItemView) v1).display(true);
