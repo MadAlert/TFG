@@ -8,9 +8,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="98dp"
-        tools:layout_editor_absoluteY="0dp">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/textView4"
@@ -26,24 +24,22 @@
             android:id="@+id/editText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="79dp"
             android:inputType="textPersonName"
-            android:text="Nombre" />
+            android:hint="Nombre" />
 
         <EditText
             android:id="@+id/editText2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="141dp"
             android:ems="10"
             android:inputType="textEmailAddress"
-            android:text="Email" />
+            android:hint="Email" />
 
         <TextView
             android:id="@+id/textView5"
@@ -87,12 +83,14 @@
 
         <EditText
             android:id="@+id/editText3"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="300dp"
             android:ems="10"
             android:inputType="textMultiLine"
-            android:text="Intrdoduce la alerta..." />
+            android:hint="Introduce la alerta..."/>
 
         <Button
             android:id="@+id/button"
@@ -100,7 +98,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="35dp"
+            android:layout_marginBottom="50dp"
             android:text="Añadir" />
 
     </RelativeLayout>
