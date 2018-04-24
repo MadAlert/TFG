@@ -4,12 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +52,7 @@ public class SeleccionDistritoFragmento extends Fragment {
     private GridView gridView;
     private View btnGo;
     private ArrayList<String> selectedStrings;
+    private ArrayList<View> listaViews;
     private static final String[] categorias = new String[]{
             "Todas", "Desastres y accidentes", "Terrorismo", "Criminalidad",
             "Tráfico", "Eventos", "Transporte público", "Contaminación"};
@@ -98,18 +102,36 @@ public class SeleccionDistritoFragmento extends Fragment {
         gridView = (GridView) v.findViewById(R.id.grid);
 
         selectedStrings = new ArrayList<>();
+        listaViews = new ArrayList<>();
 
         final GridViewAdapter adapter2 = new GridViewAdapter(categorias, getActivity());
         gridView.setAdapter(adapter2);
         gridView.setOnItemClickListener((parent, v1, position, id) -> {
             int selectedIndex = adapter2.selectedPositions.indexOf(position);
+            if(position == 0 && id == 0 && !(selectedIndex > -1)){ //Se ha selecionado la opcion TODAS
+                for(int i= listaViews.size()-1; i >= 0; i--){
+                    ((GridItemView) listaViews.get(i)).display(false);
+                    listaViews.remove(i);
+                    selectedStrings.remove(i);
+                    adapter2.selectedPositions.remove(i);
+                }
+            }
             if (selectedIndex > -1) {
                 adapter2.selectedPositions.remove(selectedIndex);
                 ((GridItemView) v1).display(false);
                 selectedStrings.remove((String) parent.getItemAtPosition(position));
+                listaViews.remove(v1);
             } else {
+                if(adapter2.selectedPositions.contains(0) && id != 0) { //Esta todas
+                    ((GridItemView) listaViews.get(0)).display(false);
+                    selectedStrings.remove(0);
+                    listaViews.remove(0);
+                    adapter2.selectedPositions.remove(0);
+                }
                 adapter2.selectedPositions.add(position);
                 ((GridItemView) v1).display(true);
+                listaViews.add(v1);
+                String x =  v1.toString();
                 selectedStrings.add((String) parent.getItemAtPosition(position));
             }
         });
@@ -152,7 +174,7 @@ public class SeleccionDistritoFragmento extends Fragment {
 
         //String password = mEtPassword.getText().toString();
 
-        int err = 0;
+        //int err = 0;
 
         /*if (!validateEmail(email)) {
 
@@ -166,29 +188,25 @@ public class SeleccionDistritoFragmento extends Fragment {
             mTiPassword.setError("Password should not be empty !");
         }*/
 
-        if (err == 0) {
+        //if (err == 0) {
 
             alertasProcess(dist);
             /*buscar2.setVisibility(View.GONE);
             titulo.setVisibility(View.GONE);
             spnr.setVisibility(View.GONE);*/
 
-        }
-        /*    mProgressBar.setVisibility(View.VISIBLE);
+        /*}
+           mProgressBar.setVisibility(View.VISIBLE);
 
-        }*/ else {
+        } else {
 
             showSnackBarMessage("Enter Valid Details !");
-        }
+        }*/
 
     }
 
     private void alertasProcess(String distrito) {
 
-        /*mSubscriptions.add(NetworkUtil.getRetrofit().getAlertasDistrito(distrito)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(io.reactivex.schedulers.Schedulers.io())
-                .subscribe(this::handleResponse,this::handleError));*/
         Alertas alert = new Alertas();
         alert.setDistrito(distrito);
         handleResponse(distrito);
@@ -198,8 +216,22 @@ public class SeleccionDistritoFragmento extends Fragment {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         //editor.putString(Constants.TOKEN,response.getToken())
         editor.putString("distrito", alerta);
-        editor.apply();
 
+        if(selectedStrings.size()==1 && selectedStrings.get(0)=="Todas"){
+            editor.putString("hayCategorias", "0");
+        }
+        else{
+            String categorias = new String();
+            for(int i=0; i< selectedStrings.size();i++){
+                categorias=categorias+selectedStrings.get(i);
+                if(i < selectedStrings.size()-1){
+                    categorias=categorias+",";
+                }
+            }
+            editor.putString("hayCategorias", categorias); //Hay que pasar el array de string por aqui
+
+        }
+        editor.apply();
         //mEtEmail.setText(null);
         //distritoText.setText(null);
 

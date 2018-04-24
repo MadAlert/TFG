@@ -1,6 +1,7 @@
 package a.madalert.madalert;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,16 +17,10 @@ import android.view.ViewGroup;
 public class AlertasFragmento extends Fragment {
 
 
+    public static final String TAG = AlertasFragmento.class.getSimpleName();
 
     public AlertasFragmento() {
-       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.anadirAlerta);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });*/
+
     }
 
 
@@ -33,8 +28,19 @@ public class AlertasFragmento extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_alertas, container, false);
+        View v = inflater.inflate(R.layout.fragment_alertas, container, false);
+        FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.anadirAlerta);
+        fab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                Intent AddAlerta = new Intent(getContext(), AddAlertaActivity.class);
+                startActivity(AddAlerta);
+            }
+        });
+
+        return v;
     }
 
 }

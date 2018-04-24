@@ -1,5 +1,6 @@
 package a.madalert.madalert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.http.Body;
@@ -22,4 +23,10 @@ public interface RetrofitInterface {
 
     @GET("alertas/{distrito}")
     Observable<List<Alertas>> getAlertasDistrito(@Path("distrito") String distrito);
+
+    @GET("alertas/{distrito}/{categorias}")
+    Observable<List<Alertas>> getAlertasDistritoCategoria(@Path("distrito") String distrito, @Path("categorias") String[] categorias);
+
+    @POST("alertas/{alerta}/{distrito}/{fuente}/{categoria}")
+    Observable<Alertas> postAlerta(@Path("alerta") String alerta, @Path("distrito") String distrito, @Path("fuente") String fuente, @Path("categoria") String categoria);
 }
