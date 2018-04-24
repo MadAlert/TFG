@@ -34,30 +34,27 @@ module.exports = router => {
 	});
 	
 	//Para añadir alertas
-	router.post('/alertas', (req, res) => {
+	router.post('/alertas/:titulo/:distrito/:fuente/:categoria', (req, res) => {
 
-		const alerta = req.body.alerta;
-		const distrito = req.body.distrito;
-		const fuente = req.body.fuente;
-		const categoria = req.body.categoria;
+		const alerta = req.params.titulo;
+		const distrito = req.params.distrito;
+		const fuente = req.params.fuente;
+		const categoria = req.params.categoria;
+
+		console.log(req.params.titulo);
+		
+		console.log(req.params.distrito);
 		
 
-		if (!alerta || !distrito || !fuente || !categoria) {
+	    addAlerta.addAlertaBD(req.params.distrito,req.params.fuente,req.params.categoria)
 
-			res.status(400).json({message: 'Invalid Request !'});
-
-		} else {
-
-			addAlerta.addAlertaBD(alerta,distrito,fuente,categoria)
-
-			.then(result => {
-
+		.then(result => {
 				//res.setHeader('Location', '/users/'+email);
 				res.status(result.status).json({ message: result.message })
-			})
+		})
 
-			.catch(err => res.status(err.status).json({ message: err.message }));
-		}
+		.catch(err => res.status(err.status).json({ message: err.message }));
+		
 	});
 }
 
