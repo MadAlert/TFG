@@ -174,7 +174,7 @@ public class SeleccionDistritoFragmento extends Fragment {
 
         //String password = mEtPassword.getText().toString();
 
-        int err = 0;
+        //int err = 0;
 
         /*if (!validateEmail(email)) {
 
@@ -188,20 +188,20 @@ public class SeleccionDistritoFragmento extends Fragment {
             mTiPassword.setError("Password should not be empty !");
         }*/
 
-        if (err == 0) {
+        //if (err == 0) {
 
             alertasProcess(dist);
             /*buscar2.setVisibility(View.GONE);
             titulo.setVisibility(View.GONE);
             spnr.setVisibility(View.GONE);*/
 
-        }
-        /*    mProgressBar.setVisibility(View.VISIBLE);
+        /*}
+           mProgressBar.setVisibility(View.VISIBLE);
 
-        }*/ else {
+        } else {
 
             showSnackBarMessage("Enter Valid Details !");
-        }
+        }*/
 
     }
 

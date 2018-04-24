@@ -17,6 +17,8 @@ import android.view.ViewGroup;
 public class AlertasFragmento extends Fragment {
 
 
+    public static final String TAG = AlertasFragmento.class.getSimpleName();
+
     public AlertasFragmento() {
 
     }

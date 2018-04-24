@@ -46,7 +46,7 @@ module.exports = router => {
 		console.log(req.params.distrito);
 		
 
-	    addAlerta.addAlertaBD(req.params.distrito,req.params.fuente,req.params.categoria)
+	    addAlerta.addAlertaBD(req.params.titulo,req.params.distrito,req.params.fuente,req.params.categoria)
 
 		.then(result => {
 				//res.setHeader('Location', '/users/'+email);

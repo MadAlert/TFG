@@ -3,8 +3,6 @@
 const alertas = require('../alertas');
 
 exports.addAlertaBD = (alerta, distrito , fuente , categoria) => 
-
-	console.log("Llega aqui");
 	
 	new Promise((resolve,reject) => {
 		const newAlerta = new alertas({
@@ -14,7 +12,7 @@ exports.addAlertaBD = (alerta, distrito , fuente , categoria) =>
 			distrito: distrito,
 			categoria: categoria,
 			fuente: fuente,
-			verificado: null
+			verificado: false
 		});
 		
 		newAlerta.save()
