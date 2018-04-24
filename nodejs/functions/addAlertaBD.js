@@ -1,32 +1,26 @@
 'use strict';
 
-const alerta = require('../alertas');
+const alertas = require('../alertas');
 
-exports.addAlertaBD = (alerta,distrito,fuente,categoria) => 
+exports.addAlertaBD = (alerta, distrito , fuente , categoria) => 
 
+	console.log("Llega aqui");
+	
 	new Promise((resolve,reject) => {
-		const newAlerta = new alerta({
-
+		const newAlerta = new alertas({
 			alerta: alerta,
-			distrito: distrito,
 			fecha: new Date(),
+			url: null,
+			distrito: distrito,
+			categoria: categoria,
 			fuente: fuente,
-			categoria: categoria
+			verificado: null
 		});
-
+		
 		newAlerta.save()
-
-		.then(() => resolve({ status: 201, message: 'Alerta añadida correctamente !' }))
-
+		
+		.then(() => resolve ({status: 201, message: "Se ha añadio ok"}))
 		.catch(err => {
-
-			if (err.code == 11000) {
-						
-				reject({ status: 409, message: 'Ya se habia registrao !' });
-
-			} else {
-
-				reject({ status: 500, message: 'Internal Server Error !' });
-			}
+			reject({status: 500, message: "mierda error"});
 		});
 	});

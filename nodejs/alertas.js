@@ -11,7 +11,8 @@ var alertasSchema = new mongoose.Schema({
 	url: String,
 	distrito: String,
 	categoria: String,
-	fuente: String
+	fuente: String,
+	verificado: Boolean
 });
 
 mongoose.Promise = global.Promise;
