@@ -5,8 +5,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.DrawableWrapper;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -14,24 +12,21 @@ import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.GridView;
+import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-
-import a.madalert.madalert.Adapter.GridViewAdapter;
 import io.reactivex.disposables.CompositeDisposable;
 
 public class ConfigActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
@@ -50,7 +45,7 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
     private boolean isCheckedSw;
     private ArrayList<View> listaViews;
     private String distrito; // ahora mismo no está siendo usado pero lo será en un futuro
-    private int pos;
+    private int pos; // posicion del distrito
     private int MY_PERMISSIONS_REQUEST_LOCATION =1;
     private AlertDialog alert;
 
@@ -58,8 +53,19 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
     private LocationManager locationManager;
     private LocationListener locationListener;
 
-    private String categoriasArray;
+    private LinearLayout listCheckBox;
 
+    private boolean todasBool;
+    private boolean dyaBool;
+    private boolean terrBool;
+    private boolean crimiBool;
+    private boolean trafBool;
+    private boolean eventosBool;
+    private boolean transpBool;
+    private boolean contBool;
+
+    public ConfigActivity() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +76,7 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         editor = mSharedPreferences.edit(); // para guardar las configuraciones
 
         initSeekBar();
-        initGridView();
+        initListCheckBox();
         initSwitch();
 
     }
@@ -79,9 +85,15 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         km = mSharedPreferences.getInt("km", -1);
         isCheckedSw = mSharedPreferences.getBoolean("isCheckedSw", true);
-       // distrito = mSharedPreferences.getString("distrito", "");
         pos = mSharedPreferences.getInt("posicion", -1);
-
+        todasBool = mSharedPreferences.getBoolean("todas", false);
+        dyaBool = mSharedPreferences.getBoolean("dya", false);
+        terrBool = mSharedPreferences.getBoolean("terrorismo", false);
+        crimiBool = mSharedPreferences.getBoolean("crimi", false);
+        trafBool = mSharedPreferences.getBoolean("trafico", false);
+        eventosBool = mSharedPreferences.getBoolean("eventos", false);
+        transpBool = mSharedPreferences.getBoolean("transporte", false);
+        contBool = mSharedPreferences.getBoolean("contaminacion", false);
 
         // falta guardar las categorias, recuerda lo pasos: put, get y set. QUE NO SE TE OLVIDE EL SET GONZA COÑO
     }
@@ -187,80 +199,78 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         });
     }
 
-    private void initGridView(){
-        GridView gridView = (GridView) findViewById(R.id.grid);
+    private void initListCheckBox(){
+        listCheckBox = (LinearLayout) findViewById(R.id.categorias);
+        CheckBox todas = (CheckBox) findViewById(R.id.todas);
+        CheckBox dya = (CheckBox) findViewById(R.id.dya);
+        CheckBox terrorismo = (CheckBox) findViewById(R.id.terrorismo);
+        CheckBox crimi = (CheckBox) findViewById(R.id.criminalidad);
+        CheckBox traf = (CheckBox) findViewById(R.id.trafico);
+        CheckBox event = (CheckBox) findViewById(R.id.eventos);
+        CheckBox transp = (CheckBox) findViewById(R.id.transp);
+        CheckBox cont = (CheckBox) findViewById(R.id.contaminacion);
 
-        final GridViewAdapter adapter2 = new GridViewAdapter(categorias, this);
-        gridView.setAdapter(adapter2);
+        todas.setChecked(todasBool);
+        dya.setChecked(dyaBool);
+        terrorismo.setChecked(terrBool);
+        crimi.setChecked(crimiBool);
+        traf.setChecked(trafBool);
+        event.setChecked(eventosBool);
+        transp.setChecked(transpBool);
+        cont.setChecked(contBool);
 
-       /* for (int i = categoriasArray.size() - 1; i >= 0; i--) {
-            adapter2.selectedPositions.add(i);
-            ((GridItemView) listaViews.get(categoriasArray.get(i))).display(true);
-            categoriasArray.add(categoriasArray.get(i));
-            Log.d("TAGG", listaViews.get(i).toString());
-        }*/
 
-        selectedStrings = new ArrayList<>();
-        listaViews = new ArrayList<>();
-
-        gridView.setOnItemClickListener((parent, v1, position, id) -> {
-            int selectedIndex = adapter2.selectedPositions.indexOf(position);
-            if(position == 0 && id == 0 && !(selectedIndex > -1)){ //Se ha selecionado la opcion TODAS
-                for(int i= listaViews.size()-1; i >= 0; i--){
-                    ((GridItemView) listaViews.get(i)).display(false);
-                    listaViews.remove(i);
-                    selectedStrings.remove(i);
-                    adapter2.selectedPositions.remove(i);
-                }
-            }
-            if (selectedIndex > -1) {
-                adapter2.selectedPositions.remove(selectedIndex);
-                ((GridItemView) v1).display(false);
-                selectedStrings.remove((String) parent.getItemAtPosition(position));
-                listaViews.remove(v1);
-            } else {
-                if(adapter2.selectedPositions.contains(0) && id != 0) { //Esta todas
-                    ((GridItemView) listaViews.get(0)).display(false);
-                    selectedStrings.remove(0);
-                    listaViews.remove(0);
-                    adapter2.selectedPositions.remove(0);
-                }
-                adapter2.selectedPositions.add(position);
-                ((GridItemView) v1).display(true);
-                listaViews.add(v1);
-                selectedStrings.add((String) parent.getItemAtPosition(position));
-            }
+        todas.setOnCheckedChangeListener((compoundButton, b) -> {
+            todasBool = b;
+            editor.putBoolean("todas", b);
+            editor.apply();
         });
 
-        if(selectedStrings.size()==1 && selectedStrings.get(0)=="Todas"){
-            editor.putString("hayCategorias", "0");
-        }
-        else{
-            categoriasArray = new String();
-            for(int i=0; i< selectedStrings.size();i++){
-                categoriasArray=categoriasArray+selectedStrings.get(i);
-                if(i < selectedStrings.size()-1){
-                    categoriasArray=categoriasArray+",";
-                }
-            }
-            editor.putString("hayCategorias", categoriasArray); //Hay que pasar el array de string por aqui
-        }
-       /* else{
-            categoriasArray = new ArrayList<>();
-            for(int i=0; i< selectedStrings.size();i++){
-                categoriasArray.set(i, Integer.valueOf(categoriasArray + selectedStrings.get(i)));
-                if(i < selectedStrings.size()-1){
-                    categoriasArray.set(i, Integer.valueOf(categoriasArray.get(i) + ","));
-                }
-            }
-            editor.putString("hayCategorias", categoriasArray.toString()); //Hay que pasar el array de string por aqui
-        }*/
+        dya.setOnCheckedChangeListener((compoundButton, b) -> {
+            dyaBool = b;
+            editor.putBoolean("dya", b);
+            editor.apply();
+        });
 
-        editor.apply();
+        terrorismo.setOnCheckedChangeListener((compoundButton, b) -> {
+            terrBool = b;
+            editor.putBoolean("terrorismo", b);
+            editor.apply();
+        });
+
+        crimi.setOnCheckedChangeListener((compoundButton, b) -> {
+            crimiBool = b;
+            editor.putBoolean("crimi", b);
+            editor.apply();
+        });
+
+        traf.setOnCheckedChangeListener((compoundButton, b) -> {
+            trafBool = b;
+            editor.putBoolean("trafico", b);
+            editor.apply();
+        });
+
+        event.setOnCheckedChangeListener((compoundButton, b) -> {
+            eventosBool = b;
+            editor.putBoolean("eventos", b);
+            editor.apply();
+        });
+
+        transp.setOnCheckedChangeListener((compoundButton, b) -> {
+            transpBool = b;
+            editor.putBoolean("transporte", b);
+            editor.apply();
+        });
+
+        cont.setOnCheckedChangeListener((compoundButton, b) -> {
+            contBool = b;
+            editor.putBoolean("contaminacion", b);
+            editor.apply();
+        });
 
     }
 
-    private void initSpinner(){
+   private void initSpinner(){
         spinner = (Spinner) findViewById(R.id.spinnerDistritos);
         spinner.setSelection(pos);
 

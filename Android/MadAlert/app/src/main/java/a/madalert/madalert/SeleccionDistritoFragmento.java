@@ -131,6 +131,7 @@ public class SeleccionDistritoFragmento extends Fragment {
                 adapter2.selectedPositions.add(position);
                 ((GridItemView) v1).display(true);
                 listaViews.add(v1);
+                String x =  v1.toString();
                 selectedStrings.add((String) parent.getItemAtPosition(position));
             }
         });

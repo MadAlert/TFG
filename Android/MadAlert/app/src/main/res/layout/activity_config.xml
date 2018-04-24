@@ -56,20 +56,82 @@
         android:textSize="21sp"
         android:textStyle="bold" />
 
-   <GridView
-        android:id="@+id/grid"
+
+    <LinearLayout
+        android:id="@+id/categorias"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
-        android:layout_marginLeft="16dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-       android:layout_centerHorizontal="true"
-        android:columnWidth="50dp"
-        android:horizontalSpacing="10dp"
-        android:numColumns="4"
-        android:scrollbars="none"
-        android:verticalSpacing="10dp"/>
+        android:orientation="vertical"
+        android:layout_below="@+id/textCategorias"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="16dp">
+
+        <CheckBox
+            android:id="@+id/todas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Todas"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="212dp" />
+
+        <CheckBox
+            android:id="@+id/dya"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Desastres y accidentes"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="239dp" />
+
+        <CheckBox
+            android:id="@+id/terrorismo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Terrorismo"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="271dp" />
+
+        <CheckBox
+            android:id="@+id/criminalidad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Criminalidad"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="295dp" />
+
+
+        <CheckBox
+            android:id="@+id/trafico"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trafico"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="212dp" />
+
+        <CheckBox
+            android:id="@+id/eventos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Eventos"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="239dp" />
+
+        <CheckBox
+            android:id="@+id/transp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Transporte público"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="271dp" />
+
+        <CheckBox
+            android:id="@+id/contaminacion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contaminación"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="295dp" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textUbicacion"
@@ -77,7 +139,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/grid"
+        android:layout_below="@+id/categorias"
         android:layout_marginTop="15dp"
         android:layout_marginLeft="16dp"
         android:text="@string/textUbi"

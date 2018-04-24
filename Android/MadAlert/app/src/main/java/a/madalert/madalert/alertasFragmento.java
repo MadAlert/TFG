@@ -14,7 +14,7 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  */
-class AlertasFragmento extends Fragment {
+public class AlertasFragmento extends Fragment {
 
 
     public AlertasFragmento() {
