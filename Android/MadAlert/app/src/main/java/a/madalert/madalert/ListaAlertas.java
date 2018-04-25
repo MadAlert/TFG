@@ -127,7 +127,7 @@ public class ListaAlertas extends Fragment {
         else{
             String[] categoriasP;
             categoriasP = mHayCategorias.split(",");
-            mSub.add(NetworkUtil.getRetrofit().getAlertasDistritoCategoria(mDistrito, categoriasP)
+            mSub.add(NetworkUtil.getRetrofit().getAlertasDistritoCategoria(mDistrito, mHayCategorias)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(io.reactivex.schedulers.Schedulers.io())
                     .subscribe(this::handleResponse, this::handleError));

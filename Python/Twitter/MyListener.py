@@ -1,3 +1,5 @@
+#!/usr/bin/python
+# coding: utf-8
 import tweepy
 import io
 import json

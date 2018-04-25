@@ -1,4 +1,6 @@
 #Obtener tweet en stream de un usuario x
+#!/usr/bin/python
+# coding: utf-8
 import hidden
 import MyListener
 import tweepy

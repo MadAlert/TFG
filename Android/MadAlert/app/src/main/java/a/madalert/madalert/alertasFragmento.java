@@ -29,6 +29,7 @@ public class AlertasFragmento extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_alertas, container, false);
         FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.anadirAlerta);
