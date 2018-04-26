@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 from bs4 import BeautifulSoup
@@ -37,6 +38,7 @@ for i, entrada in enumerate(entradas):
 
     salir = False
 
+
     #entra al distrito j y obtiene el titulo, la entradilla de la noticia y la url de la misma
     for j, dist in enumerate(distritos):
         if(salir==False): # esto es necesario porque si la fecha no es la que queremos, se sale del distrito
@@ -68,11 +70,11 @@ for i, entrada in enumerate(entradas):
                 fd = datetime.strptime(fecha, "%Y-%m-%d %H:%M:%S")                
                 mes = fd.month
                 print (mes)
-                if(fd > dif): # si la fecha de la noticia es superior a la hora_actual - 5 min se tiene que guardar
+               # if(fd > dif): # si la fecha de la noticia es superior a la hora_actual - 5 min se tiene que guardar
                 bd.insertarAlerta(bdAlertas,titulo,fd,url,distrito,categoria,"madridDiario")
                 bd.insertarEstadisticas(bdEstadisticas,distrito,categoria,mes)
-                else:
-                 salir = True
+                #else:
+                 #salir = True
         
 def var():
     distritos = [ "arganzuela", "barajas", "carabanchel", "centro", "chamartin", "chamberi", "ciudad lineal", "fuencarral-el pardo", "hortaleza", "latina", "moncloa-aravaca", "moratalaz", "puente de vallecas", "retiro", "salamanca", "san blas", "tetuan", "usera", "vicalvaro", "villa de vallecas", "villaverde"]

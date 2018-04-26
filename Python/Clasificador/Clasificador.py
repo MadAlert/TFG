@@ -1,7 +1,15 @@
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
 import json
 import requests
+import sys
+sys.path.append('..\Clasificador')
+print(sys.path)
+import parseoCategoria
 
 from monkeylearn import MonkeyLearn
+
 
 # We define the variables need to call the API
 api = 'http://api.meaningcloud.com/class-1.1'
@@ -12,9 +20,9 @@ modelTwitter = 'tweets'
 
 mlZona = MonkeyLearn('aaa6317e0336ea1698db5d01c2aed231abd4c1a1')
 
+c = parseoCategoria.ParseoCategoriaClass()
+
 class ClasificadorClass:
-    #def clasificarTweets(self, tweet):
-       
 
     def clasificadorNoticias(self, noticia):
         parameters = {'key': keyNoticias, 'model': modelNews, 'txt': noticia}
@@ -22,10 +30,12 @@ class ClasificadorClass:
         response = r.content
         response_json = json.loads(response.decode('utf-8'))
         if(response_json['category_list']):
-            cat = response_json['category_list'][0]['label']
+            cat = c.parseoCategoria(response_json['category_list'][0]['code'])
+            #cat = response_json['category_list'][0]['label']
         else:
             cat = "Nada"
-        print(cat)    
+        print(cat)   
+
         print("\n")
         return cat
     
@@ -50,5 +60,7 @@ class ClasificadorClass:
         zona = resultado[0][0]["label"]
         print(zona)
         return zona
+
+
 
         
