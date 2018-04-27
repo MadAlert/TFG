@@ -27,7 +27,7 @@ module.exports = router => {
 	//Para buscar alertas por distrito y categoria
 	router.get('/alertas/:distrito/:arr', (req,res) => {
 			console.debug(req.params.arr.split(','))
-			alertasDistritoCategoria.getAlertasDistritoCategoria(req.params.distrito, req.params.arr.split(','))
+			alertasDistritoCategoria.getAlertasDistritoCategoria(req.params.distrito.split(','), req.params.arr.split(','))
 			
 			.then(result => res.json(result))
 			.catch(err => res.status(err.status).json({ message: err.message }));
