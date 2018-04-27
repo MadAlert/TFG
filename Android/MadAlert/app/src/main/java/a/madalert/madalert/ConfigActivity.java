@@ -10,7 +10,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -27,20 +26,13 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.Arrays;
 
 import io.reactivex.disposables.CompositeDisposable;
 
 public class ConfigActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
-    private static final String[] categorias = new String[]{
-            "Todas", "Desastres y accidentes", "Terrorismo", "Criminalidad",
-            "Tráfico", "Eventos", "Transporte público", "Contaminación"};
-
+    private ArrayList<String> categorias;
     private SharedPreferences mSharedPreferences;
 
     private TextView muestrKm;
@@ -49,8 +41,7 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
     private SharedPreferences.Editor editor;
     private Switch swUbi;
     private boolean isCheckedSw;
-    private ArrayList<View> listaViews;
-    private String distritoConf; // ahora mismo no está siendo usado pero lo será en un futuro
+    private String distritoConf;
     private int pos; // posicion del distrito
     private int MY_PERMISSIONS_REQUEST_LOCATION =1;
     private AlertDialog alert;
@@ -60,6 +51,14 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
     private LocationListener locationListener;
 
     private LinearLayout listCheckBox;
+    private CheckBox todas;
+    private CheckBox dya;
+    private CheckBox terrorismo;
+    private CheckBox crimi;
+    private CheckBox traf;
+    private CheckBox event;
+    private CheckBox transp;
+    private CheckBox cont;
 
     private boolean todasBool;
     private boolean dyaBool;
@@ -70,8 +69,7 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
     private boolean transpBool;
     private boolean contBool;
 
-    private List<Boolean> catBool;
-    private String catList;
+    private String listaCategoria;
 
     public ConfigActivity() {
     }
@@ -103,6 +101,7 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         eventosBool = mSharedPreferences.getBoolean("eventos", false);
         transpBool = mSharedPreferences.getBoolean("transporte", false);
         contBool = mSharedPreferences.getBoolean("contaminacion", false);
+        listaCategoria = mSharedPreferences.getString("listaCat", "");
     }
 
     private void initSwitch(){
@@ -207,14 +206,14 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
 
     private void initListCheckBox(){
         listCheckBox = (LinearLayout) findViewById(R.id.categorias);
-        CheckBox todas = (CheckBox) findViewById(R.id.todas);
-        CheckBox dya = (CheckBox) findViewById(R.id.dya);
-        CheckBox terrorismo = (CheckBox) findViewById(R.id.terrorismo);
-        CheckBox crimi = (CheckBox) findViewById(R.id.criminalidad);
-        CheckBox traf = (CheckBox) findViewById(R.id.trafico);
-        CheckBox event = (CheckBox) findViewById(R.id.eventos);
-        CheckBox transp = (CheckBox) findViewById(R.id.transp);
-        CheckBox cont = (CheckBox) findViewById(R.id.contaminacion);
+        todas = (CheckBox) findViewById(R.id.todas);
+        dya = (CheckBox) findViewById(R.id.dya);
+        terrorismo = (CheckBox) findViewById(R.id.terrorismo);
+        crimi = (CheckBox) findViewById(R.id.criminalidad);
+        traf = (CheckBox) findViewById(R.id.trafico);
+        event = (CheckBox) findViewById(R.id.eventos);
+        transp = (CheckBox) findViewById(R.id.transp);
+        cont = (CheckBox) findViewById(R.id.contaminacion);
 
         todas.setChecked(todasBool);
         dya.setChecked(dyaBool);
@@ -225,198 +224,117 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         transp.setChecked(transpBool);
         cont.setChecked(contBool);
 
-        // Inicializa
-        catBool = new List<Boolean>() {
-            @Override
-            public int size() {
-                return 0;
-            }
+       anyChecked();
+        //categorias.add(listaCategoria);
+       categorias = new ArrayList<String>(Arrays.asList(listaCategoria.split(",")));
 
-            @Override
-            public boolean isEmpty() {
-                return false;
-            }
-
-            @Override
-            public boolean contains(Object o) {
-                return false;
-            }
-
-            @NonNull
-            @Override
-            public Iterator<Boolean> iterator() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public Object[] toArray() {
-                return new Object[0];
-            }
-
-            @NonNull
-            @Override
-            public <T> T[] toArray(@NonNull T[] ts) {
-                return null;
-            }
-
-            @Override
-            public boolean add(Boolean aBoolean) {
-                return false;
-            }
-
-            @Override
-            public boolean remove(Object o) {
-                return false;
-            }
-
-            @Override
-            public boolean containsAll(@NonNull Collection<?> collection) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(@NonNull Collection<? extends Boolean> collection) {
-                return false;
-            }
-
-            @Override
-            public boolean addAll(int i, @NonNull Collection<? extends Boolean> collection) {
-                return false;
-            }
-
-            @Override
-            public boolean removeAll(@NonNull Collection<?> collection) {
-                return false;
-            }
-
-            @Override
-            public boolean retainAll(@NonNull Collection<?> collection) {
-                return false;
-            }
-
-            @Override
-            public void clear() {
-
-            }
-
-            @Override
-            public Boolean get(int i) {
-                return null;
-            }
-
-            @Override
-            public Boolean set(int i, Boolean aBoolean) {
-                return null;
-            }
-
-            @Override
-            public void add(int i, Boolean aBoolean) {
-
-            }
-
-            @Override
-            public Boolean remove(int i) {
-                return null;
-            }
-
-            @Override
-            public int indexOf(Object o) {
-                return 0;
-            }
-
-            @Override
-            public int lastIndexOf(Object o) {
-                return 0;
-            }
-
-            @NonNull
-            @Override
-            public ListIterator<Boolean> listIterator() {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public ListIterator<Boolean> listIterator(int i) {
-                return null;
-            }
-
-            @NonNull
-            @Override
-            public List<Boolean> subList(int i, int i1) {
-                return null;
-            }
-        };
-        for(int i = 0; i < 8; i++)
-            catBool.set(i, false);
 
         todas.setOnCheckedChangeListener((compoundButton, b) -> {
             todasBool = b;
-            catBool.set(0, todasBool);
+            if(todasBool) {
+                categorias.clear();
+                todasCheck();
+            }
+
+            editor.putString("listaCat", mytoString(categorias, ","));
+            listaCategoria = mytoString(categorias, ",");
             editor.putBoolean("todas", b);
             editor.apply();
+            anyChecked();
         });
 
         dya.setOnCheckedChangeListener((compoundButton, b) -> {
             dyaBool = b;
-            catBool.set(1, dyaBool);
+            if(dyaBool)
+                categorias.add("Desastres y accidentes");
+            else
+                categorias.remove("Desastres y accidentes");
+
+            editor.putString("listaCat", mytoString(categorias, ","));
+            listaCategoria = mytoString(categorias, ",");
             editor.putBoolean("dya", b);
             editor.apply();
+            anyChecked();
         });
 
         terrorismo.setOnCheckedChangeListener((compoundButton, b) -> {
             terrBool = b;
-            catBool.set(2, terrBool);
+            if(terrBool)
+                categorias.add("Terrorismo");
+            else
+                categorias.remove("Terrorismo");
+            //editor.putString("listaCat", categorias.toString());
+            editor.putString("listaCat", mytoString(categorias, ","));
+            listaCategoria = mytoString(categorias, ",");
             editor.putBoolean("terrorismo", b);
             editor.apply();
+            anyChecked();
         });
 
         crimi.setOnCheckedChangeListener((compoundButton, b) -> {
             crimiBool = b;
-            catBool.set(3, crimiBool);
+            if(crimiBool)
+                categorias.add("Criminalidad");
+            else
+                categorias.remove("Criminalidad");
+            editor.putString("listaCat", mytoString(categorias, ","));
+            listaCategoria = mytoString(categorias, ",");
             editor.putBoolean("crimi", b);
             editor.apply();
+            anyChecked();
         });
 
         traf.setOnCheckedChangeListener((compoundButton, b) -> {
             trafBool = b;
-            catBool.set(4, trafBool);
+            if(trafBool)
+                categorias.add("Tráfico");
+            else
+                categorias.remove("Tráfico");
+            editor.putString("listaCat", mytoString(categorias, ","));
+            listaCategoria = mytoString(categorias, ",");
             editor.putBoolean("trafico", b);
             editor.apply();
+            anyChecked();
         });
 
         event.setOnCheckedChangeListener((compoundButton, b) -> {
             eventosBool = b;
-            catBool.set(5, eventosBool);
-            editor.putBoolean("eventos", b);
+            if(eventosBool)
+                categorias.add("Eventos");
+            else
+                categorias.remove("Eventos");
+            editor.putString("listaCat", mytoString(categorias, ","));
+            listaCategoria = mytoString(categorias, ",");
+            editor.putBoolean("eventos" , b);
             editor.apply();
+            anyChecked();
         });
 
         transp.setOnCheckedChangeListener((compoundButton, b) -> {
             transpBool = b;
-            catBool.set(6, transpBool);
+            if(transpBool)
+                categorias.add("Transporte público");
+            else
+                categorias.remove("Transporte público");
+            editor.putString("listaCat", mytoString(categorias, ","));
+            listaCategoria = mytoString(categorias, ",");
             editor.putBoolean("transporte", b);
             editor.apply();
+            anyChecked();
         });
 
         cont.setOnCheckedChangeListener((compoundButton, b) -> {
             contBool = b;
-            catBool.set(7, contBool);
+            if(contBool)
+                categorias.add("Contaminación");
+            else
+                categorias.remove("Contaminación");
+            editor.putString("listaCat", mytoString(categorias, ","));
+            listaCategoria = mytoString(categorias, ",");
             editor.putBoolean("contaminacion", b);
             editor.apply();
+            anyChecked();
         });
-
-        catList = new String();
-        for(int i=0; i < categorias.length;i++){
-            catList=catList+categorias[i];
-            if(i < categorias.length-1){
-                catList=catList+",";
-            }
-        }
-
-        editor.putString("catLista", "");
-        editor.apply();
 
     }
 
@@ -451,7 +369,7 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
 
     }
 
-    private void AlertNoGps() {
+   private void AlertNoGps() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("El sistema GPS esta desactivado, ¿Desea activarlo?")
                 .setCancelable(false)
@@ -473,7 +391,7 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         alert.show();
     }
 
-    private void localizacion(){
+   private void localizacion(){
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
@@ -516,4 +434,45 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
 
     }
+
+   private static String mytoString(ArrayList<String> theAray, String delimiter) {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < theAray.size(); i++) {
+            if (i > 0) {
+                sb.append(delimiter);
+            }
+            String item = theAray.get(i);
+            sb.append(item);
+        }
+        return sb.toString();
+    }
+
+   private void anyChecked(){
+        if(!dyaBool && !crimiBool && !transpBool && !trafBool && !contBool && !eventosBool && !terrBool) {
+            todasBool = true;
+            todas.setChecked(todasBool);
+        }
+       if(dyaBool || crimiBool || transpBool || trafBool || contBool || eventosBool || terrBool) {
+           todasBool = false;
+           todas.setChecked(todasBool);
+       }
+       if(dyaBool && crimiBool && transpBool && trafBool && contBool && eventosBool && terrBool) {
+           todasBool = true;
+           todas.setChecked(todasBool);
+       }
+
+   }
+
+   private void todasCheck(){
+       dyaBool = crimiBool = transpBool = trafBool = contBool = eventosBool = terrBool = false;
+       todas.setChecked(todasBool);
+       dya.setChecked(dyaBool);
+       crimi.setChecked(crimiBool);
+       transp.setChecked(transpBool);
+       traf.setChecked(trafBool);
+       cont.setChecked(contBool);
+       event.setChecked(eventosBool);
+       terrorismo.setChecked(terrBool);
+   }
+
 }

@@ -10,6 +10,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,8 +43,7 @@ public class AlertasFragmento extends Fragment {
 
     private String mHayCategorias;
 
-    private boolean mTodas, mDya;
-
+    private boolean mTodas;
 
     private ListaAlertas.OnFragmentInteractionListener mListener;
 
@@ -64,10 +64,8 @@ public class AlertasFragmento extends Fragment {
     private void initSharedPreferences() {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mDistrito = mSharedPreferences.getString("distritoConf", "");
-        mHayCategorias = mSharedPreferences.getString("catLista","");
+        mHayCategorias = mSharedPreferences.getString("listaCat","");
         mTodas = mSharedPreferences.getBoolean("todasBool", false);
-        mDya = mSharedPreferences.getBoolean("dyaBool", false);
-
     }
 
 
@@ -88,12 +86,14 @@ public class AlertasFragmento extends Fragment {
         mSub = new CompositeDisposable();
         initRecyclerView(v);
         initSharedPreferences();
+
         loadAlerta();
 
         return v;
     }
 
     private void loadAlerta() {
+        Log.d("ELLA", mHayCategorias);
         if(mTodas) {
             mSub.add(NetworkUtil.getRetrofit().getAlertasDistrito(mDistrito)
                     .observeOn(AndroidSchedulers.mainThread())
