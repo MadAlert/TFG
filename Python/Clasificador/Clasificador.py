@@ -45,7 +45,7 @@ class ClasificadorClass:
         response = r.content
         response_json = json.loads(response.decode('utf-8'))
         if(response_json['category_list']):
-            cat = response_json['category_list'][0]['label']
+            cat = c.parseoCategoria(response_json['category_list'][0]['code'])
         else:
             cat = "Nada"
         print(cat)    

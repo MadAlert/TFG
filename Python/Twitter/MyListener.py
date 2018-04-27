@@ -59,7 +59,7 @@ class listener(StreamListener):
         lista = []
         lista.append(tweet)
         categoria = c.clasificarTweets(tweet)
-        print (categoria);
+        print ("La categoria es : " , categoria);
         if(categoria != "Nada"):
             fecha= time.strftime('%Y-%m-%d %H:%M:%S', time.strptime(carga['created_at'],'%a %b %d %H:%M:%S +0000 %Y'))
             datetime_object = datetime.strptime(fecha, '%Y-%m-%d %H:%M:%S');
