@@ -22,7 +22,6 @@ import a.madalert.madalert.Adapter.DataAdapter;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 
-
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -43,6 +42,9 @@ public class AlertasFragmento extends Fragment {
 
     private String mHayCategorias;
 
+    private boolean mTodas, mDya;
+
+
     private ListaAlertas.OnFragmentInteractionListener mListener;
 
     public static final String TAG = AlertasFragmento.class.getSimpleName();
@@ -52,7 +54,6 @@ public class AlertasFragmento extends Fragment {
     }
 
     private void initRecyclerView(View v) {
-
         textView = (TextView) v.findViewById(R.id.textView);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
@@ -63,7 +64,10 @@ public class AlertasFragmento extends Fragment {
     private void initSharedPreferences() {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
         mDistrito = mSharedPreferences.getString("distritoConf", "");
-        mHayCategorias = mSharedPreferences.getString("hayCategorias","");
+        mHayCategorias = mSharedPreferences.getString("catLista","");
+        mTodas = mSharedPreferences.getBoolean("todasBool", false);
+        mDya = mSharedPreferences.getBoolean("dyaBool", false);
+
     }
 
 
@@ -90,12 +94,12 @@ public class AlertasFragmento extends Fragment {
     }
 
     private void loadAlerta() {
-        //if(mHayCategorias.equals("0")) {
+        if(mTodas) {
             mSub.add(NetworkUtil.getRetrofit().getAlertasDistrito(mDistrito)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(io.reactivex.schedulers.Schedulers.io())
                     .subscribe(this::handleResponse, this::handleError));
-       /* }
+        }
         else{
             String[] categoriasP;
             categoriasP = mHayCategorias.split(",");
@@ -103,7 +107,7 @@ public class AlertasFragmento extends Fragment {
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(io.reactivex.schedulers.Schedulers.io())
                     .subscribe(this::handleResponse, this::handleError));
-        }*/
+        }
     }
 
     private void handleResponse(List<Alertas> alertas) {

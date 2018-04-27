@@ -10,6 +10,7 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -26,11 +27,16 @@ import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
+
 import io.reactivex.disposables.CompositeDisposable;
 
 public class ConfigActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
-    private ArrayList<String> selectedStrings;
     private static final String[] categorias = new String[]{
             "Todas", "Desastres y accidentes", "Terrorismo", "Criminalidad",
             "Tráfico", "Eventos", "Transporte público", "Contaminación"};
@@ -64,6 +70,9 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
     private boolean transpBool;
     private boolean contBool;
 
+    private List<Boolean> catBool;
+    private String catList;
+
     public ConfigActivity() {
     }
 
@@ -84,7 +93,7 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
     private void initSharedPreferences() {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         km = mSharedPreferences.getInt("km", -1);
-        isCheckedSw = mSharedPreferences.getBoolean("isCheckedSw", true);
+        isCheckedSw = mSharedPreferences.getBoolean("isCheckedSw", false);
         pos = mSharedPreferences.getInt("posicion", -1);
         todasBool = mSharedPreferences.getBoolean("todas", false);
         dyaBool = mSharedPreferences.getBoolean("dya", false);
@@ -94,8 +103,6 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         eventosBool = mSharedPreferences.getBoolean("eventos", false);
         transpBool = mSharedPreferences.getBoolean("transporte", false);
         contBool = mSharedPreferences.getBoolean("contaminacion", false);
-
-        // falta guardar las categorias, recuerda lo pasos: put, get y set. QUE NO SE TE OLVIDE EL SET GONZA COÑO
     }
 
     private void initSwitch(){
@@ -151,7 +158,6 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         }
         initSpinner();
     }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
@@ -219,54 +225,198 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         transp.setChecked(transpBool);
         cont.setChecked(contBool);
 
+        // Inicializa
+        catBool = new List<Boolean>() {
+            @Override
+            public int size() {
+                return 0;
+            }
+
+            @Override
+            public boolean isEmpty() {
+                return false;
+            }
+
+            @Override
+            public boolean contains(Object o) {
+                return false;
+            }
+
+            @NonNull
+            @Override
+            public Iterator<Boolean> iterator() {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            public Object[] toArray() {
+                return new Object[0];
+            }
+
+            @NonNull
+            @Override
+            public <T> T[] toArray(@NonNull T[] ts) {
+                return null;
+            }
+
+            @Override
+            public boolean add(Boolean aBoolean) {
+                return false;
+            }
+
+            @Override
+            public boolean remove(Object o) {
+                return false;
+            }
+
+            @Override
+            public boolean containsAll(@NonNull Collection<?> collection) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(@NonNull Collection<? extends Boolean> collection) {
+                return false;
+            }
+
+            @Override
+            public boolean addAll(int i, @NonNull Collection<? extends Boolean> collection) {
+                return false;
+            }
+
+            @Override
+            public boolean removeAll(@NonNull Collection<?> collection) {
+                return false;
+            }
+
+            @Override
+            public boolean retainAll(@NonNull Collection<?> collection) {
+                return false;
+            }
+
+            @Override
+            public void clear() {
+
+            }
+
+            @Override
+            public Boolean get(int i) {
+                return null;
+            }
+
+            @Override
+            public Boolean set(int i, Boolean aBoolean) {
+                return null;
+            }
+
+            @Override
+            public void add(int i, Boolean aBoolean) {
+
+            }
+
+            @Override
+            public Boolean remove(int i) {
+                return null;
+            }
+
+            @Override
+            public int indexOf(Object o) {
+                return 0;
+            }
+
+            @Override
+            public int lastIndexOf(Object o) {
+                return 0;
+            }
+
+            @NonNull
+            @Override
+            public ListIterator<Boolean> listIterator() {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            public ListIterator<Boolean> listIterator(int i) {
+                return null;
+            }
+
+            @NonNull
+            @Override
+            public List<Boolean> subList(int i, int i1) {
+                return null;
+            }
+        };
+        for(int i = 0; i < 8; i++)
+            catBool.set(i, false);
 
         todas.setOnCheckedChangeListener((compoundButton, b) -> {
             todasBool = b;
+            catBool.set(0, todasBool);
             editor.putBoolean("todas", b);
             editor.apply();
         });
 
         dya.setOnCheckedChangeListener((compoundButton, b) -> {
             dyaBool = b;
+            catBool.set(1, dyaBool);
             editor.putBoolean("dya", b);
             editor.apply();
         });
 
         terrorismo.setOnCheckedChangeListener((compoundButton, b) -> {
             terrBool = b;
+            catBool.set(2, terrBool);
             editor.putBoolean("terrorismo", b);
             editor.apply();
         });
 
         crimi.setOnCheckedChangeListener((compoundButton, b) -> {
             crimiBool = b;
+            catBool.set(3, crimiBool);
             editor.putBoolean("crimi", b);
             editor.apply();
         });
 
         traf.setOnCheckedChangeListener((compoundButton, b) -> {
             trafBool = b;
+            catBool.set(4, trafBool);
             editor.putBoolean("trafico", b);
             editor.apply();
         });
 
         event.setOnCheckedChangeListener((compoundButton, b) -> {
             eventosBool = b;
+            catBool.set(5, eventosBool);
             editor.putBoolean("eventos", b);
             editor.apply();
         });
 
         transp.setOnCheckedChangeListener((compoundButton, b) -> {
             transpBool = b;
+            catBool.set(6, transpBool);
             editor.putBoolean("transporte", b);
             editor.apply();
         });
 
         cont.setOnCheckedChangeListener((compoundButton, b) -> {
             contBool = b;
+            catBool.set(7, contBool);
             editor.putBoolean("contaminacion", b);
             editor.apply();
         });
+
+        catList = new String();
+        for(int i=0; i < categorias.length;i++){
+            catList=catList+categorias[i];
+            if(i < categorias.length-1){
+                catList=catList+",";
+            }
+        }
+
+        editor.putString("catLista", "");
+        editor.apply();
 
     }
 
