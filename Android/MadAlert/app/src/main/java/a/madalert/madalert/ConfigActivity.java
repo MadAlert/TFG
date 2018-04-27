@@ -44,7 +44,7 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
     private Switch swUbi;
     private boolean isCheckedSw;
     private ArrayList<View> listaViews;
-    private String distrito; // ahora mismo no está siendo usado pero lo será en un futuro
+    private String distritoConf; // ahora mismo no está siendo usado pero lo será en un futuro
     private int pos; // posicion del distrito
     private int MY_PERMISSIONS_REQUEST_LOCATION =1;
     private AlertDialog alert;
@@ -284,10 +284,10 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
-                //distrito = spinner.toString(); ESTO HABRÁ QUE GUARDARLO COMO STRING TB CUANDO HAGA LA CONSULTA..
+                distritoConf = spinner.getSelectedItem().toString(); //ESTO HABRÁ QUE GUARDARLO COMO STRING TB CUANDO HAGA LA CONSULTA..
                 pos = spinner.getSelectedItemPosition();
                 Log.d("TAG POS", String.valueOf(pos));
-                //editor.putString("distrito",  distrito);
+                editor.putString("distritoConf",  distritoConf);
                 editor.putInt("posicion", pos);
                 editor.apply();
             }

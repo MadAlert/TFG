@@ -90,12 +90,12 @@ public class MapaFragmento extends Fragment implements LocationListener {
 
     @Override
     public void onDestroy() {
+        super.onDestroy();
         if (ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getContext(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             Log.d(TAG,"Faltan permisos");
             return;
         }
         mLocationManager.removeUpdates(this);
-        super.onDestroy();
     }
 
     @Override

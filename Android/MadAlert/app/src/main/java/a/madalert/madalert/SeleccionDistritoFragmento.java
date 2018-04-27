@@ -97,7 +97,7 @@ public class SeleccionDistritoFragmento extends Fragment {
         buscar2 = v.findViewById(R.id.buscar);
 
         titulo.setText("Selecciona un distrito");
-        buscar2.setOnClickListener(view -> getAlertasDistrito2(view));
+        buscar2.setOnClickListener(view -> alertasProcess(dist));
 
         gridView = (GridView) v.findViewById(R.id.grid);
 
@@ -168,7 +168,7 @@ public class SeleccionDistritoFragmento extends Fragment {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
     }
 
-    private void getAlertasDistrito2(View v) {
+    //private void getAlertasDistrito2(View v) {
 
         //setError();
 
@@ -190,7 +190,7 @@ public class SeleccionDistritoFragmento extends Fragment {
 
         //if (err == 0) {
 
-            alertasProcess(dist);
+            //alertasProcess(dist);
             /*buscar2.setVisibility(View.GONE);
             titulo.setVisibility(View.GONE);
             spnr.setVisibility(View.GONE);*/
@@ -203,7 +203,7 @@ public class SeleccionDistritoFragmento extends Fragment {
             showSnackBarMessage("Enter Valid Details !");
         }*/
 
-    }
+    //}
 
     private void alertasProcess(String distrito) {
 
@@ -232,18 +232,12 @@ public class SeleccionDistritoFragmento extends Fragment {
 
         }
         editor.apply();
-        //mEtEmail.setText(null);
-        //distritoText.setText(null);
 
         getFragmentManager().beginTransaction()
                 .replace(R.id.distritos_frame, new ListaAlertas())
                 .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                 .addToBackStack(null)
                 .commit();
-
-
-        /*Intent intent = new Intent(getActivity(), AlertasActivity.class);
-        startActivity(intent);*/
     }
 
 

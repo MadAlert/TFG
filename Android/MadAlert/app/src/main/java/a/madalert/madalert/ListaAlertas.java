@@ -113,6 +113,7 @@ public class ListaAlertas extends Fragment {
 
     private void initSharedPreferences() {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        //mDistrito = mSharedPreferences.getString("posicion", "");
         mDistrito = mSharedPreferences.getString("distrito", "");
         mHayCategorias = mSharedPreferences.getString("hayCategorias","");
     }
