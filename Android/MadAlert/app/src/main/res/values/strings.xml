@@ -52,7 +52,7 @@
     </string-array>
 
 
-    <!-- Texto del SoporteFragmento -->
+    <!-- Texto del Soporte -->
     <string name="sop_tyc">Términos y condiciones</string>
     <string name="sop_intro">EL SOFTWARE SE PROPORCIONA "TAL CUAL", SIN GARANTÍA DE NINGÚN TIPO, EXPLÍCITA O IMPLÍCITA, INCLUYENDO PERO NO LIMITADO A LAS GARANTÍAS DE COMERCIABILIDAD, ADECUACIÓN PARA UN FIN DETERMINADO Y NO INFRACCIÓN. EN NINGÚN CASO, LOS AUTORES O TITULARES DE DERECHOS DE AUTOR SERÁN RESPONSABLES DE CUALQUIER RECLAMACIÓN, DAÑO O CUALQUIER OTRA RESPONSABILIDAD, YA SEA EN UNA ACCIÓN DE CONTRATO, AGRAVIO O DE OTRA MANERA, QUE SURJA DE O EN RELACIÓN CON EL SOFTWARE O EL USO O OTROS NEGOCIOS EN EL SOFTWARE.</string>
     <string name="sop_ap1">1. La aplicación con licencia bajo estos términos y condiciones contiene software con licencia de terceros que es propietario de ellos, valioso y protegido por derechos de propiedad intelectual internacionales. ("Software de terceros"). El usuario de la aplicación que contiene dicho Software de Terceros ('Usted') puede utilizar el Software de Terceros solo para sus propios fines internos durante el período durante el cual usted autorizó el Software de Terceros.</string>
@@ -65,12 +65,16 @@
     <string name="imagen_logo">imagen_logo</string>
     <string name="title_activity_config">Configuración</string>
 
+    <!-- Texto para 'About us'-->
+    <string name="nombres">Nerea Gómez Domínguez\nSilvia Lendínez Fernández\nGonzalo Molina Díaz\nAdrián Panadero González</string>
+
     <!-- Strings related to Configuracion -->
     <string name="textRadio">Radio</string>
     <string name="textCategorias">Categorías </string>
     <string name="textUbi">Ubicación activada</string>
     <string name="tvKm"></string>
 
+    <string name="firstTime">Parece que es la primera vez que estás con nosotros.. ¡Ve a "Configuración" para adaptar tus necesidades!</string>
 
     <string name="pref_title_display_name">Display name</string>
     <string name="pref_default_display_name">John Smith</string>

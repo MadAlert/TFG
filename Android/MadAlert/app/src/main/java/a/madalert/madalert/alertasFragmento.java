@@ -1,8 +1,10 @@
 package a.madalert.madalert;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
@@ -29,9 +31,11 @@ import io.reactivex.disposables.CompositeDisposable;
 public class AlertasFragmento extends Fragment {
 
     private TextView textView;
+    private TextView firstTime;
 
     private CompositeDisposable mSub;
     private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor editor;
 
     private RecyclerView mRecyclerView;
 
@@ -45,6 +49,8 @@ public class AlertasFragmento extends Fragment {
 
     private boolean mTodas;
 
+    private boolean mFirstTime;
+
     private ListaAlertas.OnFragmentInteractionListener mListener;
 
     public static final String TAG = AlertasFragmento.class.getSimpleName();
@@ -55,6 +61,7 @@ public class AlertasFragmento extends Fragment {
 
     private void initRecyclerView(View v) {
         textView = (TextView) v.findViewById(R.id.textView);
+        firstTime = (TextView) v.findViewById(R.id.firstTime);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
@@ -66,6 +73,7 @@ public class AlertasFragmento extends Fragment {
         mDistrito = mSharedPreferences.getString("distritoConf", "");
         mHayCategorias = mSharedPreferences.getString("listaCat","");
         mTodas = mSharedPreferences.getBoolean("todasBool", false);
+        mFirstTime = mSharedPreferences.getBoolean("primeraVez", true);
     }
 
 
@@ -74,6 +82,7 @@ public class AlertasFragmento extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_alertas, container, false);
+
         FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.anadirAlerta);
         fab.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v)
@@ -86,6 +95,12 @@ public class AlertasFragmento extends Fragment {
         mSub = new CompositeDisposable();
         initRecyclerView(v);
         initSharedPreferences();
+        editor = mSharedPreferences.edit();
+        if (mFirstTime) {
+            // first time task
+            // record the fact that the app has been started at least once
+            firstTime.setText(R.string.firstTime);
+        }
 
         loadAlerta();
 

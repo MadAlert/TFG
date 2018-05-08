@@ -34,11 +34,11 @@ import io.reactivex.disposables.CompositeDisposable;
 public class ConfigActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
     private ArrayList<String> categorias;
     private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor editor;
 
     private TextView muestrKm;
     private Spinner spinner;
     private int km;
-    private SharedPreferences.Editor editor;
     private Switch swUbi;
     private boolean isCheckedSw;
     private String distritoConf;
@@ -81,6 +81,10 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         CompositeDisposable mSubscriptions = new CompositeDisposable();
         initSharedPreferences();
         editor = mSharedPreferences.edit(); // para guardar las configuraciones
+
+        // Para quitar el mensaje de 'bienvenida'
+        editor.putBoolean("primeraVez", false);
+        editor.apply();
 
         initSeekBar();
         initListCheckBox();
