@@ -17,6 +17,8 @@ public class SoporteActivity extends AppCompatActivity {
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.add(R.id.contenedor_soporte, new ActivitySoporte());
         ft.commit();
+
+        finish();
     }
 
 

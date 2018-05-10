@@ -91,17 +91,13 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_faq) {
             //fragmentClass = FaqFragmento.class;
         }
-        try {
+       /* try {
            // fragment = (Fragment) fragmentClass.newInstance();
         }
         catch (Exception e){
             e.printStackTrace();
-        }
-
-        /*if(fragment != null){
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
         }*/
+
 
         setTitle(item.getTitle());
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

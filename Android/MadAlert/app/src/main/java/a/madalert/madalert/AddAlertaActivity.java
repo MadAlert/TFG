@@ -114,6 +114,7 @@ public class AddAlertaActivity extends AppCompatActivity {
                 postAlerta();
             }
         });
+
     }
 
     private void postAlerta() {
