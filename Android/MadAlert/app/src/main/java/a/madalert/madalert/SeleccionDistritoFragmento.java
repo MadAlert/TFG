@@ -168,43 +168,6 @@ public class SeleccionDistritoFragmento extends Fragment {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
     }
 
-    //private void getAlertasDistrito2(View v) {
-
-        //setError();
-
-        //String password = mEtPassword.getText().toString();
-
-        //int err = 0;
-
-        /*if (!validateEmail(email)) {
-
-            err++;
-            mTiEmail.setError("Email should be valid !");
-        }
-
-        if (!validateFields(password)) {
-
-            err++;
-            mTiPassword.setError("Password should not be empty !");
-        }*/
-
-        //if (err == 0) {
-
-            //alertasProcess(dist);
-            /*buscar2.setVisibility(View.GONE);
-            titulo.setVisibility(View.GONE);
-            spnr.setVisibility(View.GONE);*/
-
-        /*}
-           mProgressBar.setVisibility(View.VISIBLE);
-
-        } else {
-
-            showSnackBarMessage("Enter Valid Details !");
-        }*/
-
-    //}
-
     private void alertasProcess(String distrito) {
 
         Alertas alert = new Alertas();
