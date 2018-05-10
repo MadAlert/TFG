@@ -43,14 +43,11 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
     private boolean isCheckedSw;
     private String distritoConf;
     private int pos; // posicion del distrito
-    private int MY_PERMISSIONS_REQUEST_LOCATION =1;
     private AlertDialog alert;
 
-    private Location location;
     private LocationManager locationManager;
     private LocationListener locationListener;
 
-    private LinearLayout listCheckBox;
     private CheckBox todas;
     private CheckBox dya;
     private CheckBox terrorismo;
@@ -152,6 +149,7 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
 
                 } else {
 
+                    int MY_PERMISSIONS_REQUEST_LOCATION = 1;
                     ActivityCompat.requestPermissions(this,
                             new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                             MY_PERMISSIONS_REQUEST_LOCATION);
@@ -209,7 +207,7 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
     }
 
     private void initListCheckBox(){
-        listCheckBox = (LinearLayout) findViewById(R.id.categorias);
+        LinearLayout listCheckBox = (LinearLayout) findViewById(R.id.categorias);
         todas = (CheckBox) findViewById(R.id.todas);
         dya = (CheckBox) findViewById(R.id.dya);
         terrorismo = (CheckBox) findViewById(R.id.terrorismo);
@@ -397,7 +395,8 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
 
    private void localizacion(){
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+       Location location;
+       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
             if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 

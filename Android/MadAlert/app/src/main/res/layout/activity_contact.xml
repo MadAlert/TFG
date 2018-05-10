@@ -6,22 +6,41 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <LinearLayout
+        android:id="@+id/LinearLayoutHead"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/txtHead"
+            android:text="Desde esta pantalla puedes ponerte en contacto con nosotros para cualquier consulta que necesites."
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:width="370dip"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp">
+        </TextView>
+
+    </LinearLayout>
+
     <LinearLayout android:id="@+id/LinearLayoutName"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="horizontal">
 
-    <TextView android:text="Nombre"
+    <EditText
+        android:id="@+id/etName"
+        android:hint="Nombre"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtForName">
-    </TextView>
-
-    <EditText android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:width="170dip"
         android:inputType="text"
-        android:id="@+id/etName">
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp">
     </EditText>
 
     </LinearLayout>
@@ -31,16 +50,13 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView android:text="Email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtForEmail">
-        </TextView>
-
         <EditText
             android:id="@+id/etEmail"
+            android:hint="Correo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp"
             android:width="170dip"
             android:inputType="textEmailAddress">
         </EditText>
@@ -52,17 +68,14 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:text="Asunto"
+        <EditText
+            android:id="@+id/etSubject"
+            android:hint="Asunto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/txtForSubject">
-        </TextView>
-
-        <EditText android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:width="170dip"
-            android:id="@+id/etSubject">
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp">
         </EditText>
     </LinearLayout>
 
@@ -70,18 +83,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <TextView
-            android:text="Mensaje"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/txtForBody">
-        </TextView>
 
-        <EditText android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/etBody"
+            android:hint="Escriba aquí su mensaje..."
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:lines="5"
             android:width="300dip"
-            android:id="@+id/etBody">
+            android:layout_marginLeft="20dp"
+            android:layout_marginStart="20dp">
         </EditText>
     </LinearLayout>
 
@@ -89,7 +100,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/btnSend"
         android:text="Enviar"
-        android:imeOptions="actionSend"
-        android:width="150dip">
+        android:width="150dip"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp">
     </Button>
 </LinearLayout>

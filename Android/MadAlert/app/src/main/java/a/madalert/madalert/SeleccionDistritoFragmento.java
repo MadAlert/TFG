@@ -45,7 +45,6 @@ import retrofit2.adapter.rxjava2.HttpException;
  */
 public class SeleccionDistritoFragmento extends Fragment {
 
-    private TextView titulo;
     private Button buscar2;
     private CompositeDisposable mSubscriptions;
     private SharedPreferences mSharedPreferences;
@@ -93,7 +92,7 @@ public class SeleccionDistritoFragmento extends Fragment {
 
     private void initViews(View v) {
 
-        titulo = (TextView)v.findViewById(R.id.textView);
+        TextView titulo = (TextView) v.findViewById(R.id.textView);
         buscar2 = v.findViewById(R.id.buscar);
 
         titulo.setText("Selecciona un distrito");
@@ -164,46 +163,9 @@ public class SeleccionDistritoFragmento extends Fragment {
 
 
     private void initSharedPreferences() {
-
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
     }
 
-    //private void getAlertasDistrito2(View v) {
-
-        //setError();
-
-        //String password = mEtPassword.getText().toString();
-
-        //int err = 0;
-
-        /*if (!validateEmail(email)) {
-
-            err++;
-            mTiEmail.setError("Email should be valid !");
-        }
-
-        if (!validateFields(password)) {
-
-            err++;
-            mTiPassword.setError("Password should not be empty !");
-        }*/
-
-        //if (err == 0) {
-
-            //alertasProcess(dist);
-            /*buscar2.setVisibility(View.GONE);
-            titulo.setVisibility(View.GONE);
-            spnr.setVisibility(View.GONE);*/
-
-        /*}
-           mProgressBar.setVisibility(View.VISIBLE);
-
-        } else {
-
-            showSnackBarMessage("Enter Valid Details !");
-        }*/
-
-    //}
 
     private void alertasProcess(String distrito) {
 
@@ -221,7 +183,8 @@ public class SeleccionDistritoFragmento extends Fragment {
             editor.putString("hayCategorias", "0");
         }
         else{
-            String categorias = new String();
+            //String categorias = new String();
+            String categorias = "";
             for(int i=0; i< selectedStrings.size();i++){
                 categorias=categorias+selectedStrings.get(i);
                 if(i < selectedStrings.size()-1){
@@ -251,7 +214,6 @@ public class SeleccionDistritoFragmento extends Fragment {
             Gson gson = new GsonBuilder().create();
 
             try {
-
                 String errorBody = ((HttpException) error).response().errorBody().string();
                 Response response = gson.fromJson(errorBody, Response.class);
                 showSnackBarMessage(response.getMessage());
