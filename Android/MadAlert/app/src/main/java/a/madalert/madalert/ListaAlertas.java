@@ -40,6 +40,7 @@ public class ListaAlertas extends Fragment {
     private String mParam2;
 
     private TextView textView;
+    private TextView firstTime;
 
     private CompositeDisposable mSub;
     private SharedPreferences mSharedPreferences;
@@ -102,8 +103,8 @@ public class ListaAlertas extends Fragment {
     }
 
     private void initRecyclerView(View v) {
-
         textView = (TextView) v.findViewById(R.id.textView);
+        firstTime = (TextView) v.findViewById(R.id.firstTime);
         mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
         mRecyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
@@ -142,6 +143,9 @@ public class ListaAlertas extends Fragment {
         mRecyclerView.setAdapter(mAdapter);
         /*mTv1.setText(alertas.getAlertas());
         mTv2.setText(alertas.getDistrito());*/
+
+        if(mAndroidArrayList.isEmpty())
+            firstTime.setText("¡No hay nada que mostrar para esa combinación!");
 
     }
 

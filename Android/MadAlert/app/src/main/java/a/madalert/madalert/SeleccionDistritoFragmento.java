@@ -30,6 +30,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
 
+import org.w3c.dom.Text;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -201,12 +203,13 @@ public class SeleccionDistritoFragmento extends Fragment {
         }
         editor.apply();
 
-        if(!selectedStrings.isEmpty())
+        if(!selectedStrings.isEmpty()) {
             getFragmentManager().beginTransaction()
                     .replace(R.id.distritos_frame, new ListaAlertas())
                     .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
                     .addToBackStack(null)
                     .commit();
+        }
     }
 
 
