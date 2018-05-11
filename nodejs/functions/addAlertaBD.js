@@ -7,7 +7,7 @@ exports.addAlertaBD = (alerta, distrito , fuente , categoria) =>
 	new Promise((resolve,reject) => {
 		const newAlerta = new alertas({
 			alerta: alerta,
-			fecha: new Date(),
+			fecha: (new Date()).setHours((new Date()).getHours()+2),
 			url: null,
 			distrito: distrito,
 			categoria: categoria,
