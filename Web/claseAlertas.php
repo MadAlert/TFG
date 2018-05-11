@@ -150,7 +150,11 @@ class claseAlertas {
 
     //Funcion que inserta las alertas creadas por un usuario
     public function insertarAlerta($nombre, $categoria, $distrito, $alerta){
-      $fecha = new MongoDB\BSON\UTCDateTime(new DateTime(null, new DateTimeZone('Europe/Madrid')));
+      $fechaH = new DateTime(null, new DateTimeZone('Europe/Madrid'));
+
+      
+      date_add($fechaH, date_interval_create_from_date_string('2 hours'));
+      $fecha = new MongoDB\BSON\UTCDateTime($fechaH);
     	$documento = ['alerta'=> $alerta, 'fecha'=>$fecha, 'distrito'=>$distrito, 'categoria'=>$categoria,'fuente'=>$nombre, 'veridico'=>false, 'url'=> NULL];
     	$this->daoAler->insertarAlerta($documento);    	
     }

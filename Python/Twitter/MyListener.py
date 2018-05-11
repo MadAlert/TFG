@@ -6,8 +6,9 @@ import json
 import var
 import time
 import sys
+import datetime
 sys.path.append('../')
-from datetime import datetime
+from datetime import datetime, timedelta
 from Clasificador import Clasificador
 import os
 from BaseDatos import BaseDatos
@@ -63,12 +64,12 @@ class listener(StreamListener):
         if(categoria != "Nada"):
             fecha= time.strftime('%Y-%m-%d %H:%M:%S', time.strptime(carga['created_at'],'%a %b %d %H:%M:%S +0000 %Y'))
             datetime_object = datetime.strptime(fecha, '%Y-%m-%d %H:%M:%S');
+            resultado = datetime_object + timedelta(hours=2)
             mes = time.strftime('%m', time.strptime(carga['created_at'],'%a %b %d %H:%M:%S +0000 %Y'))
             mes = int(mes)
-            print (fecha)
             nombreUsuario = "@"+carga["user"]["screen_name"]
             zona = c.clasificadorZona(lista)
             print(zona)
             bd.insertarEstadisticas(bdEstadisticas,zona,categoria,mes)
-            bd.insertarAlerta(bdAlertas,tweet,datetime_object,None,zona,categoria,nombreUsuario)
+            bd.insertarAlerta(bdAlertas,tweet,resultado,None,zona,categoria,nombreUsuario)
         
