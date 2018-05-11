@@ -5,11 +5,9 @@ import json
 import requests
 import sys
 sys.path.append('..\Clasificador')
-print(sys.path)
-import parseoCategoria
+#print(sys.path)
 
 from monkeylearn import MonkeyLearn
-
 
 # We define the variables need to call the API
 api = 'http://api.meaningcloud.com/class-1.1'
@@ -20,9 +18,27 @@ modelTwitter = 'tweets'
 
 mlZona = MonkeyLearn('aaa6317e0336ea1698db5d01c2aed231abd4c1a1')
 
-c = parseoCategoria.ParseoCategoriaClass()
-
 class ClasificadorClass:
+    
+    def parseoCategoria(self, codigo):
+    	c = ""
+    	if codigo == "1":
+    		c = "Desastres y accidentes"
+    	if codigo == "2":
+    		c =  "Contaminación"  		
+    	if codigo == "3":
+    		c = "Eventos"
+    	if codigo == "4":
+    		c = "Criminalidad"
+    	if codigo == "5":
+    		c =  "Nada"   		
+    	if codigo == "6":
+    		c = "Tráfico"
+    	if codigo == "7":
+    		c = "Transporte público"
+    	if codigo == "8":
+    		c = "Terrorismo"
+    	return c
 
     def clasificadorNoticias(self, noticia):
         parameters = {'key': keyNoticias, 'model': modelNews, 'txt': noticia}
@@ -30,7 +46,7 @@ class ClasificadorClass:
         response = r.content
         response_json = json.loads(response.decode('utf-8'))
         if(response_json['category_list']):
-            cat = c.parseoCategoria(response_json['category_list'][0]['code'])
+            cat = self.parseoCategoria(response_json['category_list'][0]['code'])
             #cat = response_json['category_list'][0]['label']
         else:
             cat = "Nada"
@@ -45,7 +61,7 @@ class ClasificadorClass:
         response = r.content
         response_json = json.loads(response.decode('utf-8'))
         if(response_json['category_list']):
-            cat = c.parseoCategoria(response_json['category_list'][0]['code'])
+            cat = self.parseoCategoria(response_json['category_list'][0]['code'])
         else:
             cat = "Nada"
         print(cat)    

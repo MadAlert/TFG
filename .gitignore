@@ -1,0 +1,7 @@
+
+*.pyd
+Python/Twitter/dist/ObtenerStream/ObtenerStream.exe
+Python/Twitter/dist/ObtenerStream/python36.dll
+Python/Twitter/dist/ObtenerStream/VCRUNTIME140.dll
+Python/Twitter/dist/ObtenerStream/VCRUNTIME140.dll
+*.pyc
