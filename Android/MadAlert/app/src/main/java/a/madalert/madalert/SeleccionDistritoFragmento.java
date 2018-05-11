@@ -24,6 +24,7 @@ import android.widget.GridView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -166,10 +167,7 @@ public class SeleccionDistritoFragmento extends Fragment {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
     }
 
-<<<<<<< HEAD
-=======
 
->>>>>>> origin/master
     private void alertasProcess(String distrito) {
 
         Alertas alert = new Alertas();
@@ -185,6 +183,10 @@ public class SeleccionDistritoFragmento extends Fragment {
         if(selectedStrings.size()==1 && selectedStrings.get(0)=="Todas"){
             editor.putString("hayCategorias", "0");
         }
+        else if (selectedStrings.isEmpty()){
+            //Toast.makeText(getContext(), "¡Debes seleccionar al menos una categoría!", Toast.LENGTH_LONG).show();
+            showSnackBarMessage("¡Debes seleccionar al menos una categoría!");
+        }
         else{
             //String categorias = new String();
             String categorias = "";
@@ -199,11 +201,12 @@ public class SeleccionDistritoFragmento extends Fragment {
         }
         editor.apply();
 
-        getFragmentManager().beginTransaction()
-                .replace(R.id.distritos_frame, new ListaAlertas())
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .addToBackStack(null)
-                .commit();
+        if(!selectedStrings.isEmpty())
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.distritos_frame, new ListaAlertas())
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+                    .addToBackStack(null)
+                    .commit();
     }
 
 

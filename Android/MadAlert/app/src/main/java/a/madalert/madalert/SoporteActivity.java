@@ -18,7 +18,6 @@ public class SoporteActivity extends AppCompatActivity {
         ft.add(R.id.contenedor_soporte, new ActivitySoporte());
         ft.commit();
 
-        finish();
     }
 
 

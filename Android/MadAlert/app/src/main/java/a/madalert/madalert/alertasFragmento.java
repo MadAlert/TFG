@@ -108,7 +108,6 @@ public class AlertasFragmento extends Fragment {
     }
 
     private void loadAlerta() {
-        Log.d("ELLA", mHayCategorias);
         if(mTodas) {
             mSub.add(NetworkUtil.getRetrofit().getAlertasDistrito(mDistrito)
                     .observeOn(AndroidSchedulers.mainThread())
@@ -123,6 +122,7 @@ public class AlertasFragmento extends Fragment {
                     .subscribeOn(io.reactivex.schedulers.Schedulers.io())
                     .subscribe(this::handleResponse, this::handleError));
         }
+
     }
 
     private void handleResponse(List<Alertas> alertas) {
@@ -130,6 +130,10 @@ public class AlertasFragmento extends Fragment {
         mAndroidArrayList = new ArrayList<>(alertas);
         mAdapter = new DataAdapter(mAndroidArrayList);
         mRecyclerView.setAdapter(mAdapter);
+
+        if(mAndroidArrayList.isEmpty())
+            firstTime.setText("¡No hay alertas para esa configuración!");
+
         /*mTv1.setText(alertas.getAlertas());
         mTv2.setText(alertas.getDistrito());*/
 

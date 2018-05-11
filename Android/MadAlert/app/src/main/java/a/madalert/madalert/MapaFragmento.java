@@ -43,12 +43,12 @@ public class MapaFragmento extends Fragment implements LocationListener {
         View v = inflater.inflate(R.layout.fragment_mapa, container, false);
 
         mLocationManager = (LocationManager) this.getContext().getSystemService(Context.LOCATION_SERVICE);
-        tvLat = (TextView) v.findViewById(R.id.textViewLatitud);
+       /* tvLat = (TextView) v.findViewById(R.id.textViewLatitud);
         tvLon = (TextView) v.findViewById(R.id.textViewLongitud);
         btnGo = v.findViewById(R.id.button1);
-        btnStop = v.findViewById(R.id.button2);
+        btnStop = v.findViewById(R.id.button2);*/
 
-        btnGo.setOnClickListener(view -> {
+        /*btnGo.setOnClickListener(view -> {
 
             if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
@@ -66,7 +66,7 @@ public class MapaFragmento extends Fragment implements LocationListener {
             }
             mLocationManager.removeUpdates(this);
         });
-
+*/
         return v;
     }
 
