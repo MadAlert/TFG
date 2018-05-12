@@ -3,25 +3,21 @@ package a.madalert.madalert;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-<<<<<<< Updated upstream
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
-=======
->>>>>>> Stashed changes
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
-<<<<<<< Updated upstream
-=======
 
 import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
@@ -37,7 +33,6 @@ import com.google.gson.JsonParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
->>>>>>> Stashed changes
 
 import java.util.ArrayList;
 import java.util.List;
@@ -179,7 +174,6 @@ public class AlertasFragmento extends Fragment {
         //showSnackBarMessage("ERRRRRRRR Error !");
     }
 
-<<<<<<< Updated upstream
     public static void ejecutar(){
         time time = new time();
         time.execute();
@@ -204,7 +198,6 @@ public class AlertasFragmento extends Fragment {
         }
     }
 
-=======
 
     private String obtenerDistrito(String latitud, String longitud) {
         String url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+latitud+","+longitud+"&result_type=sublocality&key=AIzaSyDOveaxbksFJQgJfQXoWvvw9vOntdr8r3o";
@@ -239,6 +232,7 @@ public class AlertasFragmento extends Fragment {
             onConnectionFinished();
         }, volleyError -> onConnectionFailed(volleyError.toString()));
         addToQueue(request);
+
         return distritoObtenido;
     }
 
@@ -272,5 +266,4 @@ public class AlertasFragmento extends Fragment {
 
         return 0;
     }
->>>>>>> Stashed changes
 }
