@@ -79,7 +79,7 @@ public class DistritosFragmento extends Fragment {
 
         getFragmentManager().beginTransaction()
                 .replace(R.id.distritos_frame, new SeleccionDistritoFragmento())
-                .addToBackStack(null)
+                //.addToBackStack(null)
                 .commit();
 
         //return view;

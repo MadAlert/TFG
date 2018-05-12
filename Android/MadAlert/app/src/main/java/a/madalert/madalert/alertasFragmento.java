@@ -1,25 +1,43 @@
 package a.madalert.madalert;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+<<<<<<< Updated upstream
 import android.content.pm.PackageManager;
 import android.os.AsyncTask;
+=======
+>>>>>>> Stashed changes
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
+<<<<<<< Updated upstream
+=======
+
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+>>>>>>> Stashed changes
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +78,11 @@ public class AlertasFragmento extends Fragment {
 
     public static final String TAG = AlertasFragmento.class.getSimpleName();
 
+    private VolleyS volley;
+
+    protected RequestQueue fRequestQueue;
+    private String distritoObtenido;
+
     public AlertasFragmento() {
 
     }
@@ -87,6 +110,8 @@ public class AlertasFragmento extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        volley = VolleyS.getInstance(getActivity().getApplicationContext());
+        fRequestQueue = volley.getRequestQueue();
         View v = inflater.inflate(R.layout.fragment_alertas, container, false);
 
         FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.anadirAlerta);
@@ -118,6 +143,7 @@ public class AlertasFragmento extends Fragment {
     }
 
     private void loadAlerta() {
+        String distrito = obtenerDistrito("40.4354296","-3.7157969");
         if(mTodas) {
             mSub.add(NetworkUtil.getRetrofit().getAlertasDistrito(mDistrito)
                     .observeOn(AndroidSchedulers.mainThread())
@@ -153,6 +179,7 @@ public class AlertasFragmento extends Fragment {
         //showSnackBarMessage("ERRRRRRRR Error !");
     }
 
+<<<<<<< Updated upstream
     public static void ejecutar(){
         time time = new time();
         time.execute();
@@ -177,4 +204,73 @@ public class AlertasFragmento extends Fragment {
         }
     }
 
+=======
+
+    private String obtenerDistrito(String latitud, String longitud) {
+        String url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+latitud+","+longitud+"&result_type=sublocality&key=AIzaSyDOveaxbksFJQgJfQXoWvvw9vOntdr8r3o";
+        JsonObjectRequest request = new JsonObjectRequest(url, jsonObject -> {
+            distritoObtenido = jsonObject.toString();
+
+
+            if(distritoObtenido!=null){
+
+                JsonParser parser = new JsonParser();
+
+                // Obtain Array
+                JsonObject gsonObj = parser.parse(distritoObtenido).getAsJsonObject();
+                JsonArray demarcation = gsonObj.get("results").getAsJsonArray();
+                List listDemarcation = new ArrayList();
+                for (JsonElement demarc : demarcation) {
+                    JsonObject gsonP = demarc.getAsJsonObject();
+                    // Primitives elements of object
+                    JsonArray address = gsonP.get("address_components").getAsJsonArray();
+                    int i=0;
+                    for(JsonElement add: address){
+                        if(i==0){
+                            JsonObject gsonAdd = add.getAsJsonObject();
+                            distritoObtenido = gsonAdd.get("long_name").getAsString();
+                        }
+                        i++;
+                    }
+                }
+            }else{
+                Toast.makeText(getActivity(), "Erroooooor", Toast.LENGTH_LONG).show();
+            }
+            onConnectionFinished();
+        }, volleyError -> onConnectionFailed(volleyError.toString()));
+        addToQueue(request);
+        return distritoObtenido;
+    }
+
+    public void addToQueue(Request request) {
+        if (request != null) {
+            request.setTag(this);
+            if (fRequestQueue == null)
+                fRequestQueue = volley.getRequestQueue();
+            request.setRetryPolicy(new DefaultRetryPolicy(
+                    60000, 3, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
+            ));
+            onPreStartConnection();
+            fRequestQueue.add(request);
+        }
+    }
+
+    public void onPreStartConnection() {
+        getActivity().setProgressBarIndeterminateVisibility(true);
+    }
+
+    public void onConnectionFinished() {
+        getActivity().setProgressBarIndeterminateVisibility(false);
+    }
+
+    public void onConnectionFailed(String error) {
+        getActivity().setProgressBarIndeterminateVisibility(false);
+        Toast.makeText(getActivity(), error, Toast.LENGTH_LONG).show();
+    }
+
+    private int distanciaCoordenadas(int latitudNueva, int longitudNueva){
+
+        return 0;
+    }
+>>>>>>> Stashed changes
 }
