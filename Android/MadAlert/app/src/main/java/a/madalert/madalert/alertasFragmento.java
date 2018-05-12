@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
@@ -16,7 +17,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +54,8 @@ public class AlertasFragmento extends Fragment {
 
     private boolean mFirstTime;
 
+    private boolean mCheckedSw;
+
     private ListaAlertas.OnFragmentInteractionListener mListener;
 
     public static final String TAG = AlertasFragmento.class.getSimpleName();
@@ -74,6 +79,7 @@ public class AlertasFragmento extends Fragment {
         mHayCategorias = mSharedPreferences.getString("listaCat","");
         mTodas = mSharedPreferences.getBoolean("todasBool", false);
         mFirstTime = mSharedPreferences.getBoolean("primeraVez", true);
+        mCheckedSw = mSharedPreferences.getBoolean("isCheckedSw", false);
     }
 
 
@@ -102,7 +108,11 @@ public class AlertasFragmento extends Fragment {
             firstTime.setText(R.string.firstTime);
         }
 
-        loadAlerta();
+        if(!mCheckedSw)
+            loadAlerta();
+        else {
+            ejecutar();
+        }
 
         return v;
     }
@@ -141,6 +151,30 @@ public class AlertasFragmento extends Fragment {
 
     private void handleError(Throwable error) {
         //showSnackBarMessage("ERRRRRRRR Error !");
+    }
+
+    public static void ejecutar(){
+        time time = new time();
+        time.execute();
+    }
+
+    public static class time extends AsyncTask<Void, Integer, Boolean>{
+
+        @Override
+        protected Boolean doInBackground(Void... voids) {
+            for(int i = 1; i < 20; i++) { // 20 segundos
+                //Llamar a la funcion que comprueba la distancia
+                //si la distacia es >=100 -> actualizamos y llamamos a cargar alerta
+                //Hay que llamar a la funcion del radio y obtener los distritos
+                Log.d("comprobar", "Cada 2 segundos");
+            }
+
+            return true;
+        }
+
+        protected void onPostExecuted(Boolean aBoolean){
+            ejecutar();
+        }
     }
 
 }

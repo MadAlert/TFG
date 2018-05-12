@@ -1,8 +1,10 @@
 package a.madalert.madalert;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -10,6 +12,8 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
@@ -25,6 +29,17 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
+
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.PendingResult;
+import com.google.android.gms.common.api.ResultCallback;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+import com.google.android.gms.location.LocationSettingsResult;
+import com.google.android.gms.location.LocationSettingsStatusCodes;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -66,6 +81,18 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
     private boolean transpBool;
     private boolean contBool;
 
+    private String latitud;
+    private String longitud;
+
+    private static final String LOGTAG = "android-localizacion";
+
+    private static final int PETICION_PERMISO_LOCALIZACION = 101;
+    private static final int PETICION_CONFIG_UBICACION = 201;
+
+    private GoogleApiClient apiClient;
+    private LocationRequest locRequest;
+
+
     private String listaCategoria;
 
     public ConfigActivity() {
@@ -103,13 +130,21 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         transpBool = mSharedPreferences.getBoolean("transporte", false);
         contBool = mSharedPreferences.getBoolean("contaminacion", false);
         listaCategoria = mSharedPreferences.getString("listaCat", "");
+
+        // necesario para el algoritmo del radio
+        latitud = mSharedPreferences.getString("latitud", "");
+        longitud = mSharedPreferences.getString("longitud", "");
+
+        Log.d("coordenada_lat", String.valueOf(latitud));
+        Log.d("coordenada_long", String.valueOf(longitud));
+
     }
 
-    private void initSwitch(){
+    private void initSwitch() {
         swUbi = (Switch) findViewById(R.id.switchUbi);
         swUbi.setChecked(isCheckedSw);
 
-        if(swUbi != null)
+        if (swUbi != null)
             swUbi.setOnCheckedChangeListener(this);
 
         initSpinner();
@@ -118,7 +153,7 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
         //Toast.makeText(this, "La ubicación está " + (isChecked ? "activada" : "desactivada"),
-               // Toast.LENGTH_SHORT).show();
+        // Toast.LENGTH_SHORT).show();
 
         isCheckedSw = isChecked;
         editor.putBoolean("isCheckedSw", isCheckedSw);
@@ -128,12 +163,11 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         int permissionCheck = ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION);
 
         // Here, thisActivity is the current activity
-        if(isCheckedSw) {
+        if (isCheckedSw) {
             locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
-           // Verificamos si el GPS esta encendido o no:
+            // Verificamos si el GPS esta encendido o no:
             assert locationManager != null;
-            if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
-            {
+            if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
                 localizacion();
                 AlertNoGps();
             }
@@ -160,23 +194,7 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         initSpinner();
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode,String permissions[], int[] grantResults) {
-        switch (requestCode) {
-            case 1: {
-                // If request is cancelled, the result arrays are empty.
-                if (grantResults.length > 0
-                        && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
-                } else {
-
-                }
-                return;
-            }
-        }
-    }
-
-    private void initSeekBar(){
+    private void initSeekBar() {
         SeekBar seekBar = (SeekBar) findViewById(R.id.seekBarRadio);
         seekBar.setProgress(km);
 
@@ -206,7 +224,7 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         });
     }
 
-    private void initListCheckBox(){
+    private void initListCheckBox() {
         LinearLayout listCheckBox = (LinearLayout) findViewById(R.id.categorias);
         todas = (CheckBox) findViewById(R.id.todas);
         dya = (CheckBox) findViewById(R.id.dya);
@@ -226,14 +244,14 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         transp.setChecked(transpBool);
         cont.setChecked(contBool);
 
-       anyChecked();
+        anyChecked();
         //categorias.add(listaCategoria);
-       categorias = new ArrayList<String>(Arrays.asList(listaCategoria.split(",")));
+        categorias = new ArrayList<String>(Arrays.asList(listaCategoria.split(",")));
 
 
         todas.setOnCheckedChangeListener((compoundButton, b) -> {
             todasBool = b;
-            if(todasBool) {
+            if (todasBool) {
                 categorias.clear();
                 todasCheck();
             }
@@ -247,7 +265,7 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
 
         dya.setOnCheckedChangeListener((compoundButton, b) -> {
             dyaBool = b;
-            if(dyaBool)
+            if (dyaBool)
                 categorias.add("Desastres y accidentes");
             else
                 categorias.remove("Desastres y accidentes");
@@ -261,7 +279,7 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
 
         terrorismo.setOnCheckedChangeListener((compoundButton, b) -> {
             terrBool = b;
-            if(terrBool)
+            if (terrBool)
                 categorias.add("Terrorismo");
             else
                 categorias.remove("Terrorismo");
@@ -275,7 +293,7 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
 
         crimi.setOnCheckedChangeListener((compoundButton, b) -> {
             crimiBool = b;
-            if(crimiBool)
+            if (crimiBool)
                 categorias.add("Criminalidad");
             else
                 categorias.remove("Criminalidad");
@@ -288,7 +306,7 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
 
         traf.setOnCheckedChangeListener((compoundButton, b) -> {
             trafBool = b;
-            if(trafBool)
+            if (trafBool)
                 categorias.add("Tráfico");
             else
                 categorias.remove("Tráfico");
@@ -301,20 +319,20 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
 
         event.setOnCheckedChangeListener((compoundButton, b) -> {
             eventosBool = b;
-            if(eventosBool)
+            if (eventosBool)
                 categorias.add("Eventos");
             else
                 categorias.remove("Eventos");
             editor.putString("listaCat", mytoString(categorias, ","));
             listaCategoria = mytoString(categorias, ",");
-            editor.putBoolean("eventos" , b);
+            editor.putBoolean("eventos", b);
             editor.apply();
             anyChecked();
         });
 
         transp.setOnCheckedChangeListener((compoundButton, b) -> {
             transpBool = b;
-            if(transpBool)
+            if (transpBool)
                 categorias.add("Transporte público");
             else
                 categorias.remove("Transporte público");
@@ -327,7 +345,7 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
 
         cont.setOnCheckedChangeListener((compoundButton, b) -> {
             contBool = b;
-            if(contBool)
+            if (contBool)
                 categorias.add("Contaminación");
             else
                 categorias.remove("Contaminación");
@@ -340,11 +358,11 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
 
     }
 
-   private void initSpinner(){
+    private void initSpinner() {
         spinner = (Spinner) findViewById(R.id.spinnerDistritos);
         spinner.setSelection(pos);
 
-        if(isCheckedSw) {
+        if (isCheckedSw) {
             spinner.setVisibility(View.INVISIBLE);
         } else {
             spinner.setVisibility(View.VISIBLE);
@@ -357,21 +375,21 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
                 distritoConf = spinner.getSelectedItem().toString(); //ESTO HABRÁ QUE GUARDARLO COMO STRING TB CUANDO HAGA LA CONSULTA..
                 pos = spinner.getSelectedItemPosition();
                 Log.d("TAG POS", String.valueOf(pos));
-                editor.putString("distritoConf",  distritoConf);
+                editor.putString("distritoConf", distritoConf);
                 editor.putInt("posicion", pos);
                 editor.apply();
             }
+
             @Override
-            public void onNothingSelected(AdapterView<?> parent){
+            public void onNothingSelected(AdapterView<?> parent) {
 
             }
         });
 
 
-
     }
 
-   private void AlertNoGps() {
+    private void AlertNoGps() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("El sistema GPS esta desactivado, ¿Desea activarlo?")
                 .setCancelable(false)
@@ -393,10 +411,10 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         alert.show();
     }
 
-   private void localizacion(){
+    private void localizacion() {
 
-       Location location;
-       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        Location location;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
 
             if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
@@ -434,11 +452,11 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
             }
         };
 
-        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,0,0,locationListener);
+        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, locationListener);
 
     }
 
-   private static String mytoString(ArrayList<String> theAray, String delimiter) {
+    private static String mytoString(ArrayList<String> theAray, String delimiter) {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < theAray.size(); i++) {
             if (i > 0) {
@@ -450,32 +468,32 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         return sb.toString();
     }
 
-   private void anyChecked(){
-        if(!dyaBool && !crimiBool && !transpBool && !trafBool && !contBool && !eventosBool && !terrBool) {
+    private void anyChecked() {
+        if (!dyaBool && !crimiBool && !transpBool && !trafBool && !contBool && !eventosBool && !terrBool) {
             todasBool = true;
             todas.setChecked(todasBool);
         }
-       if(dyaBool || crimiBool || transpBool || trafBool || contBool || eventosBool || terrBool) {
-           todasBool = false;
-           todas.setChecked(todasBool);
-       }
-       if(dyaBool && crimiBool && transpBool && trafBool && contBool && eventosBool && terrBool) {
-           todasBool = true;
-           todas.setChecked(todasBool);
-       }
+        if (dyaBool || crimiBool || transpBool || trafBool || contBool || eventosBool || terrBool) {
+            todasBool = false;
+            todas.setChecked(todasBool);
+        }
+        if (dyaBool && crimiBool && transpBool && trafBool && contBool && eventosBool && terrBool) {
+            todasBool = true;
+            todas.setChecked(todasBool);
+        }
 
-   }
+    }
 
-   private void todasCheck(){
-       dyaBool = crimiBool = transpBool = trafBool = contBool = eventosBool = terrBool = false;
-       todas.setChecked(todasBool);
-       dya.setChecked(dyaBool);
-       crimi.setChecked(crimiBool);
-       transp.setChecked(transpBool);
-       traf.setChecked(trafBool);
-       cont.setChecked(contBool);
-       event.setChecked(eventosBool);
-       terrorismo.setChecked(terrBool);
-   }
+    private void todasCheck() {
+        dyaBool = crimiBool = transpBool = trafBool = contBool = eventosBool = terrBool = false;
+        todas.setChecked(todasBool);
+        dya.setChecked(dyaBool);
+        crimi.setChecked(crimiBool);
+        transp.setChecked(transpBool);
+        traf.setChecked(trafBool);
+        cont.setChecked(contBool);
+        event.setChecked(eventosBool);
+        terrorismo.setChecked(terrBool);
+    }
 
 }

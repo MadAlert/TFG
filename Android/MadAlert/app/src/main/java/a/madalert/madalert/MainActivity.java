@@ -1,9 +1,22 @@
 package a.madalert.madalert;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.location.LocationProvider;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.provider.Settings;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -11,8 +24,13 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
         implements DistritosFragmento.OnFragmentInteractionListener,
@@ -20,6 +38,10 @@ public class MainActivity extends AppCompatActivity
         ListaAlertas.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor editor;
+    private String latitud;
+    private String longitud;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +66,62 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        // Para la ubicacion
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
+        }
+        else{
+            locationStart();
+        }
+    }
+
+    private void locationStart(){
+        LocationManager mlocManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        Localizacion Local = new Localizacion();
+        Local.setMainActivity(this);
+        final boolean gpsEnabled = mlocManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        if(!gpsEnabled){
+            Intent settingsIntent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+            startActivity(settingsIntent);
+        }
+        if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
+            return;
+        }
+
+        mlocManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 0, 0, (LocationListener) Local);
+        mlocManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, (LocationListener) Local);
+    }
+
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults){
+        if(requestCode == 1000){
+            if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                locationStart();
+                return;
+            }
+        }
+    }
+
+    public void setLocation(Location loc){
+        if(loc.getLatitude() != 0.0 && loc.getLongitude() != 0.0){
+            try{
+                Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+                List<Address> list = geocoder.getFromLocation(loc.getLatitude(), loc.getLongitude(), 1);
+                if(!list.isEmpty()){
+                    Address DirCalle = list.get(0);
+                    Log.d("calle", DirCalle.getAddressLine(0));
+                    latitud = String.valueOf(DirCalle.getLatitude());
+                    longitud = String.valueOf(DirCalle.getLongitude());
+                    mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    editor = mSharedPreferences.edit(); // para guardar las configuraciones
+                    editor.putString("latitud", latitud);
+                    editor.putString("longitud", longitud);
+                    editor.apply();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -109,4 +187,65 @@ public class MainActivity extends AppCompatActivity
     public void onFragmentInteraction(Uri uri) {
 
     }
+
+    // Aqui empieza la clase Localizacion
+    public class Localizacion implements LocationListener {
+        MainActivity mainActivity;
+
+        public MainActivity getMainActivity(){
+            return mainActivity;
+        }
+
+        public void setMainActivity(MainActivity mainActivity){
+            this.mainActivity = mainActivity;
+        }
+
+        @Override
+        public void onLocationChanged(Location location) {
+            // Este metodo se ejecuta cada vez que el GPS recibe nuevas coordenadas debido a la deteccion de un cambio de ubicacion
+            latitud = String.valueOf(location.getLatitude());
+            longitud = String.valueOf(location.getLongitude());
+
+            mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            editor = mSharedPreferences.edit(); // para guardar las configuraciones
+            editor.putString("latitud", latitud);
+            editor.putString("longitud", longitud);
+            editor.apply();
+
+           // Log.d("coordenada_lat", String.valueOf(lat));
+            //Log.d("coordenada_long", String.valueOf(longi));
+
+            this.mainActivity.setLocation(location);
+        }
+
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
+            switch (status){
+                case LocationProvider.AVAILABLE:
+                    Log.d("debug", "LocationProvider.AVAILABLE");
+                    break;
+                case LocationProvider.OUT_OF_SERVICE:
+                    Log.d("debug", "LocationProvider.OUT_OF_SERVICE");
+                    break;
+                case LocationProvider.TEMPORARILY_UNAVAILABLE:
+                    Log.d("debug", "LocationProvider.TEMPORARILY_UNAVAILABLE");
+                    break;
+            }
+        }
+
+        @Override
+        public void onProviderEnabled(String s) {
+
+        }
+
+        @Override
+        public void onProviderDisabled(String s) {
+
+        }
+
+    }
 }
+
+
+
+
