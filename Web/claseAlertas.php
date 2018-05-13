@@ -43,6 +43,79 @@ class claseAlertas {
     	
     }
 
+    public function obtenerAlertasTodosCat($categorias) {
+      //Query para ver alertas de distritos -> habria que añadir la condicion de fecha
+      $documento = $this->daoAler->obtenerAlertasCategorias($categorias);
+      $total = $this->daoAler->obtenerTotalAlertasCategorias($categorias);
+      echo "<br>"; //echo "el total es $total";
+      $i =0;
+      if($total > 0){
+        foreach ($documento as $doc) {
+          $fecha =  $doc->fecha;
+          $fechaDate=$fecha->toDateTime();
+          $fechaString = $fechaDate->format('H:i:s d-m-Y');
+          $distrito = $doc->distrito;
+          echo "Distrito: $distrito";
+          $texto = $doc->alerta;
+          $categoria = $doc->categoria;
+          $autor = $doc->fuente;
+          $url = $doc->url;
+          if(isset($doc->veridico)){
+            $verificado = $doc->veridico;
+          }
+          else{
+            $verificado = true;
+          }
+          $this->mostrarAlertas($distrito, $fechaString, $texto, $categoria, $autor, $url, $verificado);
+          
+        }
+        return true;
+      }
+      else{
+        return false;
+      }
+
+      
+    }
+
+
+    public function obtenerAlertasTodos() {
+      //Query para ver alertas de distritos -> habria que añadir la condicion de fecha
+      $documento = $this->daoAler->obtenerTodasAlertas();
+      $total = $this->daoAler->obtenerTotalTodasAlertas();
+      echo "<br>"; //echo "el total es $total";
+
+      $i =0;
+      if($total > 0){
+        foreach ($documento as $doc) {
+          $fecha =  $doc->fecha;
+          $fechaDate=$fecha->toDateTime();
+          $fechaString = $fechaDate->format('H:i:s d-m-Y');
+          $distrito = $doc->distrito;
+          echo "Distrito: $distrito";
+          $texto = $doc->alerta;
+          $categoria = $doc->categoria;
+          $autor = $doc->fuente;
+          $url = $doc->url;
+          if(isset($doc->veridico)){
+            $verificado = $doc->veridico;
+          }
+          else{
+            $verificado = true;
+          }
+          $this->mostrarAlertas($distrito, $fechaString, $texto, $categoria, $autor, $url, $verificado);
+          
+        }
+        return true;
+      }
+      else{
+        return false;
+      
+        
+      }
+     
+      
+    }
 
     // Muestra todas las alertas de un distrito (sin tener en cuenta categorías)
     public function obtenerAlertasDistrito($distrito) {
@@ -111,6 +184,7 @@ class claseAlertas {
       echo ' <input type="hidden" name="vicalvaro" value='.$lista[18].' id="vicalvaro"/>';
       echo ' <input type="hidden" name="villavallecas" value='.$lista[19].' id="villavallecas"/>';
       echo ' <input type="hidden" name="villaverde" value='.$lista[20].' id="villaverde"/>';
+
     }
 
     public function obtenerDatos (){
@@ -135,7 +209,7 @@ class claseAlertas {
       $totalVicalvaro = $this->daoAler->obtenerNumeroAlertas("Vicálvaro");
       $totalVillaVallecas = $this->daoAler->obtenerNumeroAlertas("Villa de Vallecas");
       $totalVillaverde = $this->daoAler->obtenerNumeroAlertas("Villaverde");
-      $lista = [$totalArganzuela, $totalBarajas, $totalCarabanchel, $totalCentro, $totalChamartin, $totalChamberi, $totalCiudadLineal, $totalFuencarral, $totalHortaleza, $totalLatina, $totalMoncloa, $totalMoratalaz, $totalPuenteVallecas, $totalRetiro, $totalSalamanca, $totalSanBlas, $totalTetuan, $totalUsera, $totalVicalvaro, $totalVillaVallecas, $totalVillaverde];
+      $lista = [ $totalArganzuela, $totalBarajas, $totalCarabanchel, $totalCentro, $totalChamartin, $totalChamberi, $totalCiudadLineal, $totalFuencarral, $totalHortaleza, $totalLatina, $totalMoncloa, $totalMoratalaz, $totalPuenteVallecas, $totalRetiro, $totalSalamanca, $totalSanBlas, $totalTetuan, $totalUsera, $totalVicalvaro, $totalVillaVallecas, $totalVillaverde];
       return $lista;
     }
 
@@ -217,6 +291,7 @@ class claseAlertas {
     	echo '<html>
     		      
 			<select class="form-control form-control-line" name="distritos" id="distritos">
+        <option>Todos</option>
 				<option>Arganzuela</option>
 				<option>Barajas</option>
 				<option>Carabanchel</option>

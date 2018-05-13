@@ -28,6 +28,26 @@ class DAOAlertas {
 		return $documento;
 	}
 
+	public function obtenerAlertasCategorias( $categorias){
+		$documento = $this->con->find(['categoria'=>array('$in' => $categorias)], ['sort' => ['fecha' => -1]]);
+		return $documento;
+	}
+
+	public function obtenerTotalAlertasCategorias( $categorias){
+		$total = $this->con->count(['categoria'=>array('$in' => $categorias)]);
+    	return $total;
+	}
+
+	public function obtenerTodasAlertas(){
+		$documento = $this->con->find([],['sort' => ['fecha' => -1]]);
+		return $documento;
+	}
+
+	public function obtenerTotalTodasAlertas(){
+		$total = $this->con->count();
+		return $total;
+	}
+
 	public function obtenerNumeroAlertas($distrito){
 		$total = $this->con->count(['distrito' => $distrito]);
 		return $total;
