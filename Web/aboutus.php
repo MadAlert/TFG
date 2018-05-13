@@ -84,7 +84,7 @@
                         <div class="card">
                             <div class="card-block">
                                 <h1 class="card-title"> ¿Quiénes somos? </h1>
-                                <p class="m-t-30"> Somos un grupo de estudiante de la Facultad de Informática de la Universidad Complutense de Madrid. </br> Esta web pertenece a nuestro Trabajo de Fin de Grado realizado durante el curso 2017/2018.
+                                <p class="m-t-30"> Somos un grupo de estudiantes de la Facultad de Informática de la Universidad Complutense de Madrid. </br> Esta web pertenece a nuestro Trabajo de Fin de Grado realizado durante el curso 2017/2018.
                                 </p>
                                     <ul>
                                         <li> <h3> Nerea Gómez Domínguez </h3> </li>

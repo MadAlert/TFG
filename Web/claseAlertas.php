@@ -168,7 +168,7 @@ class claseAlertas {
                     <div class="sl-left"></div>
                     <div class="sl-right">
                       <div>';
-                    	echo '<a class="link"><u>'.$categoria.'</u></a>';
+                    	echo '<a><u>'.$categoria.'</u></a>';
                     	//strftime ( "%d-%m-%Y", $fecha);
                         echo '<span class="sl-date"> '.$fecha.' </span>';
                         	echo "<p></p>";
@@ -199,7 +199,7 @@ class claseAlertas {
                           echo '<div class="col-md-10 col-xs-12">';
                                                                 
                         	if ($url != Null){
-                            	echo "<a href=".$url.">".$texto."</a>";
+                            	echo "<a href=".$url." target='_blank'>".$texto."</a>";
                             }else{
                             	echo "$texto";
                             }
