@@ -372,7 +372,7 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
-                distritoConf = spinner.getSelectedItem().toString(); //ESTO HABRÁ QUE GUARDARLO COMO STRING TB CUANDO HAGA LA CONSULTA..
+                distritoConf = spinner.getSelectedItem().toString();
                 pos = spinner.getSelectedItemPosition();
                 Log.d("TAG POS", String.valueOf(pos));
                 editor.putString("distritoConf", distritoConf);

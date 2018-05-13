@@ -21,14 +21,14 @@
 
     <SeekBar
         android:id="@+id/seekBarRadio"
-        android:layout_width="290dp"
+        android:layout_width="260dp"
         android:layout_height="50dp"
         android:layout_marginLeft="16dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textRadio"
         android:max="25"
-        />
+        android:layout_marginStart="16dp" />
 
     <TextView
         android:id="@+id/tvKm"
@@ -39,9 +39,11 @@
         android:layout_below="@+id/textRadio"
         android:layout_marginEnd="14dp"
         android:layout_marginRight="14dp"
+        android:layout_marginLeft="26dp"
         android:text="@string/tvKm"
         android:textSize="21sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginStart="26dp" />
 
     <TextView
         android:id="@+id/textCategorias"
@@ -51,10 +53,11 @@
         android:layout_alignParentStart="true"
         android:layout_below="@+id/seekBarRadio"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="26dp"
         android:text="@string/textCategorias"
         android:textSize="21sp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        android:layout_marginStart="16dp" />
 
 
     <LinearLayout
@@ -64,7 +67,8 @@
         android:orientation="vertical"
         android:layout_below="@+id/textCategorias"
         android:layout_marginTop="5dp"
-        android:layout_marginLeft="16dp">
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp">
 
         <CheckBox
             android:id="@+id/todas"
@@ -135,7 +139,7 @@
 
     <TextView
         android:id="@+id/textUbicacion"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -143,6 +147,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
         android:text="@string/textUbi"
         android:textSize="21sp"
         android:textStyle="bold" />
@@ -152,12 +157,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/textUbicacion"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginEnd="141dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="141dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="132dp"
         android:checked="false" />
 
     <Spinner
@@ -169,13 +170,11 @@
         android:layout_below="@+id/textUbicacion"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
-        android:layout_marginLeft="16dp"
+        android:layout_marginLeft="24dp"
         android:textSize="21sp"
         android:entries="@array/distritos_array"
         android:prompt="@string/distritos_prompt"
         android:spinnerMode="dialog"
-        />
-
-
+        android:layout_marginStart="24dp" />
 
 </RelativeLayout>

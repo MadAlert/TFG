@@ -71,7 +71,7 @@
     <!-- Strings related to Configuracion -->
     <string name="textRadio">Radio</string>
     <string name="textCategorias">Categorías </string>
-    <string name="textUbi">Ubicación activada</string>
+    <string name="textUbi">Ubicación</string>
     <string name="tvKm"></string>
 
     <string name="firstTime">Parece que es la primera vez que estás con nosotros.. ¡Ve a "Configuración" para adaptar tus necesidades!</string>
