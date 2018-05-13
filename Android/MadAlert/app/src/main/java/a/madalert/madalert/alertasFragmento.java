@@ -68,6 +68,7 @@ public class AlertasFragmento extends Fragment {
     private boolean mFirstTime;
 
     private boolean mCheckedSw;
+    private String latitud, longitud;
 
     private ListaAlertas.OnFragmentInteractionListener mListener;
 
@@ -128,17 +129,24 @@ public class AlertasFragmento extends Fragment {
             firstTime.setText(R.string.firstTime);
         }
 
-        if(!mCheckedSw)
+        //if(!mCheckedSw)
             loadAlerta();
-        else {
-            ejecutar();
-        }
+        //else {
+          //  ejecutar();
+        //}
 
         return v;
     }
 
     private void loadAlerta() {
-        String distrito = obtenerDistrito("40.4354296","-3.7157969");
+        if(mCheckedSw) {
+            latitud = mSharedPreferences.getString("latitud", "");
+            longitud = mSharedPreferences.getString("longitud", "");
+            obtenerDistrito(latitud, longitud);
+        }
+        else{
+            mDistrito = mSharedPreferences.getString("distritoConf", "");
+        }
         if(mTodas) {
             mSub.add(NetworkUtil.getRetrofit().getAlertasDistrito(mDistrito)
                     .observeOn(AndroidSchedulers.mainThread())
@@ -199,9 +207,9 @@ public class AlertasFragmento extends Fragment {
     }
 
 
-    private String obtenerDistrito(String latitud, String longitud) {
+    private void obtenerDistrito(String latitud, String longitud) {
         String url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+latitud+","+longitud+"&result_type=sublocality&key=AIzaSyDOveaxbksFJQgJfQXoWvvw9vOntdr8r3o";
-        JsonObjectRequest request = new JsonObjectRequest(url, jsonObject -> {
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,url, jsonObject -> {
             distritoObtenido = jsonObject.toString();
 
 
@@ -221,7 +229,7 @@ public class AlertasFragmento extends Fragment {
                     for(JsonElement add: address){
                         if(i==0){
                             JsonObject gsonAdd = add.getAsJsonObject();
-                            distritoObtenido = gsonAdd.get("long_name").getAsString();
+                            mDistrito = gsonAdd.get("long_name").getAsString();
                         }
                         i++;
                     }
@@ -232,8 +240,6 @@ public class AlertasFragmento extends Fragment {
             onConnectionFinished();
         }, volleyError -> onConnectionFailed(volleyError.toString()));
         addToQueue(request);
-
-        return distritoObtenido;
     }
 
     public void addToQueue(Request request) {
@@ -262,8 +268,5 @@ public class AlertasFragmento extends Fragment {
         Toast.makeText(getActivity(), error, Toast.LENGTH_LONG).show();
     }
 
-    private int distanciaCoordenadas(int latitudNueva, int longitudNueva){
 
-        return 0;
-    }
 }

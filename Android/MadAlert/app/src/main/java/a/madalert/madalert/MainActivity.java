@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity
     private SharedPreferences.Editor editor;
     private String latitud;
     private String longitud;
+    private boolean primeraVez;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        primeraVez =true;
         // Para la ubicacion
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
@@ -188,6 +190,23 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    private double distanciaCoordenadas(double latitudNueva, double longitudNueva){
+        double hipotenusa = 0;
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String strLatitudAntigua = mSharedPreferences.getString("latitud","");
+        String strLongitudAntigua = mSharedPreferences.getString("longitud","");
+        if(strLatitudAntigua!="" && strLongitudAntigua!=""){
+            double latitudAntigua = Double.parseDouble(strLatitudAntigua);
+            double longitudAntigua = Double.parseDouble(strLongitudAntigua);
+
+            double cateto1 = latitudAntigua -latitudNueva;
+            double cateto2 = longitudAntigua - longitudNueva;
+
+            hipotenusa = Math.sqrt((cateto1*cateto1)+(cateto2*cateto2));
+        }
+        return hipotenusa;
+    }
+
     // Aqui empieza la clase Localizacion
     public class Localizacion implements LocationListener {
         MainActivity mainActivity;
@@ -206,12 +225,19 @@ public class MainActivity extends AppCompatActivity
             latitud = String.valueOf(location.getLatitude());
             longitud = String.valueOf(location.getLongitude());
 
-            mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-            editor = mSharedPreferences.edit(); // para guardar las configuraciones
-            editor.putString("latitud", latitud);
-            editor.putString("longitud", longitud);
-            editor.apply();
-
+            if(distanciaCoordenadas(Double.parseDouble(latitud),Double.parseDouble(longitud)) >= 50  || primeraVez) {
+                if(primeraVez){
+                    primeraVez = false;
+                }
+                mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                editor = mSharedPreferences.edit(); // para guardar las configuraciones
+                editor.putString("latitud", latitud);
+                editor.putString("longitud", longitud);
+                editor.apply();
+            }
+            else{
+                Log.d("l", "hollaaaaaa");
+            }
            // Log.d("coordenada_lat", String.valueOf(lat));
             //Log.d("coordenada_long", String.valueOf(longi));
 

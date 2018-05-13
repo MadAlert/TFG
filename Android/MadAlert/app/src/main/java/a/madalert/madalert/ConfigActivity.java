@@ -118,7 +118,7 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
 
     private void initSharedPreferences() {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        km = mSharedPreferences.getInt("km", -1);
+        km = mSharedPreferences.getInt("km", 0);
         isCheckedSw = mSharedPreferences.getBoolean("isCheckedSw", false);
         pos = mSharedPreferences.getInt("posicion", -1);
         todasBool = mSharedPreferences.getBoolean("todas", false);
