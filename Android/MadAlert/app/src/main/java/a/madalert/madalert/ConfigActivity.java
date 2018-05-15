@@ -359,7 +359,6 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
                 distritoConf = spinner.getSelectedItem().toString();
                 pos = spinner.getSelectedItemPosition();
-                Log.d("TAG POS", String.valueOf(pos));
                 editor.putString("distritoConf", distritoConf);
                 editor.putInt("posicion", pos);
                 editor.apply();

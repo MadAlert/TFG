@@ -56,10 +56,10 @@ public class AddAlertaActivity extends AppCompatActivity {
         boton = findViewById(R.id.button);
 
         categoria = findViewById(R.id.spinner);
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(
+       /* ArrayAdapter adapter = ArrayAdapter.createFromResource(
                 this, R.array.categorias_array , android.R.layout.simple_spinner_item);
 
-        categoria.setAdapter(adapter);
+        categoria.setAdapter(adapter);*/
         categoria.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
 
@@ -81,10 +81,10 @@ public class AddAlertaActivity extends AppCompatActivity {
         );
 
         distrito = findViewById(R.id.spinner2);
-        ArrayAdapter adapter2 = ArrayAdapter.createFromResource(
+        /*ArrayAdapter adapter2 = ArrayAdapter.createFromResource(
                 this, R.array.distritos_array , android.R.layout.simple_spinner_item);
 
-        distrito.setAdapter(adapter2);
+        distrito.setAdapter(adapter2);*/
         distrito.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
 

@@ -88,6 +88,68 @@ public class AlertasFragmento extends Fragment {
 
     }
 
+    private void initRecyclerView(View v) {
+        textView = (TextView) v.findViewById(R.id.textView);
+        firstTime = (TextView) v.findViewById(R.id.firstTime);
+        mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
+        mRecyclerView.setHasFixedSize(true);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
+        mRecyclerView.setLayoutManager(layoutManager);
+    }
+
+    private void initSharedPreferences() {
+        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        mDistrito = mSharedPreferences.getString("distritoConf", "");
+        mHayCategorias = mSharedPreferences.getString("listaCat","");
+        mTodas = mSharedPreferences.getBoolean("todas", false);
+        mFirstTime = mSharedPreferences.getBoolean("primeraVez", true);
+        mCheckedSw = mSharedPreferences.getBoolean("isCheckedSw", false);
+    }
+
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        volley = VolleyS.getInstance(getActivity().getApplicationContext());
+        fRequestQueue = volley.getRequestQueue();
+
+        View v = inflater.inflate(R.layout.fragment_alertas, container, false);
+        mSub = new CompositeDisposable();
+        initSharedPreferences();
+        editor = mSharedPreferences.edit();
+        Log.d("ronaldo", "abre pestaña alertas");
+
+        FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.anadirAlerta);
+        fab.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v)
+            {
+                Intent AddAlerta = new Intent(getContext(), AddAlertaActivity.class);
+                startActivity(AddAlerta);
+            }
+        });
+
+        initRecyclerView(v);
+        if (mFirstTime) {
+            // first time task
+            firstTime.setText(R.string.firstTime);
+        }
+        else {
+            try {
+                loadAlerta();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            //else {
+            ejecutar();
+            //}
+        }
+
+        return v;
+    }
+
     public void initCoord(){
         distCoord = new HashMap<String, Pair<Double, Double>>();
         distCoord.put("Arganzuela", new Pair<>(40.400861, -3.699350));
@@ -112,6 +174,7 @@ public class AlertasFragmento extends Fragment {
         distCoord.put("Vicálvaro", new Pair<>(40.393974, -3.581134));
         distCoord.put("Villa de Vallecas", new Pair<>(40.355089, -3.621192));
         distCoord.put("Villaverde", new Pair<>(40.345987, -3.693332));
+        distCoord.put("Todos", new Pair<>(40.4420755, -3.7458086));
     }
 
     public void recorrerRadio(Boolean ubicacionActivada){
@@ -143,7 +206,6 @@ public class AlertasFragmento extends Fragment {
                 distRadio.add(it.getKey());
             }
         }
-        Log.d("nerea", distRadio.toString());
     }
 
     public static double distanciaCoord(double lat1, double lng1, double lat2, double lng2) {
@@ -161,90 +223,31 @@ public class AlertasFragmento extends Fragment {
         return distancia;
     }
 
-    private void initRecyclerView(View v) {
-        textView = (TextView) v.findViewById(R.id.textView);
-        firstTime = (TextView) v.findViewById(R.id.firstTime);
-        mRecyclerView = (RecyclerView) v.findViewById(R.id.recycler_view);
-        mRecyclerView.setHasFixedSize(true);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
-        mRecyclerView.setLayoutManager(layoutManager);
-    }
-
-    private void initSharedPreferences() {
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        mDistrito = mSharedPreferences.getString("distritoConf", "");
-        mHayCategorias = mSharedPreferences.getString("listaCat","");
-        mTodas = mSharedPreferences.getBoolean("todas", false);
-        mFirstTime = mSharedPreferences.getBoolean("primeraVez", true);
-        mCheckedSw = mSharedPreferences.getBoolean("isCheckedSw", false);
-    }
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        volley = VolleyS.getInstance(getActivity().getApplicationContext());
-        fRequestQueue = volley.getRequestQueue();
-        View v = inflater.inflate(R.layout.fragment_alertas, container, false);
-
-        FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.anadirAlerta);
-        fab.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v)
-            {
-                Intent AddAlerta = new Intent(getContext(), AddAlertaActivity.class);
-                startActivity(AddAlerta);
-            }
-        });
-
-        mSub = new CompositeDisposable();
-        initRecyclerView(v);
-        initSharedPreferences();
-        editor = mSharedPreferences.edit();
-        if (mFirstTime) {
-            // first time task
-            // record the fact that the app has been started at least once
-            firstTime.setText(R.string.firstTime);
-        }
-        else {
-            try {
-                loadAlerta();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            //else {
-            ejecutar();
-            //}
-        }
-
-        return v;
-    }
-
     private void loadAlerta() throws IOException, JSONException {
         auxDistrito="";
+        distRadio = new ArrayList<>();
         if(mCheckedSw) {
-           // auxDistrito="";
             // esto tiene que estar aqui, no mover
             latitud = mSharedPreferences.getString("latitud", "");
             longitud = mSharedPreferences.getString("longitud", "");
-            //obtDistrito(latitud, longitud);
             obtenerDistrito(latitud, longitud);
 
-          /*  for(int j = 0; j < distRadio.size(); j++) {
+            for(int j = 0; j < distRadio.size(); j++) {
                 //auxDistrito += "," + distRadio.get(j);
                 mDistrito += "," + distRadio.get(j);
-            }*/
+            }
         }
         else{
             mDistrito = mSharedPreferences.getString("distritoConf", "");
-            recorrerRadio(mCheckedSw);
             auxDistrito = mDistrito;
-            for(int j = 0; j < distRadio.size(); j++) {
-                //auxDistrito += "," + distRadio.get(j);
-                auxDistrito += "," + distRadio.get(j);
+            if(!mDistrito.equals("Todos") || kms > 0) {
+                recorrerRadio(mCheckedSw);
+                for(int j = 0; j < distRadio.size(); j++) {
+                    //auxDistrito += "," + distRadio.get(j);
+                    auxDistrito += "," + distRadio.get(j);
+                }
             }
+
             if(mTodas) {
                 mSub.add(NetworkUtil.getRetrofit().getAlertasDistrito(auxDistrito)
                         .observeOn(AndroidSchedulers.mainThread())

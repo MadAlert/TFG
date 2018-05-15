@@ -12,11 +12,9 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.location.LocationProvider;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.Settings;
-import android.support.annotation.RequiresApi;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
@@ -27,7 +25,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -72,13 +69,6 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         primeraVez = true;
-       /* mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        editor = mSharedPreferences.edit();
-        //primeraVez = mSharedPreferences.getBoolean("primeraVez", false);
-        if(primeraVez) {
-            editor.putBoolean("isCheckedSw", false);
-            editor.apply();
-        }*/
         // Para la ubicacion
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
@@ -202,7 +192,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onFragmentInteraction(Uri uri) {
-
     }
 
     private double distanciaCoordenadas(double latitudNueva, double longitudNueva){

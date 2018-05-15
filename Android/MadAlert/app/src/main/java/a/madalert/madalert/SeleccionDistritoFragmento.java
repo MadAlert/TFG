@@ -8,6 +8,7 @@ import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,6 +77,7 @@ public class SeleccionDistritoFragmento extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_seleccionar_distrito, container, false);
         mSubscriptions = new CompositeDisposable();
+        Log.d("ronaldo", "abre pestaña seleccion distrito");
         initViews(view);
         initSharedPreferences();
 
@@ -129,10 +131,10 @@ public class SeleccionDistritoFragmento extends Fragment {
         });
 
         spnr = (Spinner)v.findViewById(R.id.spinner);
-        ArrayAdapter adapter = ArrayAdapter.createFromResource(
+        /*ArrayAdapter adapter = ArrayAdapter.createFromResource(
                 getActivity(), R.array.distritos_array , android.R.layout.simple_spinner_item);
 
-        spnr.setAdapter(adapter);
+        spnr.setAdapter(adapter);*/
         spnr.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
 
@@ -140,7 +142,8 @@ public class SeleccionDistritoFragmento extends Fragment {
                     public void onItemSelected(AdapterView<?> arg0, View arg1,
                                                int arg2, long arg3) {
 
-                        dist = (String) spnr.getSelectedItem();
+                        //dist = (String) spnr.getSelectedItem();
+                        dist = spnr.getSelectedItem().toString();
                         // TODO Auto-generated method stub
                     }
 

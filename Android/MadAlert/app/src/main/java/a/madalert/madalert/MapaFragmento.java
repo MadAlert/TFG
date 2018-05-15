@@ -37,6 +37,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import io.reactivex.disposables.CompositeDisposable;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -47,6 +49,7 @@ public class MapaFragmento extends Fragment implements
     private MapView mapView;
     private GoogleMap map;
     private SharedPreferences mSharedPreferences;
+    private CompositeDisposable mSubscriptions;
     private SharedPreferences.Editor editor;
     private String latitud;
     private String longitud;
@@ -62,9 +65,11 @@ public class MapaFragmento extends Fragment implements
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Log.d("ronaldo", "abre pestaña maapa");
         View v = inflater.inflate(R.layout.fragment_mapa, container, false);
-
+        mSubscriptions = new CompositeDisposable();
         initSharedPreferences();
+
         initCoord();
 
         return v;

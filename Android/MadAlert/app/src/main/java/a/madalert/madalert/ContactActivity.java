@@ -37,7 +37,6 @@ public class ContactActivity extends AppCompatActivity {
                 itSend.putExtra(android.content.Intent.EXTRA_SUBJECT, etSubject.getText().toString());
                 itSend.putExtra(android.content.Intent.EXTRA_TEXT, etBody.getText());
 
-
                 /* iniciamos la actividad */
                 startActivity(itSend);
             }
