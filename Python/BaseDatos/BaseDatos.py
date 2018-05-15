@@ -57,7 +57,7 @@ class baseDatosClass():
     def insertarEstadisticas(self, coleccion, distrito, categoria, mes):
         diccionario = {"distrito": distrito, "categoria": categoria, "mes": mes}
         coleccion.insert_one(diccionario)
-    #def eliminarAlertas(fecha)
+  
 
     def insertarEstSeguridad(self, coleccion, distrito, personas, patrimonio, armas, ten_drogas, con_drogas, mes):
         diccionario = {"distrito": distrito, "personas": personas, "patrimonio": patrimonio,
@@ -71,6 +71,24 @@ class baseDatosClass():
     def insertarEstAccidentes(self, coleccion, distrito, conHeridos, sinHeridos, mes):
         diccionario = {"distrito": distrito, "conHeridos": conHeridos, "sinHeridos": sinHeridos, "mes": mes}
         coleccion.insert_one(diccionario)
+
+    def eliminarAlerta(self, coleccion, fecha):
+        coleccion.remove({"fecha":{'$lte':fecha}})
+        
+    def eliminarEstadisticas(self, coleccion, mes, mesActual):
+        #mesResta= mesActual-3
+        #print (mes)
+        coleccion.remove({"mes":{'$lte':mes}})
+        coleccion.remove({"mes":{'$gt':mesActual}})
+        
+    def eliminarEstSeguridad(self, coleccion, fecha):
+        coleccion.remove({"fecha":{'$lte':fecha}})
+        
+    def eliminarEstDetenidos(self, coleccion, fecha):
+        coleccion.remove({"fecha":{'$lte':fecha}})
+
+    def eliminarEstAccidentes(self, coleccion, fecha):
+        coleccion.remove({"fecha":{'$lte':fecha}})
 
 
 
