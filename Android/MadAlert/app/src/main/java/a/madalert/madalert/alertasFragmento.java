@@ -123,7 +123,6 @@ public class AlertasFragmento extends Fragment {
         distCoord.put("Vicálvaro", new Pair<>(40.393974, -3.581134));
         distCoord.put("Villa de Vallecas", new Pair<>(40.355089, -3.621192));
         distCoord.put("Villaverde", new Pair<>(40.345987, -3.693332));
-
     }
 
     public void recorrerRadio(Boolean ubicacionActivada){
@@ -144,8 +143,6 @@ public class AlertasFragmento extends Fragment {
             parsLong = latLong.second;
         }
         kms = mSharedPreferences.getInt("km", 0);
-
-
 
         while (iterator.hasNext()){
             Map.Entry<String, Pair<Double, Double>> it = iterator.next();
