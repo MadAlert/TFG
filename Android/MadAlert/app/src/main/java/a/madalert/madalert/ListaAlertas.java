@@ -130,6 +130,7 @@ public class ListaAlertas extends Fragment {
     }
 
     private void loadAlerta() {
+<<<<<<< HEAD
         if (!mMapa) { //NO viene del mapa
             if (mHayCategorias.equals("0")) {
                 mSub.add(NetworkUtil.getRetrofit().getAlertasDistrito(mDistrito)
@@ -144,6 +145,18 @@ public class ListaAlertas extends Fragment {
             }
         } else { //SI viene del mapa
             mSub.add(NetworkUtil.getRetrofit().getAlertasDistritoCategoria(mDistritoMapa, mListaCat)
+=======
+        if(mHayCategorias.equals("0")) { //Si es todas
+            mSub.add(NetworkUtil.getRetrofit().getAlertasDistrito(mDistrito)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(io.reactivex.schedulers.Schedulers.io())
+                    .subscribe(this::handleResponse, this::handleError));
+        }
+        else{
+            String[] categoriasP;
+            categoriasP = mHayCategorias.split(",");
+            mSub.add(NetworkUtil.getRetrofit().getAlertasDistritoCategoria(mDistrito, mHayCategorias)
+>>>>>>> origin/master
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(io.reactivex.schedulers.Schedulers.io())
                     .subscribe(this::handleResponse, this::handleError));

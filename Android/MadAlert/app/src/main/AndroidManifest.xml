@@ -57,16 +57,15 @@
         </activity>
         <activity
             android:name=".SoporteActivity"
-            android:finishOnTaskLaunch="true"
             android:label="Soporte"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
         <!-- Gracias al atributo parentActivityName aparece la flecha de atrás -->
         <activity
             android:name=".ConfigActivity"
-            android:clearTaskOnLaunch="true"
             android:label="Configuración"
             android:parentActivityName=".MainActivity"
+            android:finishOnTaskLaunch="true"
             android:screenOrientation="portrait"/>
         <activity
             android:name=".AddAlertaActivity"
@@ -75,13 +74,11 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".AboutUsActivity"
-            android:finishOnTaskLaunch="true"
             android:label="About us"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ContactActivity"
-            android:finishOnTaskLaunch="true"
             android:label="Contacto"
             android:parentActivityName=".MainActivity"
             android:screenOrientation="portrait" />

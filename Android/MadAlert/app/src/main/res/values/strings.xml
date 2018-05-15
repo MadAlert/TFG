@@ -17,6 +17,7 @@
     <string name="categorias_prompt">Selecciona una categoria</string>
     <string name="buscar">Mostrar</string>
     <string-array name="distritos_array">
+        <item>Todos</item>
         <item>Arganzuela</item>
         <item>Barajas</item>
         <item>Carabanchel</item>

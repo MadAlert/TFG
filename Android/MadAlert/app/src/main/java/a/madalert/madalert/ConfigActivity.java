@@ -1,10 +1,8 @@
 package a.madalert.madalert;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -12,14 +10,13 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CheckBox;
@@ -29,17 +26,6 @@ import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.common.api.PendingResult;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.location.LocationRequest;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.location.LocationSettingsRequest;
-import com.google.android.gms.location.LocationSettingsResult;
-import com.google.android.gms.location.LocationSettingsStatusCodes;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -84,15 +70,6 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
     private String latitud;
     private String longitud;
 
-    private static final String LOGTAG = "android-localizacion";
-
-    private static final int PETICION_PERMISO_LOCALIZACION = 101;
-    private static final int PETICION_CONFIG_UBICACION = 201;
-
-    private GoogleApiClient apiClient;
-    private LocationRequest locRequest;
-
-
     private String listaCategoria;
 
     public ConfigActivity() {
@@ -113,7 +90,16 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         initSeekBar();
         initListCheckBox();
         initSwitch();
+    }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        if(keyCode == KeyEvent.KEYCODE_BACK) {
+            setResult(RESULT_OK);
+            finish();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     private void initSharedPreferences() {
@@ -171,7 +157,6 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
                 localizacion();
                 AlertNoGps();
             }
-
 
             // Para permitir que la app acceda a la ubicacion del dispositivo
             if (ContextCompat.checkSelfPermission(this,
@@ -374,7 +359,6 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
             public void onItemSelected(AdapterView<?> adapterView, View view, int pos, long id) {
                 distritoConf = spinner.getSelectedItem().toString();
                 pos = spinner.getSelectedItemPosition();
-                Log.d("TAG POS", String.valueOf(pos));
                 editor.putString("distritoConf", distritoConf);
                 editor.putInt("posicion", pos);
                 editor.apply();

@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity
     private String latitud;
     private String longitud;
     private boolean primeraVez;
+    private boolean mFirstTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        primeraVez =true;
+        primeraVez = true;
         // Para la ubicacion
         if(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION,}, 1000);
@@ -162,14 +163,16 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_configuracion) {
-            startActivity(new Intent(getApplicationContext(), ConfigActivity.class));
+            startActivityForResult(new Intent(getApplicationContext(), ConfigActivity.class), 0);
+           // startActivity(new Intent(getApplicationContext(), ConfigActivity.class));
         } else if (id == R.id.nav_contacto) {
-            startActivity(new Intent(getApplicationContext(), ContactActivity.class));
+            //startActivity(new Intent(getApplicationContext(), ContactActivity.class));
+            startActivityForResult(new Intent(getApplicationContext(), ContactActivity.class), 0);
         } else if (id == R.id.nav_soporte) {
-            startActivity(new Intent(getApplicationContext(), SoporteActivity.class));
+            startActivityForResult(new Intent(getApplicationContext(), SoporteActivity.class), 0);
             //fragmentClass = SoporteFragmento.class;
         } else if (id == R.id.nav_aboutus) {
-            startActivity(new Intent(getApplicationContext(), AboutUsActivity.class));
+            startActivityForResult(new Intent(getApplicationContext(), AboutUsActivity.class), 0);
         } else if (id == R.id.nav_faq) {
             //fragmentClass = FaqFragmento.class;
         }
@@ -180,11 +183,18 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
         }*/
 
+<<<<<<< HEAD
 
         //setTitle(item.getTitle());
+=======
+>>>>>>> origin/master
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        finish();
     }
 
     @Override
@@ -232,19 +242,21 @@ public class MainActivity extends AppCompatActivity
             latitud = String.valueOf(location.getLatitude());
             longitud = String.valueOf(location.getLongitude());
 
-            if(distanciaCoordenadas(Double.parseDouble(latitud),Double.parseDouble(longitud)) >= 50  || primeraVez) {
-                if(primeraVez){
-                    primeraVez = false;
+            mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            mFirstTime = mSharedPreferences.getBoolean("primeraVez", true);
+            if(mFirstTime) {
+                if (distanciaCoordenadas(Double.parseDouble(latitud), Double.parseDouble(longitud)) >= 50 || primeraVez) {
+                    if (primeraVez) {
+                        primeraVez = false;
+                    }
+                    mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                    editor = mSharedPreferences.edit(); // para guardar las configuraciones
+                    editor.putString("latitud", latitud);
+                    editor.putString("longitud", longitud);
+                    editor.apply();
                 }
-                mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                editor = mSharedPreferences.edit(); // para guardar las configuraciones
-                editor.putString("latitud", latitud);
-                editor.putString("longitud", longitud);
-                editor.apply();
             }
-            else{
-                Log.d("l", "hollaaaaaa");
-            }
+
            // Log.d("coordenada_lat", String.valueOf(lat));
             //Log.d("coordenada_long", String.valueOf(longi));
 
@@ -277,6 +289,7 @@ public class MainActivity extends AppCompatActivity
         }
 
     }
+
 }
 
 
