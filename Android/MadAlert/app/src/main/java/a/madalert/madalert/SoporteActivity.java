@@ -38,6 +38,7 @@ public class SoporteActivity extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event){
         if(keyCode == KeyEvent.KEYCODE_BACK) {
+            setResult(RESULT_OK);
             finish();
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
         }
