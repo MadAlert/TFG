@@ -35,6 +35,8 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity
         implements DistritosFragmento.OnFragmentInteractionListener,
         SeleccionDistritoFragmento.OnFragmentInteractionListener,
+        MapaFragmento.OnFragmentInteractionListener,
+        MostrarMapa.OnFragmentInteractionListener,
         ListaAlertas.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener {
 
     private DrawerLayout drawer;
@@ -179,7 +181,7 @@ public class MainActivity extends AppCompatActivity
         }*/
 
 
-        setTitle(item.getTitle());
+        //setTitle(item.getTitle());
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -187,7 +189,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onFragmentInteraction(Uri uri) {
-
     }
 
     private double distanciaCoordenadas(double latitudNueva, double longitudNueva){

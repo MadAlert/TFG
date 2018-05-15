@@ -22,9 +22,11 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
     private ArrayList<Alertas> mAndroidList;
     private String enlace;
+    private Boolean mRadio;
 
-    public DataAdapter(ArrayList<Alertas> androidList) {
+    public DataAdapter(ArrayList<Alertas> androidList, boolean radio) {
         mAndroidList = androidList;
+        mRadio = radio;
     }
 
 
@@ -39,7 +41,9 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-
+        if(mRadio) {
+            holder.mTvDistrito.setText(mAndroidList.get(position).getDistrito());
+        }
         holder.mTvCategoria.setText(mAndroidList.get(position).getCategoria());
         holder.mTvFecha.setText(mAndroidList.get(position).getFecha());
         holder.mTvAlerta.setText(mAndroidList.get(position).getAlertas());
@@ -85,13 +89,15 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        private TextView mTvAlerta,mTvFuente,mTvCategoria,mTvFecha;
+        private TextView mTvAlerta,mTvFuente,mTvCategoria,mTvFecha, mTvDistrito;
         private ImageView mIvImagen;
 
         public ViewHolder(View view) {
             super(view);
 
-
+            if(mRadio) {
+                mTvDistrito = view.findViewById(R.id.tv_distrito);
+            }
             mTvCategoria = (TextView)view.findViewById(R.id.tv_categoria);
             mTvFecha = (TextView)view.findViewById(R.id.tv_fecha);
             mTvAlerta = (TextView)view.findViewById(R.id.tv_alerta);

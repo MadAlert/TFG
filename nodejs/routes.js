@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 const alertasDistrito = require('./functions/verAlertasDistrito');
 const alertasDistritoCategoria = require('./functions/verAlertasDistritoCategoria.js');
 const addAlerta = require('./functions/addAlertaBD.js');
+const countAlertasDistrito = require('./functions/countAlertasDistrito');
 /*const login = require('./functions/login');
 const profile = require('./functions/profile');
 const password = require('./functions/password');
@@ -16,7 +17,7 @@ module.exports = router => {
 
 	//Para buscar alertas por distrito
 	router.get('/alertas/:distrito', (req,res) => {
-
+			console.debug("entro en get alertas");
 			alertasDistrito.getAlertasDistrito(req.params.distrito.split(','))
 
 			.then(result => res.json(result))
@@ -26,6 +27,7 @@ module.exports = router => {
 	
 	//Para buscar alertas por distrito y categoria
 	router.get('/alertas/:distrito/:arr', (req,res) => {
+
 			console.debug(req.params.arr.split(','))
 			alertasDistritoCategoria.getAlertasDistritoCategoria(req.params.distrito.split(','), req.params.arr.split(','))
 			
@@ -33,6 +35,16 @@ module.exports = router => {
 			.catch(err => res.status(err.status).json({ message: err.message }));
 	});
 	
+	//Para buscar alertas por distrit
+	router.get('/alertas/:distrito/:count/:categorias', (req,res) => {
+			console.log("ntro en count");
+			countAlertasDistrito.getCountAlertasDistrito(req.params.distrito.split(','),req.params.count, req.params.categorias.split(','))
+			
+			.then(result => res.json(result))
+			.catch(err => res.status(err.status).json({ message: err.message }));
+	});
+
+
 	//Para añadir alertas
 	router.post('/alertas/:titulo/:distrito/:fuente/:categoria', (req, res) => {
 

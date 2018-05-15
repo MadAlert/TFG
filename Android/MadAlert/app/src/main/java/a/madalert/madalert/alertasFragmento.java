@@ -130,7 +130,7 @@ public class AlertasFragmento extends Fragment {
         initCoord();
         distRadio = new ArrayList<>();
         Iterator<Map.Entry<String, Pair<Double, Double>>> iterator = distCoord.entrySet().iterator();
-        Double parsLat, parsLong;
+        Double parsLat=0.0, parsLong=0.0;
         if(ubicacionActivada) {
             latitud = mSharedPreferences.getString("latitud", "");
             longitud = mSharedPreferences.getString("longitud", "");
@@ -139,9 +139,11 @@ public class AlertasFragmento extends Fragment {
         }
         else{
             auxDistrito=mDistrito;
-            Pair<Double,Double> latLong = distCoord.get(auxDistrito);
-            parsLat = latLong.first;
-            parsLong = latLong.second;
+            if(auxDistrito != null) {
+                Pair<Double, Double> latLong = distCoord.get(auxDistrito);
+                parsLat = latLong.first;
+                parsLong = latLong.second;
+            }
         }
         kms = mSharedPreferences.getInt("km", 0);
 
@@ -281,7 +283,7 @@ public class AlertasFragmento extends Fragment {
     private void handleResponse(List<Alertas> alertas) {
         textView.setText("Distrito " + mDistrito);
         mAndroidArrayList = new ArrayList<>(alertas);
-        mAdapter = new DataAdapter(mAndroidArrayList);
+        mAdapter = new DataAdapter(mAndroidArrayList, true); //Si tiene varios distritos muestra el distrito en cada RecyclerView
         mRecyclerView.setAdapter(mAdapter);
 
         if(mAndroidArrayList.isEmpty())
