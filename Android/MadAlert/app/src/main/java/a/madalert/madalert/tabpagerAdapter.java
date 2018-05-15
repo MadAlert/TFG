@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
  * Created by gmolindi on 21/03/2018.
  */
 
-public class TabpagerAdapter extends FragmentStatePagerAdapter {
+class TabpagerAdapter extends FragmentStatePagerAdapter {
 
     private String[] tabArray = new String[]{"Alertas", "Mapa", "Distritos"};
     private Integer tabNumber = tabArray.length;

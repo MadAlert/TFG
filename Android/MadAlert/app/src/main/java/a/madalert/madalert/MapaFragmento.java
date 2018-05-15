@@ -10,13 +10,10 @@ import android.view.ViewGroup;
 
 import android.support.v4.app.Fragment;
 
-import io.reactivex.disposables.CompositeDisposable;
-
 
 /**
  * A simple {@link Fragment} subclass.
  */
-<<<<<<< HEAD
 public class MapaFragmento extends Fragment{
 
 
@@ -26,36 +23,6 @@ public class MapaFragmento extends Fragment{
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-=======
-public class MapaFragmento extends Fragment implements
-        GoogleMap.OnInfoWindowClickListener, OnMapReadyCallback {
-
-    private MapView mapView;
-    private GoogleMap map;
-    private SharedPreferences mSharedPreferences;
-    private CompositeDisposable mSubscriptions;
-    private SharedPreferences.Editor editor;
-    private String latitud;
-    private String longitud;
-    private int km;
-    private HashMap<String, Pair<Double, Double>> distCoord;
-
-    public MapaFragmento() {
-        // Required empty public constructor
-    }
-
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        Log.d("ronaldo", "abre pestaña maapa");
-        View v = inflater.inflate(R.layout.fragment_mapa, container, false);
-        mSubscriptions = new CompositeDisposable();
-        initSharedPreferences();
-
-        initCoord();
->>>>>>> origin/master
 
     private MapaFragmento.OnFragmentInteractionListener mListener;
 

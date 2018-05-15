@@ -183,11 +183,6 @@ public class MainActivity extends AppCompatActivity
             e.printStackTrace();
         }*/
 
-<<<<<<< HEAD
-
-        //setTitle(item.getTitle());
-=======
->>>>>>> origin/master
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;

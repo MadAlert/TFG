@@ -21,11 +21,7 @@ public class NetworkUtil {
         RxJava2CallAdapterFactory rxAdapter = RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io());
 
         return new Retrofit.Builder()
-<<<<<<< HEAD
                 .baseUrl("http://192.168.1.165:8080/api/v1/")
-=======
-                .baseUrl("http://192.168.1.176:8080/api/v1/")
->>>>>>> origin/master
                 .addCallAdapterFactory(rxAdapter)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build().create(RetrofitInterface.class);

@@ -75,8 +75,6 @@ public class AlertasFragmento extends Fragment {
     private boolean mCheckedSw;
     private String latitud, longitud;
 
-    private ListaAlertas.OnFragmentInteractionListener mListener;
-
     public static final String TAG = AlertasFragmento.class.getSimpleName();
 
     private VolleyS volley;
@@ -329,8 +327,6 @@ public class AlertasFragmento extends Fragment {
                     for(JsonElement add: address){
                         if(i==0){
                             JsonObject gsonAdd = add.getAsJsonObject();
-                            //auxDistrito = gsonAdd.get("long_name").getAsString();
-                            //mDistrito = gsonAdd.get("long_name").getAsString() + auxDistrito ;
                             mDistrito = gsonAdd.get("long_name").getAsString();
                             auxDistrito = mDistrito;
                             recorrerRadio(mCheckedSw);
