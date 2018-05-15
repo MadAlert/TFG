@@ -2,9 +2,11 @@ package a.madalert.madalert;
 
 
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 
 
 public class SoporteActivity extends AppCompatActivity {
@@ -31,6 +33,15 @@ public class SoporteActivity extends AppCompatActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
         }
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        if(keyCode == KeyEvent.KEYCODE_BACK) {
+            finish();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 }

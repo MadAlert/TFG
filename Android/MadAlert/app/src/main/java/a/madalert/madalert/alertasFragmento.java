@@ -2,7 +2,6 @@ package a.madalert.madalert;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Point;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -26,22 +25,10 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.squareup.okhttp.internal.http.StatusLine;
 
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -63,6 +50,7 @@ public class AlertasFragmento extends Fragment {
     private HashMap<String, Pair<Double, Double>> distCoord;
     private ArrayList<String> distRadio;
     private int kms;
+
 
     private CompositeDisposable mSub;
     private SharedPreferences mSharedPreferences;
@@ -110,6 +98,7 @@ public class AlertasFragmento extends Fragment {
         distCoord.put("Chamberí", new Pair<>(40.438656, -3.704180));
         distCoord.put("Ciudad Lineal", new Pair<>(40.455531, -3.656119));
         distCoord.put("Fuencarral-El Pardo", new Pair<>(40.494289, -3.693477));
+        distCoord.put("General", new Pair<>(40.4420755, -3.7458085));
         distCoord.put("Hortaleza", new Pair<>(40.485152, -3.634796));
         distCoord.put("Latina", new Pair<>(40.387812, -3.773530));
         distCoord.put("Moncloa-Aravaca", new Pair<>(40.443568,  -3.742829));
@@ -172,7 +161,6 @@ public class AlertasFragmento extends Fragment {
         return distancia;
     }
 
-
     private void initRecyclerView(View v) {
         textView = (TextView) v.findViewById(R.id.textView);
         firstTime = (TextView) v.findViewById(R.id.firstTime);
@@ -218,18 +206,18 @@ public class AlertasFragmento extends Fragment {
             // record the fact that the app has been started at least once
             firstTime.setText(R.string.firstTime);
         }
-
-        //if(!mCheckedSw)
-        try {
-            loadAlerta();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        //else {
+        else {
+            try {
+                loadAlerta();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            //else {
             ejecutar();
-        //}
+            //}
+        }
 
         return v;
     }
@@ -394,6 +382,5 @@ public class AlertasFragmento extends Fragment {
         getActivity().setProgressBarIndeterminateVisibility(false);
         Toast.makeText(getActivity(), error, Toast.LENGTH_LONG).show();
     }
-
 
 }

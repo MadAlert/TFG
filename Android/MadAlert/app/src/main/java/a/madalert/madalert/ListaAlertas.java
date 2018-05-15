@@ -120,7 +120,7 @@ public class ListaAlertas extends Fragment {
     }
 
     private void loadAlerta() {
-        if(mHayCategorias.equals("0")) {
+        if(mHayCategorias.equals("0")) { //Si es todas
             mSub.add(NetworkUtil.getRetrofit().getAlertasDistrito(mDistrito)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(io.reactivex.schedulers.Schedulers.io())
