@@ -76,19 +76,20 @@ class baseDatosClass():
         coleccion.remove({"fecha":{'$lte':fecha}})
         
     def eliminarEstadisticas(self, coleccion, mes, mesActual):
-        #mesResta= mesActual-3
-        #print (mes)
         coleccion.remove({"mes":{'$lte':mes}})
         coleccion.remove({"mes":{'$gt':mesActual}})
         
-    def eliminarEstSeguridad(self, coleccion, fecha):
-        coleccion.remove({"fecha":{'$lte':fecha}})
+    def eliminarEstSeguridad(self, coleccion,  mes, mesActual):
+        coleccion.remove({"mes":{'$lte':mes}})
+        coleccion.remove({"mes":{'$gt':mesActual}})
         
-    def eliminarEstDetenidos(self, coleccion, fecha):
-        coleccion.remove({"fecha":{'$lte':fecha}})
+    def eliminarEstDetenidos(self, coleccion,  mes, mesActual):
+        coleccion.remove({"mes":{'$lte':mes}})
+        coleccion.remove({"mes":{'$gt':mesActual}})
 
-    def eliminarEstAccidentes(self, coleccion, fecha):
-        coleccion.remove({"fecha":{'$lte':fecha}})
+    def eliminarEstAccidentes(self, coleccion,  mes, mesActual):
+        coleccion.remove({"mes":{'$lte':mes}})
+        coleccion.remove({"mes":{'$gt':mesActual}})
 
 
 
