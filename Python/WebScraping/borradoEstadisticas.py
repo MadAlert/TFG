@@ -24,13 +24,6 @@ fechaActual = datetime.now()
 mesActual = fechaActual.month
 mes = mesActual - 3
 
-print("resta:")
-print(mes)
-print("actual:")
-print(mesActual)
-#meses = relativedelta(months=3)
-#fecha_menos_meses = fechaActual - meses
-
 #Elimino las alertas que tengan fecha inferior a la anteriormente calculada
 bd.eliminarEstadisticas(bdEstadisticas, mes , mesActual) 
 
