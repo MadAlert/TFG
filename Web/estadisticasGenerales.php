@@ -98,7 +98,7 @@
                                               </div>
                                             <div class="form-group" style="margin: auto; margin-bottom: 20px;">
                                                 <div class="items col-sm-12">
-                                                    <button class="btn btn-success" id="alertas">Buscar</button>
+                                                    <button class="btn btn-danger" id="alertas">Buscar</button>
                                                 </div>    
                                             </div>
                                         

@@ -87,11 +87,14 @@
                         $distritoMapa = $_POST['distritoM'];
                         $_SESSION['distrito']="$distritoMapa";
                     }
+                                                          ?> 
 
+<?php
                     if(!isset($_POST['atributo'])){
                         if(isset($distritoMapa)) {
                 ?>
-                      <?php      
+                      <?php     
+
                     
                      echo '<div class="row">
                                  <div class="col-12">
@@ -108,7 +111,7 @@
                                     
                                             <div class="form-group" style="margin: auto; margin-bottom: 20px;">
                                                  <div class="items col-sm-12">
-                                                     <button class="btn btn-success" id="alertas">Mostrar</button>
+                                                     <button class="btn btn-danger" id="alertas">Mostrar</button>
                                                  </div>    
                                              </div>
 
@@ -122,14 +125,19 @@
                                 <div class="tab-pane active" id="home" role="tabpanel">
                                     <div class="card-block">';
                                      ?>
+                                       
 
-                                        <?php
-                                            
-                                            echo "<button class='btn btn-success' onclick='javascript:window.location.reload();'' > Actualizar alertas <i class='mdi mdi-refresh'></i></button> ";
-                                        
-                                        ?>
+                                    <form method="POST" action="alertas.php">
+                                          <?php 
+                                           echo '<input type="hidden" name="distritoMapa" id="distritoMapa" value="'.$distritoMapa.'"/>';
+                                           
+                            
+                                          echo "<button class='btn btn-success' type='submit'> Actualizar alertas<i class='mdi mdi-refresh'></i></button> ";
+                                                      
+                                          ?>
+                                    </form>
 
-                                        <ul class="nav nav-tabs profile-tab" role="tablist">
+                                     <ul class="nav nav-tabs profile-tab" role="tablist">
                                         <?php
                                         
                                         echo "<li class='nav-item'> <a class='nav-link active' data-toggle='tab' role='tab'><b>Distrito: $distritoMapa</b></a> </li>";
@@ -137,13 +145,6 @@
                                         ?>
                                     </ul>
 
-                                    <form method="POST" action="alertas.php">
-                                          <?php 
-                                           echo '<input type="hidden" name="distritoSilvia4" value="'.$distritoMapa.'"/>';
-                                           
-                                          ?>
-
-                                    </form>
 
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="home" role="tabpanel">
@@ -191,7 +192,7 @@
                                     <ul class="nav nav-tabs profile-tab" role="tablist">
 
                                         <?php
-                                        echo "punto 2";
+                                        //echo "punto 2";
                                         echo "<li class='nav-item'> <a class='nav-link active' data-toggle='tab' role='tab'><b>Distrito: $distritoMapa</b></a> </li>";?>
                                         
                                     </ul>
@@ -221,6 +222,8 @@
                        else{
 
                         if ( !isset($_POST['distritoSilvia4']) ){
+                        $entraEnMostrar = "si";
+                       // echo "Esto en el punto 3.....";
                         echo '<div class="row">
                                  <div class="col-12">
                                     <div class="card">
@@ -233,44 +236,58 @@
                                     echo '      </div>                                      
                                             </div>
                                     </div>
+                                    ';?>
+                                     <form method="post" action="alertas.php">
+                                     <?php 
                                     
+                                    echo '
+                                            <input type="hidden" name="entraEnMostrar" id="entraEnMostrar" value="'.$entraEnMostrar.'"/>
                                             <div class="form-group" style="margin: auto; margin-bottom: 20px;">
                                                  <div class="items col-sm-12">
-                                                     <button class="btn btn-success" id="alertas">Mostrar</button>
+                                                     <button class="btn btn-danger" id="alertas">Mostrar</button>
                                                  </div>    
                                              </div>
-
+                                             ';
+                                             ?>
+                                         </form>
+                                         <?php
+                                         echo '
                                         </div>
                                 </div>
                             </div> ';
                         }
-                                        if(isset($_POST['distritos']) || isset($_POST['distritoSilvia4'])){
 
+                                        if(isset($_POST['distritos']) || isset($_POST['distritoSilvia4']) || isset($_POST['distritoPrueba'])){
+                                           //echo "Entro en el punto 3 en el 2 if ";
                                             if (!isset($_POST['distritoSilvia4']) ){ 
                                                 $entra = true;
+
                                             }
                                             else{
                                                 $entra = false;
+                                                //echo "Entro en distritosilvia4";
                                             }
 
 
                                             if (!$entra){
+                                            $entraEnMostrar = "si";
                                             echo '<div class="row">
-                                 <div class="col-12">
-                                    <div class="card">
-                                        <div class="card-block">
-                                            <div class="form-group">
-                                            <label class="col-sm-12">Selecciona un distrito</label>
-                                                <div class="col-sm-12">';
-                                                    $alertas->mostrarDistritos();
-                                        
-                                    echo '      </div>                                      
-                                            </div>
-                                    </div>
-                                    
+                                             <div class="col-12">
+                                                <div class="card">
+                                                    <div class="card-block">
+                                                        <div class="form-group">
+                                                        <label class="col-sm-12">Selecciona un distrito</label>
+                                                            <div class="col-sm-12">';
+                                                                $alertas->mostrarDistritos();
+                                                    
+                                                echo '      </div>                                      
+                                                        </div>
+                                                </div>
+
+                                            <input type="hidden" name="entraEnMostrar" id="entraEnMostrar" value="'.$entraEnMostrar.'"/>;
                                             <div class="form-group" style="margin: auto; margin-bottom: 20px;">
                                                  <div class="items col-sm-12">
-                                                     <button class="btn btn-success" id="alertas">Mostrar</button>
+                                                     <button class="btn btn-danger" id="alertas">Mostrar</button>
                                                  </div>    
                                              </div>
 
@@ -287,63 +304,138 @@
                                                         <div class="tab-pane active" id="home" role="tabpanel">
                                                         <div class="card-block"> ';
 
-                                                           
-                                   
-                                                            echo "<button class='btn btn-success' onclick='javascript:window.location.reload();'' > Actualizar alertas <i class='mdi mdi-refresh'></i></button> ";
-                                                            //echo "PUNTO 3";?>
-
-            
+                                                            
+                                                            //echo "PUNTO 3";
+                                    ?>
                                                             <?php
-                                                            echo '<ul class="nav nav-tabs profile-tab" role="tablist">';
-                                                                
-                                                        
-                                                             // AQUI VENGO DE ESTE MISMO PUNTO ACTUALIZAR
-                                                            if( isset($_POST['actualizar'])){
-                                                                if (isset($_POST['distritoActualizar']) ){
-                                                                    echo "EL DISTRITO QUE TENGO ES SOLO DE ACTUALIZAR ";
-                                                                    echo "distrito actualizar está";
-                                                                    echo " y es ";
-                                                                    $distrito = $_POST['distritoActualizar'];
-                                                                    echo "$distrito";
-                                                                }
-                                                               
-                                                            }
-
-
-                                                            // AQUI VENGO DE LA PESTAÑA ALERTAS
-                                                            if(isset($_POST['distritos'])){
-                                                                 // echo "EL DISTRITO QUE TENGO EN EL PUNTO 3 ES EL DISTRITOS... ";
+                                                            
+                                                            
+                                                            if ((isset($_POST['distritos'])) && !isset($_POST['distritoPrueba'])){
+                                                                 
                                                                 $distrito = $_POST['distritos'];
-                                                                // echo "$distrito";
-                                                                //echo "<br>";
+                                                                
+                                                                unset($_POST['distritos']);
+                                                              
+
+                                                                //Viene del mapa
+                                                                if(isset($_POST['distritosilvia4']) || isset($_POST['categorias']) || (isset($_POST['$categ'] ) && $_POST['$categ'] == "si")){
+                                                                    
+                                                                    
+                                                                    $distrito = $_POST['distritosilvia4'];
+
+                                                                    $categorias = $_POST['categorias']; 
+
+
+                                                                    $count = count($categorias);
+                                                                    for ($i = 0; $i < $count; $i++) {
+                                                                       $categorias[$i];
+                                                                    }
+
+                                                                    echo ' <input type="hidden" name="categ" value="si" id="categ"/>';
+                                                                    
+
+                                                                }
+                                                                if(isset($_POST['distritoMapa'])){
+                                                                   
+                                                                   
+                                                                    $distrito = $_POST['distritoMapa'];
+                                                                }
                                                                 
                                                             }
+
+                                                            else if ( isset($_POST['distritoPrueba'])) {
+
+                                                                $distrito = $_POST['distritoPrueba'];
+                                                    
+                                                                if (isset($_POST['categorias'])){
+
+                                                                   $categorias = $_POST['categorias']; 
+
+                                                                    $count = count($categorias);
+                                                                    for ($i = 0; $i < $count; $i++) {
+                                                                       $categorias[$i];
+                                                                    }
+
+                                                                    echo ' <input type="hidden" name="categ" value="si" id="categ"/>';
+                                                                }
+
+                                                                unset($_POST['distritoPrueba']);
+                                                            }
+                                                               
+                                                            
+?>
                                                            
-                                                        
-                                                            //echo "EL DISTRITO QUE TENGO EN EL PUNTO 3 ES: $distrito";
-                                        
-                                                            echo "<li class='nav-item'> <a class='nav-link active' data-toggle='tab' role='tab'><b>Distrito: $distrito</b></a> </li>";
-                                                            
-                                                            
-                                                            echo '</ul>';?>
-
-
-                                                             <form method="POST" action="alertas.php">
+                                                              <form method="post" action="alertas.php">
                                                               <?php 
-                                                               echo '<input type="hidden" name="distritoActualizar" value="'.$distrito.'"/>';
+                                                            $var = "si";
+                                                              echo "<button class='btn btn-success' type='submit'> Actualizar alertas<i class='mdi mdi-refresh'></i></button> ";
 
+
+                                                            echo ' <input type="hidden" name="actualizaP" value="'.$var.'" id="actualizaP"/>';
+                                                            echo ' <input type="hidden" name="distritoPrueba" value="'.$distrito.'" id="distritoPrueba"/>';
+                                                                                  
+                                                            //Pasar array x hidden
+                                                            if (isset($categorias)){
+                                                            
+                                                                foreach($categorias as $value){
+                                                                    echo ' <input type="hidden" name="categorias[]" value="'.$value.'" id="categorias[]"/>';
+                                                                    //echo $value;
+                                                                    //$categ == "si";
+                                                                }
+                                                                
+                                                                echo ' <input type="hidden" name="categ" value="si" id="categ"/>';
+                                                            }
+                                                                                     
+                                                                
                                                               ?>
+
+                                                            </form>
+
+
+                                                            <ul class="nav nav-tabs profile-tab" role="tablist">
+
+                                                            <?php
+                                                           
+                                                            echo "<li class='nav-item'> <a class='nav-link active' data-toggle='tab' role='tab'><b>Distrito: $distrito</b></a> </li>";?>
+                                                            
+                                                           </ul>
+                                                        
+                                                           <div class="tab-content">
+                                                                <div class="tab-pane active" id="home" role="tabpanel">
+                                                                    <div class="card-block">
+                                                        
 
                                                           
 <?php
-                                                            if ($distrito == "Todos"){
-                                                                $num = $alertas->obtenerAlertasTodos();
+                                                            //Si categorias es = si copiar las funciones k buscan x categorias
+                                                            //else todo lo de abajo
+                                                            if (isset($categorias) || (isset($_POST['$categ'] ) && $_POST['$categ'] == "si")){
+                                                                //echo "SI HAY CATEGORIAS";
+
+                                                                if ($distrito == "Todos"){
+                                                                    $num = $alertas->obtenerAlertasTodosCat($categorias);
+                                                                }
+                                                                else{
+                                                                    $num = $alertas->obtenerAlertas($distrito, $categorias);
+                                                                }
+                                                                if($num == false){
+                                                                    echo "<p><p><h4>Este distrito no dispone de alertas con esos filtros todavía</h4></p></p>";
+                                                                }
+
+                                                       
+                                                                echo ' <input type="hidden" name="categ" value="si" id="categ"/>';
                                                             }
                                                             else{
-                                                                $num = $alertas->obtenerAlertasDistrito($distrito);
-                                                            }
-                                                            if($num == false){
-                                                                echo "<p><p><h4>Este distrito no dispone de alertas con esos filtros todavía</h4></p></p>";
+                                                                //echo "NO HAY CATEGORIAS";
+                                                                if ($distrito == "Todos"){
+                                                                    $num = $alertas->obtenerAlertasTodos();
+                                                                }
+                                                                else{
+                                                                    $num = $alertas->obtenerAlertasDistrito($distrito);
+                                                                }
+                                                                if($num == false){
+                                                                    echo "<p><p><h4>Este distrito no dispone de alertas con esos filtros todavía</h4></p></p>";
+                                                                }
                                                             }
                                                         }
                                     
@@ -352,6 +444,7 @@
                                                      </div>
                                                  </div>
                                              </div>
+
                                       </div> 
                               </div>';
                           }
@@ -378,7 +471,7 @@
                                     
                                             <div class="form-group" style="margin: auto; margin-bottom: 20px;">
                                                  <div class="items col-sm-12">
-                                                     <button class="btn btn-success" id="alertas">Mostrar</button>
+                                                     <button class="btn btn-danger" id="alertas">Mostrar</button>
                                                  </div>    
                                              </div>
 
@@ -391,46 +484,63 @@
                              <div class="card">
                               <div class="tab-content">
                                     <div class="tab-pane active" id="home" role="tabpanel">
-                                    <div class="card-block"> 
-                                    
-                                    <!--<div style=' margin-top:2% ; margin-left: 2%'>-->
-                                        
+                                    <div class="card-block">                 
                                     <!-- Nav tabs -->
-                                    <?php
-                                    echo "<button class='btn btn-success' onclick='javascript:window.location.reload();'' > Actualizar alertas <i class='mdi mdi-refresh'></i></button> ";
-                                    //echo "PUNTO 4";
-                                    
-                                    ?>
-                                      <!--  </div>-->
 
-                                    <ul class="nav nav-tabs profile-tab" role="tablist">
+                                    
                                         <?php
                                         //Recupero los campos de index.php
                                         //En index pasar un atributo hidden atributo, hidden distrito y hidden index
                                         //Si es index no hago lo de categorias
                                         if(!isset($distritoMapa)) {
                                             $distrito = $_POST['distritos'];
-                                            $categorias = $_POST['var_id'];
-                                            $count = count($categorias);
 
+
+                                            $categorias = $_POST['var_id'];
+
+                                            $count = count($categorias);
                                             for ($i = 0; $i < $count; $i++) {
                                                $categorias[$i];
                                             }
+
                                         }
                                         //esto de arriba no se hace si es index
+                                        ?>
+                                         <form method="post" action="alertas.php">
+                                        <?php 
+                                        $var = "si";
+                                          echo "<button class='btn btn-success' type='submit'> Actualizar alertas<i class='mdi mdi-refresh'></i></button> ";
 
-                                        echo "<li class='nav-item'> <a class='nav-link active' data-toggle='tab' role='tab'><b>Distrito: $distrito</b></a> </li>"; ?>
 
-                                        <form method="POST" action="alertas.php">
-                                          <?php 
-                                           echo '<input type="hidden" name="distritoSilvia4" value="'.$distrito.'"/>';
-
+                                        $distritoSilvia4 =  $distrito;?>
+                                        <ul class="nav nav-tabs profile-tab" role="tablist">
+                                    
+                                    <?php
+                                        echo ' <input type="hidden" name="actualizaP" value="'.$var.'" id="actualizaP"/>';
+                                        echo ' <input type="hidden" name="distritosilvia4" value="'.$distritoSilvia4.'" id="distritosilvia4"/>';
+                                        //Pasar array x hidden
+                                        foreach($categorias as $value){
+                                            echo ' <input type="hidden" name="categorias[]" value="'.$value.'" id="categorias"/>';
+                                        }
                                           ?>
 
                                         </form>
+                                        <?php
+                                        echo "<li class='nav-item'> <a class='nav-link active' data-toggle='tab' role='tab'><b>Distrito: $distrito</b></a> </li>"; ?>
+                                        </ul>
+                                        <div class="tab-content">
+                                            <div class="tab-pane active" id="home" role="tabpanel">
+                                                <div class="card-block">
+
+                                                <form method="POST" action="alertas.php">
+                                                  <?php 
+                                                   echo '<input type="hidden" name="distritoSilvia4" value="'.$distrito.'"/>';
+                                                  ?>
+
+                                                </form>
                                         
-                                    </ul>
-                                            <?php
+                                    
+                                                 <?php
                                                 //Compruebo de nuevo si NO es INDEX LLAMO A EsTA FUNCION
                                                 if(!isset($distritoMapa)) {
                                                     if ($distrito == "Todos"){
@@ -449,7 +559,9 @@
                                             </div> 	
                                         </div>
                                     </div>
+                                 </div>
                                 </div>
+                                
                             </div>
                         </div>
                 <?php
@@ -460,6 +572,8 @@
                 <!-- End PAge Content -->
                 <!-- ============================================================== -->
             </div>
+        </div>
+    </div>
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->

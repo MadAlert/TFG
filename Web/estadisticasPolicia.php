@@ -90,7 +90,7 @@
                         </div>
                             <div class="form-group" style="margin: auto; margin-bottom: 20px;">
                                 <div class="items col-sm-12">
-                                   <button class="btn btn-success" id="elec">Mostrar</button>
+                                   <button class="btn btn-danger" id="elec">Mostrar</button>
                                 </div>    
                             </div>                            
                         </div>
