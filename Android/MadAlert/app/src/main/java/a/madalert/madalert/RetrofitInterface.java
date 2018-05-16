@@ -17,6 +17,9 @@ public interface RetrofitInterface {
     @GET("alertas")
     Observable<ResponsePerso> getDistrito();
 
+    @GET("alertas/{distrito}/{count}/{categorias}")
+    Observable<Integer> getCountAlertasDistrito(@Path("distrito") String distrito,@Path("count") boolean count, @Path("categorias") String categorias);
+
     @GET("alertas/{distrito}")
     Observable<List<Alertas>> getAlertasDistrito(@Path("distrito") String distrito);
 

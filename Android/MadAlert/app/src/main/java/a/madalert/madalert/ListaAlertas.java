@@ -1,5 +1,6 @@
 package a.madalert.madalert;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -54,6 +55,12 @@ public class ListaAlertas extends Fragment {
     private String mDistrito;
 
     private String mHayCategorias;
+
+    private String mListaCat;
+
+    private boolean mMapa;
+
+    private String mDistritoMapa;
 
     private OnFragmentInteractionListener mListener;
 
@@ -117,32 +124,48 @@ public class ListaAlertas extends Fragment {
         //mDistrito = mSharedPreferences.getString("posicion", "");
         mDistrito = mSharedPreferences.getString("distrito", "");
         mHayCategorias = mSharedPreferences.getString("hayCategorias","");
+        mListaCat = mSharedPreferences.getString("listaCat", "");
+        mMapa = mSharedPreferences.getBoolean("vieneMapa" , false);
+        mDistritoMapa = mSharedPreferences.getString("distritoMapa", "");
     }
 
     private void loadAlerta() {
-        if(mHayCategorias.equals("0")) {
-            mSub.add(NetworkUtil.getRetrofit().getAlertasDistrito(mDistrito)
+        if (!mMapa) { //NO viene del mapa
+            if (mHayCategorias.equals("0")) {
+                mSub.add(NetworkUtil.getRetrofit().getAlertasDistrito(mDistrito)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(io.reactivex.schedulers.Schedulers.io())
+                        .subscribe(this::handleResponse, this::handleError));
+            } else {
+                mSub.add(NetworkUtil.getRetrofit().getAlertasDistritoCategoria(mDistrito, mHayCategorias)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(io.reactivex.schedulers.Schedulers.io())
+                        .subscribe(this::handleResponse, this::handleError));
+            }
+        } else { //SI viene del mapa
+            mSub.add(NetworkUtil.getRetrofit().getAlertasDistritoCategoria(mDistritoMapa, mListaCat)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(io.reactivex.schedulers.Schedulers.io())
                     .subscribe(this::handleResponse, this::handleError));
-        }
-        else{
-            String[] categoriasP;
-            categoriasP = mHayCategorias.split(",");
-            mSub.add(NetworkUtil.getRetrofit().getAlertasDistritoCategoria(mDistrito, mHayCategorias)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeOn(io.reactivex.schedulers.Schedulers.io())
-                    .subscribe(this::handleResponse, this::handleError));
+
+
         }
     }
 
     private void handleResponse(List<Alertas> alertas) {
-        textView.setText("Distrito " + mDistrito);
+        if (!mMapa) {
+            textView.setText("Distrito " + mDistrito);
+        } else {
+            textView.setText("Distrito " + mDistritoMapa);
+        }
         mAndroidArrayList = new ArrayList<>(alertas);
-        mAdapter = new DataAdapter(mAndroidArrayList);
+        mAdapter = new DataAdapter(mAndroidArrayList, false);
         mRecyclerView.setAdapter(mAdapter);
         /*mTv1.setText(alertas.getAlertas());
         mTv2.setText(alertas.getDistrito());*/
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putBoolean("vieneMapa", false);
+        editor.apply();
 
         if(mAndroidArrayList.isEmpty())
             firstTime.setText("¡No hay nada que mostrar para esa combinación!");
@@ -151,6 +174,9 @@ public class ListaAlertas extends Fragment {
 
     private void handleError(Throwable error) {
         //showSnackBarMessage("ERRRRRRRR Error !");
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
+        editor.putBoolean("vieneMapa", false);
+        editor.apply();
     }
 
     // TODO: Rename method, update argument and hook method into UI event

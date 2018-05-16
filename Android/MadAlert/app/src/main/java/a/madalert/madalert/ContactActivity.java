@@ -1,14 +1,11 @@
 package a.madalert.madalert;
 
 import android.content.Intent;
-import android.net.Uri;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MenuItem;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 
 public class ContactActivity extends AppCompatActivity {
@@ -40,11 +37,20 @@ public class ContactActivity extends AppCompatActivity {
                 itSend.putExtra(android.content.Intent.EXTRA_SUBJECT, etSubject.getText().toString());
                 itSend.putExtra(android.content.Intent.EXTRA_TEXT, etBody.getText());
 
-
                 /* iniciamos la actividad */
                 startActivity(itSend);
             }
         });
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event){
+        if(keyCode == KeyEvent.KEYCODE_BACK) {
+            setResult(RESULT_OK);
+            finish();
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 }
