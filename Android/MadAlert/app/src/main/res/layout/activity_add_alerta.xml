@@ -29,7 +29,7 @@
             android:layout_marginRight="20dp"
             android:layout_marginTop="79dp"
             android:inputType="textPersonName"
-            android:hint="Nombre" />
+            android:hint="@string/nombre" />
 
         <EditText
             android:id="@+id/editText2"
@@ -40,7 +40,7 @@
             android:layout_marginTop="141dp"
             android:ems="10"
             android:inputType="textEmailAddress"
-            android:hint="Email" />
+            android:hint="@string/correo" />
 
         <TextView
             android:id="@+id/textView5"

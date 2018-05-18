@@ -12,7 +12,7 @@
     <string name="navView">MadAlert\ninfo@madalert.com</string>
     <string name="imagenLogo">Imagen relacionada con la categoría de la alerta</string>
 
-    <!--Para la pestaña 'distritos'-->
+    <!--Strings para la pestaña 'Distritos'-->
     <string name="distritos_prompt">Selecciona un distrito</string>
     <string name="categorias_prompt">Selecciona una categoria</string>
     <string name="buscar">Mostrar</string>
@@ -53,7 +53,7 @@
     </string-array>
 
 
-    <!-- Texto del Soporte -->
+    <!-- Strings para 'Soporte' -->
     <string name="sop_tyc">Términos y condiciones</string>
     <string name="sop_intro">EL SOFTWARE SE PROPORCIONA "TAL CUAL", SIN GARANTÍA DE NINGÚN TIPO, EXPLÍCITA O IMPLÍCITA, INCLUYENDO PERO NO LIMITADO A LAS GARANTÍAS DE COMERCIABILIDAD, ADECUACIÓN PARA UN FIN DETERMINADO Y NO INFRACCIÓN. EN NINGÚN CASO, LOS AUTORES O TITULARES DE DERECHOS DE AUTOR SERÁN RESPONSABLES DE CUALQUIER RECLAMACIÓN, DAÑO O CUALQUIER OTRA RESPONSABILIDAD, YA SEA EN UNA ACCIÓN DE CONTRATO, AGRAVIO O DE OTRA MANERA, QUE SURJA DE O EN RELACIÓN CON EL SOFTWARE O EL USO O OTROS NEGOCIOS EN EL SOFTWARE.</string>
     <string name="sop_ap1">1. La aplicación con licencia bajo estos términos y condiciones contiene software con licencia de terceros que es propietario de ellos, valioso y protegido por derechos de propiedad intelectual internacionales. ("Software de terceros"). El usuario de la aplicación que contiene dicho Software de Terceros ('Usted') puede utilizar el Software de Terceros solo para sus propios fines internos durante el período durante el cual usted autorizó el Software de Terceros.</string>
@@ -66,16 +66,43 @@
     <string name="imagen_logo">imagen_logo</string>
     <string name="title_activity_config">Configuración</string>
 
-    <!-- Texto para 'About us'-->
+    <!-- Strings para 'About us'-->
     <string name="nombres">Nerea Gómez Domínguez\nSilvia Lendínez Fernández\nGonzalo Molina Díaz\nAdrián Panadero González</string>
 
-    <!-- Strings related to Configuracion -->
+    <!-- Strings para 'Configuracion' -->
     <string name="textRadio">Radio</string>
     <string name="textCategorias">Categorías </string>
     <string name="textUbi">Ubicación</string>
     <string name="tvKm"></string>
 
+    <!--Strings para 'Contacto'-->
+    <string name="cabecera">Desde esta pantalla puedes ponerte en contacto con nosotros para cualquier consulta que necesites.</string>
+    <string name="correo">Correo</string>
+    <string name="nombre">Nombre</string>
+    <string name="asunto">Asunto</string>
+    <string name="enviar">Enviar</string>
+    <string name="msg">Escriba su mensaje...</string>
+
     <string name="firstTime">Parece que es la primera vez que estás con nosotros.. ¡Ve a "Configuración" para adaptar tus necesidades!</string>
+
+    <!--Strings para 'FAQ'-->
+    <string name="faq">FAQ - Preguntas frecuentes</string>
+    <string name="p1">¿Cómo elijo las alertas que quiero ver en la pestaña ALERTAS?</string>
+    <string name="r1">Puedes establecer tus preferencias desde la pestaña de Configuración. En ella podrás elegir el radio que quieres aplicar, las
+        categorías en las que estás interesado y si quieres que tu ubicación esté activa o no.
+    </string>
+    <string name="p2">¿Cómo y cuando se aplica el radio que he elegido?</string>
+    <string name="r2">El radio se aplica en todo momento, tengas o no la ubicación activada. Se toma como punto de origen tu ubicación
+        exacta si la ubicación está activa, o el centro del distrito elegido si la tienes desactivada.
+    </string>
+    <string name="p3">¿Se guardan mis preferencias cuando salgo de la aplicación?</string>
+    <string name="r3">Sí. No es necesario modificar tus preferencias cada vez que entres en la aplicación. Puedes modificarlas
+        en cualquier momento.
+    </string>
+    <string name="p4">¿Cómo veo las alertas desde el mapa?</string>
+    <string name="r4">Si entras en la pestaña de MAPA podrás ver diferentes marcadores. Al cliclar en ellos te mostrará el nombre del
+        distrito y el número de alertas que hay en él. Se mostrarán solo los marcadores que entren en el radio elegido.
+    </string>
 
     <string name="pref_title_display_name">Display name</string>
     <string name="pref_default_display_name">John Smith</string>

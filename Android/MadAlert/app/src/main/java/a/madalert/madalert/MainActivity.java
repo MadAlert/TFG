@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_aboutus) {
             startActivityForResult(new Intent(getApplicationContext(), AboutUsActivity.class), 0);
         } else if (id == R.id.nav_faq) {
-            //fragmentClass = FaqFragmento.class;
+            startActivityForResult(new Intent(getApplicationContext(), FaqActivity.class), 0);
         }
        /* try {
            // fragment = (Fragment) fragmentClass.newInstance();

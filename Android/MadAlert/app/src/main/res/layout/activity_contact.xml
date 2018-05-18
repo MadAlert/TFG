@@ -14,7 +14,7 @@
 
         <TextView
             android:id="@+id/txtHead"
-            android:text="Desde esta pantalla puedes ponerte en contacto con nosotros para cualquier consulta que necesites."
+            android:text="@string/cabecera"
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,10 +34,10 @@
 
     <EditText
         android:id="@+id/etName"
-        android:hint="Nombre"
+        android:hint="@string/nombre"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:width="170dip"
+        android:width="300dip"
         android:inputType="text"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp">
@@ -52,12 +52,12 @@
 
         <EditText
             android:id="@+id/etEmail"
-            android:hint="Correo"
+            android:hint="@string/correo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:layout_marginStart="20dp"
-            android:width="170dip"
+            android:width="300dip"
             android:inputType="textEmailAddress">
         </EditText>
 
@@ -70,10 +70,10 @@
 
         <EditText
             android:id="@+id/etSubject"
-            android:hint="Asunto"
+            android:hint="@string/asunto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:width="170dip"
+            android:width="300dip"
             android:layout_marginLeft="20dp"
             android:layout_marginStart="20dp">
         </EditText>
@@ -86,7 +86,7 @@
 
         <EditText
             android:id="@+id/etBody"
-            android:hint="Escriba aquí su mensaje..."
+            android:hint="@string/msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:lines="5"
@@ -99,7 +99,7 @@
     <Button android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btnSend"
-        android:text="Enviar"
+        android:text="@string/enviar"
         android:width="150dip"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp">
