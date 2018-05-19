@@ -7,7 +7,7 @@ function initMap() {
         ['Chamartín', 40.460367, -3.676567, document.getElementById("chamartin").value], //Chamartín
         ['Chamberí', 40.438656, -3.704180, document.getElementById("chamberi").value], //Chamberí
         ['Ciudad Lineal', 40.455531, -3.656119, document.getElementById("ciudadlineal").value], //Ciudad Lineal
-        ['Fuencarral-El Pardo', 40.494289, -3.693477, document.getElementById("fuencarral").value], //Fuencarral-El Pardo
+        ['Fuencarral-El Pardo', 40.5353893,-3.7946006, document.getElementById("fuencarral").value], //Fuencarral-El Pardo
         ['Hortaleza', 40.485152, -3.634796, document.getElementById("hortaleza").value], //Hortaleza
         ['Latina', 40.387812, -3.773530, document.getElementById("latina").value], //Latina
         ['Moncloa-Aravaca', 40.443568,  -3.742829, document.getElementById("moncloa").value], //Moncloa-Aravaca
