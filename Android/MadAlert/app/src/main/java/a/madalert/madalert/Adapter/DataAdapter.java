@@ -42,10 +42,9 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-<<<<<<< HEAD
         if(mRadio || mDistrito.equals("Todos")) {
             holder.mTvDistrito.setText(mAndroidList.get(position).getDistrito());
-=======
+        }
         final Alertas alerta = mAndroidList.get(position);
 
         if(mRadio) {
@@ -59,7 +58,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
             holder.mIvVerificado.setImageResource(R.drawable.blanco);
         } else {
             holder.mIvVerificado.setImageResource(R.drawable.verificado);
->>>>>>> a657a95d5d9115870becceef56aa686d4fbad478
         }
 
         if(alerta.getUrl() != null) {

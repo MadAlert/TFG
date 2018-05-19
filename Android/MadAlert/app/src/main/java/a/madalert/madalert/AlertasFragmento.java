@@ -3,11 +3,7 @@ package a.madalert.madalert;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-<<<<<<< HEAD
-=======
 import android.net.Uri;
-import android.os.AsyncTask;
->>>>>>> a657a95d5d9115870becceef56aa686d4fbad478
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
@@ -15,7 +11,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -58,11 +53,8 @@ public class AlertasFragmento extends Fragment {
     private ArrayList<String> distRadio;
     private int kms;
 
-<<<<<<< HEAD
-=======
     private AlertasFragmento.OnFragmentInteractionListener mListener;
 
->>>>>>> a657a95d5d9115870becceef56aa686d4fbad478
     private CompositeDisposable mSub;
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor editor;
