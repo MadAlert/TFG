@@ -169,8 +169,6 @@ public class MostrarMapa extends Fragment implements
 
         int kms = km;
 
-        Iterator<Map.Entry<String, Pair<Double, Double>>> iterator = distCoord.entrySet().iterator();
-
         if(isCheckedSw) {
             map.setMyLocationEnabled(true);
 
@@ -178,34 +176,11 @@ public class MostrarMapa extends Fragment implements
             parsLong = Double.parseDouble(longitud);
 
             distritosValidos = new HashMap<String, Pair<Double, Double>>();
-            alertas = new ArrayList<>();
-            int i = 0;
-            while (iterator.hasNext()){
-                Map.Entry<String, Pair<Double, Double>> it = iterator.next();
-                Double lat = it.getValue().first;
-                Double longi = it.getValue().second;
-                //Double var = Math.sqrt( (Math.pow(parsLat-lat,2) + (Math.pow(parsLong-longi, 2))));
-                Double var = distanciaCoord(parsLat, parsLong, lat, longi);
-                if(var <= kms){
-                    distRadio.add(it.getKey());
-                    String cat = mListaCat;
-                    if(mListaCat==""){
-                        cat = "Todas";
-                    }
-                   mSub.add(NetworkUtil.getRetrofit().getCountAlertasDistrito(it.getKey(),true,cat)
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribeOn(io.reactivex.schedulers.Schedulers.io())
-                            .subscribe(this::handleResponse, this::handleError));
-                    distritosValidos.put(it.getKey(),new Pair(lat,longi)); //nuevo de nerea pero no vale pa na
-                    googleMap.addMarker(new MarkerOptions().position(new LatLng(lat, longi)).title(it.getKey()).snippet("Se han encontrado " + count + " alertas"));
-
-                }
-            }
-            Iterator<Map.Entry<String, Pair<Double, Double>>> iterator2 = distritosValidos.entrySet().iterator();
+            //Iterator<Map.Entry<String, Pair<Double, Double>>> iterator2 = distritosValidos.entrySet().iterator();
         }
         else {
+            Iterator<Map.Entry<String, Pair<Double, Double>>> iterator = distCoord.entrySet().iterator();
             boolean encontrado = false;
-
             while (iterator.hasNext()) {
                 Map.Entry<String, Pair<Double, Double>> it = iterator.next();
                 if (distritoConf.equals(it.getKey()) && !encontrado) {
@@ -214,20 +189,29 @@ public class MostrarMapa extends Fragment implements
                     parsLong = it.getValue().second;
                     googleMap.addMarker(new MarkerOptions().position(new LatLng(parsLat, parsLong)).title(it.getKey()).snippet("Se han encontrado " + count + " alertas"));
                 }
-                Double lat = it.getValue().first;
-                Double longi = it.getValue().second;
-                //Double var = Math.sqrt( (Math.pow(parsLat-lat,2) + (Math.pow(parsLong-longi, 2))));
-                Double var = distanciaCoord(parsLat, parsLong, lat, longi);
-                if(var <= kms && !distritoConf.equals(it.getKey())){
-                    distRadio.add(it.getKey());
-                    String cat = mListaCat;
-                    if(mListaCat==""){
-                        cat = "Todas";
-                    }
-                    googleMap.addMarker(new MarkerOptions().position(new LatLng(lat, longi)).title(it.getKey()).snippet("Se han encontrado " + count + " alertas"));
-                }
             }
+        }
 
+        Iterator<Map.Entry<String, Pair<Double, Double>>> iterator = distCoord.entrySet().iterator();
+        while (iterator.hasNext()) {
+            Map.Entry<String, Pair<Double, Double>> it = iterator.next();
+            Double lat = it.getValue().first;
+            Double longi = it.getValue().second;
+            //Double var = Math.sqrt( (Math.pow(parsLat-lat,2) + (Math.pow(parsLong-longi, 2))));
+            Double var = distanciaCoord(parsLat, parsLong, lat, longi);
+            if (var <= kms && !distritoConf.equals(it.getKey())) {
+                distRadio.add(it.getKey());
+                String cat = mListaCat;
+                if (mListaCat == "") {
+                    cat = "Todas";
+                }
+                mSub.add(NetworkUtil.getRetrofit().getCountAlertasDistrito(it.getKey(),true,cat)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(io.reactivex.schedulers.Schedulers.io())
+                        .subscribe(this::handleResponse, this::handleError));
+                //distritosValidos.put(it.getKey(),new Pair(lat,longi)); //nuevo de nerea pero no vale pa na
+                googleMap.addMarker(new MarkerOptions().position(new LatLng(lat, longi)).title(it.getKey()).snippet("Se han encontrado " + count + " alertas"));
+            }
         }
 
         circle = map.addCircle(new CircleOptions()
