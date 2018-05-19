@@ -1,12 +1,15 @@
 package a.madalert.madalert;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -51,6 +54,7 @@ public class AlertasFragmento extends Fragment {
     private ArrayList<String> distRadio;
     private int kms;
 
+    private AlertasFragmento.OnFragmentInteractionListener mListener;
 
     private CompositeDisposable mSub;
     private SharedPreferences mSharedPreferences;
@@ -81,6 +85,7 @@ public class AlertasFragmento extends Fragment {
 
     protected RequestQueue fRequestQueue;
     private String distritoObtenido;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     public AlertasFragmento() {
 
@@ -93,6 +98,22 @@ public class AlertasFragmento extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         mRecyclerView.setLayoutManager(layoutManager);
+        swipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeRefreshLayout);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                // Esto se ejecuta cada vez que se realiza el gesto
+                try {
+                    loadAlerta();
+                    swipeRefreshLayout.setRefreshing(false);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
     private void initSharedPreferences() {
@@ -116,7 +137,6 @@ public class AlertasFragmento extends Fragment {
         mSub = new CompositeDisposable();
         initSharedPreferences();
         editor = mSharedPreferences.edit();
-        Log.d("ronaldo", "abre pestaña alertas");
 
         FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.anadirAlerta);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -382,6 +402,38 @@ public class AlertasFragmento extends Fragment {
     public void onConnectionFailed(String error) {
         getActivity().setProgressBarIndeterminateVisibility(false);
         Toast.makeText(getActivity(), error, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        try {
+            mListener = (AlertasFragmento.OnFragmentInteractionListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement OnFragmentInteractionListener") ;
+        }
+
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    /**
+     * This interface must be implemented by activities that contain this
+     * fragment to allow an interaction in this fragment to be communicated
+     * to the activity and potentially other fragments contained in that
+     * activity.
+     * <p>
+     * See the Android Training lesson <a href=
+     * "http://developer.android.com/training/basics/fragments/communicating.html"
+     * >Communicating with Other Fragments</a> for more information.
+     */
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
     }
 
 }

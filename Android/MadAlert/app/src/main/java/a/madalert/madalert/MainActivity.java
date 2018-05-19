@@ -35,6 +35,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity
         implements DistritosFragmento.OnFragmentInteractionListener,
         SeleccionDistritoFragmento.OnFragmentInteractionListener,
+        AlertasFragmento.OnFragmentInteractionListener,
         MapaFragmento.OnFragmentInteractionListener,
         MostrarMapa.OnFragmentInteractionListener,
         ListaAlertas.OnFragmentInteractionListener, NavigationView.OnNavigationItemSelectedListener {
@@ -218,6 +219,25 @@ public class MainActivity extends AppCompatActivity
         return distancia;
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
 
     // Aqui empieza la clase Localizacion
     public class Localizacion implements LocationListener {
