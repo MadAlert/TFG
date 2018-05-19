@@ -48,6 +48,12 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         holder.mTvFecha.setText(mAndroidList.get(position).getFecha());
         holder.mTvAlerta.setText(mAndroidList.get(position).getAlertas());
 
+        if((mAndroidList.get(position).getVerificado() != null) && !mAndroidList.get(position).getVerificado()) {
+            holder.mIvVerificado.setImageResource(R.drawable.blanco);
+        } else {
+            holder.mIvVerificado.setImageResource(R.drawable.verificado);
+        }
+
         //holder.mTvURL.setText(mAndroidList.get(position).getUrl());
         if(mAndroidList.get(position).getUrl() != null) {
             holder.mTvAlerta.setTextColor(Color.parseColor("#FF4081"));
@@ -90,11 +96,13 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         private TextView mTvAlerta,mTvFuente,mTvCategoria,mTvFecha, mTvDistrito;
-        private ImageView mIvImagen;
+        private ImageView mIvImagen, mIvVerificado;
+        private boolean verificar;
 
         public ViewHolder(View view) {
             super(view);
 
+            verificar = false;
             if(mRadio) {
                 mTvDistrito = view.findViewById(R.id.tv_distrito);
             }
@@ -102,6 +110,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
             mTvFecha = (TextView)view.findViewById(R.id.tv_fecha);
             mTvAlerta = (TextView)view.findViewById(R.id.tv_alerta);
             mIvImagen= (ImageView)view.findViewById(R.id.imagenLogo);
+            mIvVerificado = (ImageView) view.findViewById(R.id.imagenVerificado);
             mTvFuente = (TextView)view.findViewById(R.id.tv_fuente);
         }
 

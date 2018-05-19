@@ -16,7 +16,7 @@ public class Alertas {
     public String distrito;
     public String categoria;
     public String fuente;
-    public String veridico;
+    public Boolean verificado;
 
     public String getAlertas() {
         return alerta;
@@ -52,8 +52,8 @@ public class Alertas {
         return fuente;
     }
 
-    public String getVeridico() {
-        return veridico;
+    public Boolean getVerificado() {
+        return verificado;
     }
 
     public void setAlertas(String alertas) {
@@ -80,7 +80,7 @@ public class Alertas {
         this.url = url;
     }
 
-    public void setVeridico(String veridico) {
-        this.veridico = veridico;
+    public void setVerificado(Boolean verificado) {
+        this.verificado = verificado;
     }
 }

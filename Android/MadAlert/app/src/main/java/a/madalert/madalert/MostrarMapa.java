@@ -72,6 +72,8 @@ public class MostrarMapa extends Fragment implements
     private Integer count;
     private int km;
     private HashMap<String, Pair<Double, Double>> distCoord;
+    private HashMap<String, Pair<Double, Double>> distritosValidos;
+    private List<Integer> alertas;
 
     private OnFragmentInteractionListener mListener;
 
@@ -174,7 +176,8 @@ public class MostrarMapa extends Fragment implements
             parsLong = Double.parseDouble(longitud);
 
             Iterator<Map.Entry<String, Pair<Double, Double>>> iterator = distCoord.entrySet().iterator();
-
+            distritosValidos = new HashMap<String, Pair<Double, Double>>();
+            alertas = new ArrayList<>();
             int i = 0;
             while (iterator.hasNext()){
                 Map.Entry<String, Pair<Double, Double>> it = iterator.next();
@@ -192,10 +195,12 @@ public class MostrarMapa extends Fragment implements
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribeOn(io.reactivex.schedulers.Schedulers.io())
                             .subscribe(this::handleResponse, this::handleError));
+                    distritosValidos.put(it.getKey(),new Pair(lat,longi)); //nuevo de nerea pero no vale pa na
                     googleMap.addMarker(new MarkerOptions().position(new LatLng(lat, longi)).title(it.getKey()).snippet("Se han encontrado " + count + " alertas"));
-                    i++;
+
                 }
             }
+            Iterator<Map.Entry<String, Pair<Double, Double>>> iterator2 = distritosValidos.entrySet().iterator();
         }
         else {
             Iterator<Map.Entry<String, Pair<Double, Double>>> iterator = distCoord.entrySet().iterator();
@@ -231,7 +236,9 @@ public class MostrarMapa extends Fragment implements
 
     private void handleResponse(Integer integer) {
         Log.d("nerePUTAAMA", integer.toString());
-            count = integer;
+        count = integer;
+        alertas.add(integer); //Nuevo pero novale pana
+
     }
 
 
