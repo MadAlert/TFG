@@ -7,7 +7,7 @@ function initMap() {
         ['Chamartín', 40.460367, -3.676567, document.getElementById("chamartin").value], //Chamartín
         ['Chamberí', 40.438656, -3.704180, document.getElementById("chamberi").value], //Chamberí
         ['Ciudad Lineal', 40.455531, -3.656119, document.getElementById("ciudadlineal").value], //Ciudad Lineal
-        ['Fuencarral-El Pardo', 40.494289, -3.693477, document.getElementById("fuencarral").value], //Fuencarral-El Pardo
+        ['Fuencarral-El Pardo', 40.5353893,-3.7946006, document.getElementById("fuencarral").value], //Fuencarral-El Pardo
         ['Hortaleza', 40.485152, -3.634796, document.getElementById("hortaleza").value], //Hortaleza
         ['Latina', 40.387812, -3.773530, document.getElementById("latina").value], //Latina
         ['Moncloa-Aravaca', 40.443568,  -3.742829, document.getElementById("moncloa").value], //Moncloa-Aravaca
@@ -25,18 +25,17 @@ function initMap() {
 
     var map = new google.maps.Map(document.getElementById('mapa'),{
         zoom: 12,
-        //zoomControl: false,
         streetViewControl: false,
         scrollwheel: false,
         center: new google.maps.LatLng(40.422163, -3.689101),
     });
 
-    var infowindow = new google.maps.InfoWindow(); //Abre ventana del marcador
+    var infowindow = new google.maps.InfoWindow(); // Abre ventana del marcador
 
     var marker, i;
     var distritoM;
     for (i = 0; i < marcadores.length; i++) {
-        if(marcadores[i][3] != 0) {  //Solo muestra los distritos que tienen alertas
+        if(marcadores[i][3] != 0) {  // Solo muestra los distritos que tienen alertas
             marker = new google.maps.Marker({
                 position: new google.maps.LatLng(marcadores[i][1], marcadores[i][2]),
                 map: map

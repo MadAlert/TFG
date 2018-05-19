@@ -94,7 +94,7 @@
                                     </ul>
                                 <hr>
                                 <h1 class="card-title"> Contáctanos </h1>                                
-                                <form class="form-horizontal form-material" class="contacto" action="mailto:madalert2017@gmail.com" method="post">
+                                <form class="form-horizontal form-material" class="contacto" action="mailto:madalert17@gmail.com" method="post">
                                     <div class="form-group">
                                         <div class="col-md-6">
                                             <input type="text" placeholder="Nombre" class="form-control form-control-line" name="nombre" id="nombre" required/>

@@ -21,12 +21,13 @@ import java.util.ArrayList;
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
     private ArrayList<Alertas> mAndroidList;
-    private String enlace;
+    private String enlace, mDistrito;
     private Boolean mRadio;
 
-    public DataAdapter(ArrayList<Alertas> androidList, boolean radio) {
+    public DataAdapter(ArrayList<Alertas> androidList, boolean radio, String distrito) {
         mAndroidList = androidList;
         mRadio = radio;
+        mDistrito = distrito;
     }
 
 
@@ -41,39 +42,52 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        if(mRadio) {
+<<<<<<< HEAD
+        if(mRadio || mDistrito.equals("Todos")) {
             holder.mTvDistrito.setText(mAndroidList.get(position).getDistrito());
+=======
+        final Alertas alerta = mAndroidList.get(position);
+
+        if(mRadio) {
+            holder.mTvDistrito.setText(alerta.getDistrito());
         }
-        holder.mTvCategoria.setText(mAndroidList.get(position).getCategoria());
-        holder.mTvFecha.setText(mAndroidList.get(position).getFecha());
-        holder.mTvAlerta.setText(mAndroidList.get(position).getAlertas());
+        holder.mTvCategoria.setText(alerta.getCategoria());
+        holder.mTvFecha.setText(alerta.getFecha());
+        holder.mTvAlerta.setText(alerta.getAlertas());
 
-        //holder.mTvURL.setText(mAndroidList.get(position).getUrl());
-        if(mAndroidList.get(position).getUrl() != null) {
+        if((alerta.getVerificado() != null) && !alerta.getVerificado()) {
+            holder.mIvVerificado.setImageResource(R.drawable.blanco);
+        } else {
+            holder.mIvVerificado.setImageResource(R.drawable.verificado);
+>>>>>>> a657a95d5d9115870becceef56aa686d4fbad478
+        }
+
+        if(alerta.getUrl() != null) {
             holder.mTvAlerta.setTextColor(Color.parseColor("#FF4081"));
-            holder.mTvAlerta.setPaintFlags(holder.mTvAlerta.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
+            holder.mTvAlerta.setPaintFlags(holder.mTvAlerta.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
-            holder.mTvAlerta.setOnClickListener(v -> {
-                enlace = mAndroidList.get(position).getUrl();
+            enlace = alerta.getUrl();
+
+            holder.mTvAlerta.setOnClickListener((View v) -> {
                 Uri uri = Uri.parse(enlace);
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 v.getContext().startActivity(intent);
             });
         }
 
-        if(mAndroidList.get(position).getCategoria().equals("Desastres y accidentes")) {
+        if(alerta.getCategoria().equals("Desastres y accidentes")) {
             holder.mIvImagen.setImageResource(R.drawable.accident);
-        } else if(mAndroidList.get(position).getCategoria().equals("Transporte público")) {
+        } else if(alerta.getCategoria().equals("Transporte público")) {
             holder.mIvImagen.setImageResource(R.drawable.bus);
-        } else if(mAndroidList.get(position).getCategoria().equals("Eventos")) {
+        } else if(alerta.getCategoria().equals("Eventos")) {
             holder.mIvImagen.setImageResource(R.drawable.events);
-        } else if(mAndroidList.get(position).getCategoria().equals("Criminalidad")) {
+        } else if(alerta.getCategoria().equals("Criminalidad")) {
             holder.mIvImagen.setImageResource(R.drawable.criminal);
-        } else if(mAndroidList.get(position).getCategoria().equals("Terrorismo")) {
+        } else if(alerta.getCategoria().equals("Terrorismo")) {
             holder.mIvImagen.setImageResource(R.drawable.terrorism);
-        } else if(mAndroidList.get(position).getCategoria().equals("Contaminación")) {
+        } else if(alerta.getCategoria().equals("Contaminación")) {
             holder.mIvImagen.setImageResource(R.drawable.contamination);
-        } else if(mAndroidList.get(position).getCategoria().equals("Tráfico")) {
+        } else if(alerta.getCategoria().equals("Tráfico")) {
             holder.mIvImagen.setImageResource(R.drawable.traffic);
         }
 
@@ -87,22 +101,24 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         return mAndroidList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         private TextView mTvAlerta,mTvFuente,mTvCategoria,mTvFecha, mTvDistrito;
-        private ImageView mIvImagen;
+        private ImageView mIvImagen, mIvVerificado;
 
         public ViewHolder(View view) {
             super(view);
 
-            if(mRadio) {
+            if(mRadio || mDistrito.equals("Todos")) {
                 mTvDistrito = view.findViewById(R.id.tv_distrito);
             }
             mTvCategoria = (TextView)view.findViewById(R.id.tv_categoria);
             mTvFecha = (TextView)view.findViewById(R.id.tv_fecha);
             mTvAlerta = (TextView)view.findViewById(R.id.tv_alerta);
             mIvImagen= (ImageView)view.findViewById(R.id.imagenLogo);
+            mIvVerificado = (ImageView) view.findViewById(R.id.imagenVerificado);
             mTvFuente = (TextView)view.findViewById(R.id.tv_fuente);
+            enlace = null;
         }
 
         public void onClick(View v) {

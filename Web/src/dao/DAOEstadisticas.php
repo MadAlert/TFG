@@ -17,7 +17,6 @@ class DAOEstadisticas {
 
 	//Devuelve el numero total de alertas en un distrito con una categoria dada 
 	public function obtenerEstadisticas($distrito, $categorias, $mes) {
-   		//Query para ver alertas de distritos -> habria que añadir la condicion de fecha
    		$documento = $this->conEst->count(['distrito' => $distrito, 'categoria'=> $categorias , 'mes' => $mes]);
     	return $documento;
     }

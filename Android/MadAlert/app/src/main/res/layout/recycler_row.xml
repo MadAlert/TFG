@@ -42,12 +42,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:layout_marginBottom="25dp"
             android:src="@drawable/accident"
             android:maxWidth="48dp"
             android:maxHeight="48dp"
             android:scaleType="fitCenter"
             android:contentDescription="@string/imagen_logo" />
+
+        <ImageView android:id="@+id/imagenVerificado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="70dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginBottom="13dp"
+            android:src="@drawable/verificado"
+            android:scaleType="fitCenter"
+            android:contentDescription="@string/imagen_logo"
+            android:layout_marginStart="7dp" />
 
         <TextView
             android:id="@+id/tv_alerta"

@@ -115,29 +115,12 @@
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-6">
-                                            <button class="btn btn-danger" type="submit" id="botonAlert">Añadir alerta</button><!--data-toggle="modal" data-target="#bsModal3"-->
+                                            <button class="btn btn-danger" type="submit" id="botonAlert">Añadir alerta</button>
                                         </div>
                                     </div>
                                     <div class="correcto" id="correcto">Su alerta se ha insertado correctamente</div>
                                     <div class="incorrecto" id="incorrecto">La categoría elegida no es la correspondiente a su alerta, intentelo de nuevo </div>
-                                </form>  
-                                
-                                <!-- Modal
-                                <div class="modal fade" id="bsModal3" tabindex="0" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog modal-sm">
-                                    <div class="modal-content">
-                                      <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
-                                      </div>
-                                      <div class="modal-body">
-                                        Su alerta ha sido creada correctamente.
-                                      </div>
-                                      <div class="modal-footer">
-                                        <button type="button" class="btn btn-info" data-dismiss="modal">Aceptar</button>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div> -->                                                             
+                                </form>                                                           
                             </div>
                         </div>
                     </div>

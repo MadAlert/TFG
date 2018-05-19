@@ -25,8 +25,8 @@ class claseAlertas {
 	    		$categoria = $doc->categoria;
 	    		$autor = $doc->fuente;
 	    		$url = $doc->url;
-	    		if(isset($doc->veridico)){
-	    			$verificado = $doc->veridico;
+	    		if(isset($doc->verificado)){
+	    			$verificado = $doc->verificado;
 	    		}
 	    		else{
 	    			$verificado = true;
@@ -60,8 +60,8 @@ class claseAlertas {
           $categoria = $doc->categoria;
           $autor = $doc->fuente;
           $url = $doc->url;
-          if(isset($doc->veridico)){
-            $verificado = $doc->veridico;
+          if(isset($doc->verificado)){
+            $verificado = $doc->verificado;
           }
           else{
             $verificado = true;
@@ -97,8 +97,8 @@ class claseAlertas {
           $categoria = $doc->categoria;
           $autor = $doc->fuente;
           $url = $doc->url;
-          if(isset($doc->veridico)){
-            $verificado = $doc->veridico;
+          if(isset($doc->verificado)){
+            $verificado = $doc->verificado;
           }
           else{
             $verificado = true;
@@ -137,8 +137,8 @@ class claseAlertas {
 	    		else{
 	    			$url = null;
 	    		}
-	    		if(isset($doc->veridico)){
-	    			$verificado = $doc->veridico;
+	    		if(isset($doc->verificado)){
+	    			$verificado = $doc->verificado;
 	    		}
 	    		else{
 	    			$verificado = true;
@@ -229,7 +229,7 @@ class claseAlertas {
       
       date_add($fechaH, date_interval_create_from_date_string('2 hours'));
       $fecha = new MongoDB\BSON\UTCDateTime($fechaH);
-    	$documento = ['alerta'=> $alerta, 'fecha'=>$fecha, 'distrito'=>$distrito, 'categoria'=>$categoria,'fuente'=>$nombre, 'veridico'=>false, 'url'=> NULL];
+    	$documento = ['alerta'=> $alerta, 'fecha'=>$fecha, 'distrito'=>$distrito, 'categoria'=>$categoria,'fuente'=>$nombre, 'verificado'=>false, 'url'=> NULL];
     	$this->daoAler->insertarAlerta($documento);    	
     }
 

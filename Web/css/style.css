@@ -104,6 +104,12 @@ a.link {
 .img-rounded {
   border-radius: 4px; }
 
+#mapaMargin {
+  margin-bottom: 2%;
+  margin-top: 2%;
+}
+
+
 html body .mdi:before, html body .mdi-set {
   line-height: initial; }
 

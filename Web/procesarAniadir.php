@@ -21,14 +21,9 @@ if($sol!=false && $sol==$categoria){
 }
 else{
 	echo"0";?>
-	<!-- <form method="POST" action="aniadirAlertas.php">-->
-	<?php 
-	/*echo '<input type="hidden" name="nombreAntes" value="'.$nombre.'"/>';
-	echo '<input type="hidden" name="emailAntes" value="'.$email.'"/>';
-	echo '<input type="hidden" name="alertaAntes" value="'.$alerta.'"/>';*/
-
-?>
 </form>
 <?php
 }
 ?>
+
+

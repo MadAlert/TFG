@@ -74,7 +74,6 @@ public class DistritosFragmento extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        Log.d("ronaldo", "abre pestaña distritos");
         View view = inflater.inflate(R.layout.fragment_distritos, container, false);
         mSubscriptions = new CompositeDisposable();
         initSharedPreferences();

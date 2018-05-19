@@ -72,6 +72,8 @@ public class MostrarMapa extends Fragment implements
     private Integer count;
     private int km;
     private HashMap<String, Pair<Double, Double>> distCoord;
+    private HashMap<String, Pair<Double, Double>> distritosValidos;
+    private List<Integer> alertas;
 
     private OnFragmentInteractionListener mListener;
 
@@ -167,14 +169,16 @@ public class MostrarMapa extends Fragment implements
 
         int kms = km;
 
+        Iterator<Map.Entry<String, Pair<Double, Double>>> iterator = distCoord.entrySet().iterator();
+
         if(isCheckedSw) {
             map.setMyLocationEnabled(true);
 
             parsLat = Double.parseDouble(latitud);
             parsLong = Double.parseDouble(longitud);
 
-            Iterator<Map.Entry<String, Pair<Double, Double>>> iterator = distCoord.entrySet().iterator();
-
+            distritosValidos = new HashMap<String, Pair<Double, Double>>();
+            alertas = new ArrayList<>();
             int i = 0;
             while (iterator.hasNext()){
                 Map.Entry<String, Pair<Double, Double>> it = iterator.next();
@@ -192,23 +196,35 @@ public class MostrarMapa extends Fragment implements
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribeOn(io.reactivex.schedulers.Schedulers.io())
                             .subscribe(this::handleResponse, this::handleError));
+                    distritosValidos.put(it.getKey(),new Pair(lat,longi)); //nuevo de nerea pero no vale pa na
                     googleMap.addMarker(new MarkerOptions().position(new LatLng(lat, longi)).title(it.getKey()).snippet("Se han encontrado " + count + " alertas"));
-                    i++;
+
                 }
             }
+            Iterator<Map.Entry<String, Pair<Double, Double>>> iterator2 = distritosValidos.entrySet().iterator();
         }
         else {
-            Iterator<Map.Entry<String, Pair<Double, Double>>> iterator = distCoord.entrySet().iterator();
-
             boolean encontrado = false;
 
-            while (iterator.hasNext() && !encontrado) {
+            while (iterator.hasNext()) {
                 Map.Entry<String, Pair<Double, Double>> it = iterator.next();
-                if (distritoConf.equals(it.getKey())) {
+                if (distritoConf.equals(it.getKey()) && !encontrado) {
                     encontrado = true;
                     parsLat = it.getValue().first;
                     parsLong = it.getValue().second;
-                    googleMap.addMarker(new MarkerOptions().position(new LatLng(parsLat, parsLong)).title(it.getKey()));
+                    googleMap.addMarker(new MarkerOptions().position(new LatLng(parsLat, parsLong)).title(it.getKey()).snippet("Se han encontrado " + count + " alertas"));
+                }
+                Double lat = it.getValue().first;
+                Double longi = it.getValue().second;
+                //Double var = Math.sqrt( (Math.pow(parsLat-lat,2) + (Math.pow(parsLong-longi, 2))));
+                Double var = distanciaCoord(parsLat, parsLong, lat, longi);
+                if(var <= kms && !distritoConf.equals(it.getKey())){
+                    distRadio.add(it.getKey());
+                    String cat = mListaCat;
+                    if(mListaCat==""){
+                        cat = "Todas";
+                    }
+                    googleMap.addMarker(new MarkerOptions().position(new LatLng(lat, longi)).title(it.getKey()).snippet("Se han encontrado " + count + " alertas"));
                 }
             }
 
@@ -231,7 +247,8 @@ public class MostrarMapa extends Fragment implements
 
     private void handleResponse(Integer integer) {
         Log.d("nerePUTAAMA", integer.toString());
-            count = integer;
+        count = integer;
+        alertas.add(integer); //Nuevo pero no vale pana
     }
 
 
@@ -262,7 +279,7 @@ public class MostrarMapa extends Fragment implements
         distCoord.put("Vicálvaro", new Pair<>(40.393974, -3.581134));
         distCoord.put("Villa de Vallecas", new Pair<>(40.355089, -3.621192));
         distCoord.put("Villaverde", new Pair<>(40.345987, -3.693332));
-    }
+}
 
     public static double distanciaCoord(double lat1, double lng1, double lat2, double lng2) {
         //double radioTierra = 3958.75;//en millas

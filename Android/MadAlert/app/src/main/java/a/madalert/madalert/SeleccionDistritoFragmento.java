@@ -131,10 +131,6 @@ public class SeleccionDistritoFragmento extends Fragment {
         });
 
         spnr = (Spinner)v.findViewById(R.id.spinner);
-        /*ArrayAdapter adapter = ArrayAdapter.createFromResource(
-                getActivity(), R.array.distritos_array , android.R.layout.simple_spinner_item);
-
-        spnr.setAdapter(adapter);*/
         spnr.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
 
