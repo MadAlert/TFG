@@ -122,7 +122,7 @@
                                 <div class="col-12">
                                     <div class="card">
                                             <div class="card-block form-center">';
-                                                 echo '<h2> Estadísticas de la categoria: '.$categoria .' </h2>';
+                                                 echo '<h2> Estadísticas de la categoría: '.$categoria .' </h2>';
                                             echo ' </div>
                                        </div>
                                 </div>

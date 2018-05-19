@@ -1,9 +1,6 @@
 <?php
 require 'vendor/autoload.php';
-
 class Clasificador {
-	
-
 	public $api = "http://api.meaningcloud.com/class-1.1";
 	public $key = "05ed9a7c754aeee5d5f99470a756a5f8";
 	public $model = "news";
@@ -26,22 +23,14 @@ class Clasificador {
 	  return $response;
 	}
 
-
 	public function obtenerClasificacion($alerta){
-
-		// We make the request and parse the response to an array
 		$response = $this->obtenerResponse($this->api, $this->key, $this->model, $alerta);
 		$json = json_decode($response, true);
-
 		if(isset($json['category_list']) && count($json['category_list'])>0) {
 		  $i=0;
 		  foreach($json['category_list'] as $categorie) {
-		  	//if($i == 0){
 		  		$label = $categorie['label'];
 		  		return $label;
-			   // echo '  + '.$categorie['label'].' ('.$categorie['code'].") \n";
-			    //echo '     -> relevance: '.$categorie['relevance']."\n";
-			//}
 		  }
 		}else{
 		  return false;

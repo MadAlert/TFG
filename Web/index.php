@@ -74,8 +74,7 @@
 
                 <div class="row">
                     <div class="col-12">
-
-
+                        
                         <script type="text/javascript">
                             function reFresh() 
                             location.reload(true)
@@ -86,10 +85,8 @@
                         
                             <div class="card">
                                 <div class="card-block">
-                                    
                                     <h1 class="card-title"> Mapa con las últimas alertas: </h1>
-
-                                    <div style="margin-bottom: 2%;">
+                                    <div id="mapaMargin">
                                    
                                         <button class="btn btn-success" onclick="javascript:window.location.reload();" > Actualizar mapa <i class="mdi mdi-refresh"></i></button> 
                                     
@@ -97,6 +94,7 @@
 
                                     <div id="mapa" class="gmaps"></div>
                                     <form method="post" action="alertas.php" id="buscarAlertas" onsubmit="return valida()">
+                                    	
                                          <input type="hidden" name="atributo" id="atributo" value="si"/>
                                          <input type="hidden" name="index" value="si" id="index"/>
                                          <div class="form-group">

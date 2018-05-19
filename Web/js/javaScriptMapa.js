@@ -25,18 +25,17 @@ function initMap() {
 
     var map = new google.maps.Map(document.getElementById('mapa'),{
         zoom: 12,
-        //zoomControl: false,
         streetViewControl: false,
         scrollwheel: false,
         center: new google.maps.LatLng(40.422163, -3.689101),
     });
 
-    var infowindow = new google.maps.InfoWindow(); //Abre ventana del marcador
+    var infowindow = new google.maps.InfoWindow(); // Abre ventana del marcador
 
     var marker, i;
     var distritoM;
     for (i = 0; i < marcadores.length; i++) {
-        if(marcadores[i][3] != 0) {  //Solo muestra los distritos que tienen alertas
+        if(marcadores[i][3] != 0) {  // Solo muestra los distritos que tienen alertas
             marker = new google.maps.Marker({
                 position: new google.maps.LatLng(marcadores[i][1], marcadores[i][2]),
                 map: map
