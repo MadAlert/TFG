@@ -297,7 +297,7 @@ public class AlertasFragmento extends Fragment {
         coordenadas = new ArrayList<>();
 
         coordenadas.add(new Pair<>(40.443568,-3.742829));
-        coordenadas.add(new Pair<>(40.4289998,-3.736993));
+        coordenadas.add(new Pair<>(40.423416,-3.7122597));
         coordenadas.add(new Pair<>(40.4444825,-3.7499534));
         coordenadas.add(new Pair<>(40.4585248,-3.7295686));
         coordenadas.add(new Pair<>(40.4709156,-3.7375079));
@@ -309,6 +309,7 @@ public class AlertasFragmento extends Fragment {
         coordenadas.add(new Pair<>(40.4332791,-3.7734495));
         coordenadas.add(new Pair<>(40.4154087,-3.7625276));
         coordenadas.add(new Pair<>(40.400214,-3.7709817));
+        coordenadas.add(new Pair<>(40.4371129,-3.7216419));
         distCoord.put("Moncloa-Aravaca", coordenadas);
         coordenadas = new ArrayList<>();
 
