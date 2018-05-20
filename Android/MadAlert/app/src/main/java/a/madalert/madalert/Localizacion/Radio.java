@@ -80,12 +80,11 @@ public final class Radio {
         return distancia;
     }
 
-    public static ArrayList obtenerDistritosRadio(HashMap<String, ArrayList<Pair<Double, Double>>> coordenadas, int kms){
+    public static ArrayList obtenerDistritosRadio(HashMap<String, ArrayList<Pair<Double, Double>>> coordenadas, int kms, Double parsLat, Double parsLong){
         coordenadas = initCoord();
         ArrayList distRadio = new ArrayList<>();
         boolean marcadorEncontrado;
         Iterator<Map.Entry<String, ArrayList<Pair<Double, Double>>>> iterator = coordenadas.entrySet().iterator();
-        Double parsLat=0.0, parsLong=0.0;
 
         while (iterator.hasNext()) {
             Map.Entry<String, ArrayList<Pair<Double, Double>>> it = iterator.next(); // iterador del HashMap
@@ -145,7 +144,7 @@ public final class Radio {
         distCoord.put("Usera", coordenadas);
     }
 
-    private static void inicializarVicalvaro(ArrayList<Pair<Double, Double>> coordenadas) {7
+    private static void inicializarVicalvaro(ArrayList<Pair<Double, Double>> coordenadas) {
         coordenadas.add(new Pair<>(40.393974, -3.581134));
         coordenadas.add(new Pair<>(40.4149611,-3.6160247));
         coordenadas.add(new Pair<>(40.3924543,-3.6233781));

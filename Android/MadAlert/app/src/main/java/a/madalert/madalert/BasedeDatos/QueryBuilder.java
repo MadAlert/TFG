@@ -1,4 +1,4 @@
-package com.example.adrianpanaderogonzalez.pruebasbd.BasedeDatos;
+package a.madalert.madalert.BasedeDatos;
 
 import android.util.Log;
 
@@ -11,9 +11,6 @@ import java.util.Locale;
 
 import static android.content.ContentValues.TAG;
 
-/**
- * Created by adrianpanaderogonzalez on 22/3/18.
- */
 
 public class QueryBuilder {
 

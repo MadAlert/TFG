@@ -159,9 +159,6 @@ public class MainActivity extends AppCompatActivity
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        //Fragment fragment = null;
-        //Class fragmentClass = null;
-
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
@@ -179,12 +176,6 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_faq) {
             startActivityForResult(new Intent(getApplicationContext(), FaqActivity.class), 0);
         }
-       /* try {
-           // fragment = (Fragment) fragmentClass.newInstance();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }*/
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -200,7 +191,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     //ESTA FUNCION SE PODRIA ELIMINAR ENTERA
-    private double distanciaCoordenadas(double latitudNueva, double longitudNueva){
+    /*private double distanciaCoordenadas(double latitudNueva, double longitudNueva){
         double distancia = 0;
         double radioTierra = 6371;//en kilómetros
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
@@ -220,7 +211,7 @@ public class MainActivity extends AppCompatActivity
             distancia = radioTierra * va2;
         }
         return distancia;
-    }
+    }*/
 
     @Override
     protected void onDestroy() {
@@ -263,7 +254,7 @@ public class MainActivity extends AppCompatActivity
             mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             mFirstTime = mSharedPreferences.getBoolean("primeraVez", true);
             if(mFirstTime) {
-                /* HABRIA QUE PONER ESTO
+                // HABRIA QUE PONER ESTO
                 String strLatitudAntigua = mSharedPreferences.getString("latitud","");
                 String strLongitudAntigua = mSharedPreferences.getString("longitud","");
                 if(strLatitudAntigua!="" && strLongitudAntigua!="") {
@@ -280,9 +271,9 @@ public class MainActivity extends AppCompatActivity
                         editor.putString("longitud", longitud);
                         editor.apply();
                     }
-                } */
+                }
                 //DE AQUI SE PODRIA ELIMINAR HASTA
-                if (distanciaCoordenadas(Double.parseDouble(latitud), Double.parseDouble(longitud)) >= 50 || primeraVez) {
+               /* if (distanciaCoordenadas(Double.parseDouble(latitud), Double.parseDouble(longitud)) >= 50 || primeraVez) {
                     if (primeraVez) {
                         primeraVez = false;
                     }
@@ -291,7 +282,7 @@ public class MainActivity extends AppCompatActivity
                     editor.putString("latitud", latitud);
                     editor.putString("longitud", longitud);
                     editor.apply();
-                }
+                }*/
                 //HASTA AQUI ELIMINAR
             }
 

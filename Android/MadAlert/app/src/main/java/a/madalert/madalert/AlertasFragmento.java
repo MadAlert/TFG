@@ -133,6 +133,12 @@ public class AlertasFragmento extends Fragment {
         volley = VolleyS.getInstance(getActivity().getApplicationContext());
         fRequestQueue = volley.getRequestQueue();
 
+        int count = getFragmentManager().getBackStackEntryCount();
+        //si no queda ningún fragment sale de este activity
+        if (count == 1) {
+            getFragmentManager().popBackStack();
+        }
+
         View v = inflater.inflate(R.layout.fragment_alertas, container, false);
         mSub = new CompositeDisposable();
         initSharedPreferences();
@@ -434,8 +440,8 @@ public class AlertasFragmento extends Fragment {
     }
 
     public void recorrerRadio(Boolean ubicacionActivada){
-        //distCoord = Radio.initCoord(); -> Lo nuevo
-        initCoord();
+        distCoord = Radio.initCoord(); //-> Lo nuevo
+        //initCoord();
         distRadio = new ArrayList<>();
         boolean marcadorEncontrado;
         //Iterator<Map.Entry<String, Pair<Double, Double>>> iterator = distCoord.entrySet().iterator();
@@ -456,8 +462,8 @@ public class AlertasFragmento extends Fragment {
             }
         }
         kms = mSharedPreferences.getInt("km", 0);
-        //distRadio = Radio.obtenerDistritosRadio(distCoord,kms); -> habria q poner esto y eliminar lo de abajo
-        while (iterator.hasNext()) {
+        distRadio = Radio.obtenerDistritosRadio(distCoord,kms, parsLat, parsLong);// -> habria q poner esto y eliminar lo de abajo
+        /*while (iterator.hasNext()) {
             Map.Entry<String, ArrayList<Pair<Double, Double>>> it = iterator.next(); // iterador del HashMap
             if(!it.getKey().equals("Todos") && !it.getKey().equals("General")) {
                 ArrayList<Pair<Double, Double>> listAux = it.getValue(); // obtengo el arrayList del distrito que estoy iterando
@@ -477,10 +483,10 @@ public class AlertasFragmento extends Fragment {
                     }
                 }
             }
-        }
+        }*/
     }
 
-    //Copiadp en Radio
+    //Copiado en Radio
     public static double distanciaCoord(double lat1, double lng1, double lat2, double lng2) {
         //double radioTierra = 3958.75;//en millas
         double radioTierra = 6371;//en kilómetros
