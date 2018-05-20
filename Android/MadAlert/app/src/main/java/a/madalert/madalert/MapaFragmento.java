@@ -51,7 +51,7 @@ public class MapaFragmento extends Fragment{
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_mapa, container, false);
 
-        getChildFragmentManager().beginTransaction()
+        getFragmentManager().beginTransaction()
                 .replace(R.id.mapa_frame, new MostrarMapa())
                 //.addToBackStack(null)
                 .commit();

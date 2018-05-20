@@ -6,7 +6,14 @@ import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.net.Uri;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.URLSpan;
+import android.text.util.Linkify;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +24,7 @@ import a.madalert.madalert.R;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
@@ -25,6 +33,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     private ArrayList<String> urls;
     private String enlace, mDistrito;
     private Boolean mRadio;
+    private CardView cardView;
 
     public DataAdapter(ArrayList<Alertas> androidList, boolean radio, String distrito) {
         mAndroidList = androidList;
@@ -45,7 +54,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_row, parent, false);
         return new ViewHolder(view);
     }
@@ -72,8 +80,21 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
             holder.mIvVerificado.setImageResource(R.drawable.verificado);
         }
 
+        holder.mTvUrl.setText(alerta.getUrl());
+        if(alerta.getUrl() != null && alerta.getFuente().equals("madridDiario")){
+            Linkify.addLinks(holder.mTvUrl, Linkify.WEB_URLS);
+        }
 
-       String urlActual = urls.get(position); //Nuevo
+        /*if(alerta.getUrl() != null && alerta.getFuente().equals("madridDiario")){
+            holder.mTvUrl.setText("Ver enlace");
+            holder.mTvUrl.setOnClickListener((View v) -> {
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(alerta.getUrl()));
+                v.getContext().startActivity(intent);
+            });
+        }*/
+
+
+       /*String urlActual = urls.get(position); //Nuevo
         if(!urlActual.equals("") && alerta.getFuente().equals("madridDiario")){
             holder.mTvUrl.setText("Ver enlace");
             holder.mTvUrl.setOnClickListener((View v) -> {
@@ -81,7 +102,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
                 Intent intent = new Intent(Intent.ACTION_VIEW, uri);
                 v.getContext().startActivity(intent);
             });
-        }
+        }*/
 
         /*if(alerta.getUrl() != null && alerta.getFuente().equals("madridDiario")) {
             //holder.mTvUrl.setText("Ver enlace");
@@ -111,7 +132,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
     @Override
     public int getItemCount() {
-
         return mAndroidList.size();
     }
 
@@ -133,6 +153,8 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
             mIvVerificado = (ImageView) view.findViewById(R.id.imagenVerificado);
             mTvFuente = (TextView)view.findViewById(R.id.tv_fuente);
             mTvUrl = (TextView) view.findViewById(R.id.tv_url);
+            cardView = (CardView) view.findViewById(R.id.card);
+
         }
 
         public void onClick(View v) {

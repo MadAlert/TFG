@@ -78,7 +78,7 @@ public class DistritosFragmento extends Fragment {
         mSubscriptions = new CompositeDisposable();
         initSharedPreferences();
 
-        getChildFragmentManager().beginTransaction()
+        getFragmentManager().beginTransaction()
                 .replace(R.id.distritos_frame, new SeleccionDistritoFragmento())
                 //.addToBackStack(null)
                 .commit();
