@@ -61,7 +61,18 @@
             android:layout_marginStart="7dp" />
 
         <TextView
-            android:id="@+id/tv_alerta"
+            android:id="@+id/tv_alertaWeb"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="40dp"
+            android:layout_marginLeft="50dp"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:layout_marginStart="50dp" />
+
+        <TextView
+            android:id="@+id/tv_alertaOther"
             android:layout_marginTop="25dp"
             android:layout_marginBottom="40dp"
             android:layout_marginLeft="50dp"
@@ -72,16 +83,15 @@
             android:autoLink="web"
             android:layout_marginStart="50dp" />
 
-        <TextView
+          <!--<TextView
             android:id="@+id/tv_url"
             android:layout_marginBottom="25dp"
             android:textColor="@color/colorAccent"
-            android:autoLink="web"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"/>
+            android:layout_alignParentEnd="true"/>-->
 
     </RelativeLayout>
 

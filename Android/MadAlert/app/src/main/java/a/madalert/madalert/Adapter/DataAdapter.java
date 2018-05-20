@@ -31,13 +31,13 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
     private ArrayList<Alertas> mAndroidList;
     private ArrayList<String> urls;
-    private String enlace, mDistrito;
+    private String mDistrito;
     private Boolean mRadio;
-    private CardView cardView;
+    private Spanned text;
 
     public DataAdapter(ArrayList<Alertas> androidList, boolean radio, String distrito) {
         mAndroidList = androidList;
-        urls  = new ArrayList<>();
+        /*urls  = new ArrayList<>();
         for(int i =0; i < mAndroidList.size();i++){
             String m = mAndroidList.get(i).getUrl();
             if(m!=null){
@@ -46,7 +46,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
             else{
                 urls.add("");
             }
-        }
+        }*/
         mRadio = radio;
         mDistrito = distrito;
     }
@@ -72,7 +72,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         }
         holder.mTvCategoria.setText(alerta.getCategoria());
         holder.mTvFecha.setText(alerta.getFecha());
-        holder.mTvAlerta.setText(alerta.getAlertas());
+       // holder.mTvAlerta.setText(alerta.getAlertas());
 
         if((alerta.getVerificado() != null) && !alerta.getVerificado()) {
             holder.mIvVerificado.setImageResource(R.drawable.blanco);
@@ -80,36 +80,17 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
             holder.mIvVerificado.setImageResource(R.drawable.verificado);
         }
 
-        holder.mTvUrl.setText(alerta.getUrl());
-        if(alerta.getUrl() != null && alerta.getFuente().equals("madridDiario")){
-            Linkify.addLinks(holder.mTvUrl, Linkify.WEB_URLS);
+        // FUNCIONA
+        if(alerta.getUrl() != null && alerta.getFuente().equals("madridDiario")) { // para madridiario
+            text = Html.fromHtml("<a href=" + alerta.getUrl() + ">" + alerta.getAlertas() + "</a>");
+            holder.mTvAlertaWeb.setMovementMethod(LinkMovementMethod.getInstance());
+            holder.mTvAlertaOther.setText("");
+            holder.mTvAlertaWeb.setText(text);
         }
-
-        /*if(alerta.getUrl() != null && alerta.getFuente().equals("madridDiario")){
-            holder.mTvUrl.setText("Ver enlace");
-            holder.mTvUrl.setOnClickListener((View v) -> {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(alerta.getUrl()));
-                v.getContext().startActivity(intent);
-            });
-        }*/
-
-
-       /*String urlActual = urls.get(position); //Nuevo
-        if(!urlActual.equals("") && alerta.getFuente().equals("madridDiario")){
-            holder.mTvUrl.setText("Ver enlace");
-            holder.mTvUrl.setOnClickListener((View v) -> {
-                Uri uri = Uri.parse(urlActual);
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                v.getContext().startActivity(intent);
-            });
-        }*/
-
-        /*if(alerta.getUrl() != null && alerta.getFuente().equals("madridDiario")) {
-            //holder.mTvUrl.setText("Ver enlace");
-            holder.mTvUrl.setText(alerta.getUrl());
-
-            enlace = alerta.getUrl();
-        }*/
+        else { // para twitter e inserciones de usuario
+            holder.mTvAlertaWeb.setText("");
+            holder.mTvAlertaOther.setText(alerta.getAlertas());
+        }
 
         if(alerta.getCategoria().equals("Desastres y accidentes")) {
             holder.mIvImagen.setImageResource(R.drawable.accident);
@@ -135,9 +116,9 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         return mAndroidList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder /*implements View.OnClickListener*/{
 
-        private TextView mTvAlerta,mTvFuente,mTvCategoria,mTvFecha, mTvDistrito, mTvUrl;
+        private TextView mTvAlertaWeb,mTvAlertaOther,mTvFuente,mTvCategoria,mTvFecha, mTvDistrito;
         private ImageView mIvImagen, mIvVerificado;
 
         public ViewHolder(View view) {
@@ -148,19 +129,17 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
             }
             mTvCategoria = (TextView)view.findViewById(R.id.tv_categoria);
             mTvFecha = (TextView)view.findViewById(R.id.tv_fecha);
-            mTvAlerta = (TextView)view.findViewById(R.id.tv_alerta);
+            mTvFuente = (TextView)view.findViewById(R.id.tv_fuente);
+            mTvAlertaWeb = (TextView) view.findViewById(R.id.tv_alertaWeb);
+            mTvAlertaOther = (TextView) view.findViewById(R.id.tv_alertaOther);
             mIvImagen= (ImageView)view.findViewById(R.id.imagenLogo);
             mIvVerificado = (ImageView) view.findViewById(R.id.imagenVerificado);
-            mTvFuente = (TextView)view.findViewById(R.id.tv_fuente);
-            mTvUrl = (TextView) view.findViewById(R.id.tv_url);
-            cardView = (CardView) view.findViewById(R.id.card);
-
         }
 
-        public void onClick(View v) {
+       /* public void onClick(View v) {
             Uri uri = Uri.parse(enlace);
             Intent intent = new Intent(Intent.ACTION_VIEW, uri);
             v.getContext().startActivity(intent);
-        }
+        }*/
     }
 }
