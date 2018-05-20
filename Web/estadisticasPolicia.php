@@ -171,12 +171,7 @@
                 }
 
                 elseif ($eleccion == 'Estadísticas relacionadas con la seguridad') {                   
-                    /* Seguridad */
-
-                   /* echo '<form method="post" name="selecDist" action="estadisticasPolicia.php" id="buscarAlertas">
-                    <input type="hidden" id="selecDist" name="selecDist" value="selecDist"/>';
-
-                    if(isset($_POST['selecDist'])){     */               
+                    /* Seguridad */            
                         $distrito = $_POST['distritos'];         
 
                         $datosSeguridad = $estadisticas->obtenerDatosSeguridad($distrito);
@@ -205,7 +200,7 @@
                     /*}*/
                 }
 
-                    echo "<p> Fuente: <a href='http://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=bffff1d2a9fdb410VgnVCM2000000c205a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD'>Datos estadísticos actuaciones Policía Municipal </a> </p>";
+                    echo "<p> Fuente: <a href='http://datos.madrid.es/portal/site/egob/menuitem.c05c1f754a33a9fbe4b2e4b284f1a5a0/?vgnextoid=bffff1d2a9fdb410VgnVCM2000000c205a0aRCRD&vgnextchannel=374512b9ace9f310VgnVCM100000171f5a0aRCRD' target='_blank'>Datos estadísticos actuaciones Policía Municipal </a> </p>";
 
 
                   }

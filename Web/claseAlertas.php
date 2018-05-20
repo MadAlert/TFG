@@ -264,8 +264,6 @@ class claseAlertas {
                                   echo '<img src= "assets/images/bus.png"/>';
                               }
                           echo '</div>';
-                        			
-                              //AÑADIR LOS ICONOS AQUIIIIIIIIIIIIIIIII
                         	if($verificado != false){
                             echo '<div class="col-md-1 col-xs-12">';
                         		echo '<i class="mdi mdi-verified"></i></div>';
