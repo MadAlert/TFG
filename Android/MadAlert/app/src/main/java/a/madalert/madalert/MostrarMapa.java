@@ -36,6 +36,7 @@ import java.util.List;
 import java.util.Map;
 
 import a.madalert.madalert.Adapter.DataAdapter;
+import a.madalert.madalert.Localizacion.Radio;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -71,11 +72,14 @@ public class MostrarMapa extends Fragment implements
     private String mListaCat;
     private Integer count;
     private int km;
-    private HashMap<String, Pair<Double, Double>> distCoord;
+    //private HashMap<String, Pair<Double, Double>> distCoord;
+    private HashMap<String, ArrayList<Pair<Double,Double>>> distCoord;
     private HashMap<String, Pair<Double, Double>> distritosValidos;
     private List<Integer> alertas;
 
     private OnFragmentInteractionListener mListener;
+
+    private int contador = 0;
 
     public MostrarMapa() {
         // Required empty public constructor
@@ -116,7 +120,8 @@ public class MostrarMapa extends Fragment implements
 
         mSub = new CompositeDisposable();
         initSharedPreferences();
-        initCoord();
+
+        distCoord = Radio.initCoord(); //Inicializo las coordenadas
 
         return view;
     }
@@ -179,38 +184,41 @@ public class MostrarMapa extends Fragment implements
             //Iterator<Map.Entry<String, Pair<Double, Double>>> iterator2 = distritosValidos.entrySet().iterator();
         }
         else {
-            Iterator<Map.Entry<String, Pair<Double, Double>>> iterator = distCoord.entrySet().iterator();
+            Iterator<Map.Entry<String, ArrayList<Pair<Double,Double>>>> iterator = distCoord.entrySet().iterator();
             boolean encontrado = false;
             while (iterator.hasNext()) {
-                Map.Entry<String, Pair<Double, Double>> it = iterator.next();
+                Map.Entry<String, ArrayList<Pair<Double,Double>>> it = iterator.next();
                 if (distritoConf.equals(it.getKey()) && !encontrado) {
                     encontrado = true;
-                    parsLat = it.getValue().first;
-                    parsLong = it.getValue().second;
-                    googleMap.addMarker(new MarkerOptions().position(new LatLng(parsLat, parsLong)).title(it.getKey()).snippet("Se han encontrado " + count + " alertas"));
+                    parsLat = it.getValue().get(0).first;
+                    parsLong = it.getValue().get(0).second;
+                    if(!distritoConf.equals("Todos")){
+                        googleMap.addMarker(new MarkerOptions().position(new LatLng(parsLat, parsLong)).title(it.getKey()).snippet("Se han encontrado " + count + " alertas"));
+                    }
                 }
             }
         }
 
-        Iterator<Map.Entry<String, Pair<Double, Double>>> iterator = distCoord.entrySet().iterator();
+        Iterator<Map.Entry<String, ArrayList<Pair<Double,Double>>>> iterator = distCoord.entrySet().iterator();
         while (iterator.hasNext()) {
-            Map.Entry<String, Pair<Double, Double>> it = iterator.next();
-            Double lat = it.getValue().first;
-            Double longi = it.getValue().second;
+            Map.Entry<String, ArrayList<Pair<Double,Double>>> it = iterator.next();
+            Double lat = it.getValue().get(0).first;
+            Double longi = it.getValue().get(0).second;
             //Double var = Math.sqrt( (Math.pow(parsLat-lat,2) + (Math.pow(parsLong-longi, 2))));
-            Double var = distanciaCoord(parsLat, parsLong, lat, longi);
-            if (var <= kms && !distritoConf.equals(it.getKey())) {
-                distRadio.add(it.getKey());
-                String cat = mListaCat;
-                if (mListaCat == "") {
-                    cat = "Todas";
+            Double var = Radio.distanciaCoord(parsLat, parsLong, lat, longi);
+            if ((var <= kms && !distritoConf.equals(it.getKey())) || distritoConf.equals("Todos")) {
+                if(!it.getKey().equals("Todos")) {
+                    distRadio.add(it.getKey());
+                    String cat = mListaCat;
+                    if (mListaCat == "") {
+                        cat = "Todas";
+                    }
+                    mSub.add(NetworkUtil.getRetrofit().getCountAlertasDistrito(it.getKey(), true, cat)
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribeOn(io.reactivex.schedulers.Schedulers.io())
+                            .subscribe(this::handleResponse, this::handleError));
+                    //googleMap.addMarker(new MarkerOptions().position(new LatLng(lat, longi)).title(it.getKey()).snippet("Se han encontrado " + count + " alertas"));
                 }
-                mSub.add(NetworkUtil.getRetrofit().getCountAlertasDistrito(it.getKey(),true,cat)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeOn(io.reactivex.schedulers.Schedulers.io())
-                        .subscribe(this::handleResponse, this::handleError));
-                //distritosValidos.put(it.getKey(),new Pair(lat,longi)); //nuevo de nerea pero no vale pa na
-                googleMap.addMarker(new MarkerOptions().position(new LatLng(lat, longi)).title(it.getKey()).snippet("Se han encontrado " + count + " alertas"));
             }
         }
 
@@ -232,54 +240,16 @@ public class MostrarMapa extends Fragment implements
     private void handleResponse(Integer integer) {
         Log.d("nerePUTAAMA", integer.toString());
         count = integer;
-        alertas.add(integer); //Nuevo pero no vale pana
+        ArrayList<Pair<Double,Double>> arrayPar = distCoord.get(distRadio.get(contador));
+        Pair<Double,Double> par = arrayPar.get(0);
+        map.addMarker(new MarkerOptions().position(new LatLng(par.first,par.second)).title(distRadio.get(contador)).snippet("Se han encontrado " + count + " alertas"));
+        contador++;
     }
 
 
     private void handleError(Throwable error) {
         Log.d("adritonto","ERRRRRRRR Error !");
     }
-
-    public void initCoord() {
-        distCoord = new HashMap<String, Pair<Double, Double>>();
-        distCoord.put("Arganzuela", new Pair<>(40.400861, -3.699350));
-        distCoord.put("Barajas", new Pair<>(40.4839402, -3.5701402));
-        distCoord.put("Carabanchel", new Pair<>(40.381607, -3.735203));
-        distCoord.put("Centro", new Pair<>(40.4169416, -3.7083759));
-        distCoord.put("Chamartín", new Pair<>(40.460367, -3.676567));
-        distCoord.put("Chamberí", new Pair<>(40.438656, -3.704180));
-        distCoord.put("Ciudad Lineal", new Pair<>(40.455531, -3.656119));
-        distCoord.put("Fuencarral-El Pardo", new Pair<>(40.494289, -3.693477));
-        distCoord.put("Hortaleza", new Pair<>(40.485152, -3.634796));
-        distCoord.put("Latina", new Pair<>(40.387812, -3.773530));
-        distCoord.put("Moncloa-Aravaca", new Pair<>(40.443568, -3.742829));
-        distCoord.put("Moratalaz", new Pair<>(40.407016, -3.644330));
-        distCoord.put("Puente de Vallecas", new Pair<>(40.386887, -3.658476));
-        distCoord.put("Retiro", new Pair<>(40.4101076, -3.6736514));
-        distCoord.put("Salamanca", new Pair<>(40.429807, -3.673778));
-        distCoord.put("San Blas-Canillejas", new Pair<>(40.436229, -3.599431));
-        distCoord.put("Tetuán", new Pair<>(40.460158, -3.698835));
-        distCoord.put("Usera", new Pair<>(40.377026, -3.701982));
-        distCoord.put("Vicálvaro", new Pair<>(40.393974, -3.581134));
-        distCoord.put("Villa de Vallecas", new Pair<>(40.355089, -3.621192));
-        distCoord.put("Villaverde", new Pair<>(40.345987, -3.693332));
-}
-
-    public static double distanciaCoord(double lat1, double lng1, double lat2, double lng2) {
-        //double radioTierra = 3958.75;//en millas
-        double radioTierra = 6371;//en kilómetros
-        double dLat = Math.toRadians(lat2 - lat1);
-        double dLng = Math.toRadians(lng2 - lng1);
-        double sindLat = Math.sin(dLat / 2);
-        double sindLng = Math.sin(dLng / 2);
-        double va1 = Math.pow(sindLat, 2) + Math.pow(sindLng, 2)
-                * Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2));
-        double va2 = 2 * Math.atan2(Math.sqrt(va1), Math.sqrt(1 - va1));
-        double distancia = radioTierra * va2;
-
-        return distancia;
-    }
-
 
     @Override
     public void onInfoWindowClick(Marker marker) {

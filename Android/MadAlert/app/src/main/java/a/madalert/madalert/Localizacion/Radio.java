@@ -29,7 +29,7 @@ public final class Radio {
         coordenadas = new ArrayList<>();
         inicializarChamartin(coordenadas);
         coordenadas = new ArrayList<>();
-        incializarChamberi(coordenadas);
+        inicializarChamberi(coordenadas);
         coordenadas = new ArrayList<>();
         inicializarCiudadLineal(coordenadas);
         coordenadas = new ArrayList<>();
@@ -283,7 +283,7 @@ public final class Radio {
     }
 
     private static void inicalizarGeneral(ArrayList<Pair<Double, Double>> coordenadas) {
-        coordenadas.add(new Pair<>(40.4420755, -3.7458085));
+        coordenadas.add(new Pair<>(40.416595,-3.7059791));
         distCoord.put("General", coordenadas);
     }
 
@@ -326,7 +326,7 @@ public final class Radio {
         distCoord.put("Ciudad Lineal", coordenadas);
     }
 
-    private static void incializarChamberi(ArrayList<Pair<Double, Double>> coordenadas) {
+    private static void inicializarChamberi(ArrayList<Pair<Double, Double>> coordenadas) {
         coordenadas.add(new Pair<>(40.438656, -3.704180));
         coordenadas.add(new Pair<>(40.4276636,-3.6950067));
         coordenadas.add(new Pair<>(40.4365733,-3.6984078));
@@ -340,7 +340,6 @@ public final class Radio {
     }
 
     private static void inicializarChamartin(ArrayList<Pair<Double, Double>> coordenadas) {
-        coordenadas.add(new Pair<>(40.3729929,-3.7599287));
         coordenadas.add(new Pair<>(40.460367, -3.676567));
         coordenadas.add(new Pair<>(40.4449207,-3.6906002));
         coordenadas.add(new Pair<>(40.4462761,-3.6669539));
