@@ -15,17 +15,22 @@ import android.widget.TextView;
 import a.madalert.madalert.Alertas;
 import a.madalert.madalert.R;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
     private ArrayList<Alertas> mAndroidList;
+    private ArrayList<String> urls;
     private String enlace, mDistrito;
     private Boolean mRadio;
 
     public DataAdapter(ArrayList<Alertas> androidList, boolean radio, String distrito) {
         mAndroidList = androidList;
+        for(int i =0; i < mAndroidList.size();i++){
+            urls.add(mAndroidList.get(i).getUrl());
+        }
         mRadio = radio;
         mDistrito = distrito;
     }
@@ -59,8 +64,19 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         } else {
             holder.mIvVerificado.setImageResource(R.drawable.verificado);
         }
+        /*String urlActual = urls.get(position); //Nuevo
+        if(urlActual!=null){
+            holder.mTvAlerta.setTextColor(Color.parseColor("#FF4081"));
+            holder.mTvAlerta.setPaintFlags(holder.mTvAlerta.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 
+            holder.mTvAlerta.setOnClickListener((View v) -> {
+                Uri uri = Uri.parse(urlActual);
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                v.getContext().startActivity(intent);
+            });
+        }*/
         if(alerta.getUrl() != null) {
+
             holder.mTvAlerta.setTextColor(Color.parseColor("#FF4081"));
             holder.mTvAlerta.setPaintFlags(holder.mTvAlerta.getPaintFlags() | Paint.UNDERLINE_TEXT_FLAG);
 

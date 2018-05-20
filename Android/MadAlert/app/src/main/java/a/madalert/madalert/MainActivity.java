@@ -32,6 +32,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Locale;
 
+import a.madalert.madalert.Localizacion.Radio;
+
 public class MainActivity extends AppCompatActivity
         implements DistritosFragmento.OnFragmentInteractionListener,
         SeleccionDistritoFragmento.OnFragmentInteractionListener,
@@ -197,6 +199,7 @@ public class MainActivity extends AppCompatActivity
     public void onFragmentInteraction(Uri uri) {
     }
 
+    //ESTA FUNCION SE PODRIA ELIMINAR ENTERA
     private double distanciaCoordenadas(double latitudNueva, double longitudNueva){
         double distancia = 0;
         double radioTierra = 6371;//en kilómetros
@@ -260,6 +263,25 @@ public class MainActivity extends AppCompatActivity
             mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             mFirstTime = mSharedPreferences.getBoolean("primeraVez", true);
             if(mFirstTime) {
+                /* HABRIA QUE PONER ESTO
+                String strLatitudAntigua = mSharedPreferences.getString("latitud","");
+                String strLongitudAntigua = mSharedPreferences.getString("longitud","");
+                if(strLatitudAntigua!="" && strLongitudAntigua!="") {
+                    double latitudAntigua = Double.parseDouble(strLatitudAntigua);
+                    double longitudAntigua = Double.parseDouble(strLongitudAntigua);
+                    double distancia = Radio.distanciaCoord(latitudAntigua, longitudAntigua, Double.parseDouble(latitud), Double.parseDouble(longitud));
+                    if (distancia >= 50 || primeraVez) {
+                        if (primeraVez) {
+                            primeraVez = false;
+                        }
+                        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        editor = mSharedPreferences.edit(); // para guardar las configuraciones
+                        editor.putString("latitud", latitud);
+                        editor.putString("longitud", longitud);
+                        editor.apply();
+                    }
+                } */
+                //DE AQUI SE PODRIA ELIMINAR HASTA
                 if (distanciaCoordenadas(Double.parseDouble(latitud), Double.parseDouble(longitud)) >= 50 || primeraVez) {
                     if (primeraVez) {
                         primeraVez = false;
@@ -270,6 +292,7 @@ public class MainActivity extends AppCompatActivity
                     editor.putString("longitud", longitud);
                     editor.apply();
                 }
+                //HASTA AQUI ELIMINAR
             }
 
            // Log.d("coordenada_lat", String.valueOf(lat));

@@ -37,6 +37,7 @@ import java.util.List;
 import java.util.Map;
 
 import a.madalert.madalert.Adapter.DataAdapter;
+import a.madalert.madalert.Localizacion.Radio;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -433,11 +434,12 @@ public class AlertasFragmento extends Fragment {
     }
 
     public void recorrerRadio(Boolean ubicacionActivada){
+        //distCoord = Radio.initCoord(); -> Lo nuevo
         initCoord();
         distRadio = new ArrayList<>();
         boolean marcadorEncontrado;
         //Iterator<Map.Entry<String, Pair<Double, Double>>> iterator = distCoord.entrySet().iterator();
-        Iterator<Map.Entry<String, ArrayList<Pair<Double, Double>>>> iterator = distCoord.entrySet().iterator();
+        Iterator<Map.Entry<String, ArrayList<Pair<Double, Double>>>> iterator = distCoord.entrySet().iterator(); //Esto comentar
         Double parsLat=0.0, parsLong=0.0;
         if(ubicacionActivada) {
             latitud = mSharedPreferences.getString("latitud", "");
@@ -454,7 +456,7 @@ public class AlertasFragmento extends Fragment {
             }
         }
         kms = mSharedPreferences.getInt("km", 0);
-
+        //distRadio = Radio.obtenerDistritosRadio(distCoord,kms); -> habria q poner esto y eliminar lo de abajo
         while (iterator.hasNext()) {
             Map.Entry<String, ArrayList<Pair<Double, Double>>> it = iterator.next(); // iterador del HashMap
             if(!it.getKey().equals("Todos") && !it.getKey().equals("General")) {
@@ -478,6 +480,7 @@ public class AlertasFragmento extends Fragment {
         }
     }
 
+    //Copiadp en Radio
     public static double distanciaCoord(double lat1, double lng1, double lat2, double lng2) {
         //double radioTierra = 3958.75;//en millas
         double radioTierra = 6371;//en kilómetros
