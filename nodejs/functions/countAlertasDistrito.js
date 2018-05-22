@@ -14,6 +14,12 @@ exports.getCountAlertasDistrito = (distrito,count,categorias) =>
 				
 			.catch(err => reject({status: 500, message: 'Internal Server Error! verAlertasDistrito.js'}))
 		}
+		else{
+			alerta.find({distrito: {$in:distrito},categoria:{$in:categorias}}).count()
+			.then((alertas) => {resolve(alertas);})
+
+			.catch(err => reject({status: 500, message: 'Internal Server Error! verAlertasDistrito.js'}))
+		}
 	});
 
 
