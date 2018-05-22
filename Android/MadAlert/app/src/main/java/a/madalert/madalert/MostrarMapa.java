@@ -79,7 +79,7 @@ public class MostrarMapa extends Fragment implements
 
     private OnFragmentInteractionListener mListener;
 
-    private int contador = 0;
+    private int contador;
 
     public MostrarMapa() {
         // Required empty public constructor
@@ -154,7 +154,7 @@ public class MostrarMapa extends Fragment implements
 
         MapsInitializer.initialize(getContext());
         map = googleMap;
-        googleMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+        map.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         if (ActivityCompat.checkSelfPermission(this.getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this.getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    ActivityCompat#requestPermissions
@@ -171,6 +171,8 @@ public class MostrarMapa extends Fragment implements
         double parsLat = 0;
         double parsLong = 0;
         distRadio = new ArrayList<>();
+
+        contador = 0;
 
         int kms = km;
 
@@ -192,9 +194,6 @@ public class MostrarMapa extends Fragment implements
                     encontrado = true;
                     parsLat = it.getValue().get(0).first;
                     parsLong = it.getValue().get(0).second;
-                    if(!distritoConf.equals("Todos")){
-                        googleMap.addMarker(new MarkerOptions().position(new LatLng(parsLat, parsLong)).title(it.getKey()).snippet("Se han encontrado " + count + " alertas"));
-                    }
                 }
             }
         }
@@ -206,11 +205,11 @@ public class MostrarMapa extends Fragment implements
             Double longi = it.getValue().get(0).second;
             //Double var = Math.sqrt( (Math.pow(parsLat-lat,2) + (Math.pow(parsLong-longi, 2))));
             Double var = Radio.distanciaCoord(parsLat, parsLong, lat, longi);
-            if ((var <= kms && !distritoConf.equals(it.getKey())) || distritoConf.equals("Todos")) {
+            if ((var <= kms) || distritoConf.equals("Todos")) {
                 if(!it.getKey().equals("Todos")) {
                     distRadio.add(it.getKey());
                     String cat = mListaCat;
-                    if (mListaCat == "") {
+                    if (mListaCat.equals("")) {
                         cat = "Todas";
                     }
                     mSub.add(NetworkUtil.getRetrofit().getCountAlertasDistrito(it.getKey(), true, cat)
@@ -234,7 +233,7 @@ public class MostrarMapa extends Fragment implements
 
         CameraPosition camera = CameraPosition.builder().target(circle.getCenter()).zoom(12).bearing(0).build();
 
-        googleMap.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
+        map.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
     }
 
     private void handleResponse(Integer integer) {
