@@ -1,13 +1,11 @@
 package a.madalert.madalert;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,9 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.json.JSONException;
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -108,7 +103,6 @@ public class ListaAlertas extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_item, container, false);
         mSub = new CompositeDisposable();
-        //initViews();
         initRecyclerView(view);
         initSharedPreferences();
         loadAlerta();
@@ -138,7 +132,6 @@ public class ListaAlertas extends Fragment {
 
     private void initSharedPreferences() {
         mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        //mDistrito = mSharedPreferences.getString("posicion", "");
         mDistrito = mSharedPreferences.getString("distrito", "");
         mHayCategorias = mSharedPreferences.getString("hayCategorias","");
         mListaCat = mSharedPreferences.getString("listaCat", "");
@@ -181,8 +174,6 @@ public class ListaAlertas extends Fragment {
         mAndroidArrayList = new ArrayList<>(alertas);
         mAdapter = new DataAdapter(mAndroidArrayList, false, auxDistrito);
         mRecyclerView.setAdapter(mAdapter);
-        /*mTv1.setText(alertas.getAlertas());
-        mTv2.setText(alertas.getDistrito());*/
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putBoolean("vieneMapa", false);
         editor.apply();
@@ -193,7 +184,6 @@ public class ListaAlertas extends Fragment {
     }
 
     private void handleError(Throwable error) {
-        //showSnackBarMessage("ERRRRRRRR Error !");
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putBoolean("vieneMapa", false);
         editor.apply();

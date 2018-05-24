@@ -164,13 +164,10 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_configuracion) {
             startActivityForResult(new Intent(getApplicationContext(), ConfigActivity.class), 0);
-           // startActivity(new Intent(getApplicationContext(), ConfigActivity.class));
         } else if (id == R.id.nav_contacto) {
-            //startActivity(new Intent(getApplicationContext(), ContactActivity.class));
             startActivityForResult(new Intent(getApplicationContext(), ContactActivity.class), 0);
         } else if (id == R.id.nav_soporte) {
             startActivityForResult(new Intent(getApplicationContext(), SoporteActivity.class), 0);
-            //fragmentClass = SoporteFragmento.class;
         } else if (id == R.id.nav_aboutus) {
             startActivityForResult(new Intent(getApplicationContext(), AboutUsActivity.class), 0);
         } else if (id == R.id.nav_faq) {
@@ -189,29 +186,6 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onFragmentInteraction(Uri uri) {
     }
-
-    //ESTA FUNCION SE PODRIA ELIMINAR ENTERA
-    /*private double distanciaCoordenadas(double latitudNueva, double longitudNueva){
-        double distancia = 0;
-        double radioTierra = 6371;//en kilómetros
-        mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String strLatitudAntigua = mSharedPreferences.getString("latitud","");
-        String strLongitudAntigua = mSharedPreferences.getString("longitud","");
-
-        if(strLatitudAntigua!="" && strLongitudAntigua!=""){
-            double latitudAntigua = Double.parseDouble(strLatitudAntigua);
-            double longitudAntigua = Double.parseDouble(strLongitudAntigua);
-            double dLat = Math.toRadians(latitudAntigua - latitudNueva);
-            double dLng = Math.toRadians(longitudAntigua - longitudNueva);
-            double sindLat = Math.sin(dLat / 2);
-            double sindLng = Math.sin(dLng / 2);
-            double va1 = Math.pow(sindLat, 2) + Math.pow(sindLng, 2)
-                    * Math.cos(Math.toRadians(latitudAntigua)) * Math.cos(Math.toRadians(latitudNueva));
-            double va2 = 2 * Math.atan2(Math.sqrt(va1), Math.sqrt(1 - va1));
-            distancia = radioTierra * va2;
-        }
-        return distancia;
-    }*/
 
     @Override
     protected void onDestroy() {
@@ -254,7 +228,6 @@ public class MainActivity extends AppCompatActivity
             mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
             mFirstTime = mSharedPreferences.getBoolean("primeraVez", true);
             if(mFirstTime) {
-                // HABRIA QUE PONER ESTO
                 String strLatitudAntigua = mSharedPreferences.getString("latitud","");
                 String strLongitudAntigua = mSharedPreferences.getString("longitud","");
                 if(strLatitudAntigua!="" && strLongitudAntigua!="") {
@@ -272,22 +245,7 @@ public class MainActivity extends AppCompatActivity
                         editor.apply();
                     }
                 }
-                //DE AQUI SE PODRIA ELIMINAR HASTA
-               /* if (distanciaCoordenadas(Double.parseDouble(latitud), Double.parseDouble(longitud)) >= 50 || primeraVez) {
-                    if (primeraVez) {
-                        primeraVez = false;
-                    }
-                    mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                    editor = mSharedPreferences.edit(); // para guardar las configuraciones
-                    editor.putString("latitud", latitud);
-                    editor.putString("longitud", longitud);
-                    editor.apply();
-                }*/
-                //HASTA AQUI ELIMINAR
             }
-
-           // Log.d("coordenada_lat", String.valueOf(lat));
-            //Log.d("coordenada_long", String.valueOf(longi));
 
             this.mainActivity.setLocation(location);
         }

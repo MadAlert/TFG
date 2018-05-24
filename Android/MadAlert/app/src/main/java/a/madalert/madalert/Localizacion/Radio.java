@@ -7,15 +7,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-/**
- * Created by Nerea on 20/05/2018.
- */
-
 public final class Radio {
     private static HashMap<String, ArrayList<Pair<Double, Double>>> distCoord;
 
     public static HashMap<String, ArrayList<Pair<Double, Double>>> initCoord(){
-        distCoord = new HashMap<String, ArrayList<Pair<Double, Double>>>();
+        distCoord = new HashMap<>();
         ArrayList<Pair<Double, Double>> coordenadas = new ArrayList<>();
         inicializarTodos(coordenadas);
         coordenadas = new ArrayList<>();
@@ -80,9 +76,9 @@ public final class Radio {
         return distancia;
     }
 
-    public static ArrayList obtenerDistritosRadio(HashMap<String, ArrayList<Pair<Double, Double>>> coordenadas, int kms, Double parsLat, Double parsLong){
+    public static ArrayList<String> obtenerDistritosRadio(HashMap<String, ArrayList<Pair<Double, Double>>> coordenadas, int kms, Double parsLat, Double parsLong){
         coordenadas = initCoord();
-        ArrayList distRadio = new ArrayList<>();
+        ArrayList distRadio = new ArrayList<String>();
         boolean marcadorEncontrado;
         Iterator<Map.Entry<String, ArrayList<Pair<Double, Double>>>> iterator = coordenadas.entrySet().iterator();
 

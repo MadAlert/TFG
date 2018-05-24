@@ -4,10 +4,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-/**
- * Created by adrianpanaderogonzalez on 22/3/18.
- */
-
 public class Alertas {
 
     public String alerta;

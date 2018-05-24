@@ -1,6 +1,5 @@
 package a.madalert.madalert;
 
-
 import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,7 +9,6 @@ import android.view.KeyEvent;
 
 
 public class SoporteActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +17,6 @@ public class SoporteActivity extends AppCompatActivity {
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.add(R.id.contenedor_soporte, new ActivitySoporte());
         ft.commit();
-
     }
 
 

@@ -6,7 +6,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -20,8 +19,6 @@ import org.xml.sax.SAXException;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.net.MalformedURLException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -56,10 +53,6 @@ public class AddAlertaActivity extends AppCompatActivity {
         boton = findViewById(R.id.button);
 
         categoria = findViewById(R.id.spinner);
-       /* ArrayAdapter adapter = ArrayAdapter.createFromResource(
-                this, R.array.categorias_array , android.R.layout.simple_spinner_item);
-
-        categoria.setAdapter(adapter);*/
         categoria.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
 
@@ -81,10 +74,6 @@ public class AddAlertaActivity extends AppCompatActivity {
         );
 
         distrito = findViewById(R.id.spinner2);
-        /*ArrayAdapter adapter2 = ArrayAdapter.createFromResource(
-                this, R.array.distritos_array , android.R.layout.simple_spinner_item);
-
-        distrito.setAdapter(adapter2);*/
         distrito.setOnItemSelectedListener(
                 new AdapterView.OnItemSelectedListener() {
 
@@ -145,11 +134,7 @@ public class AddAlertaActivity extends AppCompatActivity {
 
     private void handleResponse(Alertas alertas) {
         Snackbar.make(findViewById(R.id.activity_add_alerta),"Se ha añadido correctamente",Snackbar.LENGTH_LONG).show();
-        //Toast.makeText(this, "Se añadio la alertita", Toast.LENGTH_LONG).show();
 
-        /*FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.alertas_fragmento, new AlertasFragmento());
-        ft.commit();*/
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
