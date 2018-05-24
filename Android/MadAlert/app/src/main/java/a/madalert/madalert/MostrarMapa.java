@@ -28,6 +28,11 @@ import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
+import org.json.JSONArray;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -39,6 +44,9 @@ import a.madalert.madalert.Adapter.DataAdapter;
 import a.madalert.madalert.Localizacion.Radio;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 /**
@@ -72,9 +80,9 @@ public class MostrarMapa extends Fragment implements
     private String mListaCat;
     private Integer count;
     private int km;
-    //private HashMap<String, Pair<Double, Double>> distCoord;
     private HashMap<String, ArrayList<Pair<Double,Double>>> distCoord;
     private HashMap<String, Pair<Double, Double>> distritosValidos;
+    private ArrayList<Pair<String, Integer>> markerDistrito;
     private List<Integer> alertas;
 
     private OnFragmentInteractionListener mListener;
@@ -171,6 +179,7 @@ public class MostrarMapa extends Fragment implements
         double parsLat = 0;
         double parsLong = 0;
         distRadio = new ArrayList<>();
+        markerDistrito = new ArrayList<>();
 
         contador = 0;
 
@@ -183,7 +192,6 @@ public class MostrarMapa extends Fragment implements
             parsLong = Double.parseDouble(longitud);
 
             distritosValidos = new HashMap<String, Pair<Double, Double>>();
-            //Iterator<Map.Entry<String, Pair<Double, Double>>> iterator2 = distritosValidos.entrySet().iterator();
         }
         else {
             Iterator<Map.Entry<String, ArrayList<Pair<Double,Double>>>> iterator = distCoord.entrySet().iterator();
@@ -216,7 +224,6 @@ public class MostrarMapa extends Fragment implements
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribeOn(io.reactivex.schedulers.Schedulers.io())
                             .subscribe(this::handleResponse, this::handleError));
-                    //googleMap.addMarker(new MarkerOptions().position(new LatLng(lat, longi)).title(it.getKey()).snippet("Se han encontrado " + count + " alertas"));
                 }
             }
         }
@@ -236,18 +243,39 @@ public class MostrarMapa extends Fragment implements
         map.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
     }
 
-    private void handleResponse(Integer integer) {
-        Log.d("nerePUTAAMA", integer.toString());
-        count = integer;
-        ArrayList<Pair<Double,Double>> arrayPar = distCoord.get(distRadio.get(contador));
-        Pair<Double,Double> par = arrayPar.get(0);
-        map.addMarker(new MarkerOptions().position(new LatLng(par.first,par.second)).title(distRadio.get(contador)).snippet("Se han encontrado " + count + " alertas"));
-        contador++;
+    private void handleResponse(JsonArray pair) {
+        //String hola = s;
+        //count = alertas;
+        //ArrayList<Pair<String, Integer>> a = pairs;
+        JsonObject objeto;
+        String distrito="";
+        int total=0;
+        for(JsonElement obj: pair){
+            objeto  = obj.getAsJsonObject();
+            distrito = objeto.get("_id").getAsString();
+            total = objeto.get("total").getAsInt();
+        }
+        if(contador < distRadio.size()){
+            Pair<String, Integer> p = new Pair<>(distrito,total);
+            markerDistrito.add(p);
+            contador++;
+        }
+        if(contador == distRadio.size()){
+            for(int i=0; i < markerDistrito.size();i++){
+                //Añadir marcador al mapa
+
+                Pair<String,Integer> disCount = markerDistrito.get(i);
+                String dis = disCount.first;
+                ArrayList<Pair<Double, Double>> arrayPar =distCoord.get(dis);
+                Pair<Double, Double> par = arrayPar.get(0);
+                map.addMarker(new MarkerOptions().position(new LatLng(par.first, par.second)).title(dis).snippet("Se han encontrado " + disCount.second + " alertas"));
+            }
+
+        }
     }
 
-
     private void handleError(Throwable error) {
-        Log.d("adritonto","ERRRRRRRR Error !");
+        Log.d("Marcador","ERRRRRRRR Error !");
     }
 
     @Override
