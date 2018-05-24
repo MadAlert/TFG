@@ -76,18 +76,14 @@ public class SeleccionDistritoFragmento extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_seleccionar_distrito, container, false);
         mSubscriptions = new CompositeDisposable();
-<<<<<<< HEAD
         int count = getFragmentManager().getBackStackEntryCount();
         //si no queda ningún fragment sale de este activity
         if (count == 1) {
             getFragmentManager().popBackStack();
         }
-=======
->>>>>>> origin/master
         initViews(view);
         initSharedPreferences();
 
-        //return view;
         return view;
     }
 
