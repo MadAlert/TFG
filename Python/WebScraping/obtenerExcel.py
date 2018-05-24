@@ -16,9 +16,12 @@ print(entradas)
 
 link = entradas[0].get('href') # esto devuelve el link del ultimo mes
 
-#for link in entradas: # esto devuelve los links de todos los meses que hay
- #  print(link.get('href'))
-
 excel = init + link
 filename = wget.download(excel, out='./excel/')
 print(filename)
+
+
+
+
+
+

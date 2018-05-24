@@ -34,21 +34,15 @@ import io.reactivex.disposables.CompositeDisposable;
 
 public class ConfigActivity extends AppCompatActivity implements CompoundButton.OnCheckedChangeListener {
     private ArrayList<String> categorias;
+
     private SharedPreferences mSharedPreferences;
     private SharedPreferences.Editor editor;
 
     private TextView muestrKm;
     private Spinner spinner;
-    private int km;
+
     private Switch swUbi;
-    private boolean isCheckedSw;
     private String distritoConf;
-    private int pos; // posicion del distrito
-    private AlertDialog alert;
-
-    private LocationManager locationManager;
-    private LocationListener locationListener;
-
     private CheckBox todas;
     private CheckBox dya;
     private CheckBox terrorismo;
@@ -58,6 +52,9 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
     private CheckBox transp;
     private CheckBox cont;
 
+    private int km;
+    private boolean isCheckedSw;
+    private int pos; // posicion del distrito
     private boolean todasBool;
     private boolean dyaBool;
     private boolean terrBool;
@@ -66,11 +63,16 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
     private boolean eventosBool;
     private boolean transpBool;
     private boolean contBool;
+    private String listaCategoria;
 
     private String latitud;
     private String longitud;
 
-    private String listaCategoria;
+    private LocationManager locationManager;
+    private LocationListener locationListener;
+    private AlertDialog alert;
+
+
 
     public ConfigActivity() {
     }
@@ -120,10 +122,6 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         // necesario para el algoritmo del radio
         latitud = mSharedPreferences.getString("latitud", "");
         longitud = mSharedPreferences.getString("longitud", "");
-
-        Log.d("coordenada_lat", String.valueOf(latitud));
-        Log.d("coordenada_long", String.valueOf(longitud));
-
     }
 
     private void initSwitch() {
@@ -138,9 +136,6 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
 
     @Override
     public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-        //Toast.makeText(this, "La ubicación está " + (isChecked ? "activada" : "desactivada"),
-        // Toast.LENGTH_SHORT).show();
-
         isCheckedSw = isChecked;
         editor.putBoolean("isCheckedSw", isCheckedSw);
         Log.d("BOOL", String.valueOf(isChecked));
@@ -230,7 +225,6 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
         cont.setChecked(contBool);
 
         anyChecked();
-        //categorias.add(listaCategoria);
         categorias = new ArrayList<String>(Arrays.asList(listaCategoria.split(",")));
 
 
@@ -268,7 +262,6 @@ public class ConfigActivity extends AppCompatActivity implements CompoundButton.
                 categorias.add("Terrorismo");
             else
                 categorias.remove("Terrorismo");
-            //editor.putString("listaCat", categorias.toString());
             editor.putString("listaCat", mytoString(categorias, ","));
             listaCategoria = mytoString(categorias, ",");
             editor.putBoolean("terrorismo", b);

@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.Spinner;
@@ -77,11 +76,14 @@ public class SeleccionDistritoFragmento extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_seleccionar_distrito, container, false);
         mSubscriptions = new CompositeDisposable();
+<<<<<<< HEAD
         int count = getFragmentManager().getBackStackEntryCount();
         //si no queda ningún fragment sale de este activity
         if (count == 1) {
             getFragmentManager().popBackStack();
         }
+=======
+>>>>>>> origin/master
         initViews(view);
         initSharedPreferences();
 
@@ -172,18 +174,15 @@ public class SeleccionDistritoFragmento extends Fragment {
 
     private void handleResponse(String alerta) {
         SharedPreferences.Editor editor = mSharedPreferences.edit();
-        //editor.putString(Constants.TOKEN,response.getToken())
         editor.putString("distrito", alerta);
 
         if(selectedStrings.size()==1 && selectedStrings.get(0)=="Todas"){
             editor.putString("hayCategorias", "0");
         }
         else if (selectedStrings.isEmpty()){
-            //Toast.makeText(getContext(), "¡Debes seleccionar al menos una categoría!", Toast.LENGTH_LONG).show();
             showSnackBarMessage("¡Debes seleccionar al menos una categoría!");
         }
         else{
-            //String categorias = new String();
             String categorias = "";
             for(int i=0; i< selectedStrings.size();i++){
                 categorias=categorias+selectedStrings.get(i);
@@ -206,9 +205,8 @@ public class SeleccionDistritoFragmento extends Fragment {
     }
 
 
-    private void handleError(Throwable error) {
+    /*private void handleError(Throwable error) {
 
-        // mProgressbar.setVisibility(View.GONE);
         boolean failed = false;
 
         if (error instanceof HttpException) {
@@ -229,7 +227,7 @@ public class SeleccionDistritoFragmento extends Fragment {
 
             showSnackBarMessage("Network Error !");
         }
-    }
+    }*/
 
     private void showSnackBarMessage(String message) {
 

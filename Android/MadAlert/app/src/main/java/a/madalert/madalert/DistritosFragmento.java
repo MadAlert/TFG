@@ -1,13 +1,11 @@
 package a.madalert.madalert;
 
-
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +13,6 @@ import android.view.ViewGroup;
 import io.reactivex.disposables.CompositeDisposable;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class DistritosFragmento extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
@@ -80,14 +75,11 @@ public class DistritosFragmento extends Fragment {
 
         getFragmentManager().beginTransaction()
                 .replace(R.id.distritos_frame, new SeleccionDistritoFragmento())
-                //.addToBackStack(null)
                 .commit();
 
         //return view;
         return view;
     }
-
-
 
     private void initSharedPreferences() {
 
@@ -100,7 +92,6 @@ public class DistritosFragmento extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
-
 
     @Override
     public void onAttach(Context context) {

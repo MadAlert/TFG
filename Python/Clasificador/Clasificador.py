@@ -47,12 +47,8 @@ class ClasificadorClass:
         response_json = json.loads(response.decode('utf-8'))
         if(response_json['category_list']):
             cat = self.parseoCategoria(response_json['category_list'][0]['code'])
-            #cat = response_json['category_list'][0]['label']
         else:
             cat = "Nada"
-        print(cat)   
-
-        print("\n")
         return cat
     
     def clasificarTweets(self, tweet):

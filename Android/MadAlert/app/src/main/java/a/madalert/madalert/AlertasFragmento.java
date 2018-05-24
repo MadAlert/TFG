@@ -32,24 +32,18 @@ import org.json.JSONException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import a.madalert.madalert.Adapter.DataAdapter;
 import a.madalert.madalert.Localizacion.Radio;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class AlertasFragmento extends Fragment {
 
     private TextView textView;
     private TextView firstTime;
 
-    //private HashMap<String, Pair<Double, Double>> distCoord;
     private HashMap<String, ArrayList<Pair<Double, Double>>> distCoord;
     private ArrayList<String> distRadio;
     private int kms;
@@ -58,7 +52,6 @@ public class AlertasFragmento extends Fragment {
 
     private CompositeDisposable mSub;
     private SharedPreferences mSharedPreferences;
-    private SharedPreferences.Editor editor;
 
     private RecyclerView mRecyclerView;
 
@@ -142,7 +135,7 @@ public class AlertasFragmento extends Fragment {
         View v = inflater.inflate(R.layout.fragment_alertas, container, false);
         mSub = new CompositeDisposable();
         initSharedPreferences();
-        editor = mSharedPreferences.edit();
+        SharedPreferences.Editor editor = mSharedPreferences.edit();
 
         FloatingActionButton fab = (FloatingActionButton) v.findViewById(R.id.anadirAlerta);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -173,12 +166,8 @@ public class AlertasFragmento extends Fragment {
     }
 
     public void recorrerRadio(Boolean ubicacionActivada){
-        distCoord = Radio.initCoord(); //-> Lo nuevo
-        //initCoord();
+        distCoord = Radio.initCoord();
         distRadio = new ArrayList<>();
-        boolean marcadorEncontrado;
-        //Iterator<Map.Entry<String, Pair<Double, Double>>> iterator = distCoord.entrySet().iterator();
-        Iterator<Map.Entry<String, ArrayList<Pair<Double, Double>>>> iterator = distCoord.entrySet().iterator(); //Esto comentar
         Double parsLat=0.0, parsLong=0.0;
         if(ubicacionActivada) {
             latitud = mSharedPreferences.getString("latitud", "");
@@ -195,23 +184,7 @@ public class AlertasFragmento extends Fragment {
             }
         }
         kms = mSharedPreferences.getInt("km", 0);
-        distRadio = Radio.obtenerDistritosRadio(distCoord,kms, parsLat, parsLong);// -> habria q poner esto y eliminar lo de abajo
-    }
-
-    //Copiado en Radio
-    public static double distanciaCoord(double lat1, double lng1, double lat2, double lng2) {
-        //double radioTierra = 3958.75;//en millas
-        double radioTierra = 6371;//en kilómetros
-        double dLat = Math.toRadians(lat2 - lat1);
-        double dLng = Math.toRadians(lng2 - lng1);
-        double sindLat = Math.sin(dLat / 2);
-        double sindLng = Math.sin(dLng / 2);
-        double va1 = Math.pow(sindLat, 2) + Math.pow(sindLng, 2)
-                * Math.cos(Math.toRadians(lat1)) * Math.cos(Math.toRadians(lat2));
-        double va2 = 2 * Math.atan2(Math.sqrt(va1), Math.sqrt(1 - va1));
-        double distancia = radioTierra * va2;
-
-        return distancia;
+        distRadio = Radio.obtenerDistritosRadio(distCoord,kms, parsLat, parsLong);
     }
 
     private void loadAlerta() throws IOException, JSONException {
@@ -224,7 +197,6 @@ public class AlertasFragmento extends Fragment {
             obtenerDistrito(latitud, longitud);
 
             for(int j = 0; j < distRadio.size(); j++) {
-                //auxDistrito += "," + distRadio.get(j);
                 mDistrito += "," + distRadio.get(j);
             }
         }
@@ -234,7 +206,6 @@ public class AlertasFragmento extends Fragment {
             if(!mDistrito.equals("Todos") || kms > 0) { //Cuando hay radio y distrito!=Todos
                 recorrerRadio(mCheckedSw);
                 for(int j = 0; j < distRadio.size(); j++) {
-                    //auxDistrito += "," + distRadio.get(j);
                     auxDistrito += "," + distRadio.get(j);
                 }
             }
@@ -246,9 +217,6 @@ public class AlertasFragmento extends Fragment {
                         .subscribe(this::handleResponse, this::handleError));
             }
             else{
-                String[] categoriasP;
-                //obtenerDistrito(latitud, longitud);
-                categoriasP = mHayCategorias.split(",");
                 mSub.add(NetworkUtil.getRetrofit().getAlertasDistritoCategoria(auxDistrito, mHayCategorias)
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribeOn(io.reactivex.schedulers.Schedulers.io())
@@ -268,7 +236,7 @@ public class AlertasFragmento extends Fragment {
     }
 
     private void handleError(Throwable error) {
-        //showSnackBarMessage("ERRRRRRRR Error !");
+
     }
 
     private void obtenerDistrito(String latitud, String longitud) {
@@ -294,7 +262,6 @@ public class AlertasFragmento extends Fragment {
                             auxDistrito = mDistrito;
                             recorrerRadio(mCheckedSw);
                             for(int j = 0; j < distRadio.size(); j++) {
-                                //auxDistrito += "," + distRadio.get(j);
                                 auxDistrito += "," + distRadio.get(j);
                             }
                             if(mTodas) {

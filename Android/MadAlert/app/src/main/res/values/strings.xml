@@ -77,8 +77,8 @@
 
     <!--Strings para 'Contacto'-->
     <string name="cabecera">Desde esta pantalla puedes ponerte en contacto con nosotros para cualquier consulta que necesites.</string>
-    <string name="correo">Correo</string>
-    <string name="nombre">Nombre</string>
+    <string name="correo">Tu correo</string>
+    <string name="nombre">Tu nombre</string>
     <string name="asunto">Asunto</string>
     <string name="enviar">Enviar</string>
     <string name="msg">Escriba su mensaje...</string>

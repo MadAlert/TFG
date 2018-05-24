@@ -8,7 +8,6 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class ContactActivity extends AppCompatActivity {
 
@@ -28,7 +27,7 @@ public class ContactActivity extends AppCompatActivity {
         btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /* obtenemos los datos para el env’o del correo */
+                /* obtenemos los datos para el envío del correo */
                 etName = (EditText) findViewById(R.id.etName);
                 etEmail = (EditText) findViewById(R.id.etEmail);
                 etSubject = (EditText) findViewById(R.id.etSubject);
@@ -43,23 +42,13 @@ public class ContactActivity extends AppCompatActivity {
 
                 /* colocamos los datos para el envío */
                 itSend.putExtra(android.content.Intent.EXTRA_TEXT, new String[]{etName.getText().toString()});
-                //itSend.putExtra(android.content.Intent.EXTRA_EMAIL, new String[]{ etEmail.getText().toString()});
                 itSend.putExtra(android.content.Intent.EXTRA_EMAIL, TO);
                 itSend.putExtra(android.content.Intent.EXTRA_SUBJECT, etSubject.getText().toString());
                 itSend.putExtra(android.content.Intent.EXTRA_TEXT, etBody.getText());
 
-                /* iniciamos la actividad */
 
                 if (validate()) {
                     startActivity(itSend);
-                    //finish();
-                    /*try {
-                        startActivity(Intent.createChooser(itSend, "Enviar email..."));
-                        finish();
-                    } catch (android.content.ActivityNotFoundException ex) {
-                        Toast.makeText(ContactActivity.this,
-                                "No tienes clientes de email instalados.", Toast.LENGTH_SHORT).show();
-                    }*/
                 }
             }
         });

@@ -44,14 +44,7 @@ for i, entrada in enumerate(entradas):
         if(salir==False): # esto es necesario porque si la fecha no es la que queremos, se sale del distrito
             titulo = dist.find(class_='titulo').get_text()
             entradilla = dist.find(class_='entradilla').get_text()
-    	    #print("%d" % j)
-    	    #print(titulo)
-            print(titulo)
-            print(entradilla)
             url = dist.find('a').get('href')
-            #Obtener categoria
-            #lista = []
-            #lista.append(titulo)
 
             # Instancia a la base de datos
             # Cuando inserta a Mongo la fecha al final muestra una 'Z'. Esto es Zulu Time, lo que nosotros conocemos como UTC Time

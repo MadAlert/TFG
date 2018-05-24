@@ -30,23 +30,12 @@ import java.util.regex.Pattern;
 public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
 
     private ArrayList<Alertas> mAndroidList;
-    private ArrayList<String> urls;
     private String mDistrito;
     private Boolean mRadio;
     private Spanned text;
 
     public DataAdapter(ArrayList<Alertas> androidList, boolean radio, String distrito) {
         mAndroidList = androidList;
-        /*urls  = new ArrayList<>();
-        for(int i =0; i < mAndroidList.size();i++){
-            String m = mAndroidList.get(i).getUrl();
-            if(m!=null){
-                urls.add(mAndroidList.get(i).getUrl());
-            }
-            else{
-                urls.add("");
-            }
-        }*/
         mRadio = radio;
         mDistrito = distrito;
     }
@@ -72,7 +61,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         }
         holder.mTvCategoria.setText(alerta.getCategoria());
         holder.mTvFecha.setText(alerta.getFecha());
-       // holder.mTvAlerta.setText(alerta.getAlertas());
 
         if((alerta.getVerificado() != null) && !alerta.getVerificado()) {
             holder.mIvVerificado.setImageResource(R.drawable.blanco);
@@ -80,7 +68,6 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
             holder.mIvVerificado.setImageResource(R.drawable.verificado);
         }
 
-        // FUNCIONA
         if(alerta.getUrl() != null && alerta.getFuente().equals("madridDiario")) { // para madridiario
             text = Html.fromHtml("<a href=" + alerta.getUrl() + ">" + alerta.getAlertas() + "</a>");
             holder.mTvAlertaWeb.setMovementMethod(LinkMovementMethod.getInstance());
@@ -116,7 +103,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
         return mAndroidList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder /*implements View.OnClickListener*/{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView mTvAlertaWeb,mTvAlertaOther,mTvFuente,mTvCategoria,mTvFecha, mTvDistrito;
         private ImageView mIvImagen, mIvVerificado;
@@ -136,10 +123,5 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
             mIvVerificado = (ImageView) view.findViewById(R.id.imagenVerificado);
         }
 
-       /* public void onClick(View v) {
-            Uri uri = Uri.parse(enlace);
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            v.getContext().startActivity(intent);
-        }*/
     }
 }
