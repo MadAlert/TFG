@@ -184,6 +184,10 @@ public class MostrarMapa extends Fragment implements
         contador = 0;
 
         int kms = km;
+        String cat = mListaCat;
+        if (mListaCat.equals("")) {
+            cat = "Todas";
+        }
 
         if(isCheckedSw) {
             map.setMyLocationEnabled(true);
@@ -196,7 +200,7 @@ public class MostrarMapa extends Fragment implements
         else {
             Iterator<Map.Entry<String, ArrayList<Pair<Double,Double>>>> iterator = distCoord.entrySet().iterator();
             boolean encontrado = false;
-            while (iterator.hasNext()) {
+            while (iterator.hasNext() || !encontrado) {
                 Map.Entry<String, ArrayList<Pair<Double,Double>>> it = iterator.next();
                 if (distritoConf.equals(it.getKey()) && !encontrado) {
                     encontrado = true;
@@ -205,25 +209,31 @@ public class MostrarMapa extends Fragment implements
                 }
             }
         }
+        if(kms==0 && isCheckedSw){
+            String distritoUbi = mSharedPreferences.getString("distritoUbicacion","");
+            distRadio.add(distritoUbi);
+            mSub.add(NetworkUtil.getRetrofit().getCountAlertasDistrito(distritoUbi, true, cat)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(io.reactivex.schedulers.Schedulers.io())
+                    .subscribe(this::handleResponse, this::handleError));
+        }
+        else {
 
-        Iterator<Map.Entry<String, ArrayList<Pair<Double,Double>>>> iterator = distCoord.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<String, ArrayList<Pair<Double,Double>>> it = iterator.next();
-            Double lat = it.getValue().get(0).first;
-            Double longi = it.getValue().get(0).second;
-            //Double var = Math.sqrt( (Math.pow(parsLat-lat,2) + (Math.pow(parsLong-longi, 2))));
-            Double var = Radio.distanciaCoord(parsLat, parsLong, lat, longi);
-            if ((var <= kms) || distritoConf.equals("Todos")) {
-                if(!it.getKey().equals("Todos")) {
-                    distRadio.add(it.getKey());
-                    String cat = mListaCat;
-                    if (mListaCat.equals("")) {
-                        cat = "Todas";
+            Iterator<Map.Entry<String, ArrayList<Pair<Double, Double>>>> iterator = distCoord.entrySet().iterator();
+            while (iterator.hasNext()) {
+                Map.Entry<String, ArrayList<Pair<Double, Double>>> it = iterator.next();
+                Double lat = it.getValue().get(0).first;
+                Double longi = it.getValue().get(0).second;
+                //Double var = Math.sqrt( (Math.pow(parsLat-lat,2) + (Math.pow(parsLong-longi, 2))));
+                Double var = Radio.distanciaCoord(parsLat, parsLong, lat, longi);
+                if ((var <= kms) || distritoConf.equals("Todos")) {
+                    if (!it.getKey().equals("Todos")) {
+                        distRadio.add(it.getKey());
+                        mSub.add(NetworkUtil.getRetrofit().getCountAlertasDistrito(it.getKey(), true, cat)
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribeOn(io.reactivex.schedulers.Schedulers.io())
+                                .subscribe(this::handleResponse, this::handleError));
                     }
-                    mSub.add(NetworkUtil.getRetrofit().getCountAlertasDistrito(it.getKey(), true, cat)
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribeOn(io.reactivex.schedulers.Schedulers.io())
-                            .subscribe(this::handleResponse, this::handleError));
                 }
             }
         }
@@ -244,9 +254,6 @@ public class MostrarMapa extends Fragment implements
     }
 
     private void handleResponse(JsonArray pair) {
-        //String hola = s;
-        //count = alertas;
-        //ArrayList<Pair<String, Integer>> a = pairs;
         JsonObject objeto;
         String distrito="";
         int total=0;
@@ -255,22 +262,26 @@ public class MostrarMapa extends Fragment implements
             distrito = objeto.get("_id").getAsString();
             total = objeto.get("total").getAsInt();
         }
-        if(contador < distRadio.size()){
-            Pair<String, Integer> p = new Pair<>(distrito,total);
-            markerDistrito.add(p);
-            contador++;
-        }
-        if(contador == distRadio.size()){
-            for(int i=0; i < markerDistrito.size();i++){
-                //Añadir marcador al mapa
-
-                Pair<String,Integer> disCount = markerDistrito.get(i);
-                String dis = disCount.first;
-                ArrayList<Pair<Double, Double>> arrayPar =distCoord.get(dis);
-                Pair<Double, Double> par = arrayPar.get(0);
-                map.addMarker(new MarkerOptions().position(new LatLng(par.first, par.second)).title(dis).snippet("Se han encontrado " + disCount.second + " alertas"));
+        if(distrito!="") {
+            if (contador < distRadio.size()) {
+                Pair<String, Integer> p = new Pair<>(distrito, total);
+                markerDistrito.add(p);
+                contador++;
             }
+            if (contador == distRadio.size()) {
+                for (int i = 0; i < markerDistrito.size(); i++) {
+                    //Añadir marcador al mapa
+                    Pair<String, Integer> disCount = markerDistrito.get(i);
+                    String dis = disCount.first;
+                    ArrayList<Pair<Double, Double>> arrayPar = distCoord.get(dis);
+                    Pair<Double, Double> par = arrayPar.get(0);
+                    map.addMarker(new MarkerOptions().position(new LatLng(par.first, par.second)).title(dis).snippet("Se han encontrado " + disCount.second + " alertas"));
+                }
 
+            }
+        }
+        else{
+            contador++;
         }
     }
 

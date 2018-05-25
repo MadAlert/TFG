@@ -81,7 +81,7 @@ public class AlertasFragmento extends Fragment {
     private SwipeRefreshLayout swipeRefreshLayout;
 
     public AlertasFragmento() {
-
+        // Inflate the layout for this fragment
     }
 
     private void initRecyclerView(View v) {
@@ -239,7 +239,7 @@ public class AlertasFragmento extends Fragment {
 
     }
 
-    private void obtenerDistrito(String latitud, String longitud) {
+    public void obtenerDistrito(String latitud, String longitud) {
         String url = "https://maps.googleapis.com/maps/api/geocode/json?latlng="+latitud+","+longitud+"&result_type=sublocality&key=AIzaSyDOveaxbksFJQgJfQXoWvvw9vOntdr8r3o";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET,url, jsonObject -> {
             distritoObtenido = jsonObject.toString();
@@ -263,6 +263,11 @@ public class AlertasFragmento extends Fragment {
                             recorrerRadio(mCheckedSw);
                             for(int j = 0; j < distRadio.size(); j++) {
                                 auxDistrito += "," + distRadio.get(j);
+                            }
+                            if(kms==0 && mCheckedSw){
+                                SharedPreferences.Editor editor = mSharedPreferences.edit();
+                                editor.putString("distritoUbicacion",mDistrito);
+                                editor.commit();
                             }
                             if(mTodas) {
                                 mSub.add(NetworkUtil.getRetrofit().getAlertasDistrito(auxDistrito)
