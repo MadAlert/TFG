@@ -200,31 +200,6 @@ public class SeleccionDistritoFragmento extends Fragment {
         }
     }
 
-
-    /*private void handleError(Throwable error) {
-
-        boolean failed = false;
-
-        if (error instanceof HttpException) {
-
-            Gson gson = new GsonBuilder().create();
-
-            try {
-                String errorBody = ((HttpException) error).response().errorBody().string();
-                ResponsePerso response = gson.fromJson(errorBody, ResponsePerso.class);
-                showSnackBarMessage(response.getMessage());
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (IllegalStateException | JsonSyntaxException e) {
-                e.printStackTrace();
-            }
-        } else {
-
-            showSnackBarMessage("Network Error !");
-        }
-    }*/
-
     private void showSnackBarMessage(String message) {
 
         if (getView() != null) {

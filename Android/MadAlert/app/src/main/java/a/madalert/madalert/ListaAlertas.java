@@ -58,6 +58,8 @@ public class ListaAlertas extends Fragment {
 
     private String mListaCat;
 
+    private Integer mKm;
+
     private boolean mMapa;
 
     private String mDistritoMapa;
@@ -137,6 +139,7 @@ public class ListaAlertas extends Fragment {
         mListaCat = mSharedPreferences.getString("listaCat", "");
         mMapa = mSharedPreferences.getBoolean("vieneMapa" , false);
         mDistritoMapa = mSharedPreferences.getString("distritoMapa", "");
+        mKm = mSharedPreferences.getInt("km", 0);
     }
 
     private void loadAlerta() {
@@ -172,7 +175,7 @@ public class ListaAlertas extends Fragment {
             auxDistrito = mDistritoMapa;
         }
         mAndroidArrayList = new ArrayList<>(alertas);
-        mAdapter = new DataAdapter(mAndroidArrayList, false, auxDistrito);
+        mAdapter = new DataAdapter(mAndroidArrayList, false, auxDistrito, mKm);
         mRecyclerView.setAdapter(mAdapter);
         SharedPreferences.Editor editor = mSharedPreferences.edit();
         editor.putBoolean("vieneMapa", false);

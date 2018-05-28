@@ -167,4 +167,5 @@
     <string name="pref_title_vibrate">Vibrate</string>
     <string name="resume">resume</string>
     <string name="pause">pause</string>
+    <string name="actualizar_mapa">Actualizar Mapa</string>
 </resources>

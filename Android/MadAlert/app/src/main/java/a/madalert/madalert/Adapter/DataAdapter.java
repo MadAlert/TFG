@@ -33,11 +33,13 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     private String mDistrito;
     private Boolean mRadio;
     private Spanned text;
+    private Integer mKm;
 
-    public DataAdapter(ArrayList<Alertas> androidList, boolean radio, String distrito) {
+    public DataAdapter(ArrayList<Alertas> androidList, boolean radio, String distrito, Integer km) {
         mAndroidList = androidList;
         mRadio = radio;
         mDistrito = distrito;
+        mKm = km;
     }
 
 
@@ -51,12 +53,9 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        if(mRadio || mDistrito.equals("Todos")) {
-            holder.mTvDistrito.setText(mAndroidList.get(position).getDistrito());
-        }
         final Alertas alerta = mAndroidList.get(position);
 
-        if(mRadio) {
+        if((mRadio && mKm > 0) || mDistrito.equals("Todos")) {
             holder.mTvDistrito.setText(alerta.getDistrito());
         }
         holder.mTvCategoria.setText(alerta.getCategoria());
@@ -68,7 +67,7 @@ public class DataAdapter extends RecyclerView.Adapter<DataAdapter.ViewHolder> {
             holder.mIvVerificado.setImageResource(R.drawable.verificado);
         }
 
-        if(alerta.getUrl() != null && alerta.getFuente().equals("madridDiario")) { // para madridiario
+        if(alerta.getUrl() != null && alerta.getFuente().equals("Madridiario")) { // para madridiario
             text = Html.fromHtml("<a href=" + alerta.getUrl() + ">" + alerta.getAlertas() + "</a>");
             holder.mTvAlertaWeb.setMovementMethod(LinkMovementMethod.getInstance());
             holder.mTvAlertaOther.setText("");

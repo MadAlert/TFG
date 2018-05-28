@@ -11,11 +11,14 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -71,19 +74,16 @@ public class MostrarMapa extends Fragment implements
     private GoogleMap map;
     private CompositeDisposable mSub;
     private SharedPreferences mSharedPreferences;
-    private SharedPreferences.Editor editor;
     private String latitud;
     private String longitud;
     private boolean isCheckedSw;
     private String distritoConf;
     private ArrayList<String> distRadio;
     private String mListaCat;
-    private Integer count;
     private int km;
     private HashMap<String, ArrayList<Pair<Double,Double>>> distCoord;
-    private HashMap<String, Pair<Double, Double>> distritosValidos;
     private ArrayList<Pair<String, Integer>> markerDistrito;
-    private List<Integer> alertas;
+    private ImageButton button;
 
     private OnFragmentInteractionListener mListener;
 
@@ -130,6 +130,21 @@ public class MostrarMapa extends Fragment implements
         initSharedPreferences();
 
         distCoord = Radio.initCoord(); //Inicializo las coordenadas
+
+        button = (ImageButton) view.findViewById(R.id.buttonMaps);
+        button.setOnClickListener(new View.OnClickListener() {
+             public void onClick(View v) {
+                 // Esto se ejecuta cada vez que se realiza el gesto
+                 mapView = view.findViewById(R.id.mapG);
+
+                 if (mapView != null) {
+                     mapView.onCreate(null);
+                     mapView.onResume();
+                     mapView.getMapAsync(MostrarMapa.this);
+                 }
+             }
+        });
+
 
         return view;
     }
@@ -194,8 +209,6 @@ public class MostrarMapa extends Fragment implements
 
             parsLat = Double.parseDouble(latitud);
             parsLong = Double.parseDouble(longitud);
-
-            distritosValidos = new HashMap<String, Pair<Double, Double>>();
         }
         else {
             Iterator<Map.Entry<String, ArrayList<Pair<Double,Double>>>> iterator = distCoord.entrySet().iterator();
@@ -247,9 +260,7 @@ public class MostrarMapa extends Fragment implements
 
         // Set a listener for marker click.
         map.setOnInfoWindowClickListener(this);
-
         CameraPosition camera = CameraPosition.builder().target(circle.getCenter()).zoom(12).bearing(0).build();
-
         map.moveCamera(CameraUpdateFactory.newCameraPosition(camera));
     }
 
@@ -262,26 +273,26 @@ public class MostrarMapa extends Fragment implements
             distrito = objeto.get("_id").getAsString();
             total = objeto.get("total").getAsInt();
         }
-        if(distrito!="") {
+        if(!distrito.equals("")) {
             if (contador < distRadio.size()) {
                 Pair<String, Integer> p = new Pair<>(distrito, total);
                 markerDistrito.add(p);
                 contador++;
             }
-            if (contador == distRadio.size()) {
-                for (int i = 0; i < markerDistrito.size(); i++) {
-                    //Añadir marcador al mapa
-                    Pair<String, Integer> disCount = markerDistrito.get(i);
-                    String dis = disCount.first;
-                    ArrayList<Pair<Double, Double>> arrayPar = distCoord.get(dis);
-                    Pair<Double, Double> par = arrayPar.get(0);
-                    map.addMarker(new MarkerOptions().position(new LatLng(par.first, par.second)).title(dis).snippet("Se han encontrado " + disCount.second + " alertas"));
-                }
-
-            }
+        }else{
+                contador++;
         }
-        else{
-            contador++;
+        if (contador == distRadio.size()) {
+            for (int i = 0; i < markerDistrito.size(); i++) {
+                //Añadir marcador al mapa
+                Pair<String, Integer> disCount = markerDistrito.get(i);
+                String dis = disCount.first;
+                ArrayList<Pair<Double, Double>> arrayPar = distCoord.get(dis);
+                Pair<Double, Double> par = arrayPar.get(0);
+                map.addMarker(new MarkerOptions().position(new LatLng(par.first, par.second)).title(dis)
+                        .snippet("Se han encontrado " + disCount.second + " alertas"));
+            }
+
         }
     }
 

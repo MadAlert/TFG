@@ -22,6 +22,6 @@ public class GridItemView extends RelativeLayout {
     }
 
     public void display(boolean isSelected) {
-        textView.setBackgroundResource(isSelected ? R.drawable.green_square : R.drawable.gray_square);
+        textView.setBackgroundResource(isSelected ? R.drawable.blue_square : R.drawable.gray_square);
     }
 }

@@ -65,6 +65,8 @@ public class AlertasFragmento extends Fragment {
 
     private String mHayCategorias;
 
+    private Integer mKm;
+
     private boolean mTodas;
 
     private boolean mFirstTime;
@@ -91,20 +93,16 @@ public class AlertasFragmento extends Fragment {
         mRecyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         mRecyclerView.setLayoutManager(layoutManager);
+
+        loadAlerta();
         swipeRefreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swipeRefreshLayout);
         swipeRefreshLayout.setColorSchemeResources(R.color.colorPrimary);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 // Esto se ejecuta cada vez que se realiza el gesto
-                try {
-                    loadAlerta();
-                    swipeRefreshLayout.setRefreshing(false);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+                loadAlerta();
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
     }
@@ -116,6 +114,7 @@ public class AlertasFragmento extends Fragment {
         mTodas = mSharedPreferences.getBoolean("todas", false);
         mFirstTime = mSharedPreferences.getBoolean("primeraVez", true);
         mCheckedSw = mSharedPreferences.getBoolean("isCheckedSw", false);
+        mKm = mSharedPreferences.getInt("km", 0);
     }
 
 
@@ -152,14 +151,7 @@ public class AlertasFragmento extends Fragment {
             firstTime.setText(R.string.firstTime);
         }
         else {
-            try {
-                loadAlerta();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
+            loadAlerta();
         }
 
         return v;
@@ -187,7 +179,7 @@ public class AlertasFragmento extends Fragment {
         distRadio = Radio.obtenerDistritosRadio(distCoord,kms, parsLat, parsLong);
     }
 
-    private void loadAlerta() throws IOException, JSONException {
+    private void loadAlerta() {
         auxDistrito="";
         distRadio = new ArrayList<>();
         if(mCheckedSw) {
@@ -228,7 +220,7 @@ public class AlertasFragmento extends Fragment {
     private void handleResponse(List<Alertas> alertas) {
         textView.setText("Distrito " + mDistrito);
         mAndroidArrayList = new ArrayList<>(alertas);
-        mAdapter = new DataAdapter(mAndroidArrayList, true, mDistrito); //Si tiene varios distritos muestra el distrito en cada RecyclerView
+        mAdapter = new DataAdapter(mAndroidArrayList, true, mDistrito, mKm); //Si tiene varios distritos muestra el distrito en cada RecyclerView
         mRecyclerView.setAdapter(mAdapter);
 
         if(mAndroidArrayList.isEmpty())

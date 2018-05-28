@@ -161,7 +161,6 @@ public class AddAlertaActivity extends AppCompatActivity {
         String key = "05ed9a7c754aeee5d5f99470a756a5f8";
         String txt = alerta.getText().toString();
         String model = "news";
-
         Post post = new Post (api);
         post.addParameter("key", key);
         post.addParameter("txt", txt);
