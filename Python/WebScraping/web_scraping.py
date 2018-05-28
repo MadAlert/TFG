@@ -59,7 +59,7 @@ for i, entrada in enumerate(entradas):
             dif = datetime.now() - timedelta(minutes=5)  
             fd = datetime.strptime(fecha, "%Y-%m-%d %H:%M:%S") 
 
-            if(fd > dif): # si la fecha de la noticia es superior a la hora_actual - 5 min se tiene que guardar
+           if(fd > dif): # si la fecha de la noticia es superior a la hora_actual - 5 min se tiene que guardar
                 categoria = clasificador.clasificadorNoticias(titulo)
                 print(categoria)
                 if(categoria != "Nada"):             
@@ -68,7 +68,3 @@ for i, entrada in enumerate(entradas):
                      bd.insertarEstadisticas(bdEstadisticas,distrito,categoria,mes)
             else:
                 salir = True
-        
-def var():
-    distritos = [ "arganzuela", "barajas", "carabanchel", "centro", "chamartin", "chamberi", "ciudad lineal", "fuencarral-el pardo", "hortaleza", "latina", "moncloa-aravaca", "moratalaz", "puente de vallecas", "retiro", "salamanca", "san blas", "tetuan", "usera", "vicalvaro", "villa de vallecas", "villaverde"]
-    return (distritos)
