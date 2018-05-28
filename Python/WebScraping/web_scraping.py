@@ -45,7 +45,7 @@ for i, entrada in enumerate(entradas):
             titulo = dist.find(class_='titulo').get_text()
             entradilla = dist.find(class_='entradilla').get_text()
             url = dist.find('a').get('href')
-
+            print(titulo)
             # Instancia a la base de datos
             # Cuando inserta a Mongo la fecha al final muestra una 'Z'. Esto es Zulu Time, lo que nosotros conocemos como UTC Time
             # aqui es donde hay que crear lo de la fecha   
