@@ -63,7 +63,7 @@ for i, entrada in enumerate(entradas):
                 categoria = clasificador.clasificadorNoticias(titulo)
                 print(categoria)
                 if(categoria != "Nada"):             
-                     bd.insertarAlerta(bdAlertas,titulo,fd,url,distrito,categoria,"madridDiario")
+                     bd.insertarAlerta(bdAlertas,titulo,fd,url,distrito,categoria,"Madridiario")
                      mes = fd.month
                      bd.insertarEstadisticas(bdEstadisticas,distrito,categoria,mes)
             else:
