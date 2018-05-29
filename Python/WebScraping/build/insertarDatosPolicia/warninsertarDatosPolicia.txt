@@ -1,0 +1,40 @@
+missing module named resource - imported by posix, C:\xampp\htdocs\TFG\Python\WebScraping\insertarDatosPolicia.py
+missing module named posix - imported by os, C:\xampp\htdocs\TFG\Python\WebScraping\insertarDatosPolicia.py
+missing module named _posixsubprocess - imported by subprocess, C:\xampp\htdocs\TFG\Python\WebScraping\insertarDatosPolicia.py
+missing module named org - imported by pickle, C:\xampp\htdocs\TFG\Python\WebScraping\insertarDatosPolicia.py
+missing module named readline - imported by cmd, code, pdb, C:\xampp\htdocs\TFG\Python\WebScraping\insertarDatosPolicia.py
+excluded module named _frozen_importlib - imported by importlib, importlib.abc, C:\xampp\htdocs\TFG\Python\WebScraping\insertarDatosPolicia.py
+missing module named _frozen_importlib_external - imported by importlib._bootstrap, importlib, importlib.abc, C:\xampp\htdocs\TFG\Python\WebScraping\insertarDatosPolicia.py
+missing module named _winreg - imported by platform, pymongo.pool, C:\xampp\htdocs\TFG\Python\WebScraping\insertarDatosPolicia.py
+missing module named _scproxy - imported by urllib.request
+missing module named java - imported by platform, C:\xampp\htdocs\TFG\Python\WebScraping\insertarDatosPolicia.py
+missing module named 'java.lang' - imported by platform, C:\xampp\htdocs\TFG\Python\WebScraping\insertarDatosPolicia.py, xml.sax._exceptions
+missing module named vms_lib - imported by platform, C:\xampp\htdocs\TFG\Python\WebScraping\insertarDatosPolicia.py
+missing module named termios - imported by tty, C:\xampp\htdocs\TFG\Python\WebScraping\insertarDatosPolicia.py, getpass
+missing module named urllib.unquote_plus - imported by urllib, pymongo.uri_parser
+missing module named urllib.quote - imported by urllib, pymongo.auth
+missing module named grp - imported by shutil, tarfile, C:\xampp\htdocs\TFG\Python\WebScraping\insertarDatosPolicia.py
+missing module named pwd - imported by posixpath, shutil, tarfile, http.server, webbrowser, C:\xampp\htdocs\TFG\Python\WebScraping\insertarDatosPolicia.py, netrc, getpass
+missing module named 'org.python' - imported by copy, C:\xampp\htdocs\TFG\Python\WebScraping\insertarDatosPolicia.py, xml.sax
+missing module named _dummy_threading - imported by dummy_threading, C:\xampp\htdocs\TFG\Python\WebScraping\insertarDatosPolicia.py
+missing module named StringIO - imported by bson.py3compat
+missing module named cStringIO - imported by bson.py3compat
+missing module named copy_reg - imported by cStringIO
+missing module named thread - imported by openpyxl.compat.odict, bson.py3compat
+missing module named monotonic - imported by pymongo.monotonic
+missing module named monotime - imported by pymongo.monotonic
+missing module named fcntl - imported by pymongo.pool
+missing module named backports - imported by pymongo.auth
+missing module named kerberos - imported by pymongo.auth
+missing module named winkerberos - imported by pymongo.auth
+missing module named Queue - imported by pymongo.topology
+missing module named wincertstore - imported by pymongo.ssl_support
+missing module named PIL - imported by openpyxl.drawing.image
+missing module named Image - imported by openpyxl.drawing.image
+missing module named 'lxml.etree' - imported by openpyxl.xml.functions
+missing module named tests - imported by openpyxl.reader.excel
+missing module named _abcoll - imported by openpyxl.compat.odict
+missing module named dummy_thread - imported by openpyxl.compat.odict
+missing module named lxml - imported by openpyxl.xml
+missing module named pandas - imported by openpyxl.compat.numbers
+missing module named numpy - imported by openpyxl.compat.numbers
