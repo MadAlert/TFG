@@ -1,9 +1,13 @@
 package a.madalert.madalert;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.SystemClock;
+import android.preference.PreferenceManager;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -37,6 +41,8 @@ public class AddAlertaActivity extends AppCompatActivity {
     private Spinner distrito;
     private EditText alerta;
     private Button boton;
+    private SharedPreferences mSharedPreferences;
+    private Boolean mSnack;
 
     private String dist;
     private String cat;
@@ -111,6 +117,12 @@ public class AddAlertaActivity extends AppCompatActivity {
         if(validate()) {
             try {
                 if(parseoCategoria(categoriaValida()).equals(categoriaP)){
+                    mSharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+                    mSnack = true;
+                    SharedPreferences.Editor editor = mSharedPreferences.edit();
+                    editor.putBoolean("snack",mSnack);
+                    editor.apply();
+
                     mSub.add(NetworkUtil.getRetrofit().postAlerta(alertaP, distritoP, fuenteP, categoriaP)
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribeOn(io.reactivex.schedulers.Schedulers.io())
@@ -133,10 +145,10 @@ public class AddAlertaActivity extends AppCompatActivity {
     }
 
     private void handleResponse(Alertas alertas) {
-        Snackbar.make(findViewById(R.id.activity_add_alerta),"Se ha añadido correctamente",Snackbar.LENGTH_LONG).show();
 
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+
     }
 
     public boolean validate() {

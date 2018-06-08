@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -70,6 +71,7 @@ public class AlertasFragmento extends Fragment {
     private boolean mTodas;
 
     private boolean mFirstTime;
+    private boolean mSnack;
 
     private boolean mCheckedSw;
     private String latitud, longitud;
@@ -115,6 +117,7 @@ public class AlertasFragmento extends Fragment {
         mFirstTime = mSharedPreferences.getBoolean("primeraVez", true);
         mCheckedSw = mSharedPreferences.getBoolean("isCheckedSw", false);
         mKm = mSharedPreferences.getInt("km", 0);
+        mSnack = mSharedPreferences.getBoolean("snack", false);
     }
 
 
@@ -152,6 +155,12 @@ public class AlertasFragmento extends Fragment {
         }
         else {
             loadAlerta();
+            if(mSnack) {
+                Snackbar.make(v.findViewById(R.id.alertas_fragmento),"Se ha añadido correctamente",Snackbar.LENGTH_LONG).show();
+                mSnack = false;
+                editor.putBoolean("snack", mSnack);
+                editor.apply();
+            }
         }
 
         return v;

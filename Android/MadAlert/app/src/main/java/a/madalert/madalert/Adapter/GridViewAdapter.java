@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import a.madalert.madalert.GridItemView;
-import a.madalert.madalert.SeleccionDistritoFragmento;
 
 public class GridViewAdapter extends BaseAdapter {
 

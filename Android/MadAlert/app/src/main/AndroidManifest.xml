@@ -23,11 +23,6 @@
         <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyDOveaxbksFJQgJfQXoWvvw9vOntdr8r3o" />
-        <!--
-            <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDOveaxbksFJQgJfQXoWvvw9vOntdr8r3o" />
-        -->
 
         <activity
             android:name=".SplashActivity"

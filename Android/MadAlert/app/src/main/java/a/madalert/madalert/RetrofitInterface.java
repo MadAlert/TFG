@@ -1,14 +1,10 @@
 package a.madalert.madalert;
 
-import android.util.Pair;
-
 import com.google.gson.JsonArray;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+
 import java.util.List;
 
-import retrofit2.Callback;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -18,8 +14,6 @@ import io.reactivex.Observable;
 public interface RetrofitInterface {
 
     //@Headers("Content-Type: application/json")
-    @GET("alertas")
-    Observable<ResponsePerso> getDistrito();
 
     @GET("alertas/{distrito}/{count}/{categorias}")
     Observable<JsonArray> getCountAlertasDistrito(@Path("distrito") String distrito, @Path("count") boolean count, @Path("categorias") String categorias);

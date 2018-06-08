@@ -103,6 +103,33 @@ public final class Radio {
         return distRadio;
     }
 
+    public static HashMap<String,Pair<Double,Double>> obtenerDistritosRadioMapa(HashMap<String, ArrayList<Pair<Double, Double>>> coordenadas, int kms, Double parsLat, Double parsLong){
+        coordenadas = initCoord();
+        HashMap<String,Pair<Double,Double>> distRadio = new HashMap<>();
+        boolean marcadorEncontrado;
+        Iterator<Map.Entry<String, ArrayList<Pair<Double, Double>>>> iterator = coordenadas.entrySet().iterator();
+
+        while (iterator.hasNext()) {
+            Map.Entry<String, ArrayList<Pair<Double, Double>>> it = iterator.next(); // iterador del HashMap
+            if(!it.getKey().equals("Todos") && !it.getKey().equals("General")) {
+                ArrayList<Pair<Double, Double>> listAux = it.getValue(); // obtengo el arrayList del distrito que estoy iterando
+                Iterator<Pair<Double, Double>> itArrayList = listAux.iterator(); // iterador del arrayList
+                marcadorEncontrado = false;
+                while (itArrayList.hasNext() && !marcadorEncontrado) {
+                    Pair<Double, Double> parAux = itArrayList.next();
+                    Double lat = parAux.first;
+                    Double longi = parAux.second;
+                    Double var = distanciaCoord(parsLat, parsLong, lat, longi);
+                    if (var <= kms) {
+                        distRadio.put(it.getKey(), parAux);
+                        marcadorEncontrado = true; // en el momento en el que encuentre una coordenada dentro, ya no es necesario buscar mas
+                    }
+                }
+            }
+        }
+        return distRadio;
+    }
+
     private static void inicializarVillaverde(ArrayList<Pair<Double, Double>> coordenadas) {
         coordenadas.add(new Pair<>(40.345987, -3.693332));
         coordenadas.add(new Pair<>(40.3634511,-3.7206217));
@@ -180,7 +207,7 @@ public final class Radio {
     }
 
     private static void inicializarTodos(ArrayList<Pair<Double, Double>> coordenadas) {
-        coordenadas.add(new Pair<>(40.4420755, -3.7458086));
+        coordenadas.add(new Pair<>(40.4166202, -3.705977));
         distCoord.put("Todos", coordenadas);
     }
 

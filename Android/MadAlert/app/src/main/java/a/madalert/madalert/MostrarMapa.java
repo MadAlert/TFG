@@ -11,13 +11,11 @@ import android.preference.PreferenceManager;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -35,21 +33,14 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
-import org.json.JSONArray;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 
-import a.madalert.madalert.Adapter.DataAdapter;
 import a.madalert.madalert.Localizacion.Radio;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 
 
 /**
@@ -82,8 +73,10 @@ public class MostrarMapa extends Fragment implements
     private String mListaCat;
     private int km;
     private HashMap<String, ArrayList<Pair<Double,Double>>> distCoord;
+    private HashMap<String,Pair<Double,Double>> mapaCords;
     private ArrayList<Pair<String, Integer>> markerDistrito;
     private ImageButton button;
+
 
     private OnFragmentInteractionListener mListener;
 
@@ -210,7 +203,7 @@ public class MostrarMapa extends Fragment implements
             parsLat = Double.parseDouble(latitud);
             parsLong = Double.parseDouble(longitud);
         }
-        else {
+        else  {
             Iterator<Map.Entry<String, ArrayList<Pair<Double,Double>>>> iterator = distCoord.entrySet().iterator();
             boolean encontrado = false;
             while (iterator.hasNext() || !encontrado) {
@@ -231,25 +224,22 @@ public class MostrarMapa extends Fragment implements
                     .subscribe(this::handleResponse, this::handleError));
         }
         else {
-
-            Iterator<Map.Entry<String, ArrayList<Pair<Double, Double>>>> iterator = distCoord.entrySet().iterator();
-            while (iterator.hasNext()) {
-                Map.Entry<String, ArrayList<Pair<Double, Double>>> it = iterator.next();
-                Double lat = it.getValue().get(0).first;
-                Double longi = it.getValue().get(0).second;
-                //Double var = Math.sqrt( (Math.pow(parsLat-lat,2) + (Math.pow(parsLong-longi, 2))));
-                Double var = Radio.distanciaCoord(parsLat, parsLong, lat, longi);
-                if ((var <= kms) || distritoConf.equals("Todos")) {
-                    if (!it.getKey().equals("Todos")) {
-                        distRadio.add(it.getKey());
-                        mSub.add(NetworkUtil.getRetrofit().getCountAlertasDistrito(it.getKey(), true, cat)
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribeOn(io.reactivex.schedulers.Schedulers.io())
-                                .subscribe(this::handleResponse, this::handleError));
-                    }
-                }
+            if(!isCheckedSw && distritoConf.equals("Todos")){
+                kms = 25;
+                parsLat = distCoord.get("Todos").get(0).first;
+                parsLong = distCoord.get("Todos").get(0).second;
+            }
+            mapaCords = Radio.obtenerDistritosRadioMapa(distCoord,kms,parsLat,parsLong);
+            Iterator<Map.Entry<String, Pair<Double, Double>>> iterator = mapaCords.entrySet().iterator();
+            while(iterator.hasNext()){
+                Map.Entry<String,Pair<Double, Double>> it = iterator.next();
+                mSub.add(NetworkUtil.getRetrofit().getCountAlertasDistrito(it.getKey(), true, cat)
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribeOn(io.reactivex.schedulers.Schedulers.io())
+                        .subscribe(this::handleResponse, this::handleError));
             }
         }
+
 
         circle = map.addCircle(new CircleOptions()
                 .center(new LatLng(parsLat, parsLong))
@@ -274,25 +264,23 @@ public class MostrarMapa extends Fragment implements
             total = objeto.get("total").getAsInt();
         }
         if(!distrito.equals("")) {
-            if (contador < distRadio.size()) {
-                Pair<String, Integer> p = new Pair<>(distrito, total);
-                markerDistrito.add(p);
-                contador++;
-            }
+           if( contador < mapaCords.size()){
+               Pair<String, Integer> p = new Pair<>(distrito, total);
+               markerDistrito.add(p);
+               contador++;
+           }
         }else{
                 contador++;
         }
-        if (contador == distRadio.size()) {
+        if(contador == mapaCords.size()){
             for (int i = 0; i < markerDistrito.size(); i++) {
                 //Añadir marcador al mapa
                 Pair<String, Integer> disCount = markerDistrito.get(i);
                 String dis = disCount.first;
-                ArrayList<Pair<Double, Double>> arrayPar = distCoord.get(dis);
-                Pair<Double, Double> par = arrayPar.get(0);
-                map.addMarker(new MarkerOptions().position(new LatLng(par.first, par.second)).title(dis)
+                Pair<Double, Double> arrayPar = mapaCords.get(dis);
+                map.addMarker(new MarkerOptions().position(new LatLng(arrayPar.first, arrayPar.second)).title(dis)
                         .snippet("Se han encontrado " + disCount.second + " alertas"));
             }
-
         }
     }
 
